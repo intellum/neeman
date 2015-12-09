@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Neeman"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "A framework for easily creating a hybrid app from a mobile friendly web app."
 
   # This description is used to generate tags and improve search results.
