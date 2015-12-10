@@ -1,0 +1,22 @@
+body {
+    position: inherit !important;
+}
+.header-container, nav, .bar, #gd-topbar {
+    display: none !important;
+}
+
+#gd-navigator-launcher {
+    display: none !important;
+}
+
+div.content {
+    padding-top: 0px !important;
+    overflow: visible;
+}
+canvas {
+    -webkit-tap-highlight-color: transparent;
+}
+.table-view {
+    margin-top:-1px;
+}
+

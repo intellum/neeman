@@ -117,8 +117,8 @@ You can use this pod to get up and running fast with a hybrid app. Create a Sett
   #  the lib prefix of their name.
   #
 
-  s.framework  = "WebKit"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
+  # s.framework  = "WebKit"
+  s.frameworks = "WebKit", "SafariServices"
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
