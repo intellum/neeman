@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Neeman"
-  s.version      = "0.1.3"
+  s.version      = "0.1.4"
   s.summary      = "A framework for easily creating a hybrid app from a mobile friendly web app."
 
   # This description is used to generate tags and improve search results.
@@ -91,7 +91,7 @@ You can use this pod to get up and running fast with a hybrid app. Create a Sett
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Neeman", "Classes/**/*.{h,m}"
+  s.source_files  = "Source/**/*.*"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -106,7 +106,7 @@ You can use this pod to get up and running fast with a hybrid app. Create a Sett
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+  s.resources = "Resources/**/*.*"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -135,5 +135,6 @@ You can use this pod to get up and running fast with a hybrid app. Create a Sett
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
   s.dependency "KeychainAccess"
+  s.dependency "1PasswordExtension"
 
 end
