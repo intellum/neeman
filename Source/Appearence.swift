@@ -8,6 +8,7 @@ public class Appearence {
         let backgroundImage = gradientImageWithBounds(CGSizeMake(800, 800))
         UINavigationBar.appearance().setBackgroundImage(backgroundImage, forBarMetrics: .Default)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().translucent = false
         UITabBar.appearance().tintColor = Settings.sharedInstance.color1
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
