@@ -1,14 +1,14 @@
 import UIKit
 
-class Settings {
-    static let sharedInstance = Settings()
-    let appName: String
-    let baseURL: String
-    let authCookieName: String?
-    let logoutPage: String
-    let recoverPasswordURL: String
-    var color1: UIColor?
-    var color2: UIColor?
+public class Settings {
+    public static let sharedInstance = Settings()
+    public let appName: String
+    public let baseURL: String
+    public let authCookieName: String?
+    public let logoutPage: String
+    public let recoverPasswordURL: String
+    public var color1: UIColor?
+    public var color2: UIColor?
     
     init() {
         var dict: NSDictionary?

@@ -1,7 +1,7 @@
 import Foundation
 import KeychainAccess
 
-class LoginOperation: GroupOperation, OperationObserver {
+public class LoginOperation: GroupOperation, OperationObserver {
     // MARK: Properties
     let appName: String
     let username: String
@@ -23,7 +23,6 @@ class LoginOperation: GroupOperation, OperationObserver {
         name = "Login"
         
         let ssoOperation = NSBlockOperation { () -> Void in
-            print("finishOperation block")
             if let authToken = self.groupDockLoginOperation.authToken {
                 let appName = Settings.sharedInstance.appName
                 self.groupDockSSOOperation = GroupDockSingleSignOnOperation(appName: appName, authToken:authToken)

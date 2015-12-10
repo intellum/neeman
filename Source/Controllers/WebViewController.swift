@@ -4,15 +4,15 @@ import KeychainAccess
 
 let WebViewControllerDidLogout = "WebViewControllerDidLogout"
 
-class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
+public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     // MARK: Constants
     let BASE_URL = Settings.sharedInstance.baseURL
     let AUTH_COOKIE_NAME = Settings.sharedInstance.authCookieName
 
     // MARK: Properties
     var rootURL: NSURL?
-    var rootAbsoluteURLString : String = ""
-    var rootURLString : String? {
+    public var rootAbsoluteURLString : String = ""
+    public var rootURLString : String? {
         didSet {
             rootAbsoluteURLString = rootURLString!
             if rootURLString!.rangeOfString("://") == nil {
@@ -28,15 +28,15 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     var activityIndicator: UIActivityIndicatorView = {
         return UIActivityIndicatorView(activityIndicatorStyle: .White)
     }()
-    var refreshControl: UIRefreshControl!
+    public var refreshControl: UIRefreshControl!
     var hasLoadedContent: Bool = false
 
-    var webView: WKWebView!
-    var webViewConfig: WKWebViewConfiguration!
+    public var webView: WKWebView!
+    public var webViewConfig: WKWebViewConfiguration!
     static let processPool = WKProcessPool()
     
     //MARK: Lifecycle
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         setupWebView()
@@ -103,7 +103,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         autolayoutWebView()
     }
     
-    func autolayoutWebView() {
+    public func autolayoutWebView() {
         let views = ["webView":webView, "topLayoutGuide":self.topLayoutGuide] as [String: AnyObject]
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[webView(>=0)]-0-|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
@@ -125,18 +125,20 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         hasLoadedContent = false
 
         let request = NSMutableURLRequest(URL: url)
-        if AUTH_COOKIE_NAME == nil {
+        if let authCookieName = AUTH_COOKIE_NAME {
+            if let authToken = keychain["app_auth_cookie"] {
+                let authCookie = "\(authCookieName)=\(authToken);"
+                request.setValue(authCookie, forHTTPHeaderField: "Cookie")
+                webView.loadRequest(request)
+            }else{
+                showLogin()
+            }
+        } else {
             webView.loadRequest(request)
-        } else if let authToken = keychain["app_auth_cookie"] {
-            let authCookie = "\(AUTH_COOKIE_NAME)=\(authToken);"
-            request.setValue(authCookie, forHTTPHeaderField: "Cookie")
-            webView.loadRequest(request)
-        }else{
-            showLogin()
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
         webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
@@ -147,7 +149,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
 
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override public func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         webView.removeObserver(self, forKeyPath: "title")
         webView.removeObserver(self, forKeyPath: "loading")
@@ -159,7 +161,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     }
 
     // MARK: Title and Loading
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         guard keyPath != nil else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
             return
@@ -176,7 +178,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         }
     }
     
-    func setTitle() {
+    public func setTitle() {
         navigationItem.title = webView.title?.uppercaseString
     }
 
@@ -186,7 +188,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         loadURL(rootURL)
     }
 
-    func updateActivityIndicator()
+    public func updateActivityIndicator()
     {
         if(webView.loading && !self.refreshControl.refreshing) {
             activityIndicator.startAnimating()
@@ -260,7 +262,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
     //MARK: WKNavigationDelegate
     
-    func webView(webView: WKWebView,
+    public func webView(webView: WKWebView,
         decidePolicyForNavigationResponse navigationResponse: WKNavigationResponse,
         decisionHandler: (WKNavigationResponsePolicy) -> Void)
     {
@@ -268,7 +270,7 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         decisionHandler(.Allow);
     }
     
-    internal func webView(webView: WKWebView,
+    public func webView(webView: WKWebView,
         decidePolicyForNavigationAction navigationAction: WKNavigationAction,
         decisionHandler: (WKNavigationActionPolicy) -> Void)
     {
@@ -322,16 +324,16 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         }
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    public func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         refreshControl.endRefreshing()
         hasLoadedContent = true
         setContentInset()
     }
     
-    func setContentInset() {
+    public func setContentInset() {
     }
     
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError)
+    public func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError)
     {
         var message: String?
 
@@ -357,17 +359,17 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         refreshControl.endRefreshing()
     }
     
-    func setErrorMessage(message: String?) {
+    public func setErrorMessage(message: String?) {
         self.navigationItem.prompt = message
     }
     
-    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError)
+    public func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError)
     {
         print(error)
     }
     
     // MARK: WKUIDelegate
-    func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
+    public func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
         print(message)
         completionHandler()
     }

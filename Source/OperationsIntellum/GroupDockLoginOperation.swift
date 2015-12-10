@@ -1,6 +1,6 @@
 import Foundation
 
-class GroupDockLoginOperation: GroupOperation {
+public class GroupDockLoginOperation: GroupOperation {
     let AUTH_COOKIE_NAME = "connect.sid"
 
     // MARK: Properties
@@ -66,7 +66,6 @@ class GroupDockLoginOperation: GroupOperation {
                         localData,
                         options: NSJSONReadingOptions(rawValue:0)) as? Dictionary<String, AnyObject>
                     {
-                        print(jsonObj)
                         if let headerFields = response?.allHeaderFields as? [String: String] {
                             let url = response!.URL!
                             let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)

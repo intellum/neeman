@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Neeman"
-  s.version      = "0.1.6"
+  s.version      = "0.1.7.LOCAL"
   s.summary      = "A framework for easily creating a hybrid app from a mobile friendly web app."
 
   # This description is used to generate tags and improve search results.
@@ -106,7 +106,7 @@ You can use this pod to get up and running fast with a hybrid app. Create a Sett
   #
 
   # s.resource  = "icon.png"
-  s.resources = "Resources/**/*.*"
+  s.resources = "Resources/js/*.*", "Resources/Neeman.storyboard", "Resources/Assets.xcassets"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 

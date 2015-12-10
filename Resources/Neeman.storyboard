@@ -42,6 +42,9 @@
                                                 <color key="textColor" red="0.31764706970000001" green="0.31764706970000001" blue="0.31764706970000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="go"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="6wk-ZR-PGQ" id="iXx-yF-StP"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ip-wb-pgm" userLabel="password" customClass="LoginTextField" customModule="Neeman" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="70" width="240" height="40"/>
@@ -50,6 +53,9 @@
                                                 <color key="textColor" red="0.31764706970000001" green="0.31764706970000001" blue="0.31764706970000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="6wk-ZR-PGQ" id="ize-8r-a6Z"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-9F-ugq" userLabel="log in" customClass="LoginButton" customModule="Neeman" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="120" width="240" height="40"/>

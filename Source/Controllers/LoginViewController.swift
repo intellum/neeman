@@ -3,7 +3,7 @@ import UIKit
 import OnePasswordExtension
 import SafariServices
 
-class LoginViewController : UIViewController, OperationObserver {
+class LoginViewController : UIViewController, OperationObserver, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var logoImageView: UIImageView!
@@ -110,6 +110,16 @@ class LoginViewController : UIViewController, OperationObserver {
         scrollView.contentInset = contentInsets;
         scrollView.scrollIndicatorInsets = contentInsets
     }
+    
+    // MARK: TextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if let _ = usernameTextField.text,
+            _ = passwordTextField.text {
+            didTapLoginButton(textField)
+        }
+        return true
+    }
 
     // MARK: OperationObserver
     
@@ -127,14 +137,17 @@ class LoginViewController : UIViewController, OperationObserver {
             print(loginOperation.authToken)
         }
 
-        if (errors.isEmpty) {
-            print("Login")
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }else{
-            print(errors)
-            self.loginButton.hidden = false
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            if (errors.isEmpty) {
+                print("Login")
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }else{
+                print(errors)
+                self.loginButton.hidden = false
+            }
+            self.activityIndicator.stopAnimating()
         }
-        activityIndicator.stopAnimating()
     }
     
     override func viewWillLayoutSubviews() {

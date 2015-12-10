@@ -31,10 +31,10 @@ import Foundation
     - Extracting generated dependencies from operation conditions
     - Setting up dependencies to enforce mutual exclusivity
 */
-class OperationQueue: NSOperationQueue {
+public class OperationQueue: NSOperationQueue {
     weak var delegate: OperationQueueDelegate?
     
-    override func addOperation(operation: NSOperation) {
+    override public func addOperation(operation: NSOperation) {
         if let op = operation as? Operation {
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
             let delegate = BlockObserver(
@@ -106,7 +106,7 @@ class OperationQueue: NSOperationQueue {
         super.addOperation(operation)   
     }
     
-    override func addOperations(operations: [NSOperation], waitUntilFinished wait: Bool) {
+    override public func addOperations(operations: [NSOperation], waitUntilFinished wait: Bool) {
         /*
             The base implementation of this method does not call `addOperation()`,
             so we'll call it ourselves.

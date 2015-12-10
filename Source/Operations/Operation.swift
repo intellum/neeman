@@ -14,7 +14,7 @@ import Foundation
     extended readiness requirements, as well as notify many interested parties 
     about interesting operation state changes
 */
-class Operation: NSOperation {
+public class Operation: NSOperation {
     
     // use the KVO mechanism to indicate that changes to "state" affect other properties as well
     class func keyPathsForValuesAffectingIsReady() -> Set<NSObject> {
@@ -103,7 +103,7 @@ class Operation: NSOperation {
     }
     
     // Here is where we extend our definition of "readiness".
-    override var ready: Bool {
+    override public var ready: Bool {
         switch state {
             case .Pending:
                 if super.ready {
@@ -132,15 +132,15 @@ class Operation: NSOperation {
         }
     }
     
-    override var executing: Bool {
+    override public var executing: Bool {
         return state == .Executing
     }
     
-    override var finished: Bool {
+    override public var finished: Bool {
         return state == .Finished
     }
     
-    override var cancelled: Bool {
+    override public var cancelled: Bool {
         return state == .Cancelled
     }
     
@@ -179,7 +179,7 @@ class Operation: NSOperation {
         observers.append(observer)
     }
     
-    override func addDependency(operation: NSOperation) {
+    override public func addDependency(operation: NSOperation) {
         assert(state <= .Executing, "Dependencies cannot be modified after execution has begun.")
 
         super.addDependency(operation)
@@ -187,7 +187,7 @@ class Operation: NSOperation {
     
     // MARK: Execution and Cancellation
     
-    override final func start() {
+    override final public func start() {
         assert(state == .Ready, "This operation must be performed on an operation queue.")
 
         state = .Executing
@@ -216,7 +216,7 @@ class Operation: NSOperation {
     }
     
     private var _internalErrors = [NSError]()
-    override func cancel() {
+    override public func cancel() {
         cancelWithError()
     }
     
@@ -284,7 +284,7 @@ class Operation: NSOperation {
         // No op.
     }
     
-    override func waitUntilFinished() {
+    override public func waitUntilFinished() {
         /*
             Waiting on operations is almost NEVER the right thing to do. It is 
             usually superior to use proper locking constructs, such as `dispatch_semaphore_t`

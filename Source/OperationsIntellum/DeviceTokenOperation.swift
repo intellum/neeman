@@ -1,7 +1,7 @@
 import Foundation
 import KeychainAccess
 
-class DeviceTokenOperation: GroupOperation {
+public class DeviceTokenOperation: GroupOperation {
     let AUTH_COOKIE_NAME = "connect.sid"
 
     // MARK: Properties
@@ -13,7 +13,7 @@ class DeviceTokenOperation: GroupOperation {
     // MARK: Initialization
     
     /// - parameter cacheFile: The file `NSURL` to which the earthquake feed will be downloaded.
-    init(deviceToken: String, finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
+    public init(deviceToken: String, finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
         self.deviceToken = deviceToken
         self.finishHandler = finishHandler
         

@@ -1,7 +1,7 @@
 import Foundation
 
 
-class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegate {
+public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegate {
     // MARK: Properties
     
     let errorDomain = "GroupDockSSOOperationErrorDomain"
@@ -104,7 +104,6 @@ class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegate {
     
     internal func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void)
     {
-        print(response.allHeaderFields["Location"])
         completionHandler(request)
         
         guard let _ = self.appAuthToken else {
