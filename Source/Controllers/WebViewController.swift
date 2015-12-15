@@ -26,7 +26,8 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
     let keychain = Keychain(service: "com.intellum.level")
 
     var activityIndicator: UIActivityIndicatorView = {
-        return UIActivityIndicatorView(activityIndicatorStyle: .White)
+        let style : UIActivityIndicatorViewStyle = Settings.sharedInstance.isNavbarDark ? .White : .Gray
+        return UIActivityIndicatorView(activityIndicatorStyle: style)
     }()
     public var refreshControl: UIRefreshControl!
     var hasLoadedContent: Bool = false
@@ -57,7 +58,6 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
     }
     
     func setupNavigationBar() {
-        activityIndicator.startAnimating()
         let activityIndicatorBBI = UIBarButtonItem(customView: activityIndicator)
         navigationItem.rightBarButtonItem = activityIndicatorBBI
         setupRefreshControll()
@@ -70,10 +70,20 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         }
     }
 
-    func didTapLogout() {
-        NSNotificationCenter.defaultCenter().postNotificationName(WebViewControllerDidLogout, object: self)
+    public func didTapLogout() {
         keychain["app_auth_cookie"] = nil
         showLogin()
+        clearCookies()
+        NSNotificationCenter.defaultCenter().postNotificationName(WebViewControllerDidLogout, object: self)
+    }
+    
+    func clearCookies() {
+        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        if let cookies = cookieStorage.cookies {
+            for cookie in cookies {
+                cookieStorage.deleteCookie(cookie)
+            }
+        }
     }
     
     func didLogout(notification: NSNotification) {
@@ -125,17 +135,22 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         hasLoadedContent = false
 
         let request = NSMutableURLRequest(URL: url)
-        if let authCookieName = AUTH_COOKIE_NAME {
-            if let authToken = keychain["app_auth_cookie"] {
-                let authCookie = "\(authCookieName)=\(authToken);"
-                request.setValue(authCookie, forHTTPHeaderField: "Cookie")
-                webView.loadRequest(request)
-            }else{
-                showLogin()
-            }
-        } else {
-            webView.loadRequest(request)
+        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        let urlComponents = NSURLComponents(string: Settings.sharedInstance.baseURL)
+        let authCookies = cookieStorage.cookies?.filter({$0.name == AUTH_COOKIE_NAME && $0.domain == urlComponents?.host})
+        if let cookies = authCookies {
+            request.allHTTPHeaderFields = NSHTTPCookie.requestHeaderFieldsWithCookies(cookies)
         }
+
+        if let authCookieName = AUTH_COOKIE_NAME {
+            if authCookies?.count == 0 {
+                if let authToken = keychain["app_auth_cookie"] {
+                    let authCookie = "\(authCookieName)=\(authToken);"
+                    request.setValue(authCookie, forHTTPHeaderField: "Cookie")
+                }
+            }
+        }
+        webView.loadRequest(request)
     }
     
     override public func viewWillAppear(animated: Bool) {
@@ -227,20 +242,17 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
 
     func stringFromContentInFileName(fileName:String) -> String!
     {
-        var path = NSBundle.mainBundle().pathForResource(fileName, ofType: "")
-        if path == nil {
-            path = NSBundle(forClass: WebViewController.self).pathForResource(fileName, ofType: "")
-        }
-        guard let _ = path else {
-            return ""
-        }
-        
+        var content = ""
         do {
-            let content = try String(contentsOfFile:path!, encoding: NSUTF8StringEncoding)
-            return content;
+            if let path = NSBundle(forClass: WebViewController.self).pathForResource(fileName, ofType: "") {
+                content = try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
+            }
+            if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "") {
+                content = try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
+            }
         } catch _ {
         }
-        return ""
+        return content
     }
     
     //MARK: Cookies
@@ -315,7 +327,8 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
     }
     
     func pushNewWebViewControllerWithURL(url :NSURL) {
-        if let webViewController: WebViewController = storyboard?.instantiateViewControllerWithIdentifier(
+        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
+        if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
             (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController
         {
             let urlString = url.absoluteString

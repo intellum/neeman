@@ -9,6 +9,7 @@ public class Settings {
     public let recoverPasswordURL: String
     public var color1: UIColor?
     public var color2: UIColor?
+    public let isNavbarDark: Bool
     
     init() {
         var dict: NSDictionary?
@@ -29,5 +30,6 @@ public class Settings {
         {
             color2 = UIColor(hex: color2String)
         }
+        isNavbarDark = dict!["IsNavbarDark"] as? Bool ?? false
     }
 }

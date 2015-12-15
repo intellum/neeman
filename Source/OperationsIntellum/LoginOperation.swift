@@ -2,6 +2,8 @@ import Foundation
 import KeychainAccess
 
 public class LoginOperation: GroupOperation, OperationObserver {
+    let AUTH_COOKIE_NAME = Settings.sharedInstance.authCookieName
+
     // MARK: Properties
     let appName: String
     let username: String
@@ -22,17 +24,27 @@ public class LoginOperation: GroupOperation, OperationObserver {
         super.init(operations: [groupDockLoginOperation])
         name = "Login"
         
-        let ssoOperation = NSBlockOperation { () -> Void in
-            if let authToken = self.groupDockLoginOperation.authToken {
-                let appName = Settings.sharedInstance.appName
-                self.groupDockSSOOperation = GroupDockSingleSignOnOperation(appName: appName, authToken:authToken)
-                
-                self.addOperation(self.groupDockSSOOperation!)
-                self.groupDockSSOOperation!.addObserver(self)
+        if appName == "ExampleHybridApp" {
+            let setKeyOperation = NSBlockOperation { () -> Void in
+                let authToken = "this-is-your-auth-token"
+                self.didLoginWithAuthToken(authToken)
             }
+            self.addOperation(setKeyOperation)
+        } else {
+            let ssoOperation = NSBlockOperation { () -> Void in
+                if let authToken = self.groupDockLoginOperation.authToken {
+                    let appName = Settings.sharedInstance.appName
+                    self.groupDockSSOOperation = GroupDockSingleSignOnOperation(appName: appName, authToken:authToken)
+                    
+                    self.addOperation(self.groupDockSSOOperation!)
+                    self.groupDockSSOOperation!.addObserver(self)
+                }
+            }
+            ssoOperation.addDependency(groupDockLoginOperation)
+            self.addOperation(ssoOperation)
         }
-        ssoOperation.addDependency(groupDockLoginOperation)
-        self.addOperation(ssoOperation)
+
+        
     }
     
     func operationDidStart(operation: Operation) {
@@ -45,9 +57,41 @@ public class LoginOperation: GroupOperation, OperationObserver {
         if let groupDockSSOOperation = groupDockSSOOperation,
                authToken = groupDockSSOOperation.appAuthToken
         {
-            self.authToken = authToken
-            let keychain = Keychain(service: "com.intellum.level")
-            keychain["app_auth_cookie"] = authToken
+            didLoginWithAuthToken(authToken)
         }
+    }
+    
+    func didLoginWithAuthToken(authToken: String) {
+        self.authToken = authToken
+        let keychain = Keychain(service: "com.intellum.level")
+        keychain["app_auth_cookie"] = authToken
+        
+        var expiresDateString = NSDate().dateByAddingTimeInterval(60*60*24*365)
+
+        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        if let groupdockCookie = cookieStorage.cookies?.filter({$0.name == AUTH_COOKIE_NAME && $0.domain == "www.groupdock.com"}),
+            cookie = groupdockCookie.first
+        {
+            if let date = cookie.properties?[NSHTTPCookieExpires] as? NSDate {
+                expiresDateString = date
+            }
+        }
+
+        if let cookieName = Settings.sharedInstance.authCookieName,
+            urlComponents = NSURLComponents(string: Settings.sharedInstance.baseURL),
+            host = urlComponents.host
+        {
+            let properties = [
+                NSHTTPCookieName:cookieName,
+                NSHTTPCookieValue:authToken,
+                NSHTTPCookieDomain:host,
+                NSHTTPCookieOriginURL:host,
+                NSHTTPCookiePath:"/",
+                NSHTTPCookieExpires: expiresDateString
+            ];
+            if let cookie = NSHTTPCookie(properties: properties) {
+                cookieStorage.setCookie(cookie)
+            }
+         }
     }
 }

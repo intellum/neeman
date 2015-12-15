@@ -28,10 +28,10 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
         onePasswordButton.hidden = !onePasswordAvailable
         
 //#if DEBUG
-////        usernameTextField.text = "stephen_test"
-////        passwordTextField.text = "st3ph3n"
-//        usernameTextField.text = "swilliams@intellum.com"
-//        passwordTextField.text = "intelluni101?"
+//        usernameTextField.text = "stephen_test"
+//        passwordTextField.text = "st3ph3n"
+        usernameTextField.text = "swilliams@intellum.com"
+        passwordTextField.text = "intelluni101?"
 //#endif
         
         NSNotificationCenter.defaultCenter().addObserver(self,

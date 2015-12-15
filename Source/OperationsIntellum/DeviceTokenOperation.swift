@@ -2,7 +2,7 @@ import Foundation
 import KeychainAccess
 
 public class DeviceTokenOperation: GroupOperation {
-    let AUTH_COOKIE_NAME = "connect.sid"
+    let AUTH_COOKIE_NAME = Settings.sharedInstance.authCookieName
 
     // MARK: Properties
     private let deviceToken: String

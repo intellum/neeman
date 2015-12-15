@@ -23,6 +23,11 @@ public class GroupDockLoginOperation: GroupOperation {
         super.init(operations: [])
         name = "Login"
         
+        if appName == "ExampleHybridApp" {
+            return;
+        }
+
+        
         let url = NSURL(string: urlString+appName)!
         let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
         
