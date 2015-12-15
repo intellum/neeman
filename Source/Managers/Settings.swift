@@ -1,7 +1,15 @@
 import UIKit
 
 public class Settings {
-    public static let sharedInstance = Settings()
+    public static var sharedInstanceForTesting: Settings?
+    public static var sharedInstance: Settings {
+        get {
+            return sharedInstanceForTesting ?? Settings()
+        }
+        set {
+            sharedInstanceForTesting = newValue
+        }
+    }
     public let appName: String
     public let baseURL: String
     public let authCookieName: String?
@@ -10,17 +18,23 @@ public class Settings {
     public var color1: UIColor?
     public var color2: UIColor?
     public let isNavbarDark: Bool
-    
-    init() {
+
+    convenience init() {
+        let path = NSBundle.mainBundle().pathForResource("Settings", ofType: "plist")
+        self.init(path: path)
+    }
+
+    public init(path: String?) {
         var dict: NSDictionary?
-        if let path = NSBundle.mainBundle().pathForResource("Settings", ofType: "plist") {
-            dict = NSDictionary(contentsOfFile: path)
+        if let _ = path  {
+            dict = NSDictionary(contentsOfFile: path!)
         }
-        appName = dict!["AppName"] as! String
-        baseURL = dict!["BaseURL"] as! String
-        authCookieName = dict!["AuthCookieName"] as? String
-        logoutPage = dict!["LogoutPage"] as! String
-        recoverPasswordURL = dict!["RecoverPasswordURL"] as! String
+        
+        appName = dict?["AppName"] as? String ?? ""
+        baseURL = dict?["BaseURL"] as? String ?? ""
+        authCookieName = dict?["AuthCookieName"] as? String ?? ""
+        logoutPage = dict?["LogoutPage"] as? String ?? ""
+        recoverPasswordURL = dict?["RecoverPasswordURL"] as? String ?? ""
  
         if let color1String = dict?["Color1"] as? String
         {
@@ -30,6 +44,6 @@ public class Settings {
         {
             color2 = UIColor(hex: color2String)
         }
-        isNavbarDark = dict!["IsNavbarDark"] as? Bool ?? false
+        isNavbarDark = dict?["IsNavbarDark"] as? Bool ?? false
     }
 }

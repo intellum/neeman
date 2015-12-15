@@ -173,7 +173,7 @@ public class Operation: NSOperation {
     
     private(set) var observers = [OperationObserver]()
     
-    func addObserver(observer: OperationObserver) {
+    public func addObserver(observer: OperationObserver) {
         assert(state < .Executing, "Cannot modify observers after execution has begun.")
         
         observers.append(observer)

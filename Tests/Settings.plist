@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AppName</key>
+	<string>Level</string>
+	<key>BaseURL</key>
+	<string>http://intellum.level.openlms.com</string>
+	<key>LogoutPage</key>
+	<string>/user/profile/me</string>
+	<key>RecoverPasswordURL</key>
+	<string>https://groupdock.com/recover_password?app=</string>
+	<key>Color1</key>
+	<string>#01d3be</string>
+	<key>Color2</key>
+	<string>#00c0fd</string>
+	<key>IsNavbarDark</key>
+	<true/>
+	<key>AuthCookieName</key>
+	<string>connect.sid</string>
+</dict>
+</plist>

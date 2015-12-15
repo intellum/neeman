@@ -1,0 +1,700 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E09C9007EEAA86DAECE68A8 /* Pods_Neeman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */; };
+		DC937B8F1C200A8E00EF1D03 /* Neeman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC937B841C200A8D00EF1D03 /* Neeman.framework */; };
+		DC937BD81C200B5F00EF1D03 /* Appearence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BA41C200B5F00EF1D03 /* Appearence.swift */; };
+		DC937BD91C200B5F00EF1D03 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BA61C200B5F00EF1D03 /* LoginViewController.swift */; };
+		DC937BDA1C200B5F00EF1D03 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BA71C200B5F00EF1D03 /* WebViewController.swift */; };
+		DC937BDB1C200B5F00EF1D03 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BA91C200B5F00EF1D03 /* UIColor+Hex.swift */; };
+		DC937BDC1C200B5F00EF1D03 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BAB1C200B5F00EF1D03 /* Settings.swift */; };
+		DC937BDD1C200B5F00EF1D03 /* Neeman.h in Headers */ = {isa = PBXBuildFile; fileRef = DC937BAC1C200B5F00EF1D03 /* Neeman.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC937BDE1C200B5F00EF1D03 /* NetworkObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BAE1C200B5F00EF1D03 /* NetworkObserver.swift */; };
+		DC937BDF1C200B5F00EF1D03 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB01C200B5F00EF1D03 /* BlockObserver.swift */; };
+		DC937BE01C200B5F00EF1D03 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB11C200B5F00EF1D03 /* BlockOperation.swift */; };
+		DC937BE11C200B5F00EF1D03 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB21C200B5F00EF1D03 /* CalendarCondition.swift */; };
+		DC937BE21C200B5F00EF1D03 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB31C200B5F00EF1D03 /* CKContainer+Operations.swift */; };
+		DC937BE31C200B5F00EF1D03 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB41C200B5F00EF1D03 /* CloudCondition.swift */; };
+		DC937BE41C200B5F00EF1D03 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB51C200B5F00EF1D03 /* DelayOperation.swift */; };
+		DC937BE51C200B5F00EF1D03 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB61C200B5F00EF1D03 /* Dictionary+Operations.swift */; };
+		DC937BE61C200B5F00EF1D03 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB71C200B5F00EF1D03 /* ExclusivityController.swift */; };
+		DC937BE71C200B5F00EF1D03 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB81C200B5F00EF1D03 /* GroupOperation.swift */; };
+		DC937BE81C200B5F00EF1D03 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB91C200B5F00EF1D03 /* HealthCondition.swift */; };
+		DC937BE91C200B5F00EF1D03 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBA1C200B5F00EF1D03 /* LocationCondition.swift */; };
+		DC937BEA1C200B5F00EF1D03 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBB1C200B5F00EF1D03 /* LocationOperation.swift */; };
+		DC937BEB1C200B5F00EF1D03 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBC1C200B5F00EF1D03 /* MutuallyExclusive.swift */; };
+		DC937BEC1C200B5F00EF1D03 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBD1C200B5F00EF1D03 /* NegatedCondition.swift */; };
+		DC937BED1C200B5F00EF1D03 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBE1C200B5F00EF1D03 /* NoCancelledDependencies.swift */; };
+		DC937BEE1C200B5F00EF1D03 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBF1C200B5F00EF1D03 /* NSOperation+Operations.swift */; };
+		DC937BEF1C200B5F00EF1D03 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC01C200B5F00EF1D03 /* Operation.swift */; };
+		DC937BF01C200B5F00EF1D03 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC11C200B5F00EF1D03 /* OperationCondition.swift */; };
+		DC937BF11C200B5F00EF1D03 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC21C200B5F00EF1D03 /* OperationErrors.swift */; };
+		DC937BF21C200B5F00EF1D03 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC31C200B5F00EF1D03 /* OperationObserver.swift */; };
+		DC937BF31C200B5F00EF1D03 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC41C200B5F00EF1D03 /* OperationQueue.swift */; };
+		DC937BF41C200B5F00EF1D03 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC51C200B5F00EF1D03 /* PassbookCondition.swift */; };
+		DC937BF51C200B5F00EF1D03 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC61C200B5F00EF1D03 /* PhotosCondition.swift */; };
+		DC937BF61C200B5F00EF1D03 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC71C200B5F00EF1D03 /* ReachabilityCondition.swift */; };
+		DC937BF71C200B5F00EF1D03 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC81C200B5F00EF1D03 /* RemoteNotificationCondition.swift */; };
+		DC937BF81C200B5F00EF1D03 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC91C200B5F00EF1D03 /* SilentCondition.swift */; };
+		DC937BF91C200B5F00EF1D03 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCA1C200B5F00EF1D03 /* TimeoutObserver.swift */; };
+		DC937BFA1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCB1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift */; };
+		DC937BFB1C200B5F00EF1D03 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCC1C200B5F00EF1D03 /* URLSessionTaskOperation.swift */; };
+		DC937BFC1C200B5F00EF1D03 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCD1C200B5F00EF1D03 /* UserNotificationCondition.swift */; };
+		DC937BFD1C200B5F00EF1D03 /* DeviceTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCF1C200B5F00EF1D03 /* DeviceTokenOperation.swift */; };
+		DC937BFE1C200B5F00EF1D03 /* GroupDockLoginOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD01C200B5F00EF1D03 /* GroupDockLoginOperation.swift */; };
+		DC937BFF1C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD11C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift */; };
+		DC937C001C200B5F00EF1D03 /* LoginOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD21C200B5F00EF1D03 /* LoginOperation.swift */; };
+		DC937C011C200B5F00EF1D03 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD41C200B5F00EF1D03 /* GradientView.swift */; };
+		DC937C021C200B5F00EF1D03 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD51C200B5F00EF1D03 /* LoginButton.swift */; };
+		DC937C031C200B5F00EF1D03 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD61C200B5F00EF1D03 /* LoginTextField.swift */; };
+		DC937C041C200B5F00EF1D03 /* RoundCorneredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD71C200B5F00EF1D03 /* RoundCorneredView.swift */; };
+		DC937C0B1C200F7500EF1D03 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C091C200F7500EF1D03 /* Info.plist */; };
+		DC937C0F1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C0D1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift */; };
+		DC937C101C20108C00EF1D03 /* LoginOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C0E1C20108C00EF1D03 /* LoginOperationTest.swift */; };
+		DC937C121C2019E800EF1D03 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C111C2019E800EF1D03 /* Settings.plist */; };
+		DC937C141C201D7400EF1D03 /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C131C201D7400EF1D03 /* WebViewControllerTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC937B901C200A8E00EF1D03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC937B7B1C200A8D00EF1D03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC937B831C200A8D00EF1D03;
+			remoteInfo = Neeman;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neeman.release.xcconfig"; path = "Pods/Target Support Files/Pods-Neeman/Pods-Neeman.release.xcconfig"; sourceTree = "<group>"; };
+		4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neeman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Neeman/Pods-Neeman.debug.xcconfig"; sourceTree = "<group>"; };
+		DC937B841C200A8D00EF1D03 /* Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC937B8E1C200A8E00EF1D03 /* NeemanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeemanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC937BA41C200B5F00EF1D03 /* Appearence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearence.swift; sourceTree = "<group>"; };
+		DC937BA61C200B5F00EF1D03 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DC937BA71C200B5F00EF1D03 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		DC937BA91C200B5F00EF1D03 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		DC937BAB1C200B5F00EF1D03 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DC937BAC1C200B5F00EF1D03 /* Neeman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Neeman.h; sourceTree = "<group>"; };
+		DC937BAE1C200B5F00EF1D03 /* NetworkObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObserver.swift; sourceTree = "<group>"; };
+		DC937BB01C200B5F00EF1D03 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
+		DC937BB11C200B5F00EF1D03 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
+		DC937BB21C200B5F00EF1D03 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
+		DC937BB31C200B5F00EF1D03 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
+		DC937BB41C200B5F00EF1D03 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
+		DC937BB51C200B5F00EF1D03 /* DelayOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
+		DC937BB61C200B5F00EF1D03 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
+		DC937BB71C200B5F00EF1D03 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
+		DC937BB81C200B5F00EF1D03 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
+		DC937BB91C200B5F00EF1D03 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
+		DC937BBA1C200B5F00EF1D03 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
+		DC937BBB1C200B5F00EF1D03 /* LocationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
+		DC937BBC1C200B5F00EF1D03 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
+		DC937BBD1C200B5F00EF1D03 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
+		DC937BBE1C200B5F00EF1D03 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
+		DC937BBF1C200B5F00EF1D03 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
+		DC937BC01C200B5F00EF1D03 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		DC937BC11C200B5F00EF1D03 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
+		DC937BC21C200B5F00EF1D03 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
+		DC937BC31C200B5F00EF1D03 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
+		DC937BC41C200B5F00EF1D03 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
+		DC937BC51C200B5F00EF1D03 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
+		DC937BC61C200B5F00EF1D03 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
+		DC937BC71C200B5F00EF1D03 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
+		DC937BC81C200B5F00EF1D03 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
+		DC937BC91C200B5F00EF1D03 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
+		DC937BCA1C200B5F00EF1D03 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
+		DC937BCB1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
+		DC937BCC1C200B5F00EF1D03 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
+		DC937BCD1C200B5F00EF1D03 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
+		DC937BCF1C200B5F00EF1D03 /* DeviceTokenOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTokenOperation.swift; sourceTree = "<group>"; };
+		DC937BD01C200B5F00EF1D03 /* GroupDockLoginOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDockLoginOperation.swift; sourceTree = "<group>"; };
+		DC937BD11C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDockSingleSignOnOperation.swift; sourceTree = "<group>"; };
+		DC937BD21C200B5F00EF1D03 /* LoginOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOperation.swift; sourceTree = "<group>"; };
+		DC937BD41C200B5F00EF1D03 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		DC937BD51C200B5F00EF1D03 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		DC937BD61C200B5F00EF1D03 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		DC937BD71C200B5F00EF1D03 /* RoundCorneredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundCorneredView.swift; sourceTree = "<group>"; };
+		DC937C051C200BB700EF1D03 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC937C091C200F7500EF1D03 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC937C0D1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDockLoginOperationTest.swift; sourceTree = "<group>"; };
+		DC937C0E1C20108C00EF1D03 /* LoginOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOperationTest.swift; sourceTree = "<group>"; };
+		DC937C111C2019E800EF1D03 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		DC937C131C201D7400EF1D03 /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC937B801C200A8D00EF1D03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E09C9007EEAA86DAECE68A8 /* Pods_Neeman.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC937B8B1C200A8E00EF1D03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC937B8F1C200A8E00EF1D03 /* Neeman.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2906677FD655AF6E20411E20 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */,
+				2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3D4FCF321540734F4E90CE4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC937B7A1C200A8D00EF1D03 = {
+			isa = PBXGroup;
+			children = (
+				DC937C051C200BB700EF1D03 /* Info.plist */,
+				DC937BA31C200B5F00EF1D03 /* Source */,
+				DC937C081C200F7500EF1D03 /* Tests */,
+				DC937B851C200A8D00EF1D03 /* Products */,
+				2906677FD655AF6E20411E20 /* Pods */,
+				3D4FCF321540734F4E90CE4B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DC937B851C200A8D00EF1D03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC937B841C200A8D00EF1D03 /* Neeman.framework */,
+				DC937B8E1C200A8E00EF1D03 /* NeemanTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC937BA31C200B5F00EF1D03 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BA41C200B5F00EF1D03 /* Appearence.swift */,
+				DC937BA51C200B5F00EF1D03 /* Controllers */,
+				DC937BA81C200B5F00EF1D03 /* Extensions */,
+				DC937BAA1C200B5F00EF1D03 /* Managers */,
+				DC937BAC1C200B5F00EF1D03 /* Neeman.h */,
+				DC937BAD1C200B5F00EF1D03 /* Observers */,
+				DC937BAF1C200B5F00EF1D03 /* Operations */,
+				DC937BCE1C200B5F00EF1D03 /* OperationsIntellum */,
+				DC937BD31C200B5F00EF1D03 /* Views */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		DC937BA51C200B5F00EF1D03 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BA61C200B5F00EF1D03 /* LoginViewController.swift */,
+				DC937BA71C200B5F00EF1D03 /* WebViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DC937BA81C200B5F00EF1D03 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BA91C200B5F00EF1D03 /* UIColor+Hex.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DC937BAA1C200B5F00EF1D03 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BAB1C200B5F00EF1D03 /* Settings.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		DC937BAD1C200B5F00EF1D03 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BAE1C200B5F00EF1D03 /* NetworkObserver.swift */,
+			);
+			path = Observers;
+			sourceTree = "<group>";
+		};
+		DC937BAF1C200B5F00EF1D03 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BB01C200B5F00EF1D03 /* BlockObserver.swift */,
+				DC937BB11C200B5F00EF1D03 /* BlockOperation.swift */,
+				DC937BB21C200B5F00EF1D03 /* CalendarCondition.swift */,
+				DC937BB31C200B5F00EF1D03 /* CKContainer+Operations.swift */,
+				DC937BB41C200B5F00EF1D03 /* CloudCondition.swift */,
+				DC937BB51C200B5F00EF1D03 /* DelayOperation.swift */,
+				DC937BB61C200B5F00EF1D03 /* Dictionary+Operations.swift */,
+				DC937BB71C200B5F00EF1D03 /* ExclusivityController.swift */,
+				DC937BB81C200B5F00EF1D03 /* GroupOperation.swift */,
+				DC937BB91C200B5F00EF1D03 /* HealthCondition.swift */,
+				DC937BBA1C200B5F00EF1D03 /* LocationCondition.swift */,
+				DC937BBB1C200B5F00EF1D03 /* LocationOperation.swift */,
+				DC937BBC1C200B5F00EF1D03 /* MutuallyExclusive.swift */,
+				DC937BBD1C200B5F00EF1D03 /* NegatedCondition.swift */,
+				DC937BBE1C200B5F00EF1D03 /* NoCancelledDependencies.swift */,
+				DC937BBF1C200B5F00EF1D03 /* NSOperation+Operations.swift */,
+				DC937BC01C200B5F00EF1D03 /* Operation.swift */,
+				DC937BC11C200B5F00EF1D03 /* OperationCondition.swift */,
+				DC937BC21C200B5F00EF1D03 /* OperationErrors.swift */,
+				DC937BC31C200B5F00EF1D03 /* OperationObserver.swift */,
+				DC937BC41C200B5F00EF1D03 /* OperationQueue.swift */,
+				DC937BC51C200B5F00EF1D03 /* PassbookCondition.swift */,
+				DC937BC61C200B5F00EF1D03 /* PhotosCondition.swift */,
+				DC937BC71C200B5F00EF1D03 /* ReachabilityCondition.swift */,
+				DC937BC81C200B5F00EF1D03 /* RemoteNotificationCondition.swift */,
+				DC937BC91C200B5F00EF1D03 /* SilentCondition.swift */,
+				DC937BCA1C200B5F00EF1D03 /* TimeoutObserver.swift */,
+				DC937BCB1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift */,
+				DC937BCC1C200B5F00EF1D03 /* URLSessionTaskOperation.swift */,
+				DC937BCD1C200B5F00EF1D03 /* UserNotificationCondition.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		DC937BCE1C200B5F00EF1D03 /* OperationsIntellum */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BCF1C200B5F00EF1D03 /* DeviceTokenOperation.swift */,
+				DC937BD01C200B5F00EF1D03 /* GroupDockLoginOperation.swift */,
+				DC937BD11C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift */,
+				DC937BD21C200B5F00EF1D03 /* LoginOperation.swift */,
+			);
+			path = OperationsIntellum;
+			sourceTree = "<group>";
+		};
+		DC937BD31C200B5F00EF1D03 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC937BD41C200B5F00EF1D03 /* GradientView.swift */,
+				DC937BD51C200B5F00EF1D03 /* LoginButton.swift */,
+				DC937BD61C200B5F00EF1D03 /* LoginTextField.swift */,
+				DC937BD71C200B5F00EF1D03 /* RoundCorneredView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DC937C081C200F7500EF1D03 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DC937C091C200F7500EF1D03 /* Info.plist */,
+				DC937C131C201D7400EF1D03 /* WebViewControllerTests.swift */,
+				DC937C0D1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift */,
+				DC937C0E1C20108C00EF1D03 /* LoginOperationTest.swift */,
+				DC937C111C2019E800EF1D03 /* Settings.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DC937B811C200A8D00EF1D03 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC937BDD1C200B5F00EF1D03 /* Neeman.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DC937B831C200A8D00EF1D03 /* Neeman */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC937B981C200A8E00EF1D03 /* Build configuration list for PBXNativeTarget "Neeman" */;
+			buildPhases = (
+				1974D847BC668E4322C1BE14 /* Check Pods Manifest.lock */,
+				DC937B7F1C200A8D00EF1D03 /* Sources */,
+				DC937B801C200A8D00EF1D03 /* Frameworks */,
+				DC937B811C200A8D00EF1D03 /* Headers */,
+				DC937B821C200A8D00EF1D03 /* Resources */,
+				CBCA9923FCED9C5FACE31908 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Neeman;
+			productName = Neeman;
+			productReference = DC937B841C200A8D00EF1D03 /* Neeman.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DC937B8D1C200A8E00EF1D03 /* NeemanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC937B9B1C200A8E00EF1D03 /* Build configuration list for PBXNativeTarget "NeemanTests" */;
+			buildPhases = (
+				DC937B8A1C200A8E00EF1D03 /* Sources */,
+				DC937B8B1C200A8E00EF1D03 /* Frameworks */,
+				DC937B8C1C200A8E00EF1D03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC937B911C200A8E00EF1D03 /* PBXTargetDependency */,
+			);
+			name = NeemanTests;
+			productName = NeemanTests;
+			productReference = DC937B8E1C200A8E00EF1D03 /* NeemanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC937B7B1C200A8D00EF1D03 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Intellum;
+				TargetAttributes = {
+					DC937B831C200A8D00EF1D03 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					DC937B8D1C200A8E00EF1D03 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = DC937B7E1C200A8D00EF1D03 /* Build configuration list for PBXProject "Neeman" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DC937B7A1C200A8D00EF1D03;
+			productRefGroup = DC937B851C200A8D00EF1D03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC937B831C200A8D00EF1D03 /* Neeman */,
+				DC937B8D1C200A8E00EF1D03 /* NeemanTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC937B821C200A8D00EF1D03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC937B8C1C200A8E00EF1D03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC937C0B1C200F7500EF1D03 /* Info.plist in Resources */,
+				DC937C121C2019E800EF1D03 /* Settings.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1974D847BC668E4322C1BE14 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CBCA9923FCED9C5FACE31908 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Neeman/Pods-Neeman-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC937B7F1C200A8D00EF1D03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC937BE81C200B5F00EF1D03 /* HealthCondition.swift in Sources */,
+				DC937BE01C200B5F00EF1D03 /* BlockOperation.swift in Sources */,
+				DC937BF71C200B5F00EF1D03 /* RemoteNotificationCondition.swift in Sources */,
+				DC937BDC1C200B5F00EF1D03 /* Settings.swift in Sources */,
+				DC937C041C200B5F00EF1D03 /* RoundCorneredView.swift in Sources */,
+				DC937BDF1C200B5F00EF1D03 /* BlockObserver.swift in Sources */,
+				DC937C001C200B5F00EF1D03 /* LoginOperation.swift in Sources */,
+				DC937BF01C200B5F00EF1D03 /* OperationCondition.swift in Sources */,
+				DC937BDE1C200B5F00EF1D03 /* NetworkObserver.swift in Sources */,
+				DC937BE61C200B5F00EF1D03 /* ExclusivityController.swift in Sources */,
+				DC937BFE1C200B5F00EF1D03 /* GroupDockLoginOperation.swift in Sources */,
+				DC937BE21C200B5F00EF1D03 /* CKContainer+Operations.swift in Sources */,
+				DC937BD91C200B5F00EF1D03 /* LoginViewController.swift in Sources */,
+				DC937BE41C200B5F00EF1D03 /* DelayOperation.swift in Sources */,
+				DC937BF91C200B5F00EF1D03 /* TimeoutObserver.swift in Sources */,
+				DC937BF41C200B5F00EF1D03 /* PassbookCondition.swift in Sources */,
+				DC937BFD1C200B5F00EF1D03 /* DeviceTokenOperation.swift in Sources */,
+				DC937C031C200B5F00EF1D03 /* LoginTextField.swift in Sources */,
+				DC937BD81C200B5F00EF1D03 /* Appearence.swift in Sources */,
+				DC937BFC1C200B5F00EF1D03 /* UserNotificationCondition.swift in Sources */,
+				DC937BEF1C200B5F00EF1D03 /* Operation.swift in Sources */,
+				DC937BE51C200B5F00EF1D03 /* Dictionary+Operations.swift in Sources */,
+				DC937BFA1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift in Sources */,
+				DC937BEA1C200B5F00EF1D03 /* LocationOperation.swift in Sources */,
+				DC937BFF1C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift in Sources */,
+				DC937BE11C200B5F00EF1D03 /* CalendarCondition.swift in Sources */,
+				DC937BE31C200B5F00EF1D03 /* CloudCondition.swift in Sources */,
+				DC937BED1C200B5F00EF1D03 /* NoCancelledDependencies.swift in Sources */,
+				DC937BEB1C200B5F00EF1D03 /* MutuallyExclusive.swift in Sources */,
+				DC937BE91C200B5F00EF1D03 /* LocationCondition.swift in Sources */,
+				DC937BF21C200B5F00EF1D03 /* OperationObserver.swift in Sources */,
+				DC937BF31C200B5F00EF1D03 /* OperationQueue.swift in Sources */,
+				DC937BF11C200B5F00EF1D03 /* OperationErrors.swift in Sources */,
+				DC937C011C200B5F00EF1D03 /* GradientView.swift in Sources */,
+				DC937BF51C200B5F00EF1D03 /* PhotosCondition.swift in Sources */,
+				DC937C021C200B5F00EF1D03 /* LoginButton.swift in Sources */,
+				DC937BEE1C200B5F00EF1D03 /* NSOperation+Operations.swift in Sources */,
+				DC937BE71C200B5F00EF1D03 /* GroupOperation.swift in Sources */,
+				DC937BEC1C200B5F00EF1D03 /* NegatedCondition.swift in Sources */,
+				DC937BFB1C200B5F00EF1D03 /* URLSessionTaskOperation.swift in Sources */,
+				DC937BF61C200B5F00EF1D03 /* ReachabilityCondition.swift in Sources */,
+				DC937BDA1C200B5F00EF1D03 /* WebViewController.swift in Sources */,
+				DC937BDB1C200B5F00EF1D03 /* UIColor+Hex.swift in Sources */,
+				DC937BF81C200B5F00EF1D03 /* SilentCondition.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC937B8A1C200A8E00EF1D03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC937C0F1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift in Sources */,
+				DC937C141C201D7400EF1D03 /* WebViewControllerTests.swift in Sources */,
+				DC937C101C20108C00EF1D03 /* LoginOperationTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC937B911C200A8E00EF1D03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC937B831C200A8D00EF1D03 /* Neeman */;
+			targetProxy = DC937B901C200A8E00EF1D03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DC937B961C200A8E00EF1D03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DC937B971C200A8E00EF1D03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DC937B991C200A8E00EF1D03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.Neeman;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DC937B9A1C200A8E00EF1D03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.Neeman;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DC937B9C1C200A8E00EF1D03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NeemanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DC937B9D1C200A8E00EF1D03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NeemanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC937B7E1C200A8D00EF1D03 /* Build configuration list for PBXProject "Neeman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC937B961C200A8E00EF1D03 /* Debug */,
+				DC937B971C200A8E00EF1D03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC937B981C200A8E00EF1D03 /* Build configuration list for PBXNativeTarget "Neeman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC937B991C200A8E00EF1D03 /* Debug */,
+				DC937B9A1C200A8E00EF1D03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC937B9B1C200A8E00EF1D03 /* Build configuration list for PBXNativeTarget "NeemanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC937B9C1C200A8E00EF1D03 /* Debug */,
+				DC937B9D1C200A8E00EF1D03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC937B7B1C200A8D00EF1D03 /* Project object */;
+}

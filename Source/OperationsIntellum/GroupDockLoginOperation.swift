@@ -15,7 +15,7 @@ public class GroupDockLoginOperation: GroupOperation {
     // MARK: Initialization
     
     /// - parameter cacheFile: The file `NSURL` to which the earthquake feed will be downloaded.
-    init(appName: String, username: String, password: String) {
+    public init(appName: String, username: String, password: String) {
         self.appName = appName
         self.username = username
         self.password = password

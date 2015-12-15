@@ -303,7 +303,7 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         decisionHandler(actionPolicy)
     }
     
-    func shouldPushNewWebView(request: NSURLRequest) -> Bool {
+    public func shouldPushNewWebView(request: NSURLRequest) -> Bool {
         guard let url = request.URL else {
             return false
         }
@@ -315,7 +315,7 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         return !isInitialRequest && !isFragmentOfThisPage
     }
     
-    func isLoginRequestRequest(request: NSURLRequest) -> Bool {
+    public func isLoginRequestRequest(request: NSURLRequest) -> Bool {
         var isLoginPath = false
         let isGroupDock = request.URL?.absoluteString.rangeOfString("://groupdock.com") != nil
         let loginPaths = ["/login", "/elogin", "/sso/launch"]

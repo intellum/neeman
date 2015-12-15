@@ -8,13 +8,13 @@ public class LoginOperation: GroupOperation, OperationObserver {
     let appName: String
     let username: String
     let password: String
-    var authToken: String?
+    public var authToken: String?
     let groupDockLoginOperation: GroupDockLoginOperation
     var groupDockSSOOperation: GroupDockSingleSignOnOperation? = nil
     
     // MARK: Initialization
     
-    init(appName: String, username: String, password: String) {
+    public init(appName: String, username: String, password: String) {
         self.appName = appName
         self.username = username
         self.password = password
@@ -47,13 +47,13 @@ public class LoginOperation: GroupOperation, OperationObserver {
         
     }
     
-    func operationDidStart(operation: Operation) {
+    public func operationDidStart(operation: Operation) {
     }
     
-    func operation(operation: Operation, didProduceOperation newOperation: NSOperation) {
+    public func operation(operation: Operation, didProduceOperation newOperation: NSOperation) {
     }
     
-    func operationDidFinish(operation: Operation, errors: [NSError]) {
+    public func operationDidFinish(operation: Operation, errors: [NSError]) {
         if let groupDockSSOOperation = groupDockSSOOperation,
                authToken = groupDockSSOOperation.appAuthToken
         {
@@ -93,5 +93,9 @@ public class LoginOperation: GroupOperation, OperationObserver {
                 cookieStorage.setCookie(cookie)
             }
          }
+    }
+    
+    func authTokenName() {
+        
     }
 }
