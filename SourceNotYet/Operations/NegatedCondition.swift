@@ -41,8 +41,7 @@ struct NegatedCondition<T: OperationCondition>: OperationCondition {
             if result.error == nil {
                 // If the composed condition failed, then this one succeeded.
                 completion(.Satisfied)
-            }
-            else {
+            } else {
                 // If the composed condition succeeded, then this one failed.
                 let error = NSError(code: .ConditionFailed, userInfo: [
                     OperationConditionKey: self.dynamicType.name,

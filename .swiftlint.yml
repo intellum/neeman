@@ -1,0 +1,9 @@
+disabled_rules:
+  - trailing_whitespace
+  - nesting
+  - variable_name
+
+excluded:
+  - Pods
+
+line_length: 150

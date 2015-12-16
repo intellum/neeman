@@ -3,8 +3,7 @@ import UIKit
 public class Appearence {
     public static let sharedInstance = Appearence()
     
-    public func setup()
-    {
+    public func setup() {
         let backgroundImage = gradientImageWithBounds(CGSizeMake(800, 800))
         UINavigationBar.appearance().setBackgroundImage(backgroundImage, forBarMetrics: .Default)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
@@ -20,54 +19,45 @@ public class Appearence {
                 NSForegroundColorAttributeName : UIColor.whiteColor()
             ]
         }
-//        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
     }
     
-    func gradientImageWithBounds(size:CGSize) -> UIImage?
-    {
-        UIGraphicsBeginImageContextWithOptions(size, true, UIScreen.mainScreen().scale)
+    func gradientImageWithBounds(size: CGSize) -> UIImage? {
 
+        guard let gradient = gradient() else {
+            return nil
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(size, true, UIScreen.mainScreen().scale)
         let currentContext = UIGraphicsGetCurrentContext()
+        CGContextSaveGState(currentContext)
         
-        // 2
-        CGContextSaveGState(currentContext);
+        let startPoint = CGPointMake(0, size.height)
+        let endPoint = CGPointMake(size.width, size.height)
+        let options = CGGradientDrawingOptions(rawValue: 0)
+        CGContextDrawLinearGradient(currentContext, gradient, startPoint, endPoint, options)
+        let outImage = UIGraphicsGetImageFromCurrentImageContext()
         
-        // 3
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        
-        // 4
+        CGContextRestoreGState(currentContext)
+
+        return outImage
+    }
+    
+    func gradient() -> CGGradient? {
         guard let startColor = Settings.sharedInstance.color1 else {
             return nil
         }
         guard let endColor = Settings.sharedInstance.color2 else {
             return nil
         }
-        
+
+        let locations: [CGFloat] = [0.0, 1.0]
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
         let startColorComponents = CGColorGetComponents(startColor.CGColor)
         let endColorComponents = CGColorGetComponents(endColor.CGColor)
-        
-        // 5
-        let colorComponents
-        = [startColorComponents[0], startColorComponents[1], startColorComponents[2], startColorComponents[3], endColorComponents[0], endColorComponents[1], endColorComponents[2], endColorComponents[3]]
-        
-        // 6
-        let locations:[CGFloat] = [0.0, 1.0]
-        
-        // 7
-        let gradient = CGGradientCreateWithColorComponents(colorSpace,colorComponents,locations,2)
-        
-        let startPoint = CGPointMake(0, size.height)
-        let endPoint = CGPointMake(size.width, size.height)
-        
-        // 8
-        let options = CGGradientDrawingOptions(rawValue: 0)
-        CGContextDrawLinearGradient(currentContext,gradient,startPoint,endPoint, options)
-        
-        let outImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        // 9
-        CGContextRestoreGState(currentContext);
-
-        return outImage
+        let colorComponents = [
+            startColorComponents[0], startColorComponents[1], startColorComponents[2], startColorComponents[3],
+            endColorComponents[0], endColorComponents[1], endColorComponents[2], endColorComponents[3]
+        ]
+        return CGGradientCreateWithColorComponents(colorSpace, colorComponents, locations, 2)
     }
 }

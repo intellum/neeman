@@ -55,23 +55,22 @@ public class LoginOperation: GroupOperation, OperationObserver {
     
     public func operationDidFinish(operation: Operation, errors: [NSError]) {
         if let groupDockSSOOperation = groupDockSSOOperation,
-               authToken = groupDockSSOOperation.appAuthToken
-        {
+               authToken = groupDockSSOOperation.appAuthToken {
             didLoginWithAuthToken(authToken)
         }
     }
     
     func didLoginWithAuthToken(authToken: String) {
         self.authToken = authToken
-        let keychain = Keychain(service: "com.intellum.level")
+        let keychain = Keychain(service: Settings.sharedInstance.keychainService)
         keychain["app_auth_cookie"] = authToken
         
         var expiresDateString = NSDate().dateByAddingTimeInterval(60*60*24*365)
 
         let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         if let groupdockCookie = cookieStorage.cookies?.filter({$0.name == AUTH_COOKIE_NAME && $0.domain == "www.groupdock.com"}),
-            cookie = groupdockCookie.first
-        {
+            cookie = groupdockCookie.first {
+                
             if let date = cookie.properties?[NSHTTPCookieExpires] as? NSDate {
                 expiresDateString = date
             }
@@ -79,8 +78,8 @@ public class LoginOperation: GroupOperation, OperationObserver {
 
         if let cookieName = Settings.sharedInstance.authCookieName,
             urlComponents = NSURLComponents(string: Settings.sharedInstance.baseURL),
-            host = urlComponents.host
-        {
+            host = urlComponents.host {
+                
             let properties = [
                 NSHTTPCookieName:cookieName,
                 NSHTTPCookieValue:authToken,
@@ -88,11 +87,13 @@ public class LoginOperation: GroupOperation, OperationObserver {
                 NSHTTPCookieOriginURL:host,
                 NSHTTPCookiePath:"/",
                 NSHTTPCookieExpires: expiresDateString
-            ];
+            ]
+                
             if let cookie = NSHTTPCookie(properties: properties) {
                 cookieStorage.setCookie(cookie)
             }
          }
+         NSURLCache.sharedURLCache().removeAllCachedResponses()
     }
     
     func authTokenName() {

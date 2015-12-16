@@ -4,13 +4,13 @@ extension UIColor {
     
     convenience init(hex: String) {
         
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
+        var cString: String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString
         
-        if (cString.hasPrefix("#")) {
+        if cString.hasPrefix("#") {
             cString = (cString as NSString).substringFromIndex(1)
         }
         
-        if (cString.characters.count != 6) {
+        if cString.characters.count != 6 {
             self.init(white: 100, alpha: 1)
             return
         }
@@ -19,7 +19,7 @@ extension UIColor {
         let gString = ((cString as NSString).substringFromIndex(2) as NSString).substringToIndex(2)
         let bString = ((cString as NSString).substringFromIndex(4) as NSString).substringToIndex(2)
         
-        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        var r: CUnsignedInt = 0, g: CUnsignedInt = 0, b: CUnsignedInt = 0
         NSScanner(string: rString).scanHexInt(&r)
         NSScanner(string: gString).scanHexInt(&g)
         NSScanner(string: bString).scanHexInt(&b)

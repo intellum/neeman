@@ -29,8 +29,7 @@ struct PassbookCondition: OperationCondition {
     func evaluateForOperation(operation: Operation, completion: OperationConditionResult -> Void) {
         if PKPassLibrary.isPassLibraryAvailable() {
             completion(.Satisfied)
-        }
-        else {
+        } else {
             let error = NSError(code: .ConditionFailed, userInfo: [
                 OperationConditionKey: self.dynamicType.name
             ])

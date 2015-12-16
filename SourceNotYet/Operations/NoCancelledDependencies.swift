@@ -38,8 +38,7 @@ struct NoCancelledDependencies: OperationCondition {
             ])
             
             completion(.Failed(error))
-        }
-        else {
+        } else {
             completion(.Satisfied)
         }
     }

@@ -47,15 +47,13 @@ struct LocationCondition: OperationCondition {
                 break
 
             case (true, .WhenInUse, .AuthorizedWhenInUse):
-                /*
-                    The service is enabled, and we have and need "WhenInUse" 
-                    permission -> condition satisfied.
+                /* The service is enabled, and we have and need "WhenInUse"
+                   permission -> condition satisfied.
                 */
                 break
 
             default:
-                /*
-                    Anything else is an error. Maybe location services are disabled,
+                /*  Anything else is an error. Maybe location services are disabled,
                     or maybe we need "Always" permission but only have "WhenInUse",
                     or maybe access has been restricted or denied,
                     or maybe access hasn't been request yet.
@@ -71,8 +69,7 @@ struct LocationCondition: OperationCondition {
         
         if let error = error {
             completion(.Failed(error))
-        }
-        else {
+        } else {
             completion(.Satisfied)
         }
     }
@@ -129,7 +126,8 @@ private class LocationPermissionOperation: Operation {
         }
         
         // This is helpful when developing the app.
-        assert(NSBundle.mainBundle().objectForInfoDictionaryKey(key) != nil, "Requesting location permission requires the \(key) key in your Info.plist")
+        assert(NSBundle.mainBundle().objectForInfoDictionaryKey(key) != nil,
+            "Requesting location permission requires the \(key) key in your Info.plist")
     }
     
 }

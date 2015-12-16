@@ -50,8 +50,7 @@ struct CloudContainerCondition: OperationCondition {
                 ])
 
                 completion(.Failed(conditionError))
-            }
-            else {
+            } else {
                 completion(.Satisfied)
             }
         }

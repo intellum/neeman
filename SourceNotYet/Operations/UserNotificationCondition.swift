@@ -63,7 +63,7 @@ struct UserNotificationCondition: OperationCondition {
         
         let current = application.currentUserNotificationSettings()
 
-        switch (current, settings)  {
+        switch (current, settings) {
             case (let current?, let settings) where current.contains(settings):
                 result = .Satisfied
 

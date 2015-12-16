@@ -66,8 +66,7 @@ private class NetworkIndicatorController {
     private func updateIndicatorVisibility() {
         if activityCount > 0 {
             showIndicator()
-        }
-        else {
+        } else {
             /*
                 To prevent the indicator from flickering on and off, we delay the 
                 hiding of the indicator by one second. This provides the chance

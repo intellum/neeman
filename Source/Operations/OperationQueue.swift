@@ -36,34 +36,10 @@ public class OperationQueue: NSOperationQueue {
     
     override public func addOperation(operation: NSOperation) {
         if let op = operation as? Operation {
-            // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
-            let delegate = BlockObserver(
-                startHandler: nil,
-                produceHandler: { [weak self] in
-                    self?.addOperation($1)
-                },
-                finishHandler: { [weak self] in
-                    if let q = self {
-                        q.delegate?.operationQueue?(q, operationDidFinish: $0, withErrors: $1)
-                    }
-                }
-            )
-            op.addObserver(delegate)
+            setupQueueDelegateForOperation(op)
+            handleDependenciesForOperation(op)
             
-            // Extract any dependencies needed by this operation.
-            let dependencies = op.conditions.flatMap {
-                $0.dependencyForOperation(op)
-            }
-                
-            for dependency in dependencies {
-                op.addDependency(dependency)
-
-                self.addOperation(dependency)
-            }
-            
-            /*
-                With condition dependencies added, we can now see if this needs
-                dependencies to enforce mutual exclusivity.
+            /*  With condition dependencies added, we can now see if this needs dependencies to enforce mutual exclusivity.
             */
             let concurrencyCategories: [String] = op.conditions.flatMap { condition in
                 if !condition.dynamicType.isMutuallyExclusive { return nil }
@@ -74,7 +50,6 @@ public class OperationQueue: NSOperationQueue {
             if !concurrencyCategories.isEmpty {
                 // Set up the mutual exclusivity dependencies.
                 let exclusivityController = ExclusivityController.sharedExclusivityController
-
                 exclusivityController.addOperation(op, categories: concurrencyCategories)
                 
                 op.addObserver(BlockObserver { operation, _ in
@@ -82,18 +57,13 @@ public class OperationQueue: NSOperationQueue {
                 })
             }
             
-            /*
-                Indicate to the operation that we've finished our extra work on it  
-                and it's now it a state where it can proceed with evaluating conditions, 
-                if appropriate.
+            /*  Indicate to the operation that we've finished our extra work on it and it's now it a state where
+                it can proceed with evaluating conditions, if appropriate.
             */
             op.willEnqueue()
-        }
-        else {
-            /*
-                For regular `NSOperation`s, we'll manually call out to the queue's 
-                delegate we don't want to just capture "operation" because that     
-                would lead to the operation strongly referencing itself and that's
+        } else {
+            /*  For regular `NSOperation`s, we'll manually call out to the queue's delegate we don't want to just 
+                capture "operation" because that would lead to the operation strongly referencing itself and that's
                 the pure definition of a memory leak.
             */
             operation.addCompletionBlock { [weak self, weak operation] in
@@ -104,6 +74,32 @@ public class OperationQueue: NSOperationQueue {
         
         delegate?.operationQueue?(self, willAddOperation: operation)
         super.addOperation(operation)   
+    }
+    
+    func setupQueueDelegateForOperation(operation: Operation) {
+        // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.
+        let delegate = BlockObserver(startHandler: nil,
+            produceHandler: { [weak self] (operation: Operation, nsOperation: NSOperation) -> Void in
+                self?.addOperation(nsOperation)
+            }, finishHandler: { [weak self] (operation: Operation, errors: [NSError]) -> Void in
+                if let me = self {
+                    me.delegate?.operationQueue?(me, operationDidFinish: operation, withErrors: errors)
+                }
+            })
+        operation.addObserver(delegate)
+    }
+    
+    func handleDependenciesForOperation(operation: Operation) {
+        // Extract any dependencies needed by this operation.
+        let dependencies = operation.conditions.flatMap {
+            $0.dependencyForOperation(operation)
+        }
+        
+        for dependency in dependencies {
+            operation.addDependency(dependency)
+            
+            self.addOperation(dependency)
+        }
     }
     
     override public func addOperations(operations: [NSOperation], waitUntilFinished wait: Bool) {

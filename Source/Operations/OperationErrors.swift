@@ -22,10 +22,10 @@ extension NSError {
 }
 
 // This makes it easy to compare an `NSError.code` to an `OperationErrorCode`.
-func ==(lhs: Int, rhs: OperationErrorCode) -> Bool {
+func == (lhs: Int, rhs: OperationErrorCode) -> Bool {
     return lhs == rhs.rawValue
 }
 
-func ==(lhs: OperationErrorCode, rhs: Int) -> Bool {
+func == (lhs: OperationErrorCode, rhs: Int) -> Bool {
     return lhs.rawValue == rhs
 }

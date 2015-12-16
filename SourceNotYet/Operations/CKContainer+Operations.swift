@@ -38,12 +38,10 @@ private func verifyAccountStatus(container: CKContainer, permission: CKApplicati
         if accountStatus == .Available {
             if permission != [] {
                 verifyPermission(container, permission: permission, shouldRequest: shouldRequest, completion: completion)
-            }
-            else {
+            } else {
                 completion(nil)
             }
-        }
-        else {
+        } else {
             completion(accountError)
         }
     }
@@ -53,11 +51,9 @@ private func verifyPermission(container: CKContainer, permission: CKApplicationP
     container.statusForApplicationPermission(permission) { permissionStatus, permissionError in
         if permissionStatus == .Granted {
             completion(nil)
-        }
-        else if permissionStatus == .InitialState && shouldRequest {
+        } else if permissionStatus == .InitialState && shouldRequest {
             requestPermission(container, permission: permission, completion: completion)
-        }
-        else {
+        } else {
             completion(permissionError)
         }
     }
@@ -68,8 +64,7 @@ private func requestPermission(container: CKContainer, permission: CKApplication
         container.requestApplicationPermission(permission) { requestStatus, requestError in
             if requestStatus == .Granted {
                 completion(nil)
-            }
-            else {
+            } else {
                 completion(requestError)
             }
         }

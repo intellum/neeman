@@ -153,8 +153,7 @@ public class Operation: NSOperation {
             if failures.isEmpty {
                 // If there were no errors, we may proceed.
                 self.state = .Ready
-            }
-            else {
+            } else {
                 self.state = .Cancelled
                 self.finish(failures)
             }
@@ -247,8 +246,7 @@ public class Operation: NSOperation {
     final func finishWithError(error: NSError?) {
         if let error = error {
             finish([error])
-        }
-        else {
+        } else {
             finish()
         }
     }

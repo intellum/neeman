@@ -73,8 +73,7 @@ struct HealthCondition: OperationCondition {
 
         if !unauthorizedShareTypes.isEmpty {
             failed(Set(unauthorizedShareTypes), completion: completion)
-        }
-        else {
+        } else {
             completion(.Satisfied)
         }
     }

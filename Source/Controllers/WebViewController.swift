@@ -3,30 +3,30 @@ import WebKit
 import KeychainAccess
 
 let WebViewControllerDidLogout = "WebViewControllerDidLogout"
+let WebViewControllerDidLogin = "WebViewControllerDidLogin"
 
-public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
+public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewController {
     // MARK: Constants
-    let BASE_URL = Settings.sharedInstance.baseURL
-    let AUTH_COOKIE_NAME = Settings.sharedInstance.authCookieName
+    let baseURL = Settings.sharedInstance.baseURL
+    let authCookieName = Settings.sharedInstance.authCookieName
 
     // MARK: Properties
+    var navigationDelegate: WebViewNavigationDelegate?
     var rootURL: NSURL?
-    public var rootAbsoluteURLString : String = ""
-    public var rootURLString : String? {
+    public var rootAbsoluteURLString: String = ""
+    public var rootURLString: String? {
         didSet {
             rootAbsoluteURLString = rootURLString!
             if rootURLString!.rangeOfString("://") == nil {
-                rootAbsoluteURLString = BASE_URL + rootURLString!
+                rootAbsoluteURLString = baseURL + rootURLString!
             }
             
             self.rootURL = NSURL(string: rootAbsoluteURLString)
         }
     }
     
-    let keychain = Keychain(service: "com.intellum.level")
-
     var activityIndicator: UIActivityIndicatorView = {
-        let style : UIActivityIndicatorViewStyle = Settings.sharedInstance.isNavbarDark ? .White : .Gray
+        let style: UIActivityIndicatorViewStyle = Settings.sharedInstance.isNavbarDark ? .White : .Gray
         return UIActivityIndicatorView(activityIndicatorStyle: style)
     }()
     public var refreshControl: UIRefreshControl!
@@ -34,7 +34,7 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
 
     public var webView: WKWebView!
     public var webViewConfig: WKWebViewConfiguration!
-    static let processPool = WKProcessPool()
+    static var processPool = WKProcessPool()
     
     //MARK: Lifecycle
     override public func viewDidLoad() {
@@ -44,36 +44,43 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         setupNavigationBar()
 
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didEnterForeground:",
-            name: UIApplicationDidBecomeActiveNotification,
-            object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didLogout:",
             name: WebViewControllerDidLogout,
+            object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "didLogin:",
+            name: WebViewControllerDidLogin,
             object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    func setupNavigationBar() {
-        let activityIndicatorBBI = UIBarButtonItem(customView: activityIndicator)
-        navigationItem.rightBarButtonItem = activityIndicatorBBI
-        setupRefreshControll()
-        
-        let logoutPage = Settings.sharedInstance.logoutPage
-        if let _ = self.rootURLString?.rangeOfString(logoutPage, options: .RegularExpressionSearch) {
-            let title = NSLocalizedString("Logout", comment: "The label on the logout button")
-            let logoutButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "didTapLogout")
-            navigationItem.rightBarButtonItems = [logoutButtonItem, navigationItem.rightBarButtonItem!]
-        }
+
+    public func setTitle() {
+        navigationItem.title = webView.title?.uppercaseString
     }
 
     public func didTapLogout() {
-        keychain["app_auth_cookie"] = nil
+        let keychain = Keychain(service: Settings.sharedInstance.keychainService)
+        do {
+            try keychain.remove("app_auth_cookie")
+        } catch let error {
+            print(error)
+        }
+
         showLogin()
         clearCookies()
+        WebViewController.processPool = WKProcessPool()
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
+        if #available(iOS 9.0, *) {
+            WKWebsiteDataStore.defaultDataStore().removeDataOfTypes(
+                WKWebsiteDataStore.allWebsiteDataTypes(),
+                modifiedSince: NSDate(timeIntervalSince1970: 0),
+                completionHandler: { () -> Void in
+                
+            })
+        }
         NSNotificationCenter.defaultCenter().postNotificationName(WebViewControllerDidLogout, object: self)
     }
     
@@ -86,73 +93,15 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         }
     }
     
-    func didLogout(notification: NSNotification) {
-        self.hasLoadedContent = false;
+    public func didLogout(notification: NSNotification) {
+        self.hasLoadedContent = false
         navigationController?.popToRootViewControllerAnimated(false)
     }
-    
-    func setupRefreshControll() {
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "")
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        webView.scrollView.insertSubview(refreshControl, atIndex: 0)
+
+    public func didLogin(notification: NSNotification) {
+        loadURL(rootURL)
     }
 
-    func setupWebView() {
-        webViewConfig = WKWebViewConfiguration()
-        webViewConfig.processPool = WebViewController.processPool
-        webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
-        webView.navigationDelegate = self
-        webView.UIDelegate = self
-        webView.allowsBackForwardNavigationGestures = true
-        
-        addScriptsToConfiguration(webViewConfig)
-
-        view.insertSubview(webView, atIndex: 0)
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        autolayoutWebView()
-    }
-    
-    public func autolayoutWebView() {
-        let views = ["webView":webView, "topLayoutGuide":self.topLayoutGuide] as [String: AnyObject]
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[webView(>=0)]-0-|",
-            options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-        
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[webView(>=0)]-0-|",
-            options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
-    }
-    
-    func loadURL(url :NSURL?) {
-        guard let url = url else {
-            let imageView = UIImageView(frame: self.view.bounds)
-            imageView.contentMode = .ScaleAspectFit
-            imageView.image = UIImage(named: "Help-URL", inBundle: NSBundle(forClass: WebViewController.self), compatibleWithTraitCollection: nil)
-            self.view.addSubview(imageView)
-            return
-        }
-       
-        setErrorMessage(nil)
-        hasLoadedContent = false
-
-        let request = NSMutableURLRequest(URL: url)
-        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        let urlComponents = NSURLComponents(string: Settings.sharedInstance.baseURL)
-        let authCookies = cookieStorage.cookies?.filter({$0.name == AUTH_COOKIE_NAME && $0.domain == urlComponents?.host})
-        if let cookies = authCookies {
-            request.allHTTPHeaderFields = NSHTTPCookie.requestHeaderFieldsWithCookies(cookies)
-        }
-
-        if let authCookieName = AUTH_COOKIE_NAME {
-            if authCookies?.count == 0 {
-                if let authToken = keychain["app_auth_cookie"] {
-                    let authCookie = "\(authCookieName)=\(authToken);"
-                    request.setValue(authCookie, forHTTPHeaderField: "Cookie")
-                }
-            }
-        }
-        webView.loadRequest(request)
-    }
-    
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
@@ -170,184 +119,64 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         webView.removeObserver(self, forKeyPath: "loading")
     }
     
-    // MARK: Resume from Background
-    func didEnterForeground(notification: NSNotification) {
-        //refresh(self)
-    }
-
     // MARK: Title and Loading
-    override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        guard keyPath != nil else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+    override public func observeValueForKeyPath(keyPathOpt: String?,
+        ofObject object: AnyObject?,
+        change: [String : AnyObject]?,
+        context: UnsafeMutablePointer<Void>) {
+            
+        guard let keyPath = keyPathOpt else {
+            super.observeValueForKeyPath(keyPathOpt, ofObject: object, change: change, context: context)
             return
         }
         
-        switch keyPath!
-        {
+        switch keyPath {
         case "title":
             setTitle()
         case "loading":
-            updateActivityIndicator()
+            loadingDidChange()
         default:
-            print("observed value not handled \(keyPath)")
-        }
-    }
-    
-    public func setTitle() {
-        navigationItem.title = webView.title?.uppercaseString
-    }
-
-    //MARK: Loading
-    
-    func refresh(sender: AnyObject) {
-        loadURL(rootURL)
-    }
-
-    public func updateActivityIndicator()
-    {
-        if(webView.loading && !self.refreshControl.refreshing) {
-            activityIndicator.startAnimating()
-        }else{
-            activityIndicator.stopAnimating()
+            break
         }
     }
     
     //MARK: Javascript
     
-    func addScriptsToConfiguration(config:WKWebViewConfiguration)
-    {
-        addScript("AtDocumentStart.js", config: webViewConfig, injectionTime: .AtDocumentStart)
-        addScript("AtDocumentEnd.js", config: webViewConfig, injectionTime: .AtDocumentEnd)
-        addScript("FastClick.js", config: webViewConfig, injectionTime: .AtDocumentEnd)
-        addCSSScript(webViewConfig)
+    func addScriptsToConfiguration(config: WKWebViewConfiguration) {
+        let js = Javascript()
+        js.addScript("AtDocumentStart.js", config: webViewConfig, injectionTime: .AtDocumentStart)
+        js.addScript("AtDocumentEnd.js", config: webViewConfig, injectionTime: .AtDocumentEnd)
+        js.addScript("FastClick.js", config: webViewConfig, injectionTime: .AtDocumentEnd)
+        js.addCSSScript(webViewConfig)
     }
     
-    func addScript(scriptName:String, config:WKWebViewConfiguration, injectionTime:WKUserScriptInjectionTime)
-    {
-        let content = stringFromContentInFileName(scriptName)
-        let script = WKUserScript(source: content, injectionTime: injectionTime, forMainFrameOnly: true)
-        config.userContentController .addUserScript(script)
-    }
-    
-    func addCSSScript(config:WKWebViewConfiguration)
-    {
-        var javascript = stringFromContentInFileName("InjectCSS.js")
-        var css = stringFromContentInFileName("WebView.css")
-        css = css.stringByReplacingOccurrencesOfString("\n", withString: "\\\n")
-        javascript = javascript.stringByReplacingOccurrencesOfString("${CSS}", withString: css)
-
-        let script = WKUserScript(source: javascript, injectionTime: .AtDocumentStart, forMainFrameOnly: true)
-        config.userContentController .addUserScript(script)
-    }
-
-    func stringFromContentInFileName(fileName:String) -> String!
-    {
-        var content = ""
-        do {
-            if let path = NSBundle(forClass: WebViewController.self).pathForResource(fileName, ofType: "") {
-                content = try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
-            }
-            if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "") {
-                content = try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
-            }
-        } catch _ {
-        }
-        return content
-    }
-    
-    //MARK: Cookies
-    func saveCookiesFromResponse(urlResponse :NSURLResponse) {
-        if let response :NSHTTPURLResponse = urlResponse as? NSHTTPURLResponse {
-            guard let url = response.URL else {
-                return
-            }
-            
-            let headerFields = response.allHeaderFields as! [String:String]
-            let cookies : [NSHTTPCookie] = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
-            for cookie in cookies {
-                if cookie.name == AUTH_COOKIE_NAME {
-                    keychain["app_auth_cookie"] = cookie.value
-                }
-            }
-        }
-    }
-    
-    //MARK: WKNavigationDelegate
-    
-    public func webView(webView: WKWebView,
-        decidePolicyForNavigationResponse navigationResponse: WKNavigationResponse,
-        decisionHandler: (WKNavigationResponsePolicy) -> Void)
-    {
-        saveCookiesFromResponse(navigationResponse.response)
-        decisionHandler(.Allow);
-    }
-    
-    public func webView(webView: WKWebView,
-        decidePolicyForNavigationAction navigationAction: WKNavigationAction,
-        decisionHandler: (WKNavigationActionPolicy) -> Void)
-    {
-        var actionPolicy :WKNavigationActionPolicy = .Allow
-
-        let shouldPush = shouldPushNewWebView(navigationAction.request)
-        if navigationAction.navigationType == .LinkActivated && shouldPush {
-            pushNewWebViewControllerWithURL(navigationAction.request.URL!)
-            actionPolicy = .Cancel
-        }else if isLoginRequestRequest(navigationAction.request) {
-            actionPolicy = .Cancel
-            showLogin()
-        }
-        
-        let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
-        print("URL: " + (navigationAction.request.URL?.absoluteString)! + "\t\t\t- " + actionString)
-        
-        decisionHandler(actionPolicy)
-    }
-    
-    public func shouldPushNewWebView(request: NSURLRequest) -> Bool {
-        guard let url = request.URL else {
-            return false
-        }
-        let isInitialRequest = url.absoluteString == self.rootAbsoluteURLString
-        let isSameHost = request.URL?.host == rootURL?.host
-        let isSamePath = request.URL?.path == rootURL?.path
-        let isFragmentOfThisPage = request.URL?.fragment != nil && isSameHost && isSamePath
-        
-        return !isInitialRequest && !isFragmentOfThisPage
-    }
-    
-    public func isLoginRequestRequest(request: NSURLRequest) -> Bool {
-        var isLoginPath = false
-        let isGroupDock = request.URL?.absoluteString.rangeOfString("://groupdock.com") != nil
-        let loginPaths = ["/login", "/elogin", "/sso/launch"]
-        if let path = request.URL?.path
-        {
-            isLoginPath = loginPaths.contains(path)
-        }
-        return isLoginPath || isGroupDock
-    }
-    
-    func pushNewWebViewControllerWithURL(url :NSURL) {
+    //MARK: NeemanWebViewController
+    func pushNewWebViewControllerWithURL(url: NSURL) {
         let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
         if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
-            (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController
-        {
+            (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
+                
             let urlString = url.absoluteString
             webViewController.rootURLString = urlString
             navigationController?.pushViewController(webViewController, animated: true)
         }
     }
-    
-    public func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        refreshControl.endRefreshing()
-        hasLoadedContent = true
-        setContentInset()
+
+    func showLogin() {
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            let storyboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
+            if let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationController") as? UINavigationController {
+                loginVC.setNavigationBarHidden(true, animated: false)
+                if let viewController = self.view.window?.rootViewController {
+                    if viewController.presentedViewController == nil {
+                        viewController.presentViewController(loginVC, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
-    
-    public func setContentInset() {
-    }
-    
-    public func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError)
-    {
+
+    public func webViewDidFinishLoadingWithError(error: NSError) {
         var message: String?
 
         switch error.code {
@@ -359,42 +188,26 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
         
         if #available(iOS 9.0, *) {
             if error.code == NSURLErrorAppTransportSecurityRequiresSecureConnection {
-                let imageView = UIImageView(frame: self.view.bounds)
-                imageView.contentMode = .ScaleAspectFit
-                imageView.image = UIImage(named: "Help-Security", inBundle: NSBundle(forClass: WebViewController.self), compatibleWithTraitCollection: nil)
-                self.view.addSubview(imageView)
+                showSSLError()
             }
         }
         
         if let message = message {
             setErrorMessage(message)
         }
-        refreshControl.endRefreshing()
-    }
-    
-    public func setErrorMessage(message: String?) {
-        self.navigationItem.prompt = message
-    }
-    
-    public func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError)
-    {
-        print(error)
     }
     
     // MARK: WKUIDelegate
-    public func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
-        print(message)
+    public func webView(webView: WKWebView,
+        runJavaScriptAlertPanelWithMessage message: String,
+        initiatedByFrame frame: WKFrameInfo,
+        completionHandler: () -> Void) {
+            
         completionHandler()
     }
     
-    func showLogin() {
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            let storyboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
-            if let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationController") as? UINavigationController {
-                loginVC.setNavigationBarHidden(true, animated: false)
-                self.view.window?.rootViewController?.presentViewController(loginVC, animated: true, completion: nil)
-            }
-        }
+    // MARK: Overridable
+    
+    public func setContentInset() {
     }
 }
-

@@ -24,18 +24,11 @@ public class GroupDockLoginOperation: GroupOperation {
         name = "Login"
         
         if appName == "ExampleHybridApp" {
-            return;
+            return
         }
-
         
         let url = NSURL(string: urlString+appName)!
-        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
-        
-        request.addValue("application/json", forHTTPHeaderField:"Content-Type")
-        request.addValue("application/json", forHTTPHeaderField:"Accept")
-        request.addValue("true", forHTTPHeaderField: "noredirect")
-        
-        request.HTTPMethod = "POST"
+        let request = requestForURL(url)
         
         let params = ["username":username, "password":password]
         
@@ -43,7 +36,7 @@ public class GroupDockLoginOperation: GroupOperation {
             try request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(rawValue: 0))
         } catch {}
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let parseDataOperation = NSBlockOperation { () -> Void in
                 self.downloadFinished(data, response: response as? NSHTTPURLResponse, error: error)
             }
@@ -61,36 +54,28 @@ public class GroupDockLoginOperation: GroupOperation {
         addOperation(taskOperation)
     }
     
+    func requestForURL(url: NSURL) -> NSMutableURLRequest {
+        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
+        
+        request.addValue("application/json", forHTTPHeaderField:"Content-Type")
+        request.addValue("application/json", forHTTPHeaderField:"Accept")
+        request.addValue("true", forHTTPHeaderField: "noredirect")
+        
+        request.HTTPMethod = "POST"
+        
+        return request
+    }
+    
     func downloadFinished(data: NSData?, response: NSHTTPURLResponse?, error: NSError?) {
         if let localData = data {
             do {
                 let statusCode = response?.statusCode ?? 0
-                var errors :[NSError] = []
+                var errors: [NSError] = []
                 if case 200...299 = statusCode {
-                    if let jsonObj = try NSJSONSerialization.JSONObjectWithData(
-                        localData,
-                        options: NSJSONReadingOptions(rawValue:0)) as? Dictionary<String, AnyObject>
-                    {
-                        if let headerFields = response?.allHeaderFields as? [String: String] {
-                            let url = response!.URL!
-                            let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
-                            let connectCookies = cookies.filter({ (cookie:NSHTTPCookie) -> Bool in
-                                return cookie.name == AUTH_COOKIE_NAME
-                            })
-                            if let cookie = connectCookies.first {
-                                self.authToken = cookie.value
-                            }
-                        }
-                        if let organization = jsonObj["organization"] as? [String: AnyObject],
-                                name = organization["name"] as? String
-                        {
-                            self.organization = name
-                        }
-                    }
-
+                    try saveInfoFromData(localData, response: response)
                     if let _ = self.authToken {
                         finish()
-                    }else{
+                    } else {
                         let error =  NSError(domain: self.errorDomain, code: 3, userInfo: [:])
                         errors.append(error)
                     }
@@ -102,17 +87,36 @@ public class GroupDockLoginOperation: GroupOperation {
                     errors.append(error)
                 }
                 finish(errors)
-            }
-            catch let error as NSError {
+            } catch let error as NSError {
                 aggregateError(error)
             }
             
-        }
-        else if let error = error {
+        } else if let error = error {
             aggregateError(error)
-        }
-        else {
+        } else {
             // Do nothing, and the operation will automatically finish.
+        }
+    }
+    
+    func saveInfoFromData(data: NSData, response: NSHTTPURLResponse?) throws {
+        if let jsonObj = try NSJSONSerialization.JSONObjectWithData(
+            data,
+            options: NSJSONReadingOptions(rawValue:0)) as? Dictionary<String, AnyObject> {
+                
+                if let headerFields = response?.allHeaderFields as? [String: String] {
+                    let url = response!.URL!
+                    let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
+                    let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
+                        return cookie.name == AUTH_COOKIE_NAME
+                    })
+                    if let cookie = connectCookies.first {
+                        self.authToken = cookie.value
+                    }
+                }
+                if let organization = jsonObj["organization"] as? [String: AnyObject],
+                    name = organization["name"] as? String {
+                        self.organization = name
+                }
         }
     }
 }

@@ -16,36 +16,6 @@
 		DC937BDC1C200B5F00EF1D03 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BAB1C200B5F00EF1D03 /* Settings.swift */; };
 		DC937BDD1C200B5F00EF1D03 /* Neeman.h in Headers */ = {isa = PBXBuildFile; fileRef = DC937BAC1C200B5F00EF1D03 /* Neeman.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC937BDE1C200B5F00EF1D03 /* NetworkObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BAE1C200B5F00EF1D03 /* NetworkObserver.swift */; };
-		DC937BDF1C200B5F00EF1D03 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB01C200B5F00EF1D03 /* BlockObserver.swift */; };
-		DC937BE01C200B5F00EF1D03 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB11C200B5F00EF1D03 /* BlockOperation.swift */; };
-		DC937BE11C200B5F00EF1D03 /* CalendarCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB21C200B5F00EF1D03 /* CalendarCondition.swift */; };
-		DC937BE21C200B5F00EF1D03 /* CKContainer+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB31C200B5F00EF1D03 /* CKContainer+Operations.swift */; };
-		DC937BE31C200B5F00EF1D03 /* CloudCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB41C200B5F00EF1D03 /* CloudCondition.swift */; };
-		DC937BE41C200B5F00EF1D03 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB51C200B5F00EF1D03 /* DelayOperation.swift */; };
-		DC937BE51C200B5F00EF1D03 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB61C200B5F00EF1D03 /* Dictionary+Operations.swift */; };
-		DC937BE61C200B5F00EF1D03 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB71C200B5F00EF1D03 /* ExclusivityController.swift */; };
-		DC937BE71C200B5F00EF1D03 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB81C200B5F00EF1D03 /* GroupOperation.swift */; };
-		DC937BE81C200B5F00EF1D03 /* HealthCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BB91C200B5F00EF1D03 /* HealthCondition.swift */; };
-		DC937BE91C200B5F00EF1D03 /* LocationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBA1C200B5F00EF1D03 /* LocationCondition.swift */; };
-		DC937BEA1C200B5F00EF1D03 /* LocationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBB1C200B5F00EF1D03 /* LocationOperation.swift */; };
-		DC937BEB1C200B5F00EF1D03 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBC1C200B5F00EF1D03 /* MutuallyExclusive.swift */; };
-		DC937BEC1C200B5F00EF1D03 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBD1C200B5F00EF1D03 /* NegatedCondition.swift */; };
-		DC937BED1C200B5F00EF1D03 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBE1C200B5F00EF1D03 /* NoCancelledDependencies.swift */; };
-		DC937BEE1C200B5F00EF1D03 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BBF1C200B5F00EF1D03 /* NSOperation+Operations.swift */; };
-		DC937BEF1C200B5F00EF1D03 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC01C200B5F00EF1D03 /* Operation.swift */; };
-		DC937BF01C200B5F00EF1D03 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC11C200B5F00EF1D03 /* OperationCondition.swift */; };
-		DC937BF11C200B5F00EF1D03 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC21C200B5F00EF1D03 /* OperationErrors.swift */; };
-		DC937BF21C200B5F00EF1D03 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC31C200B5F00EF1D03 /* OperationObserver.swift */; };
-		DC937BF31C200B5F00EF1D03 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC41C200B5F00EF1D03 /* OperationQueue.swift */; };
-		DC937BF41C200B5F00EF1D03 /* PassbookCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC51C200B5F00EF1D03 /* PassbookCondition.swift */; };
-		DC937BF51C200B5F00EF1D03 /* PhotosCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC61C200B5F00EF1D03 /* PhotosCondition.swift */; };
-		DC937BF61C200B5F00EF1D03 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC71C200B5F00EF1D03 /* ReachabilityCondition.swift */; };
-		DC937BF71C200B5F00EF1D03 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC81C200B5F00EF1D03 /* RemoteNotificationCondition.swift */; };
-		DC937BF81C200B5F00EF1D03 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BC91C200B5F00EF1D03 /* SilentCondition.swift */; };
-		DC937BF91C200B5F00EF1D03 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCA1C200B5F00EF1D03 /* TimeoutObserver.swift */; };
-		DC937BFA1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCB1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift */; };
-		DC937BFB1C200B5F00EF1D03 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCC1C200B5F00EF1D03 /* URLSessionTaskOperation.swift */; };
-		DC937BFC1C200B5F00EF1D03 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCD1C200B5F00EF1D03 /* UserNotificationCondition.swift */; };
 		DC937BFD1C200B5F00EF1D03 /* DeviceTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BCF1C200B5F00EF1D03 /* DeviceTokenOperation.swift */; };
 		DC937BFE1C200B5F00EF1D03 /* GroupDockLoginOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD01C200B5F00EF1D03 /* GroupDockLoginOperation.swift */; };
 		DC937BFF1C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD11C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift */; };
@@ -54,11 +24,28 @@
 		DC937C021C200B5F00EF1D03 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD51C200B5F00EF1D03 /* LoginButton.swift */; };
 		DC937C031C200B5F00EF1D03 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD61C200B5F00EF1D03 /* LoginTextField.swift */; };
 		DC937C041C200B5F00EF1D03 /* RoundCorneredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BD71C200B5F00EF1D03 /* RoundCorneredView.swift */; };
-		DC937C0B1C200F7500EF1D03 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C091C200F7500EF1D03 /* Info.plist */; };
 		DC937C0F1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C0D1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift */; };
 		DC937C101C20108C00EF1D03 /* LoginOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C0E1C20108C00EF1D03 /* LoginOperationTest.swift */; };
 		DC937C121C2019E800EF1D03 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C111C2019E800EF1D03 /* Settings.plist */; };
-		DC937C141C201D7400EF1D03 /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C131C201D7400EF1D03 /* WebViewControllerTests.swift */; };
+		DC937C141C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */; };
+		DC937C181C20B57D00EF1D03 /* WebViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C161C20AF6800EF1D03 /* WebViewNavigationDelegate.swift */; };
+		DC937C2E1C20C24D00EF1D03 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C271C20C24D00EF1D03 /* Operation.swift */; };
+		DC937C2F1C20C24D00EF1D03 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C281C20C24D00EF1D03 /* OperationObserver.swift */; };
+		DC937C301C20C24D00EF1D03 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C291C20C24D00EF1D03 /* GroupOperation.swift */; };
+		DC937C311C20C24D00EF1D03 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C2A1C20C24D00EF1D03 /* OperationQueue.swift */; };
+		DC937C321C20C24D00EF1D03 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C2B1C20C24D00EF1D03 /* ReachabilityCondition.swift */; };
+		DC937C331C20C24D00EF1D03 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C2C1C20C24D00EF1D03 /* URLSessionTaskOperation.swift */; };
+		DC937C341C20C24D00EF1D03 /* OperationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C2D1C20C24D00EF1D03 /* OperationCondition.swift */; };
+		DC937C371C20C26500EF1D03 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C351C20C26500EF1D03 /* BlockObserver.swift */; };
+		DC937C381C20C26500EF1D03 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C361C20C26500EF1D03 /* BlockOperation.swift */; };
+		DC937C3A1C20C27F00EF1D03 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C391C20C27F00EF1D03 /* ExclusivityController.swift */; };
+		DC937C3C1C20C2E700EF1D03 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C3B1C20C2E700EF1D03 /* NSOperation+Operations.swift */; };
+		DC937C3E1C20C30900EF1D03 /* OperationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C3D1C20C30900EF1D03 /* OperationErrors.swift */; };
+		DC937C401C20C5D500EF1D03 /* Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C3F1C20C5D500EF1D03 /* Javascript.swift */; };
+		DC937C441C20D63B00EF1D03 /* NSMutableURLRequest+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C431C20D63B00EF1D03 /* NSMutableURLRequest+Authentication.swift */; };
+		DC937C461C20D94700EF1D03 /* WebViewController+WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C451C20D94700EF1D03 /* WebViewController+WebView.swift */; };
+		DC937C481C20DA9300EF1D03 /* WebViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C471C20DA9300EF1D03 /* WebViewController+Loading.swift */; };
+		DC937C4A1C20DBD000EF1D03 /* WebViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C491C20DBD000EF1D03 /* WebViewController+Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,36 +71,6 @@
 		DC937BAB1C200B5F00EF1D03 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		DC937BAC1C200B5F00EF1D03 /* Neeman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Neeman.h; sourceTree = "<group>"; };
 		DC937BAE1C200B5F00EF1D03 /* NetworkObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObserver.swift; sourceTree = "<group>"; };
-		DC937BB01C200B5F00EF1D03 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
-		DC937BB11C200B5F00EF1D03 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
-		DC937BB21C200B5F00EF1D03 /* CalendarCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCondition.swift; sourceTree = "<group>"; };
-		DC937BB31C200B5F00EF1D03 /* CKContainer+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CKContainer+Operations.swift"; sourceTree = "<group>"; };
-		DC937BB41C200B5F00EF1D03 /* CloudCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudCondition.swift; sourceTree = "<group>"; };
-		DC937BB51C200B5F00EF1D03 /* DelayOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
-		DC937BB61C200B5F00EF1D03 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
-		DC937BB71C200B5F00EF1D03 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
-		DC937BB81C200B5F00EF1D03 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
-		DC937BB91C200B5F00EF1D03 /* HealthCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthCondition.swift; sourceTree = "<group>"; };
-		DC937BBA1C200B5F00EF1D03 /* LocationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCondition.swift; sourceTree = "<group>"; };
-		DC937BBB1C200B5F00EF1D03 /* LocationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationOperation.swift; sourceTree = "<group>"; };
-		DC937BBC1C200B5F00EF1D03 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
-		DC937BBD1C200B5F00EF1D03 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
-		DC937BBE1C200B5F00EF1D03 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
-		DC937BBF1C200B5F00EF1D03 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
-		DC937BC01C200B5F00EF1D03 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
-		DC937BC11C200B5F00EF1D03 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
-		DC937BC21C200B5F00EF1D03 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
-		DC937BC31C200B5F00EF1D03 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
-		DC937BC41C200B5F00EF1D03 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
-		DC937BC51C200B5F00EF1D03 /* PassbookCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassbookCondition.swift; sourceTree = "<group>"; };
-		DC937BC61C200B5F00EF1D03 /* PhotosCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCondition.swift; sourceTree = "<group>"; };
-		DC937BC71C200B5F00EF1D03 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
-		DC937BC81C200B5F00EF1D03 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
-		DC937BC91C200B5F00EF1D03 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
-		DC937BCA1C200B5F00EF1D03 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
-		DC937BCB1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
-		DC937BCC1C200B5F00EF1D03 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
-		DC937BCD1C200B5F00EF1D03 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
 		DC937BCF1C200B5F00EF1D03 /* DeviceTokenOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTokenOperation.swift; sourceTree = "<group>"; };
 		DC937BD01C200B5F00EF1D03 /* GroupDockLoginOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDockLoginOperation.swift; sourceTree = "<group>"; };
 		DC937BD11C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDockSingleSignOnOperation.swift; sourceTree = "<group>"; };
@@ -127,7 +84,25 @@
 		DC937C0D1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDockLoginOperationTest.swift; sourceTree = "<group>"; };
 		DC937C0E1C20108C00EF1D03 /* LoginOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginOperationTest.swift; sourceTree = "<group>"; };
 		DC937C111C2019E800EF1D03 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
-		DC937C131C201D7400EF1D03 /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
+		DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegateTests.swift; sourceTree = "<group>"; };
+		DC937C161C20AF6800EF1D03 /* WebViewNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegate.swift; sourceTree = "<group>"; };
+		DC937C271C20C24D00EF1D03 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		DC937C281C20C24D00EF1D03 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
+		DC937C291C20C24D00EF1D03 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
+		DC937C2A1C20C24D00EF1D03 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
+		DC937C2B1C20C24D00EF1D03 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
+		DC937C2C1C20C24D00EF1D03 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
+		DC937C2D1C20C24D00EF1D03 /* OperationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationCondition.swift; sourceTree = "<group>"; };
+		DC937C351C20C26500EF1D03 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
+		DC937C361C20C26500EF1D03 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
+		DC937C391C20C27F00EF1D03 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
+		DC937C3B1C20C2E700EF1D03 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
+		DC937C3D1C20C30900EF1D03 /* OperationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationErrors.swift; sourceTree = "<group>"; };
+		DC937C3F1C20C5D500EF1D03 /* Javascript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Javascript.swift; sourceTree = "<group>"; };
+		DC937C431C20D63B00EF1D03 /* NSMutableURLRequest+Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableURLRequest+Authentication.swift"; sourceTree = "<group>"; };
+		DC937C451C20D94700EF1D03 /* WebViewController+WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+WebView.swift"; sourceTree = "<group>"; };
+		DC937C471C20DA9300EF1D03 /* WebViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+Loading.swift"; sourceTree = "<group>"; };
+		DC937C491C20DBD000EF1D03 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+Errors.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +184,7 @@
 			children = (
 				DC937BA61C200B5F00EF1D03 /* LoginViewController.swift */,
 				DC937BA71C200B5F00EF1D03 /* WebViewController.swift */,
+				DC937C161C20AF6800EF1D03 /* WebViewNavigationDelegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -217,6 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				DC937BA91C200B5F00EF1D03 /* UIColor+Hex.swift */,
+				DC937C431C20D63B00EF1D03 /* NSMutableURLRequest+Authentication.swift */,
+				DC937C491C20DBD000EF1D03 /* WebViewController+Errors.swift */,
+				DC937C451C20D94700EF1D03 /* WebViewController+WebView.swift */,
+				DC937C471C20DA9300EF1D03 /* WebViewController+Loading.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				DC937BAB1C200B5F00EF1D03 /* Settings.swift */,
+				DC937C3F1C20C5D500EF1D03 /* Javascript.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -240,36 +221,18 @@
 		DC937BAF1C200B5F00EF1D03 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				DC937BB01C200B5F00EF1D03 /* BlockObserver.swift */,
-				DC937BB11C200B5F00EF1D03 /* BlockOperation.swift */,
-				DC937BB21C200B5F00EF1D03 /* CalendarCondition.swift */,
-				DC937BB31C200B5F00EF1D03 /* CKContainer+Operations.swift */,
-				DC937BB41C200B5F00EF1D03 /* CloudCondition.swift */,
-				DC937BB51C200B5F00EF1D03 /* DelayOperation.swift */,
-				DC937BB61C200B5F00EF1D03 /* Dictionary+Operations.swift */,
-				DC937BB71C200B5F00EF1D03 /* ExclusivityController.swift */,
-				DC937BB81C200B5F00EF1D03 /* GroupOperation.swift */,
-				DC937BB91C200B5F00EF1D03 /* HealthCondition.swift */,
-				DC937BBA1C200B5F00EF1D03 /* LocationCondition.swift */,
-				DC937BBB1C200B5F00EF1D03 /* LocationOperation.swift */,
-				DC937BBC1C200B5F00EF1D03 /* MutuallyExclusive.swift */,
-				DC937BBD1C200B5F00EF1D03 /* NegatedCondition.swift */,
-				DC937BBE1C200B5F00EF1D03 /* NoCancelledDependencies.swift */,
-				DC937BBF1C200B5F00EF1D03 /* NSOperation+Operations.swift */,
-				DC937BC01C200B5F00EF1D03 /* Operation.swift */,
-				DC937BC11C200B5F00EF1D03 /* OperationCondition.swift */,
-				DC937BC21C200B5F00EF1D03 /* OperationErrors.swift */,
-				DC937BC31C200B5F00EF1D03 /* OperationObserver.swift */,
-				DC937BC41C200B5F00EF1D03 /* OperationQueue.swift */,
-				DC937BC51C200B5F00EF1D03 /* PassbookCondition.swift */,
-				DC937BC61C200B5F00EF1D03 /* PhotosCondition.swift */,
-				DC937BC71C200B5F00EF1D03 /* ReachabilityCondition.swift */,
-				DC937BC81C200B5F00EF1D03 /* RemoteNotificationCondition.swift */,
-				DC937BC91C200B5F00EF1D03 /* SilentCondition.swift */,
-				DC937BCA1C200B5F00EF1D03 /* TimeoutObserver.swift */,
-				DC937BCB1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift */,
-				DC937BCC1C200B5F00EF1D03 /* URLSessionTaskOperation.swift */,
-				DC937BCD1C200B5F00EF1D03 /* UserNotificationCondition.swift */,
+				DC937C351C20C26500EF1D03 /* BlockObserver.swift */,
+				DC937C361C20C26500EF1D03 /* BlockOperation.swift */,
+				DC937C391C20C27F00EF1D03 /* ExclusivityController.swift */,
+				DC937C291C20C24D00EF1D03 /* GroupOperation.swift */,
+				DC937C271C20C24D00EF1D03 /* Operation.swift */,
+				DC937C3D1C20C30900EF1D03 /* OperationErrors.swift */,
+				DC937C281C20C24D00EF1D03 /* OperationObserver.swift */,
+				DC937C2A1C20C24D00EF1D03 /* OperationQueue.swift */,
+				DC937C3B1C20C2E700EF1D03 /* NSOperation+Operations.swift */,
+				DC937C2B1C20C24D00EF1D03 /* ReachabilityCondition.swift */,
+				DC937C2C1C20C24D00EF1D03 /* URLSessionTaskOperation.swift */,
+				DC937C2D1C20C24D00EF1D03 /* OperationCondition.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -300,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				DC937C091C200F7500EF1D03 /* Info.plist */,
-				DC937C131C201D7400EF1D03 /* WebViewControllerTests.swift */,
+				DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */,
 				DC937C0D1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift */,
 				DC937C0E1C20108C00EF1D03 /* LoginOperationTest.swift */,
 				DC937C111C2019E800EF1D03 /* Settings.plist */,
@@ -332,6 +295,7 @@
 				DC937B811C200A8D00EF1D03 /* Headers */,
 				DC937B821C200A8D00EF1D03 /* Resources */,
 				CBCA9923FCED9C5FACE31908 /* Copy Pods Resources */,
+				DC937C151C20A12400EF1D03 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -408,7 +372,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC937C0B1C200F7500EF1D03 /* Info.plist in Resources */,
 				DC937C121C2019E800EF1D03 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +409,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Neeman/Pods-Neeman-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DC937C151C20A12400EF1D03 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -453,50 +430,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC937BE81C200B5F00EF1D03 /* HealthCondition.swift in Sources */,
-				DC937BE01C200B5F00EF1D03 /* BlockOperation.swift in Sources */,
-				DC937BF71C200B5F00EF1D03 /* RemoteNotificationCondition.swift in Sources */,
+				DC937C2F1C20C24D00EF1D03 /* OperationObserver.swift in Sources */,
+				DC937C181C20B57D00EF1D03 /* WebViewNavigationDelegate.swift in Sources */,
 				DC937BDC1C200B5F00EF1D03 /* Settings.swift in Sources */,
+				DC937C381C20C26500EF1D03 /* BlockOperation.swift in Sources */,
+				DC937C3C1C20C2E700EF1D03 /* NSOperation+Operations.swift in Sources */,
 				DC937C041C200B5F00EF1D03 /* RoundCorneredView.swift in Sources */,
-				DC937BDF1C200B5F00EF1D03 /* BlockObserver.swift in Sources */,
 				DC937C001C200B5F00EF1D03 /* LoginOperation.swift in Sources */,
-				DC937BF01C200B5F00EF1D03 /* OperationCondition.swift in Sources */,
 				DC937BDE1C200B5F00EF1D03 /* NetworkObserver.swift in Sources */,
-				DC937BE61C200B5F00EF1D03 /* ExclusivityController.swift in Sources */,
 				DC937BFE1C200B5F00EF1D03 /* GroupDockLoginOperation.swift in Sources */,
-				DC937BE21C200B5F00EF1D03 /* CKContainer+Operations.swift in Sources */,
 				DC937BD91C200B5F00EF1D03 /* LoginViewController.swift in Sources */,
-				DC937BE41C200B5F00EF1D03 /* DelayOperation.swift in Sources */,
-				DC937BF91C200B5F00EF1D03 /* TimeoutObserver.swift in Sources */,
-				DC937BF41C200B5F00EF1D03 /* PassbookCondition.swift in Sources */,
+				DC937C401C20C5D500EF1D03 /* Javascript.swift in Sources */,
 				DC937BFD1C200B5F00EF1D03 /* DeviceTokenOperation.swift in Sources */,
+				DC937C481C20DA9300EF1D03 /* WebViewController+Loading.swift in Sources */,
 				DC937C031C200B5F00EF1D03 /* LoginTextField.swift in Sources */,
 				DC937BD81C200B5F00EF1D03 /* Appearence.swift in Sources */,
-				DC937BFC1C200B5F00EF1D03 /* UserNotificationCondition.swift in Sources */,
-				DC937BEF1C200B5F00EF1D03 /* Operation.swift in Sources */,
-				DC937BE51C200B5F00EF1D03 /* Dictionary+Operations.swift in Sources */,
-				DC937BFA1C200B5F00EF1D03 /* UIUserNotifications+Operations.swift in Sources */,
-				DC937BEA1C200B5F00EF1D03 /* LocationOperation.swift in Sources */,
 				DC937BFF1C200B5F00EF1D03 /* GroupDockSingleSignOnOperation.swift in Sources */,
-				DC937BE11C200B5F00EF1D03 /* CalendarCondition.swift in Sources */,
-				DC937BE31C200B5F00EF1D03 /* CloudCondition.swift in Sources */,
-				DC937BED1C200B5F00EF1D03 /* NoCancelledDependencies.swift in Sources */,
-				DC937BEB1C200B5F00EF1D03 /* MutuallyExclusive.swift in Sources */,
-				DC937BE91C200B5F00EF1D03 /* LocationCondition.swift in Sources */,
-				DC937BF21C200B5F00EF1D03 /* OperationObserver.swift in Sources */,
-				DC937BF31C200B5F00EF1D03 /* OperationQueue.swift in Sources */,
-				DC937BF11C200B5F00EF1D03 /* OperationErrors.swift in Sources */,
+				DC937C2E1C20C24D00EF1D03 /* Operation.swift in Sources */,
+				DC937C341C20C24D00EF1D03 /* OperationCondition.swift in Sources */,
+				DC937C331C20C24D00EF1D03 /* URLSessionTaskOperation.swift in Sources */,
+				DC937C461C20D94700EF1D03 /* WebViewController+WebView.swift in Sources */,
+				DC937C301C20C24D00EF1D03 /* GroupOperation.swift in Sources */,
+				DC937C321C20C24D00EF1D03 /* ReachabilityCondition.swift in Sources */,
 				DC937C011C200B5F00EF1D03 /* GradientView.swift in Sources */,
-				DC937BF51C200B5F00EF1D03 /* PhotosCondition.swift in Sources */,
 				DC937C021C200B5F00EF1D03 /* LoginButton.swift in Sources */,
-				DC937BEE1C200B5F00EF1D03 /* NSOperation+Operations.swift in Sources */,
-				DC937BE71C200B5F00EF1D03 /* GroupOperation.swift in Sources */,
-				DC937BEC1C200B5F00EF1D03 /* NegatedCondition.swift in Sources */,
-				DC937BFB1C200B5F00EF1D03 /* URLSessionTaskOperation.swift in Sources */,
-				DC937BF61C200B5F00EF1D03 /* ReachabilityCondition.swift in Sources */,
+				DC937C371C20C26500EF1D03 /* BlockObserver.swift in Sources */,
+				DC937C311C20C24D00EF1D03 /* OperationQueue.swift in Sources */,
 				DC937BDA1C200B5F00EF1D03 /* WebViewController.swift in Sources */,
 				DC937BDB1C200B5F00EF1D03 /* UIColor+Hex.swift in Sources */,
-				DC937BF81C200B5F00EF1D03 /* SilentCondition.swift in Sources */,
+				DC937C3E1C20C30900EF1D03 /* OperationErrors.swift in Sources */,
+				DC937C3A1C20C27F00EF1D03 /* ExclusivityController.swift in Sources */,
+				DC937C4A1C20DBD000EF1D03 /* WebViewController+Errors.swift in Sources */,
+				DC937C441C20D63B00EF1D03 /* NSMutableURLRequest+Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC937C0F1C20108C00EF1D03 /* GroupDockLoginOperationTest.swift in Sources */,
-				DC937C141C201D7400EF1D03 /* WebViewControllerTests.swift in Sources */,
+				DC937C141C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift in Sources */,
 				DC937C101C20108C00EF1D03 /* LoginOperationTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

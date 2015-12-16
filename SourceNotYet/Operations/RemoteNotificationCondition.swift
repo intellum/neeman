@@ -112,11 +112,9 @@ private class RemoteNotificationPermissionOperation: Operation {
 
         if let token = userInfo?["token"] as? NSData {
             handler(.Token(token))
-        }
-        else if let error = userInfo?["error"] as? NSError {
+        } else if let error = userInfo?["error"] as? NSError {
             handler(.Error(error))
-        }
-        else {
+        } else {
             fatalError("Received a notification without a token and without an error.")
         }
 

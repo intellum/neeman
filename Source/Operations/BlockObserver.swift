@@ -19,7 +19,10 @@ struct BlockObserver: OperationObserver {
     private let produceHandler: ((Operation, NSOperation) -> Void)?
     private let finishHandler: ((Operation, [NSError]) -> Void)?
     
-    init(startHandler: (Operation -> Void)? = nil, produceHandler: ((Operation, NSOperation) -> Void)? = nil, finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
+    init(startHandler: (Operation -> Void)? = nil,
+        produceHandler: ((Operation, NSOperation) -> Void)? = nil,
+        finishHandler: ((Operation, [NSError]) -> Void)? = nil) {
+            
         self.startHandler = startHandler
         self.produceHandler = produceHandler
         self.finishHandler = finishHandler

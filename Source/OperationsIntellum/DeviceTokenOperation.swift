@@ -2,13 +2,14 @@ import Foundation
 import KeychainAccess
 
 public class DeviceTokenOperation: GroupOperation {
-    let AUTH_COOKIE_NAME = Settings.sharedInstance.authCookieName
+    let authCookieName = Settings.sharedInstance.authCookieName
 
     // MARK: Properties
     private let deviceToken: String
     private let finishHandler: ((Operation, [NSError]) -> Void)?
     let errorDomain = "DeviceTokenErrorDomain"
     let urlString = "http://intellum.level.openlms.com/user.json"
+    let keychain = Keychain(service: Settings.sharedInstance.keychainService)
     
     // MARK: Initialization
     
@@ -20,31 +21,22 @@ public class DeviceTokenOperation: GroupOperation {
         super.init(operations: [])
         name = "DeviceToken"
         
-        let keychain = Keychain(service: "com.intellum.level")
-        guard let authToken = keychain["app_auth_cookie"] else {
+        guard let _ = keychain["app_auth_cookie"] else {
             let error =  NSError(domain: self.errorDomain, code: 1, userInfo: [:])
             cancelWithError(error)
             return
         }
 
         let url = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
+        let request = requestWithURL(url)
         
-        request.addValue("application/json", forHTTPHeaderField:"Content-Type")
-        request.addValue("application/json", forHTTPHeaderField:"Accept")
-        
-        request.HTTPMethod = "PUT"
-
-        let authCookie = "\(AUTH_COOKIE_NAME)=\(authToken);"
-        request.setValue(authCookie, forHTTPHeaderField: "Cookie")
-
         let params = ["user": ["device_token":deviceToken]]
         
         do {
             try request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(rawValue: 0))
         } catch {}
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let parseDataOperation = NSBlockOperation { () -> Void in
                 self.downloadFinished(data, response: response as? NSHTTPURLResponse, error: error)
             }
@@ -62,16 +54,32 @@ public class DeviceTokenOperation: GroupOperation {
         addOperation(taskOperation)
     }
     
+    func requestWithURL(url: NSURL) -> NSMutableURLRequest {
+
+        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
+        
+        request.addValue("application/json", forHTTPHeaderField:"Content-Type")
+        request.addValue("application/json", forHTTPHeaderField:"Accept")
+        
+        request.HTTPMethod = "PUT"
+        
+        if let authToken = keychain["app_auth_cookie"] {
+            let authCookie = "\(authCookieName)=\(authToken);"
+            request.setValue(authCookie, forHTTPHeaderField: "Cookie")
+        }
+
+        return request
+    }
+    
     func downloadFinished(data: NSData?, response: NSHTTPURLResponse?, error: NSError?) {
         if let localData = data {
             do {
                 let statusCode = response?.statusCode ?? 0
-                var errors :[NSError] = []
+                var errors: [NSError] = []
                 if case 200...299 = statusCode {
                     if let jsonObj = try NSJSONSerialization.JSONObjectWithData(
                         localData,
-                        options: NSJSONReadingOptions(rawValue:0)) as? Dictionary<String, AnyObject>
-                    {
+                        options: NSJSONReadingOptions(rawValue:0)) as? Dictionary<String, AnyObject> {
                         print(jsonObj)
                     }
                 } else if response?.statusCode == 401 {
@@ -82,19 +90,16 @@ public class DeviceTokenOperation: GroupOperation {
                     errors.append(error)
                 }
                 finish(errors)
-                self.finishHandler?(self, errors);
-            }
-            catch let error as NSError {
-                self.finishHandler?(self, [error]);
+                self.finishHandler?(self, errors)
+            } catch let error as NSError {
+                self.finishHandler?(self, [error])
                 aggregateError(error)
             }
             
-        }
-        else if let error = error {
+        } else if let error = error {
             aggregateError(error)
-            self.finishHandler?(self, [error]);
-        }
-        else {
+            self.finishHandler?(self, [error])
+        } else {
             // Do nothing, and the operation will automatically finish.
         }
     }

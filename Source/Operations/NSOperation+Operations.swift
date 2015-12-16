@@ -23,8 +23,7 @@ extension NSOperation {
                 existing()
                 block()
             }
-        }
-        else {
+        } else {
             completionBlock = block
         }
     }

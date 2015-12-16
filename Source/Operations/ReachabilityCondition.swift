@@ -34,8 +34,7 @@ struct ReachabilityCondition: OperationCondition {
         ReachabilityController.requestReachability(host) { reachable in
             if reachable {
                 completion(.Satisfied)
-            }
-            else {
+            } else {
                 let error = NSError(code: .ConditionFailed, userInfo: [
                     OperationConditionKey: self.dynamicType.name,
                     self.dynamicType.hostKey: self.host
@@ -79,13 +78,11 @@ private class ReachabilityController {
                         reachable = flags.contains(.Reachable)
                     }
                     completionHandler(reachable)
-                }
-                else {
+                } else {
                     completionHandler(false)
                 }
             }
-        }
-        else {
+        } else {
             completionHandler(false)
         }
     }

@@ -3,7 +3,7 @@ import UIKit
 import OnePasswordExtension
 import SafariServices
 
-class LoginViewController : UIViewController, OperationObserver, UITextFieldDelegate {
+class LoginViewController: UIViewController, OperationObserver, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var logoImageView: UIImageView!
@@ -18,8 +18,7 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
    
     var operationQueue: OperationQueue?
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         operationQueue = OperationQueue()
@@ -28,10 +27,8 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
         onePasswordButton.hidden = !onePasswordAvailable
         
 //#if DEBUG
-//        usernameTextField.text = "stephen_test"
-//        passwordTextField.text = "st3ph3n"
-        usernameTextField.text = "swilliams@intellum.com"
-        passwordTextField.text = "intelluni101?"
+        usernameTextField.text = "dinesh@piedpiper.com"
+        passwordTextField.text = "st3ph3n"
 //#endif
         
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -76,15 +73,14 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
     
     // MARK: Keyboard
     
-    func keyboardWillShow(notification: NSNotification)
-    {
+    func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject] else {
-            return;
+            return
         }
         
         if let sizeValue = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue {
             let size = sizeValue.size
-            let contentInset = UIEdgeInsetsMake(0,0,size.height,0)
+            let contentInset = UIEdgeInsetsMake(0, 0, size.height, 0)
             self.scrollView.contentInset = contentInset
             self.scrollView.scrollIndicatorInsets = contentInset
 
@@ -104,10 +100,9 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
 
     }
 
-    func keyboardWillHide(notification: NSNotification)
-    {
+    func keyboardWillHide(notification: NSNotification) {
         let contentInsets = UIEdgeInsetsZero
-        scrollView.contentInset = contentInsets;
+        scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
     
@@ -131,18 +126,17 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
         
     }
     
-    func operationDidFinish(operation: Operation, errors: [NSError])
-    {
+    func operationDidFinish(operation: Operation, errors: [NSError]) {
         if let loginOperation = operation as? LoginOperation {
             print(loginOperation.authToken)
         }
 
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            if (errors.isEmpty) {
-                print("Login")
+            if errors.isEmpty {
                 self.dismissViewControllerAnimated(true, completion: nil)
-            }else{
+                NSNotificationCenter.defaultCenter().postNotificationName(WebViewControllerDidLogin, object: self)
+            } else {
                 print(errors)
                 self.loginButton.hidden = false
             }
@@ -154,17 +148,16 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
         super.viewWillLayoutSubviews()
         
         let contentWidth = CGRectGetWidth(self.view.frame)
-        let horiPadding = (contentWidth - formWidthConstraint.constant) / 2;
-        leftConstraint.constant = horiPadding;
-        rightConstraint.constant = horiPadding;
+        let horiPadding = (contentWidth - formWidthConstraint.constant) / 2
+        leftConstraint.constant = horiPadding
+        rightConstraint.constant = horiPadding
     }
     
     // MARK: One Password
     
-    @IBAction func didTapOnePassword(sender: AnyObject)
-    {
-        OnePasswordExtension.sharedExtension().findLoginForURLString(Settings.sharedInstance.baseURL, forViewController: self, sender: sender)
-            { (loginDictionary: [NSObject : AnyObject]?, error: NSError?) -> Void in
+    @IBAction func didTapOnePassword(sender: AnyObject) {
+        OnePasswordExtension.sharedExtension().findLoginForURLString(Settings.sharedInstance.baseURL, forViewController: self, sender: sender) {
+            (loginDictionary: [NSObject : AnyObject]?, error: NSError?) -> Void in
             
                 guard let username = loginDictionary?[AppExtensionUsernameKey] as? String else {
                     return
@@ -180,8 +173,7 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
     
     @IBAction func populateFieldsFromOnePassword(sender: UIButton) {
         OnePasswordExtension.sharedExtension().findLoginForURLString("https://izea.com", forViewController: self,
-            sender: sender)
-            { (credentials, error) -> Void in
+            sender: sender) { (credentials, error) -> Void in
                 guard error == nil else {
                     print("Error: \(error)")
                     return
@@ -198,5 +190,4 @@ class LoginViewController : UIViewController, OperationObserver, UITextFieldDele
                 self.didTapLoginButton(self)
         }
     }
-
 }

@@ -37,7 +37,7 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
 //        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let parseDataOperation = NSBlockOperation { () -> Void in
                 self.downloadFinished(data, response: response as? NSHTTPURLResponse, error: error)
             }
@@ -66,13 +66,13 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
         
         if let _ = data {
             let statusCode = response?.statusCode ?? 0
-            var errors :[NSError] = []
+            var errors: [NSError] = []
             
             if case 200...299 = statusCode {
                 if let headerFields = response?.allHeaderFields as? [String: String] {
                     let url = response!.URL!
                     let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
-                    let connectCookies = cookies.filter({ (cookie:NSHTTPCookie) -> Bool in
+                    let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
                         return cookie.name == AUTH_COOKIE_NAME
                     })
                     if let cookie = connectCookies.first {
@@ -93,17 +93,19 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
             }
             finish(errors)
             
-        }
-        else if let error = error {
+        } else if let error = error {
             aggregateError(error)
-        }
-        else {
+        } else {
             // Do nothing, and the operation will automatically finish.
         }
     }
     
-    internal func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void)
-    {
+    internal func URLSession(session: NSURLSession,
+        task: NSURLSessionTask,
+        willPerformHTTPRedirection response: NSHTTPURLResponse,
+        newRequest request: NSURLRequest,
+        completionHandler: (NSURLRequest?) -> Void) {
+            
         completionHandler(request)
         
         guard let _ = self.appAuthToken else {
@@ -111,7 +113,7 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
             if let headerFields = response.allHeaderFields as? [String: String] {
                 let url = response.URL!
                 let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
-                let connectCookies = cookies.filter({ (cookie:NSHTTPCookie) -> Bool in
+                let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
                     return cookie.name == AUTH_COOKIE_NAME && cookie.domain.rangeOfString("groupdock.com")==nil
                 })
                 if let cookie = connectCookies.first {
