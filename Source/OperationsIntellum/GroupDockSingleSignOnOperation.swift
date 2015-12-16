@@ -7,15 +7,18 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
     let errorDomain = "GroupDockSSOOperationErrorDomain"
     var appName: String
     var authToken: String
+    var organization: String
     var appAuthToken: String?
-    let AUTH_COOKIE_NAME = "connect.sid"
+    let authCookieName = "connect.sid"
+    var rootURLString: String?
     
     // MARK: Initialization
     
     /// - parameter cacheFile: The file `NSURL` to which the earthquake feed will be downloaded.
-    init(appName: String, authToken: String) {
+    init(appName: String, organization: String, authToken: String) {
         
         self.appName = appName
+        self.organization = organization
         self.authToken = authToken
         
         super.init(operations: [])
@@ -24,19 +27,18 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
     }
     
     func addSubOperations() {
-        let url = NSURL(string: "https://www.groupdock.com/sso/" + appName + "?account=intellum")!
-        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
+        let url = NSURL(string: "https://www.groupdock.com/sso/" + appName + "?account=" + organization)!
+        let request = NSMutableURLRequest(URL: url, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 10)
         
         request.addValue("application/json", forHTTPHeaderField:"Content-Type")
 //        request.addValue("application/json", forHTTPHeaderField:"Accept")
         request.addValue("true", forHTTPHeaderField: "noredirect")
         
-        let authCookie = "\(AUTH_COOKIE_NAME)=\(authToken);"
+        let authCookie = "\(authCookieName)=\(authToken);"
         request.setValue(authCookie, forHTTPHeaderField: "Cookie")
         
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-//        let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let parseDataOperation = NSBlockOperation { () -> Void in
                 self.downloadFinished(data, response: response as? NSHTTPURLResponse, error: error)
@@ -60,8 +62,13 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
     }
     
     func downloadFinished(data: NSData?, response: NSHTTPURLResponse?, error: NSError?) {
+        
+        if let url = response?.URL {
+            rootURLString = url.scheme + "://" + url.host!
+        }
+
         if let _ = appAuthToken {
-            finish()
+            return
         }
         
         if let _ = data {
@@ -69,17 +76,6 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
             var errors: [NSError] = []
             
             if case 200...299 = statusCode {
-                if let headerFields = response?.allHeaderFields as? [String: String] {
-                    let url = response!.URL!
-                    let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
-                    let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
-                        return cookie.name == AUTH_COOKIE_NAME
-                    })
-                    if let cookie = connectCookies.first {
-                        self.appAuthToken = cookie.value
-                    }
-                }
-
                 finish()
             } else if response?.statusCode == 401 {
                 let error =  NSError(domain: self.errorDomain, code: 401, userInfo: [:])
@@ -107,17 +103,25 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
         completionHandler: (NSURLRequest?) -> Void) {
             
         completionHandler(request)
-        
-        guard let _ = self.appAuthToken else {
             
-            if let headerFields = response.allHeaderFields as? [String: String] {
-                let url = response.URL!
-                let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
-                let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
-                    return cookie.name == AUTH_COOKIE_NAME && cookie.domain.rangeOfString("groupdock.com")==nil
-                })
-                if let cookie = connectCookies.first {
-                    self.appAuthToken = cookie.value
+        
+        if appAuthToken == nil && request.URL?.absoluteString .rangeOfString("/sso/launch") == nil {
+            if let headerFields = response.allHeaderFields as? [String: String],
+                urlString = headerFields["Location"],
+                url = NSURL(string: urlString) {
+                
+                    let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
+                    if let urlComponents = NSURLComponents(URL: response.URL!, resolvingAgainstBaseURL: false) {
+                    let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
+                        return cookie.name == authCookieName && cookie.domain.rangeOfString(urlComponents.host!) != nil
+                    })
+                    if let cookie = connectCookies.first {
+                        self.appAuthToken = cookie.value
+                        Settings.sharedInstance.authToken = cookie.value
+                        if let baseURL = request.URL?.absoluteString {
+                            Settings.sharedInstance.baseURL = baseURL
+                        }
+                    }
                 }
             }
             return

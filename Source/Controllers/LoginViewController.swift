@@ -26,10 +26,8 @@ class LoginViewController: UIViewController, OperationObserver, UITextFieldDeleg
         let onePasswordAvailable = OnePasswordExtension.sharedExtension().isAppExtensionAvailable()
         onePasswordButton.hidden = !onePasswordAvailable
         
-//#if DEBUG
-        usernameTextField.text = "dinesh@piedpiper.com"
-        passwordTextField.text = "st3ph3n"
-//#endif
+//        usernameTextField.text = "dinesh@piedpiper.com"
+//        passwordTextField.text = "st3ph3n"
         
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "keyboardWillShow:",

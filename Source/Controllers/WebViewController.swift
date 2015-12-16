@@ -7,23 +7,25 @@ let WebViewControllerDidLogin = "WebViewControllerDidLogin"
 
 public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewController {
     // MARK: Constants
-    let baseURL = Settings.sharedInstance.baseURL
+    let keychain = Settings.sharedInstance.keychain
     let authCookieName = Settings.sharedInstance.authCookieName
 
     // MARK: Properties
     var navigationDelegate: WebViewNavigationDelegate?
-    var rootURL: NSURL?
-    public var rootAbsoluteURLString: String = ""
-    public var rootURLString: String? {
-        didSet {
-            rootAbsoluteURLString = rootURLString!
-            if rootURLString!.rangeOfString("://") == nil {
-                rootAbsoluteURLString = baseURL + rootURLString!
-            }
-            
-            self.rootURL = NSURL(string: rootAbsoluteURLString)
+    var rootURL: NSURL? {
+        get {
+            return NSURL(string: rootAbsoluteURLString ?? "")
         }
     }
+    public var rootAbsoluteURLString: String? {
+        get {
+            if rootURLString!.rangeOfString("://") == nil {
+                return Settings.sharedInstance.baseURL + rootURLString!
+            }
+            return rootURLString
+        }
+    }
+    public var rootURLString: String?
     
     var activityIndicator: UIActivityIndicatorView = {
         let style: UIActivityIndicatorViewStyle = Settings.sharedInstance.isNavbarDark ? .White : .Gray
@@ -62,7 +64,6 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
     }
 
     public func didTapLogout() {
-        let keychain = Keychain(service: Settings.sharedInstance.keychainService)
         do {
             try keychain.remove("app_auth_cookie")
         } catch let error {

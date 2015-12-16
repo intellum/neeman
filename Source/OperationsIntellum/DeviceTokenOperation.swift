@@ -9,7 +9,7 @@ public class DeviceTokenOperation: GroupOperation {
     private let finishHandler: ((Operation, [NSError]) -> Void)?
     let errorDomain = "DeviceTokenErrorDomain"
     let urlString = "http://intellum.level.openlms.com/user.json"
-    let keychain = Keychain(service: Settings.sharedInstance.keychainService)
+    let keychain = Settings.sharedInstance.keychain
     
     // MARK: Initialization
     

@@ -21,21 +21,22 @@ public class GroupDockLoginOperation: GroupOperation {
         self.password = password
         
         super.init(operations: [])
-        name = "Login"
+
+        name = "GroupdockLogin"
         
         if appName == "ExampleHybridApp" {
             return
         }
         
         let url = NSURL(string: urlString+appName)!
-        let request = requestForURL(url)
-        
         let params = ["username":username, "password":password]
+        let request = requestForURL(url, params: params)
+        request.HTTPMethod = "POST"
         
-        do {
-            try request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(rawValue: 0))
-        } catch {}
-        
+        addTaskOperationForRequest(request)
+    }
+    
+    func addTaskOperationForRequest(request: NSURLRequest) {
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let parseDataOperation = NSBlockOperation { () -> Void in
                 self.downloadFinished(data, response: response as? NSHTTPURLResponse, error: error)
@@ -45,7 +46,7 @@ public class GroupDockLoginOperation: GroupOperation {
         
         let taskOperation = URLSessionTaskOperation(task: task)
         
-        let reachabilityCondition = ReachabilityCondition(host: url)
+        let reachabilityCondition = ReachabilityCondition(host: request.URL!)
         taskOperation.addCondition(reachabilityCondition)
         
         let networkObserver = NetworkObserver()
@@ -53,19 +54,7 @@ public class GroupDockLoginOperation: GroupOperation {
         
         addOperation(taskOperation)
     }
-    
-    func requestForURL(url: NSURL) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 10)
-        
-        request.addValue("application/json", forHTTPHeaderField:"Content-Type")
-        request.addValue("application/json", forHTTPHeaderField:"Accept")
-        request.addValue("true", forHTTPHeaderField: "noredirect")
-        
-        request.HTTPMethod = "POST"
-        
-        return request
-    }
-    
+
     func downloadFinished(data: NSData?, response: NSHTTPURLResponse?, error: NSError?) {
         if let localData = data {
             do {
@@ -113,9 +102,8 @@ public class GroupDockLoginOperation: GroupOperation {
                         self.authToken = cookie.value
                     }
                 }
-                if let organization = jsonObj["organization"] as? [String: AnyObject],
-                    name = organization["name"] as? String {
-                        self.organization = name
+                if let subdomain = jsonObj["subdomain"] as? String {
+                    self.organization = subdomain
                 }
         }
     }

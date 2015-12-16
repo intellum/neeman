@@ -10,7 +10,7 @@ protocol NeemanWebViewController {
 
 class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
-    let keychain = Keychain(service: Settings.sharedInstance.keychainService)
+    let keychain = Settings.sharedInstance.keychain
     let authCookieName = Settings.sharedInstance.authCookieName
     var rootURL: NSURL
     var delegate: NeemanWebViewController?
@@ -72,11 +72,12 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     func isLoginRequestRequest(request: NSURLRequest) -> Bool {
         var isLoginPath = false
         let isGroupDock = request.URL?.absoluteString.rangeOfString("://groupdock.com") != nil
-        let loginPaths = ["/login", "/elogin", "/sso/launch"]
+        let isGroupDockOrgFinder = request.URL?.path?.rangeOfString("/a/") != nil
+        let loginPaths = ["/login", "/elogin", "/sso/launch", "/organization_not_found"]
         if let path = request.URL?.path {
             isLoginPath = loginPaths.contains(path)
         }
-        return isLoginPath || isGroupDock
+        return isLoginPath || (isGroupDock && !isGroupDockOrgFinder)
     }
     
     // MARK: Cookies
