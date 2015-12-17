@@ -4,10 +4,12 @@ public class Appearence {
     public static let sharedInstance = Appearence()
     
     public func setup() {
-        let backgroundImage = gradientImageWithBounds(CGSizeMake(800, 800))
-        UINavigationBar.appearance().setBackgroundImage(backgroundImage, forBarMetrics: .Default)
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().translucent = false
+        if let backgroundImage = gradientImageWithBounds(CGSizeMake(800, 800)) {
+            let stretchyImage = backgroundImage.stretchableImageWithLeftCapWidth(0, topCapHeight: 0)
+            UINavigationBar.appearance().setBackgroundImage(stretchyImage, forBarMetrics: .Default)
+            UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+            UINavigationBar.appearance().translucent = false
+        }
         UITabBar.appearance().tintColor = Settings.sharedInstance.color1
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
