@@ -1,7 +1,7 @@
 import Foundation
 
 
-public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegate {
+public class GroupDockSingleSignOnOperation: GroupOperation {
     // MARK: Properties
     
     let errorDomain = "GroupDockSSOOperationErrorDomain"
@@ -34,11 +34,20 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
 //        request.addValue("application/json", forHTTPHeaderField:"Accept")
         request.addValue("true", forHTTPHeaderField: "noredirect")
         
-        let authCookie = "\(authCookieName)=\(authToken);"
-        request.setValue(authCookie, forHTTPHeaderField: "Cookie")
+        let properties: [String: AnyObject] = [
+            NSHTTPCookieName:authCookieName,
+            NSHTTPCookieValue:authToken,
+            NSHTTPCookieDomain:url.host!,
+            NSHTTPCookieOriginURL:url.host!,
+            NSHTTPCookiePath:"/"
+        ]
+
+        if let cookie = NSHTTPCookie(properties: properties) {
+            NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie)
+        }
         
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        let session = NSURLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
         let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let parseDataOperation = NSBlockOperation { () -> Void in
                 self.downloadFinished(data, response: response as? NSHTTPURLResponse, error: error)
@@ -76,6 +85,19 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
             var errors: [NSError] = []
             
             if case 200...299 = statusCode {
+                if let url = response?.URL,
+                    cookies = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookiesForURL(url) {
+                        
+                        let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
+                            return cookie.name == authCookieName
+                        })
+                        if let token = connectCookies.first?.value {
+                            appAuthToken = token
+                            Settings.sharedInstance.authToken = token
+                            Settings.sharedInstance.baseURL = url.absoluteString
+                        }
+                }
+
                 finish()
             } else if response?.statusCode == 401 {
                 let error =  NSError(domain: self.errorDomain, code: 401, userInfo: [:])
@@ -93,38 +115,6 @@ public class GroupDockSingleSignOnOperation: GroupOperation, NSURLSessionDelegat
             aggregateError(error)
         } else {
             // Do nothing, and the operation will automatically finish.
-        }
-    }
-    
-    internal func URLSession(session: NSURLSession,
-        task: NSURLSessionTask,
-        willPerformHTTPRedirection response: NSHTTPURLResponse,
-        newRequest request: NSURLRequest,
-        completionHandler: (NSURLRequest?) -> Void) {
-            
-        completionHandler(request)
-            
-        
-        if appAuthToken == nil && request.URL?.absoluteString .rangeOfString("/sso/launch") == nil {
-            if let headerFields = response.allHeaderFields as? [String: String],
-                urlString = headerFields["Location"],
-                url = NSURL(string: urlString) {
-                
-                    let cookies = NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: url)
-                    if let urlComponents = NSURLComponents(URL: response.URL!, resolvingAgainstBaseURL: false) {
-                    let connectCookies = cookies.filter({ (cookie: NSHTTPCookie) -> Bool in
-                        return cookie.name == authCookieName && cookie.domain.rangeOfString(urlComponents.host!) != nil
-                    })
-                    if let cookie = connectCookies.first {
-                        self.appAuthToken = cookie.value
-                        Settings.sharedInstance.authToken = cookie.value
-                        if let baseURL = request.URL?.absoluteString {
-                            Settings.sharedInstance.baseURL = baseURL
-                        }
-                    }
-                }
-            }
-            return
         }
     }
 }

@@ -5,6 +5,9 @@ extension WebViewController {
     func setupWebView() {
         webViewConfig = WKWebViewConfiguration()
         webViewConfig.processPool = WebViewController.processPool
+        if #available(iOS 9.0, *) {
+            webViewConfig.applicationNameForUserAgent = Settings.sharedInstance.appName
+        }
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
         if let url = rootURL {
             navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self)
