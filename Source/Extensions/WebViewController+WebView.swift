@@ -22,6 +22,9 @@ extension WebViewController {
         view.insertSubview(webView, atIndex: 0)
         webView.translatesAutoresizingMaskIntoConstraints = false
         autolayoutWebView()
+
+        webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
+        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
     }
     
     public func autolayoutWebView() {

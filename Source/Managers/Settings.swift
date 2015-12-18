@@ -60,7 +60,7 @@ public class Settings {
             dict = NSDictionary(contentsOfFile: path!)
         }
         appName = dict?["AppName"] as? String ?? ""
-        authCookieName = dict?["AuthCookieName"] as? String ?? ""
+        authCookieName = dict?["AuthCookieName"] as? String
         logoutPage = dict?["LogoutPage"] as? String ?? ""
         recoverPasswordURL = dict?["RecoverPasswordURL"] as? String ?? ""
  

@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 import KeychainAccess
 
-protocol NeemanWebViewController {
+protocol NeemanWebViewController: NSObjectProtocol {
     func webViewDidFinishLoadingWithError(error: NSError)
     func showLogin()
     func pushNewWebViewControllerWithURL(url: NSURL)
@@ -13,7 +13,7 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     let keychain = Settings.sharedInstance.keychain
     let authCookieName = Settings.sharedInstance.authCookieName
     var rootURL: NSURL
-    var delegate: NeemanWebViewController?
+    weak var delegate: NeemanWebViewController?
     
     init(rootURL: NSURL, delegate: NeemanWebViewController?) {
         self.rootURL = rootURL
@@ -38,8 +38,10 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
                 actionPolicy = .Cancel
             } else if isLoginRequestRequest(navigationAction.request) {
-                actionPolicy = .Cancel
-                delegate?.showLogin()
+                if let _ = Settings.sharedInstance.authCookieName {
+                    actionPolicy = .Cancel
+                    delegate?.showLogin()
+                }
             }
             
             let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"

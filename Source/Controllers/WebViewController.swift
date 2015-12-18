@@ -56,6 +56,8 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
     }
     
     deinit {
+        webView.removeObserver(self, forKeyPath: "title")
+        webView.removeObserver(self, forKeyPath: "loading")
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
@@ -105,19 +107,11 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
-        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
 
         if !hasLoadedContent {
             refresh(self)
         }
 
-    }
-    
-    override public func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        webView.removeObserver(self, forKeyPath: "title")
-        webView.removeObserver(self, forKeyPath: "loading")
     }
     
     // MARK: Title and Loading
