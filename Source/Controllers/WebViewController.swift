@@ -27,10 +27,8 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
     }
     public var rootURLString: String?
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let style: UIActivityIndicatorViewStyle = Settings.sharedInstance.isNavbarDark ? .White : .Gray
-        return UIActivityIndicatorView(activityIndicatorStyle: style)
-    }()
+    @IBOutlet var activityIndicator: UIActivityIndicatorView?
+    
     public var refreshControl: UIRefreshControl!
     var hasLoadedContent: Bool = false
 

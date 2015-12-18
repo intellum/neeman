@@ -2,8 +2,6 @@ import UIKit
 
 extension WebViewController {
     public func setupNavigationBar() {
-        let activityIndicatorBBI = UIBarButtonItem(customView: activityIndicator)
-        navigationItem.rightBarButtonItem = activityIndicatorBBI
         setupRefreshControll()
         
         let logoutPage = Settings.sharedInstance.logoutPage
@@ -37,9 +35,9 @@ extension WebViewController {
     
     public func updateActivityIndicator() {
         if webView.loading && !self.refreshControl.refreshing {
-            activityIndicator.startAnimating()
+            activityIndicator?.startAnimating()
         } else {
-            activityIndicator.stopAnimating()
+            activityIndicator?.stopAnimating()
         }
     }
 }
