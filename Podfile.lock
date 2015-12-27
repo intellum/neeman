@@ -1,13 +1,10 @@
 PODS:
-  - 1PasswordExtension (1.7)
   - KeychainAccess (2.3.3)
 
 DEPENDENCIES:
-  - 1PasswordExtension
   - KeychainAccess
 
 SPEC CHECKSUMS:
-  1PasswordExtension: a22573ad528dd63bd79c1f3b3813b17c2f86b91b
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
 
 COCOAPODS: 0.39.0

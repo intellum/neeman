@@ -1,5 +1,4 @@
 import UIKit
-import KeychainAccess
 
 extension NSMutableURLRequest {
     func authenticate() {
@@ -7,8 +6,7 @@ extension NSMutableURLRequest {
             return
         }
 
-        let keychain = Settings.sharedInstance.keychain
-        let authToken: String? = keychain["app_auth_cookie"] ?? authTokenFromCookie()
+        let authToken: String? = Settings.sharedInstance.authToken ?? authTokenFromCookie()
         
         if let token = authToken {
             let authCookie = "\(authCookieName)=\(token);"

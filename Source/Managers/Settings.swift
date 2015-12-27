@@ -16,7 +16,7 @@ public class Settings {
     public let appName: String
     
     var myAuthToken: String?
-    public var authToken: String {
+    public var authToken: String? {
         set {
             myAuthToken = newValue
             keychain["app_auth_cookie"] = newValue
@@ -43,6 +43,15 @@ public class Settings {
         }
     }
     public let authCookieName: String?
+    
+    /**
+     An optional regular expression to define on which pages a logout button should be placed
+     in the right bar button item.
+     
+     ## Examples
+       - /user/profile/me
+       - /.*
+     */
     public let logoutPage: String
     public let recoverPasswordURL: String
     public let color1: UIColor?
@@ -59,27 +68,27 @@ public class Settings {
         if let _ = path {
             dict = NSDictionary(contentsOfFile: path!)
         }
-        appName = dict?["AppName"] as? String ?? ""
-        authCookieName = dict?["AuthCookieName"] as? String
-        logoutPage = dict?["LogoutPage"] as? String ?? ""
-        recoverPasswordURL = dict?["RecoverPasswordURL"] as? String ?? ""
+        appName = dict?["appName"] as? String ?? ""
+        authCookieName = dict?["authCookieName"] as? String
+        logoutPage = dict?["logoutPage"] as? String ?? ""
+        recoverPasswordURL = dict?["recoverPasswordURL"] as? String ?? ""
  
-        if let color1String = dict?["Color1"] as? String {
+        if let color1String = dict?["color1"] as? String {
             color1 = UIColor(hex: color1String)
         } else {
             color1 = nil
         }
         
-        if let color2String = dict?["Color2"] as? String {
+        if let color2String = dict?["color2"] as? String {
             color2 = UIColor(hex: color2String)
         } else {
             color2 = nil
         }
         
-        isNavbarDark = dict?["IsNavbarDark"] as? Bool ?? false
+        isNavbarDark = dict?["isNavbarDark"] as? Bool ?? false
 
         let keychainService = dict?["KeychainService"] as? String ?? "com.intellum.level"
         keychain = Keychain(service: keychainService)
-        baseURLFromPlist = dict?["BaseURL"] as! String
+        baseURLFromPlist = dict?["baseURL"] as? String ?? ""
     }
 }

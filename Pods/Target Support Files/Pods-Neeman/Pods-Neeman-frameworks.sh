@@ -84,10 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-Neeman/OnePasswordExtension.framework"
   install_framework "Pods-Neeman/KeychainAccess.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-Neeman/OnePasswordExtension.framework"
   install_framework "Pods-Neeman/KeychainAccess.framework"
 fi

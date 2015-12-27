@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Neeman"
-  s.version      = "0.1.7"
+  s.version      = "0.1.8.LOCAL"
   s.summary      = "A framework for easily creating a hybrid app from a mobile friendly web app."
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,15 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-You can use this pod to get up and running fast with a hybrid app. Create a Setting.plist file and make one of your view controllers a WebViewController.
+The idea behind Neeman is to help you easily create a usable Hibrid app from an existing web app. 
+It does this without getting in your way of adding additional native functionality. Try it out with your web app embeded in a native navigation stack. 
+You can then see if you need to reimplement certain features natively. The best way to save development time and still maintain a beautify user experience 
+is to keep your content rendered with HTML and implement your navigation natively.
+
+## Getting Started
+1. Create an Xcode project with the template best suiting your app.
+2. Make one of your view controllers a WebViewController.
+3. Set the **User Defined Runtime Attribute** `rootURLString` to the URL you which to display.
                    DESC
 
   s.homepage     = "https://intellum.com"
@@ -135,6 +143,5 @@ You can use this pod to get up and running fast with a hybrid app. Create a Sett
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
   s.dependency "KeychainAccess"
-  s.dependency "1PasswordExtension"
 
 end

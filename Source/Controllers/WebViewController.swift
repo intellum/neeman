@@ -1,23 +1,31 @@
 import UIKit
 import WebKit
-import KeychainAccess
 
-let WebViewControllerDidLogout = "WebViewControllerDidLogout"
-let WebViewControllerDidLogin = "WebViewControllerDidLogin"
-
-public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewController {
+/**
+  WebViewController displays the contents of a URL and pushes a new instance of itself once the 
+  user clicks on a link that causes an URL change. It also provides support for authentication. 
+  It makes injecting Javascript into your webapp easy.
+*/
+public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNavigationDelegate {
     // MARK: Constants
     let keychain = Settings.sharedInstance.keychain
-    let authCookieName = Settings.sharedInstance.authCookieName
+
+    // Outlets
+    @IBOutlet var activityIndicator: UIActivityIndicatorView?
 
     // MARK: Properties
     var navigationDelegate: WebViewNavigationDelegate?
-    var rootURL: NSURL? {
+    var uiDelegate: WebViewUIDelegate?
+    
+    /// The initial NSURL to display in the web view.
+    public var rootURL: NSURL? {
         get {
             return NSURL(string: rootAbsoluteURLString ?? "")
         }
     }
-    public var rootAbsoluteURLString: String? {
+    /// The initial URL to display in the web view. Set this in your storyboard in the "User Defined Runtime Attributes"
+    public var rootURLString: String?
+    var rootAbsoluteURLString: String? {
         get {
             if rootURLString!.rangeOfString("://") == nil {
                 return Settings.sharedInstance.baseURL + rootURLString!
@@ -25,14 +33,24 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
             return rootURLString
         }
     }
-    public var rootURLString: String?
     
-    @IBOutlet var activityIndicator: UIActivityIndicatorView?
-    
+    /** A UIRefreshControl is automatically added to the WKWebView.
+        When you pull down your webView the page will be refreshed.
+    */
     public var refreshControl: UIRefreshControl!
     var hasLoadedContent: Bool = false
 
-    public var webView: WKWebView!
+    /**
+     The WKWebView in which the content of the URL defined in rootURLString will be dispayed.
+     */
+    public var webView: WKWebView! {
+        didSet {
+            print(webView)
+        }
+    }
+    /**
+     This is used mostly for injecting javascript and for sharing cookies between different WebViewControllers.
+     */
     public var webViewConfig: WKWebViewConfiguration!
     static var processPool = WKProcessPool()
     
@@ -45,30 +63,36 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
 
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didLogout:",
-            name: WebViewControllerDidLogout,
-            object: nil)
+            name: WebViewControllerDidLogout, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didLogin:",
-            name: WebViewControllerDidLogin,
-            object: nil)
+            name: WebViewControllerDidLogin, object: nil)
     }
-    
-    deinit {
+
+    override public func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !hasLoadedContent {
+            refresh(self)
+        }
+        
+        webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
+        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
+    }
+
+    public override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
         webView.removeObserver(self, forKeyPath: "title")
         webView.removeObserver(self, forKeyPath: "loading")
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
-    public func setTitle() {
-        navigationItem.title = webView.title?.uppercaseString
-    }
-
-    public func didTapLogout() {
-        do {
-            try keychain.remove("app_auth_cookie")
-        } catch let error {
-            print(error)
-        }
+    // MARK: Actions
+    /**
+    This performs some clean up of cookies, authentication and sends a notification named WebViewControllerDidLogout.
+    */
+    public func didTapLogout(sender: AnyObject) {
+        Settings.sharedInstance.authToken = nil
 
         showLogin()
         clearCookies()
@@ -84,32 +108,15 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
         }
         NSNotificationCenter.defaultCenter().postNotificationName(WebViewControllerDidLogout, object: self)
     }
-    
-    func clearCookies() {
-        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        if let cookies = cookieStorage.cookies {
-            for cookie in cookies {
-                cookieStorage.deleteCookie(cookie)
-            }
-        }
-    }
-    
+
+    // MARK: Notification Handlers
     public func didLogout(notification: NSNotification) {
         self.hasLoadedContent = false
         navigationController?.popToRootViewControllerAnimated(false)
     }
-
+    
     public func didLogin(notification: NSNotification) {
         loadURL(rootURL)
-    }
-
-    override public func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if !hasLoadedContent {
-            refresh(self)
-        }
-
     }
     
     // MARK: Title and Loading
@@ -125,12 +132,21 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
         
         switch keyPath {
         case "title":
-            setTitle()
+            webView(webView, didChangeTitle: webView.title)
         case "loading":
-            loadingDidChange()
+            webView(webView, didChangeLoading: webView.loading)
         default:
             break
         }
+    }
+    
+    /**
+     Called when the webView updates the value of its title property.
+     - Parameter webView: The instance of WKWebView that updated its title property.
+     - Parameter loading: The value that the WKWebView updated its title property to.
+     */
+    public func webView(webView: WKWebView, didChangeTitle title: String?) {
+        navigationItem.title = title?.uppercaseString
     }
     
     //MARK: Javascript
@@ -143,8 +159,8 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
         js.addCSSScript(webViewConfig)
     }
     
-    //MARK: NeemanWebViewController
-    func pushNewWebViewControllerWithURL(url: NSURL) {
+    //MARK: NeemanNavigationDelegate
+    public func pushNewWebViewControllerWithURL(url: NSURL) {
         let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
         if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
             (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
@@ -155,7 +171,8 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
         }
     }
 
-    func showLogin() {
+    // MARK: Authentication
+    public func showLogin() {
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             let storyboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
             if let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationController") as? UINavigationController {
@@ -169,7 +186,16 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
         }
     }
 
-    public func webViewDidFinishLoadingWithError(error: NSError) {
+    func clearCookies() {
+        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        if let cookies = cookieStorage.cookies {
+            for cookie in cookies {
+                cookieStorage.deleteCookie(cookie)
+            }
+        }
+    }
+    
+    func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
         var message: String?
 
         switch error.code {
@@ -189,18 +215,15 @@ public class WebViewController: UIViewController, WKUIDelegate, NeemanWebViewCon
             setErrorMessage(message)
         }
     }
-    
-    // MARK: WKUIDelegate
-    public func webView(webView: WKWebView,
-        runJavaScriptAlertPanelWithMessage message: String,
-        initiatedByFrame frame: WKFrameInfo,
-        completionHandler: () -> Void) {
-            
-        completionHandler()
-    }
-    
-    // MARK: Overridable
-    
-    public func setContentInset() {
-    }
+
 }
+
+// MARK: Notifications
+
+/** Posted when the user logged out though the WebViewController.didTapLogout:sender method.
+*/
+public let WebViewControllerDidLogout = "WebViewControllerDidLogout"
+
+/** Posting this will cause the didLogin(_:) method to be called. You can post this from your custom native authentication code.
+*/
+public let WebViewControllerDidLogin = "WebViewControllerDidLogin"

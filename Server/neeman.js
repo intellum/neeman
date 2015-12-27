@@ -1,6 +1,6 @@
+require('newrelic');
 var credentials = require('./credentials.js');
 var express = require('express');
-var connect = require('connect');
 var compression = require('compression');
 var app = express();
 //var auth = require('./authentication.js');

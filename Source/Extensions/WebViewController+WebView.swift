@@ -14,7 +14,8 @@ extension WebViewController {
             webView.navigationDelegate = navigationDelegate
         }
         
-        webView.UIDelegate = self
+        self.uiDelegate = WebViewUIDelegate()
+        webView.UIDelegate = self.uiDelegate
         webView.allowsBackForwardNavigationGestures = true
         
         addScriptsToConfiguration(webViewConfig)
@@ -22,12 +23,9 @@ extension WebViewController {
         view.insertSubview(webView, atIndex: 0)
         webView.translatesAutoresizingMaskIntoConstraints = false
         autolayoutWebView()
-
-        webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
-        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
     }
     
-    public func autolayoutWebView() {
+    func autolayoutWebView() {
         let views = ["webView":webView, "topLayoutGuide":self.topLayoutGuide] as [String: AnyObject]
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[webView(>=0)]-0-|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
