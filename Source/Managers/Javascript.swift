@@ -22,10 +22,10 @@ class Javascript {
         var content = ""
         do {
             if let path = NSBundle(forClass: WebViewController.self).pathForResource(fileName, ofType: "") {
-                content = try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
+                content += try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
             }
             if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "") {
-                content = try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
+                content += try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
             }
         } catch _ {
         }

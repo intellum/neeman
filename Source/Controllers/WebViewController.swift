@@ -12,6 +12,7 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
 
     // Outlets
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet var progressView: UIProgressView?
 
     // MARK: Properties
     var navigationDelegate: WebViewNavigationDelegate?
@@ -24,7 +25,7 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
         }
     }
     /// The initial URL to display in the web view. Set this in your storyboard in the "User Defined Runtime Attributes"
-    public var rootURLString: String?
+    @IBInspectable public var rootURLString: String?
     var rootAbsoluteURLString: String? {
         get {
             if rootURLString!.rangeOfString("://") == nil {
@@ -45,7 +46,6 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
      */
     public var webView: WKWebView! {
         didSet {
-            print(webView)
         }
     }
     /**
@@ -60,6 +60,8 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
         
         setupWebView()
         setupNavigationBar()
+        setupActivityIndicator()
+        setupProgressView()
 
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didLogout:",
@@ -78,6 +80,7 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
         
         webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
         webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
     }
 
     public override func viewDidDisappear(animated: Bool) {
@@ -135,6 +138,8 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
             webView(webView, didChangeTitle: webView.title)
         case "loading":
             webView(webView, didChangeLoading: webView.loading)
+        case "estimatedProgress":
+            webView(webView, didChangeEstimatedProgress: webView.estimatedProgress)
         default:
             break
         }
@@ -170,20 +175,14 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
             navigationController?.pushViewController(webViewController, animated: true)
         }
     }
+    
+    public func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool {
+        return false
+    }
 
     // MARK: Authentication
     public func showLogin() {
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            let storyboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
-            if let loginVC = storyboard.instantiateViewControllerWithIdentifier("LoginNavigationController") as? UINavigationController {
-                loginVC.setNavigationBarHidden(true, animated: false)
-                if let viewController = self.view.window?.rootViewController {
-                    if viewController.presentedViewController == nil {
-                        viewController.presentViewController(loginVC, animated: true, completion: nil)
-                    }
-                }
-            }
-        }
+        print("Impement showLogin() to display your custom login UI.")
     }
 
     func clearCookies() {
