@@ -45,6 +45,7 @@ extension WebViewController {
         
         let request = NSMutableURLRequest(URL: url)
         request.authenticate()
+        progressView?.setProgress(0, animated: false)
         
         webView.loadRequest(request)
     }
