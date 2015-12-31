@@ -4,6 +4,8 @@ import WebKit
 protocol NeemanNavigationDelegate: NSObjectProtocol {
     func webView(webView: WKWebView, didFinishLoadingWithError error: NSError)
     func showLogin()
+    func loginPaths() -> [String]?
+    func isLoginRequest(request: NSURLRequest) -> Bool
     func pushNewWebViewControllerWithURL(url: NSURL)
     func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool
 }
@@ -13,11 +15,13 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     let keychain = Settings.sharedInstance.keychain
     let authCookieName = Settings.sharedInstance.authCookieName
     var rootURL: NSURL
+    var name: String?
     weak var delegate: NeemanNavigationDelegate?
     
     init(rootURL: NSURL, delegate: NeemanNavigationDelegate?) {
         self.rootURL = rootURL
         self.delegate = delegate
+        self.name = nil
     }
     
     public func webView(webView: WKWebView,
@@ -26,13 +30,14 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             
             var actionPolicy: WKNavigationActionPolicy = .Allow
             let shouldPush = shouldPushNewWebView(navigationAction.request)
+
+            //let isRedirect = navigationAction.navigationType == .Other
             let isLink = navigationAction.navigationType == .LinkActivated
-                || navigationAction.navigationType == .Other
             if isLink
                 && shouldPush {
                 delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
                 actionPolicy = .Cancel
-            } else if isLoginRequestRequest(navigationAction.request) {
+            } else if isLoginRequest(navigationAction.request) {
                 if let _ = Settings.sharedInstance.authCookieName {
                     actionPolicy = .Cancel
                     delegate?.showLogin()
@@ -40,9 +45,18 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             }
             
             let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
-            print("URL: " + (navigationAction.request.URL?.absoluteString)! + "\t\t\t- " + actionString)
+            var nameString = ""
+            if let _ = name {
+                nameString = "(\(name!))"
+            }
+            print("URL\(nameString): " + (navigationAction.request.URL?.absoluteString)! + "\t\t\t- " + actionString)
             
             decisionHandler(actionPolicy)
+    }
+    
+    public func webView(webView: WKWebView,
+        didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        print("Redirecting")
     }
     
     public func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
@@ -72,14 +86,24 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         return !isInitialRequest && !isFragmentOfThisPage
     }
     
-    func isLoginRequestRequest(request: NSURLRequest) -> Bool {
+    func isLoginRequest(request: NSURLRequest) -> Bool {
         var isLoginPath = false
-        let isGroupdock = request.URL?.absoluteString.rangeOfString("groupdock.com") != nil
-        let isGroupdockOrgFinder = isGroupdock && request.URL?.path?.rangeOfString("/a/") != nil
-        let loginPaths = ["/login", "/elogin", "/sso/launch", "/organization_not_found"]
+        var loginPaths = Settings.sharedInstance.pathsToBlock
+
+        if let delegate = delegate {
+            if delegate.isLoginRequest(request) {
+                return true
+            }
+        }
+
+        if let delegate = delegate,
+            paths = delegate.loginPaths() {
+            loginPaths = paths
+        }
+        
         if let path = request.URL?.path {
             isLoginPath = loginPaths.contains(path)
         }
-        return isLoginPath || (isGroupdock && !isGroupdockOrgFinder)
+        return isLoginPath
     }
 }

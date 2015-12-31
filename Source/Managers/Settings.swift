@@ -15,6 +15,7 @@ public class Settings {
     public let keychain: Keychain
     public let appName: String
     
+    public let pathsToBlock: [String]
     var myAuthToken: String?
     public var authToken: String? {
         set {
@@ -70,6 +71,7 @@ public class Settings {
         }
         appName = dict?["appName"] as? String ?? ""
         authCookieName = dict?["authCookieName"] as? String
+        pathsToBlock = dict?["pathsToBlock"] as? [String] ?? []
         logoutPage = dict?["logoutPage"] as? String ?? ""
         recoverPasswordURL = dict?["recoverPasswordURL"] as? String ?? ""
  

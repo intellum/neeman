@@ -39,7 +39,7 @@ extension WebViewController {
      - Parameter loading: The value that the WKWebView updated its loading property to.
      */
     public func webView(webView: WKWebView, didChangeLoading loading: Bool) {
-        updateActivityIndicator()
+        updateActivityIndicatorWithWebView(webView)
         if !loading {
             refreshControl.endRefreshing()
             hasLoadedContent = true
@@ -134,7 +134,7 @@ extension WebViewController {
         view.addConstraint(yConstraint)
     }
     
-    func updateActivityIndicator() {
+    func updateActivityIndicatorWithWebView(webView: WKWebView) {
         if webView.loading {
             if !self.refreshControl.refreshing {
                 activityIndicator?.startAnimating()

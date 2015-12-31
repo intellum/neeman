@@ -2,6 +2,20 @@ import UIKit
 import WebKit
 
 class Javascript {
+    func setCookie(cookie: NSHTTPCookie, config: WKWebViewConfiguration) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "eee, dd MMM yyyy HH:mm:ss zzz"
+
+        let oneYearInSeconds: NSTimeInterval = 60*60*24*365
+        let dateInOneYear = NSDate(timeIntervalSinceNow: oneYearInSeconds)
+        let expires = cookie.expiresDate ?? dateInOneYear
+        let expiresString = dateFormatter.stringFromDate(expires)
+        let content = "document.cookie = '\(cookie.name)=\(cookie.value); expires=\(expiresString); path=\(cookie.path)';"
+
+        let script = WKUserScript(source: content, injectionTime: .AtDocumentStart, forMainFrameOnly: true)
+        config.userContentController.addUserScript(script)
+    }
+    
     func addScript(scriptName: String, config: WKWebViewConfiguration, injectionTime: WKUserScriptInjectionTime) {
         let content = stringFromContentInFileName(scriptName)
         let script = WKUserScript(source: content, injectionTime: injectionTime, forMainFrameOnly: true)

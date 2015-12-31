@@ -14,19 +14,22 @@ extension NSMutableURLRequest {
         }
     }
     
-    func authTokenFromCookie() -> String? {
+    func authCookie() -> NSHTTPCookie? {
         guard let authCookieName = Settings.sharedInstance.authCookieName else {
             return nil
         }
-
         let cookieStore = NSHTTPCookieStorage.sharedHTTPCookieStorage()
         if let url = self.URL {
             let cookies = cookieStore.cookiesForURL(url)
             if let authCookies = cookies?.filter({$0.name == authCookieName}),
                 authCookie = authCookies.first {
-                    return authCookie.value
+                    return authCookie
             }
         }
         return nil
+    }
+    
+    func authTokenFromCookie() -> String? {
+        return authCookie()?.value
     }
 }
