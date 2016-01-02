@@ -6,7 +6,7 @@ import WebKit
   user clicks on a link that causes an URL change. It also provides support for authentication. 
   It makes injecting Javascript into your webapp easy.
 */
-public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNavigationDelegate {
+public class WebViewController: UIViewController, WebViewObserverDelegate, NeemanUIDelegate, NeemanNavigationDelegate, WKScriptMessageHandler {
     // MARK: Constants
     let keychain = Settings.sharedInstance.keychain
 
@@ -16,7 +16,6 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
 
     // MARK: Properties
     var navigationDelegate: WebViewNavigationDelegate?
-    var navigationDelegatePopup: WebViewNavigationDelegate?
     var uiDelegate: WebViewUIDelegate?
     var uiDelegatePopup: WebViewUIDelegate?
     
@@ -49,23 +48,23 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
     public var webView: WKWebView!
     var webViewPopup: WKWebView?
     
-    /**
-     This is used mostly for injecting javascript and for sharing cookies between different WebViewControllers.
-     */
-    public var webViewConfig: WKWebViewConfiguration!
+    var webViewObserver: WebViewObserver = WebViewObserver()
+    
     static var processPool = WKProcessPool()
     
     //MARK: Lifecycle
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        automaticallyAdjustsScrollViewInsets = true
-
         setupWebView()
         setupNavigationBar()
         setupActivityIndicator()
         setupProgressView()
-
+        addObservers()
+        webViewObserver.delegate = self
+    }
+    
+    func addObservers() {
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didLogout:",
             name: WebViewControllerDidLogout, object: nil)
@@ -75,9 +74,7 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
     }
     
     deinit {
-        webViewPopup?.removeObserver(self, forKeyPath: "loading")
-        webViewPopup?.removeObserver(self, forKeyPath: "estimatedProgress")
-
+        webViewObserver.stopObservingWebView(webViewPopup)
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
@@ -85,19 +82,14 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
         super.viewWillAppear(animated)
         
         if !hasLoadedContent {
-            refresh(self)
+            loadURL(rootURL)
         }
-        
-        webView.addObserver(self, forKeyPath: "title", options: .New, context: nil)
-        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        webViewObserver.startObservingWebView(webView)
     }
 
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        webView.removeObserver(self, forKeyPath: "title")
-        webView.removeObserver(self, forKeyPath: "loading")
-        webView.removeObserver(self, forKeyPath: "estimatedProgress")
+        webViewObserver.stopObservingWebView(webView)
     }
 
     override public func viewWillLayoutSubviews() {
@@ -126,12 +118,12 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
             })
         }
         NSNotificationCenter.defaultCenter().postNotificationName(WebViewControllerDidLogout, object: self)
+        navigationController?.popToRootViewControllerAnimated(false)
     }
 
     // MARK: Notification Handlers
     public func didLogout(notification: NSNotification) {
         self.hasLoadedContent = false
-        navigationController?.popToRootViewControllerAnimated(false)
     }
     
     public func didLogin(notification: NSNotification) {
@@ -139,31 +131,6 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
     }
     
     // MARK: Title and Loading
-    override public func observeValueForKeyPath(keyPathOpt: String?,
-        ofObject object: AnyObject?,
-        change: [String : AnyObject]?,
-        context: UnsafeMutablePointer<Void>) {
-            
-        guard let keyPath = keyPathOpt else {
-            super.observeValueForKeyPath(keyPathOpt, ofObject: object, change: change, context: context)
-            return
-        }
-        
-        switch keyPath {
-        case "title":
-            webView(webView, didChangeTitle: webView.title)
-        case "loading":
-            if let currentWebView = object as? WKWebView {
-                webView(currentWebView, didChangeLoading: webView.loading)
-            }
-        case "estimatedProgress":
-            if let currentWebView = object as? WKWebView {
-                webView(currentWebView, didChangeEstimatedProgress: currentWebView.estimatedProgress)
-            }
-        default:
-            break
-        }
-    }
     
     /**
      Called when the webView updates the value of its title property.
@@ -171,93 +138,9 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
      - Parameter loading: The value that the WKWebView updated its title property to.
      */
     public func webView(webView: WKWebView, didChangeTitle title: String?) {
-        navigationItem.title = title?.uppercaseString
-    }
-    
-    //MARK: Javascript
-    
-    func addScriptsToConfiguration(config: WKWebViewConfiguration) {
-        let js = Javascript()
-        js.addScript("AtDocumentStart.js", config: webViewConfig, injectionTime: .AtDocumentStart)
-        js.addScript("AtDocumentEnd.js", config: webViewConfig, injectionTime: .AtDocumentEnd)
-//        js.addScript("FastClick.js", config: webViewConfig, injectionTime: .AtDocumentEnd)
-        js.addCSSScript(webViewConfig)
-        
-        addAuthentication(webViewConfig)
+        navigationItem.title = title
     }
 
-    func addAuthentication(config: WKWebViewConfiguration) {
-        let js = Javascript()
-        if let cookie = authCookie() {
-            js.setCookie(cookie, config: webViewConfig)
-        }
-    }
-    
-    func authCookie() -> NSHTTPCookie? {
-        guard let authCookieName = Settings.sharedInstance.authCookieName else {
-            return nil
-        }
-        let cookieStore = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        if let url = self.rootURL {
-            let cookies = cookieStore.cookiesForURL(url)
-            if let authCookies = cookies?.filter({$0.name == authCookieName}),
-                authCookie = authCookies.first {
-                    return authCookie
-            }
-        }
-        
-        if let authToken = Settings.sharedInstance.authToken,
-            url = rootURL {
-            let properties: [String: AnyObject] = [
-                NSHTTPCookieName:authCookieName,
-                NSHTTPCookieValue:authToken,
-                NSHTTPCookieDomain:url.host!,
-                NSHTTPCookieOriginURL:url.host!,
-                NSHTTPCookiePath:"/"
-            ]
-            
-            if let cookie = NSHTTPCookie(properties: properties) {
-                return cookie
-            }
-        }
-        return nil
-    }
-
-    //MARK: NeemanUIDelegate
-    func openURL(url:NSURL, inNewWebView newWebView: WKWebView) {
-        webViewPopup = newWebView
-        guard let webViewPopup = webViewPopup else {
-            return
-        }
-
-        let request = NSMutableURLRequest(URL: url)
-        request.authenticate()
-        webViewPopup.loadRequest(request)
-
-        uiDelegatePopup = WebViewUIDelegate()
-        uiDelegatePopup?.delegate = self
-        webViewPopup.UIDelegate = uiDelegatePopup
-        webViewPopup.allowsBackForwardNavigationGestures = true
-        
-        addAuthentication(webViewPopup.configuration)
-        
-        view.insertSubview(webViewPopup, aboveSubview: webView)
-        webViewPopup.translatesAutoresizingMaskIntoConstraints = false
-        webViewPopup.frame = view.bounds
-        autolayoutWebView(webViewPopup)
-
-        webViewPopup.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
-        webViewPopup.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
-    }
-    
-    func closeWebView(webView: WKWebView) {
-        webViewPopup?.removeObserver(self, forKeyPath: "loading")
-        webViewPopup?.removeObserver(self, forKeyPath: "estimatedProgress")
-        webViewPopup?.removeFromSuperview()
-        webViewPopup = nil
-        loadURL(rootURL)
-    }
-    
     //MARK: NeemanNavigationDelegate
     public func pushNewWebViewControllerWithURL(url: NSURL) {
         print("Pushing: \(url.absoluteString)")
@@ -285,7 +168,7 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
     
     // MARK: Authentication
     public func showLogin() {
-        print("Impement showLogin() to display your custom login UI.")
+        print("Implement showLogin() to display your custom login UI.")
     }
 
     func clearCookies() {
@@ -318,6 +201,9 @@ public class WebViewController: UIViewController, NeemanUIDelegate, NeemanNaviga
         }
     }
 
+    public func userContentController(userContentController: WKUserContentController,
+        didReceiveScriptMessage message: WKScriptMessage) {
+    }
 }
 
 // MARK: Notifications

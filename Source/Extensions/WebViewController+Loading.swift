@@ -12,13 +12,17 @@ extension WebViewController {
         
         let logoutPage = Settings.sharedInstance.logoutPage
         if let _ = self.rootURLString?.rangeOfString(logoutPage, options: .RegularExpressionSearch) {
-            let title = NSLocalizedString("Logout", comment: "The label on the logout button")
-            let logoutButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "didTapLogout:")
-            if let rightBarButtonItem = navigationItem.rightBarButtonItem {
-                navigationItem.rightBarButtonItems = [logoutButtonItem, rightBarButtonItem]
-            } else {
-                navigationItem.rightBarButtonItem = logoutButtonItem
-            }
+            addLogoutButton()
+        }
+    }
+    
+    public func addLogoutButton() {
+        let title = NSLocalizedString("Logout", comment: "The label on the logout button")
+        let logoutButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "didTapLogout:")
+        if let rightBarButtonItem = navigationItem.rightBarButtonItem {
+            navigationItem.rightBarButtonItems = [logoutButtonItem, rightBarButtonItem]
+        } else {
+            navigationItem.rightBarButtonItem = logoutButtonItem
         }
     }
     

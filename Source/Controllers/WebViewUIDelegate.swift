@@ -3,7 +3,7 @@ import WebKit
 
 protocol NeemanUIDelegate: NSObjectProtocol {
     func pushNewWebViewControllerWithURL(url: NSURL)
-    func openURL(url:NSURL, inNewWebView webView: WKWebView)
+    func popupWebView(newWebView: WKWebView, withURL url:NSURL)
     func closeWebView(webView: WKWebView)
 }
 
@@ -23,7 +23,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             }
 
             if let url = navigationAction.request.URL {
-                delegate?.openURL(url, inNewWebView: newWebView)
+                delegate?.popupWebView(newWebView, withURL: url)
             }
             return newWebView
     }

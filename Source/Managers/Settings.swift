@@ -44,6 +44,7 @@ public class Settings {
         }
     }
     public let authCookieName: String?
+    public let loginStoryboardID: String?
     
     /**
      An optional regular expression to define on which pages a logout button should be placed
@@ -71,6 +72,7 @@ public class Settings {
         }
         appName = dict?["appName"] as? String ?? ""
         authCookieName = dict?["authCookieName"] as? String
+        loginStoryboardID = dict?["loginStoryboardID"] as? String
         pathsToBlock = dict?["pathsToBlock"] as? [String] ?? []
         logoutPage = dict?["logoutPage"] as? String ?? ""
         recoverPasswordURL = dict?["recoverPasswordURL"] as? String ?? ""
@@ -89,7 +91,7 @@ public class Settings {
         
         isNavbarDark = dict?["isNavbarDark"] as? Bool ?? false
 
-        let keychainService = dict?["KeychainService"] as? String ?? "com.intellum.level"
+        let keychainService = dict?["keychainService"] as? String ?? "com.intellum.level"
         keychain = Keychain(service: keychainService)
         baseURLFromPlist = dict?["baseURL"] as? String ?? ""
     }

@@ -2,13 +2,11 @@ import UIKit
 import WebKit
 
 extension WebViewController {
-    func setupWebView() {
-        webViewConfig = WKWebViewConfiguration()
-        webViewConfig.processPool = WebViewController.processPool
-        if #available(iOS 9.0, *) {
-            webViewConfig.applicationNameForUserAgent = Settings.sharedInstance.appName
-        }
-        webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
+    public func setupWebView() {
+        let webViewConfig = WKWebViewConfiguration().setupForNeeman()
+        webViewConfig.addAuthenticationForURL(rootURL)
+        
+        webView = WKWebView(frame: view.bounds, configuration: webViewConfig).setupForNeeman()
         if let url = rootURL {
             navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self)
             webView.navigationDelegate = navigationDelegate
@@ -17,9 +15,6 @@ extension WebViewController {
         self.uiDelegate = WebViewUIDelegate()
         self.uiDelegate?.delegate = self
         webView.UIDelegate = self.uiDelegate
-        webView.allowsBackForwardNavigationGestures = true
-        
-        addScriptsToConfiguration(webViewConfig)
         
         view.insertSubview(webView, atIndex: 0)
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +30,7 @@ extension WebViewController {
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
     
-    func loadURL(url: NSURL?) {
+    public func loadURL(url: NSURL?) {
         guard let url = url else {
             showURLError()
             return

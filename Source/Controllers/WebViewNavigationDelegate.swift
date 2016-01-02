@@ -38,7 +38,8 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
                 actionPolicy = .Cancel
             } else if isLoginRequest(navigationAction.request) {
-                if let _ = Settings.sharedInstance.authCookieName {
+                if let _ = Settings.sharedInstance.authCookieName,
+                    _ = Settings.sharedInstance.loginStoryboardID {
                     actionPolicy = .Cancel
                     delegate?.showLogin()
                 }
