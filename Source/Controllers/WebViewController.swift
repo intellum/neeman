@@ -7,14 +7,20 @@ import WebKit
   It makes injecting Javascript into your webapp easy.
 */
 public class WebViewController: UIViewController, WebViewObserverDelegate, NeemanUIDelegate, NeemanNavigationDelegate, WKScriptMessageHandler {
-    // MARK: Constants
-    let keychain = Settings.sharedInstance.keychain
-
     // Outlets
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
     @IBOutlet var progressView: UIProgressView?
 
     // MARK: Properties
+    var mySettings: Settings?
+    public var settings: Settings {
+        get {
+            return mySettings ?? Settings()
+        }
+        set {
+            mySettings = newValue
+        }
+    }
     var navigationDelegate: WebViewNavigationDelegate?
     var uiDelegate: WebViewUIDelegate?
     var uiDelegatePopup: WebViewUIDelegate?
@@ -30,7 +36,7 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
     var rootAbsoluteURLString: String? {
         get {
             if rootURLString!.rangeOfString("://") == nil {
-                return Settings.sharedInstance.baseURL + rootURLString!
+                return settings.baseURL + rootURLString!
             }
             return rootURLString
         }
@@ -103,7 +109,7 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
     This performs some clean up of cookies, authentication and sends a notification named WebViewControllerDidLogout.
     */
     public func didTapLogout(sender: AnyObject) {
-        Settings.sharedInstance.authToken = nil
+        settings.authToken = nil
 
         showLogin()
         clearCookies()

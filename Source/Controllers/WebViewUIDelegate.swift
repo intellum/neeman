@@ -10,6 +10,12 @@ protocol NeemanUIDelegate: NSObjectProtocol {
 public class WebViewUIDelegate: NSObject, WKUIDelegate {
     
     weak var delegate: NeemanUIDelegate?
+    var settings: Settings
+    
+    init(settings: Settings) {
+        self.settings = settings
+        super.init()
+    }
 
     public func webView(webView: WKWebView,
         createWebViewWithConfiguration configuration: WKWebViewConfiguration,
@@ -19,7 +25,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             let newWebView = WKWebView(frame: webView.frame, configuration: configuration)
             configuration.processPool = WebViewController.processPool
             if #available(iOS 9.0, *) {
-                configuration.applicationNameForUserAgent = Settings.sharedInstance.appName
+                configuration.applicationNameForUserAgent = settings.appName
             }
 
             if let url = navigationAction.request.URL {

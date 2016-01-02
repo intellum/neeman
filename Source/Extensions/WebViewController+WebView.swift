@@ -3,16 +3,16 @@ import WebKit
 
 extension WebViewController {
     public func setupWebView() {
-        let webViewConfig = WKWebViewConfiguration().setupForNeeman()
-        webViewConfig.addAuthenticationForURL(rootURL)
+        let webViewConfig = WKWebViewConfiguration().setupWithSettings(settings)
+        webViewConfig.addAuthenticationForURL(rootURL, settings: settings)
         
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig).setupForNeeman()
         if let url = rootURL {
-            navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self)
+            navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self, settings: settings)
             webView.navigationDelegate = navigationDelegate
         }
         
-        self.uiDelegate = WebViewUIDelegate()
+        self.uiDelegate = WebViewUIDelegate(settings: settings)
         self.uiDelegate?.delegate = self
         webView.UIDelegate = self.uiDelegate
         
@@ -40,7 +40,7 @@ extension WebViewController {
         hasLoadedContent = false
         
         let request = NSMutableURLRequest(URL: url)
-        request.authenticate()
+        request.authenticateWithSettings(settings)
         progressView?.setProgress(0, animated: false)
         
         webView.loadRequest(request)

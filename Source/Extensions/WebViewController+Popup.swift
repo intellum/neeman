@@ -8,15 +8,15 @@ extension WebViewController {
         }
         
         let request = NSMutableURLRequest(URL: url)
-        request.authenticate()
+        request.authenticateWithSettings(settings)
         webViewPopup.loadRequest(request)
         
-        uiDelegatePopup = WebViewUIDelegate()
+        uiDelegatePopup = WebViewUIDelegate(settings: settings)
         uiDelegatePopup?.delegate = self
         webViewPopup.UIDelegate = uiDelegatePopup
         webViewPopup.allowsBackForwardNavigationGestures = true
         
-        webViewPopup.configuration.addAuthenticationForURL(rootURL)
+        webViewPopup.configuration.addAuthenticationForURL(rootURL, settings: settings)
         
         view.insertSubview(webViewPopup, aboveSubview: webView)
         webViewPopup.translatesAutoresizingMaskIntoConstraints = false

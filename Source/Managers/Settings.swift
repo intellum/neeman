@@ -2,16 +2,6 @@ import UIKit
 import KeychainAccess
 
 public class Settings {
-    public static var sharedInstanceForTesting: Settings?
-    static var singleInstance = Settings()
-    public static var sharedInstance: Settings {
-        get {
-            return sharedInstanceForTesting ?? singleInstance
-        }
-        set {
-            sharedInstanceForTesting = newValue
-        }
-    }
     public let keychain: Keychain
     public let appName: String
     
@@ -60,7 +50,7 @@ public class Settings {
     public let color2: UIColor?
     public let isNavbarDark: Bool
 
-    convenience init() {
+    public convenience init() {
         let path = NSBundle.mainBundle().pathForResource("Settings", ofType: "plist")
         self.init(path: path)
     }

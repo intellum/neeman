@@ -12,16 +12,16 @@ protocol NeemanNavigationDelegate: NSObjectProtocol {
 
 public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
-    let keychain = Settings.sharedInstance.keychain
-    let authCookieName = Settings.sharedInstance.authCookieName
     var rootURL: NSURL
     var name: String?
     weak var delegate: NeemanNavigationDelegate?
+    var settings: Settings
     
-    init(rootURL: NSURL, delegate: NeemanNavigationDelegate?) {
+    init(rootURL: NSURL, delegate: NeemanNavigationDelegate?, settings: Settings) {
         self.rootURL = rootURL
         self.delegate = delegate
         self.name = nil
+        self.settings = settings
     }
     
     public func webView(webView: WKWebView,
@@ -38,8 +38,8 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
                 actionPolicy = .Cancel
             } else if isLoginRequest(navigationAction.request) {
-                if let _ = Settings.sharedInstance.authCookieName,
-                    _ = Settings.sharedInstance.loginStoryboardID {
+                if let _ = settings.authCookieName,
+                    _ = settings.loginStoryboardID {
                     actionPolicy = .Cancel
                     delegate?.showLogin()
                 }
@@ -89,7 +89,7 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
     func isLoginRequest(request: NSURLRequest) -> Bool {
         var isLoginPath = false
-        var loginPaths = Settings.sharedInstance.pathsToBlock
+        var loginPaths = settings.pathsToBlock
 
         if let delegate = delegate {
             if delegate.isLoginRequest(request) {

@@ -1,10 +1,10 @@
 import WebKit
 
 extension WKWebViewConfiguration {
-    func setupForNeeman() -> WKWebViewConfiguration {
+    func setupWithSettings(settings: Settings) -> WKWebViewConfiguration {
         processPool = WebViewController.processPool
         if #available(iOS 9.0, *) {
-            applicationNameForUserAgent = Settings.sharedInstance.appName
+            applicationNameForUserAgent = settings.appName
         }
         addJavascript()
         return self
@@ -17,17 +17,17 @@ extension WKWebViewConfiguration {
         addCSSScript()
     }
     
-    func addAuthenticationForURL(url: NSURL?) {
+    func addAuthenticationForURL(url: NSURL?, settings: Settings) {
         guard let url = url else {
             return
         }
-        if let cookie = authCookieForURL(url) {
+        if let cookie = authCookieForURL(url, settings: settings) {
             setCookie(cookie)
         }
     }
     
-    func authCookieForURL(url: NSURL) -> NSHTTPCookie? {
-        guard let authCookieName = Settings.sharedInstance.authCookieName else {
+    func authCookieForURL(url: NSURL, settings: Settings) -> NSHTTPCookie? {
+        guard let authCookieName = settings.authCookieName else {
             return nil
         }
         let cookieStore = NSHTTPCookieStorage.sharedHTTPCookieStorage()
@@ -37,7 +37,7 @@ extension WKWebViewConfiguration {
                 return authCookie
         }
         
-        if let authToken = Settings.sharedInstance.authToken {
+        if let authToken = settings.authToken {
             let properties: [String: AnyObject] = [
                 NSHTTPCookieName:authCookieName,
                 NSHTTPCookieValue:authToken,

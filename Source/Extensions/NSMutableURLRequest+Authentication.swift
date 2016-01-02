@@ -1,12 +1,12 @@
 import UIKit
 
 extension NSMutableURLRequest {
-    func authenticate() {
-        guard let authCookieName = Settings.sharedInstance.authCookieName else {
+    func authenticateWithSettings(settings: Settings) {
+        guard let authCookieName = settings.authCookieName else {
             return
         }
 
-        let authToken: String? = Settings.sharedInstance.authToken ?? authTokenFromCookie()
+        let authToken: String? = settings.authToken ?? authTokenFromCookie(settings)
         
         if let token = authToken {
             let authCookie = "\(authCookieName)=\(token);"
@@ -14,8 +14,12 @@ extension NSMutableURLRequest {
         }
     }
     
-    func authCookie() -> NSHTTPCookie? {
-        guard let authCookieName = Settings.sharedInstance.authCookieName else {
+    func authTokenFromCookie(settings: Settings) -> String? {
+        return authCookie(settings)?.value
+    }
+
+    func authCookie(settings: Settings) -> NSHTTPCookie? {
+        guard let authCookieName = settings.authCookieName else {
             return nil
         }
         let cookieStore = NSHTTPCookieStorage.sharedHTTPCookieStorage()
@@ -27,9 +31,5 @@ extension NSMutableURLRequest {
             }
         }
         return nil
-    }
-    
-    func authTokenFromCookie() -> String? {
-        return authCookie()?.value
     }
 }

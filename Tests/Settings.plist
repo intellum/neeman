@@ -18,5 +18,9 @@
 	<true/>
 	<key>authCookieName</key>
 	<string>connect.sid</string>
+	<key>pathsToBlock</key>
+	<array>
+		<string>/login</string>
+	</array>
 </dict>
 </plist>

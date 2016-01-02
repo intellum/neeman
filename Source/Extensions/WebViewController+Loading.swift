@@ -10,7 +10,7 @@ extension WebViewController {
     public func setupNavigationBar() {
         setupRefreshControll()
         
-        let logoutPage = Settings.sharedInstance.logoutPage
+        let logoutPage = settings.logoutPage
         if let _ = self.rootURLString?.rangeOfString(logoutPage, options: .RegularExpressionSearch) {
             addLogoutButton()
         }
