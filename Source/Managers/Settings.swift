@@ -19,4 +19,10 @@ public class Settings {
         appName = allSettings?["appName"] as? String ?? NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String ?? ""
         baseURL = allSettings?["baseURL"] as? String ?? ""
     }
+    
+    public subscript(key: String) -> AnyObject? {
+        get {
+            return allSettings?[key]
+        }
+    }
 }
