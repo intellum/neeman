@@ -43,9 +43,9 @@ $ pod install
 ###Step 1
 Open your storyboard and select a UIViewController that you would like to show your web app in. Sets its class to WebViewController.
 
-![](readme-resources/Step-1.png)
+![](README-resources/Step-1.png?raw=true)
 
 ###Step 2
 Define the URL of the page that it should show.
-![](readme-resources/Step-2.png)
+![](README-resources/Step-2.png?raw=true)
 
