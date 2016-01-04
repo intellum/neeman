@@ -1,23 +1,22 @@
-Neeman is an iOS WKWebView wrapper that allows you to quickly integrate a web app into a native app. You can use as much native UI as you like since Neeman can easily be embedded in any project.
+#Neeman
+##Turn a web app into a great native user experience.
 
-It is designed for **native iOS developers** who would like to gain a productivity boost by using an existing web app instead of duplicating it. 
+Neeman is an [WKWebView](https://developer.apple.com/library/ios/documentation/WebKit/Reference/WKWebView_Ref/) wrapper that allows you to quickly integrate a web app into a native iOS app. When the user clicks on a link another web view is pushed onto the [UINavigationController](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UINavigationController_Class/) stack.
+
+You can easily hide elements that you would like to implement natively. For example, you can hide the "hamburger menu" and implement the navigation using a [UITabBarController](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITabBarController_Class/) instead. You can also inject javascript which can call back out to your code. 
+
+It is designed for **native iOS developers** who would like to gain a productivity boost by using an existing web app instead of duplicating it. Neemans goal is to help you turn a web app into an app with a great native user experience.
 
 If you are a web developer you might be better served by [Cordova](https://cordova.apache.org/). If you are a Swift or Objective-C developer, or would like to be, keep reading.
 
-Neeman enables you to get up and running fast and work out which elements need to be rebuild using native components. For example, you will probably want to implement the navigation using a UISplitViewController, UITabBarController or UINavigationController. 
-
 ## Installation
-
-> **Embedded frameworks require a minimum deployment target of iOS 8 or OS X Mavericks (10.9).**
->
-> Alamofire is no longer supported on iOS 7 due to the lack of support for frameworks. Without frameworks, running Travis-CI against iOS 7 would require a second duplicated test target. The separate test suite would need to import all the Swift files and the tests would need to be duplicated and re-written. This split would be too difficult to maintain to ensure the highest possible quality of the Alamofire ecosystem.
 
 ### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
 ```bash
-$ gem install cocoapods
+$ sudo gem install cocoapods
 ```
 
 > CocoaPods 0.39.0+ is required to build Neeman.
@@ -43,10 +42,10 @@ $ pod install
 ###Step 1
 Open your storyboard and select a UIViewController that you would like to show your web app in. Sets its class to WebViewController.
 
-![](README-resources/Step-1.png?raw=true)
+<img src="README-resources/Step-1.png?raw=true" width="260" height="108" />
 
 ###Step 2
 Define the URL of the page that it should show.
 
-![](README-resources/Step-2.png?raw=true)
+<img src="README-resources/Step-2.png?raw=true" width="260" height="80" />
 
