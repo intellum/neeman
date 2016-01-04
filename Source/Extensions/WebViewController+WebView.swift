@@ -4,7 +4,6 @@ import WebKit
 extension WebViewController {
     public func setupWebView() {
         let webViewConfig = WKWebViewConfiguration().setupWithSettings(settings)
-        webViewConfig.addAuthenticationForURL(rootURL, settings: settings)
         
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig).setupForNeeman()
         if let url = rootURL {
@@ -39,11 +38,13 @@ extension WebViewController {
         setErrorMessage(nil)
         hasLoadedContent = false
         
-        let request = NSMutableURLRequest(URL: url)
-        request.authenticateWithSettings(settings)
         progressView?.setProgress(0, animated: false)
-        
-        webView.loadRequest(request)
+        loadRequest(NSMutableURLRequest(URL: url))
     }
 
+    public func loadRequest(request: NSMutableURLRequest?) {
+        if let request = request {
+            webView.loadRequest(request)
+        }
+    }
 }

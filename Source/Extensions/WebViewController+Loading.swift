@@ -8,12 +8,6 @@ extension WebViewController {
      You can over ride this or set the "logoutPage" regex in the Settings.plist.
      */
     public func setupNavigationBar() {
-        setupRefreshControll()
-        
-        let logoutPage = settings.logoutPage
-        if let _ = self.rootURLString?.rangeOfString(logoutPage, options: .RegularExpressionSearch) {
-            addLogoutButton()
-        }
     }
     
     public func addLogoutButton() {
@@ -26,7 +20,7 @@ extension WebViewController {
         }
     }
     
-    func setupRefreshControll() {
+    public func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "")
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -46,7 +40,9 @@ extension WebViewController {
         updateActivityIndicatorWithWebView(webView)
         if !loading {
             refreshControl.endRefreshing()
-            hasLoadedContent = true
+            if let _ = webView.URL {
+                hasLoadedContent = true
+            }
         }
     }
     
@@ -68,7 +64,6 @@ extension WebViewController {
         guard let progressView = progressView else {
             return
         }
-        progressView.backgroundColor = UIColor.magentaColor()
         progressView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(progressView)
         

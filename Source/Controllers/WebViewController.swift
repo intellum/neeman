@@ -21,8 +21,8 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
             mySettings = newValue
         }
     }
-    var navigationDelegate: WebViewNavigationDelegate?
-    var uiDelegate: WebViewUIDelegate?
+    public var navigationDelegate: WebViewNavigationDelegate?
+    public var uiDelegate: WebViewUIDelegate?
     var uiDelegatePopup: WebViewUIDelegate?
     
     /// The initial NSURL to display in the web view.
@@ -52,11 +52,11 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
      The WKWebView in which the content of the URL defined in rootURLString will be dispayed.
      */
     public var webView: WKWebView!
-    var webViewPopup: WKWebView?
+    public var webViewPopup: WKWebView?
     
     var webViewObserver: WebViewObserver = WebViewObserver()
     
-    static var processPool = WKProcessPool()
+    public static var processPool = WKProcessPool()
     
     //MARK: Lifecycle
     override public func viewDidLoad() {
@@ -64,6 +64,7 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         
         setupWebView()
         setupNavigationBar()
+        setupRefreshControl()
         setupActivityIndicator()
         setupProgressView()
         addObservers()
@@ -77,11 +78,13 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didLogin:",
             name: WebViewControllerDidLogin, object: nil)
+        webViewObserver.startObservingWebView(webView)
     }
     
     deinit {
         webViewObserver.stopObservingWebView(webViewPopup)
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        webViewObserver.stopObservingWebView(webView)
     }
 
     override public func viewWillAppear(animated: Bool) {
@@ -90,12 +93,10 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         if !hasLoadedContent {
             loadURL(rootURL)
         }
-        webViewObserver.startObservingWebView(webView)
     }
 
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        webViewObserver.stopObservingWebView(webView)
     }
 
     override public func viewWillLayoutSubviews() {
@@ -104,29 +105,6 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         self.webViewPopup?.scrollView.scrollIndicatorInsets = self.webView.scrollView.scrollIndicatorInsets
     }
     
-    // MARK: Actions
-    /**
-    This performs some clean up of cookies, authentication and sends a notification named WebViewControllerDidLogout.
-    */
-    public func didTapLogout(sender: AnyObject) {
-        settings.authToken = nil
-
-        showLogin()
-        clearCookies()
-        WebViewController.processPool = WKProcessPool()
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
-        if #available(iOS 9.0, *) {
-            WKWebsiteDataStore.defaultDataStore().removeDataOfTypes(
-                WKWebsiteDataStore.allWebsiteDataTypes(),
-                modifiedSince: NSDate(timeIntervalSince1970: 0),
-                completionHandler: { () -> Void in
-                
-            })
-        }
-        NSNotificationCenter.defaultCenter().postNotificationName(WebViewControllerDidLogout, object: self)
-        navigationController?.popToRootViewControllerAnimated(false)
-    }
-
     // MARK: Notification Handlers
     public func didLogout(notification: NSNotification) {
         self.hasLoadedContent = false
@@ -150,9 +128,7 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
     //MARK: NeemanNavigationDelegate
     public func pushNewWebViewControllerWithURL(url: NSURL) {
         print("Pushing: \(url.absoluteString)")
-        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
-        if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
-            (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
+        if let webViewController = createNewWebViewController() {
                 
             let urlString = url.absoluteString
             webViewController.rootURLString = urlString
@@ -160,15 +136,16 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         }
     }
     
-    public func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool {
-        return false
-    }
-    
-    public func loginPaths() -> [String]? {
+    public func createNewWebViewController() -> WebViewController? {
+        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
+        if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
+            (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
+                return webViewController
+        }
         return nil
     }
-
-    public func isLoginRequest(request: NSURLRequest) -> Bool {
+    
+    public func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool {
         return false
     }
     
@@ -177,16 +154,7 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         print("Implement showLogin() to display your custom login UI.")
     }
 
-    func clearCookies() {
-        let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        if let cookies = cookieStorage.cookies {
-            for cookie in cookies {
-                cookieStorage.deleteCookie(cookie)
-            }
-        }
-    }
-    
-    func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
+    public func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
         var message: String?
 
         switch error.code {

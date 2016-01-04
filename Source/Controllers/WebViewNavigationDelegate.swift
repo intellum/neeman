@@ -1,11 +1,8 @@
 import UIKit
 import WebKit
 
-protocol NeemanNavigationDelegate: NSObjectProtocol {
+public protocol NeemanNavigationDelegate: NSObjectProtocol {
     func webView(webView: WKWebView, didFinishLoadingWithError error: NSError)
-    func showLogin()
-    func loginPaths() -> [String]?
-    func isLoginRequest(request: NSURLRequest) -> Bool
     func pushNewWebViewControllerWithURL(url: NSURL)
     func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool
 }
@@ -15,9 +12,9 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     var rootURL: NSURL
     var name: String?
     weak var delegate: NeemanNavigationDelegate?
-    var settings: Settings
+    public var settings: Settings
     
-    init(rootURL: NSURL, delegate: NeemanNavigationDelegate?, settings: Settings) {
+    public init(rootURL: NSURL, delegate: NeemanNavigationDelegate?, settings: Settings) {
         self.rootURL = rootURL
         self.delegate = delegate
         self.name = nil
@@ -31,18 +28,10 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             var actionPolicy: WKNavigationActionPolicy = .Allow
             let shouldPush = shouldPushNewWebView(navigationAction.request)
 
-            //let isRedirect = navigationAction.navigationType == .Other
             let isLink = navigationAction.navigationType == .LinkActivated
-            if isLink
-                && shouldPush {
+            if isLink && shouldPush {
                 delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
                 actionPolicy = .Cancel
-            } else if isLoginRequest(navigationAction.request) {
-                if let _ = settings.authCookieName,
-                    _ = settings.loginStoryboardID {
-                    actionPolicy = .Cancel
-                    delegate?.showLogin()
-                }
             }
             
             let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
@@ -85,26 +74,5 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         let isFragmentOfThisPage = request.URL?.fragment != nil && isSameHost && isSamePath
         
         return !isInitialRequest && !isFragmentOfThisPage
-    }
-    
-    func isLoginRequest(request: NSURLRequest) -> Bool {
-        var isLoginPath = false
-        var loginPaths = settings.pathsToBlock
-
-        if let delegate = delegate {
-            if delegate.isLoginRequest(request) {
-                return true
-            }
-        }
-
-        if let delegate = delegate,
-            paths = delegate.loginPaths() {
-            loginPaths = paths
-        }
-        
-        if let path = request.URL?.path {
-            isLoginPath = loginPaths.contains(path)
-        }
-        return isLoginPath
     }
 }
