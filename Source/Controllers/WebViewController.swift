@@ -149,6 +149,10 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         return false
     }
     
+    public func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
+        return false
+    }
+    
     // MARK: Authentication
     public func showLogin() {
         print("Implement showLogin() to display your custom login UI.")

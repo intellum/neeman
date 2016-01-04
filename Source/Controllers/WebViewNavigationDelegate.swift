@@ -5,6 +5,7 @@ public protocol NeemanNavigationDelegate: NSObjectProtocol {
     func webView(webView: WKWebView, didFinishLoadingWithError error: NSError)
     func pushNewWebViewControllerWithURL(url: NSURL)
     func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool
+    func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool
 }
 
 public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
@@ -29,11 +30,12 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             let shouldPush = shouldPushNewWebView(navigationAction.request)
 
             let isLink = navigationAction.navigationType == .LinkActivated
-            if isLink && shouldPush {
+            let shouldForcePush = delegate?.shouldForcePushOfNewRequest(navigationAction.request) ?? false
+            if (isLink && shouldPush) || shouldForcePush {
                 delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
                 actionPolicy = .Cancel
             }
-            
+
             let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
             var nameString = ""
             if let _ = name {
