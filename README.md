@@ -1,11 +1,16 @@
 #Neeman
 ##Turn a web app into a great native user experience.
 
+Web apps just can't compete with native navigation. We can use the strengths or both though.
+
+<img src="README-resources/Navigation.gif?raw=true" width="540" height="294" />
+
+
 Neeman is an [WKWebView](https://developer.apple.com/library/ios/documentation/WebKit/Reference/WKWebView_Ref/) wrapper that allows you to quickly integrate a web app into a native iOS app. When the user clicks on a link another web view is pushed onto the [UINavigationController](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UINavigationController_Class/) stack.
 
 You can easily hide elements that you would like to implement natively. For example, you can hide the "hamburger menu" and implement the navigation using a [UITabBarController](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITabBarController_Class/) instead. You can also inject javascript which can call back out to your code. 
 
-It is designed for **native iOS developers** who would like to gain a productivity boost by using an existing web app instead of duplicating it. Neemans goal is to help you turn a web app into an app with a great native user experience.
+Neeman is designed for **native iOS developers** who would like to gain a productivity boost by using an existing web app instead of duplicating it. Neemans goal is to help you turn a web app into a native iOS app with a great user experience.
 
 If you are a web developer you might be better served by [Cordova](https://cordova.apache.org/). If you are a Swift or Objective-C developer, or would like to be, keep reading.
 
