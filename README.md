@@ -47,5 +47,6 @@ Open your storyboard and select a UIViewController that you would like to show y
 
 ###Step 2
 Define the URL of the page that it should show.
+
 ![](README-resources/Step-2.png?raw=true)
 
