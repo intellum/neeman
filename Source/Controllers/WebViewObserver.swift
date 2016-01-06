@@ -7,7 +7,7 @@ protocol WebViewObserverDelegate: NSObjectProtocol {
 }
 
 class WebViewObserver: NSObject {
-    var delegate: WebViewObserverDelegate?
+    weak var delegate: WebViewObserverDelegate?
     
     func startObservingWebView(webView: WKWebView?) {
         webView?.addObserver(self, forKeyPath: "title", options: .New, context: nil)
