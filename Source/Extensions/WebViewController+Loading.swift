@@ -14,10 +14,11 @@ extension WebViewController {
     }
     
     public func setupRefreshControl() {
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "")
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        webView.scrollView.insertSubview(refreshControl, atIndex: 0)
+        let newRefreshControl = UIRefreshControl()
+        newRefreshControl.attributedTitle = NSAttributedString(string: "")
+        newRefreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        webView.scrollView.insertSubview(newRefreshControl, atIndex: 0)
+        refreshControl = newRefreshControl
     }
     
     func refresh(sender: AnyObject) {
@@ -32,7 +33,7 @@ extension WebViewController {
     public func webView(webView: WKWebView, didChangeLoading loading: Bool) {
         updateActivityIndicatorWithWebView(webView)
         if !loading {
-            refreshControl.endRefreshing()
+            refreshControl?.endRefreshing()
             if let _ = webView.URL {
                 hasLoadedContent = true
             }
@@ -128,7 +129,7 @@ extension WebViewController {
     
     func updateActivityIndicatorWithWebView(webView: WKWebView) {
         if webView.loading {
-            if !self.refreshControl.refreshing {
+            if let refreshControl = self.refreshControl where refreshControl.refreshing {
                 activityIndicator?.startAnimating()
             }
             progressView?.hidden = false

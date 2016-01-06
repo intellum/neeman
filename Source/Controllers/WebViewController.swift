@@ -49,7 +49,7 @@ public class WebViewController: UIViewController,
     /** A UIRefreshControl is automatically added to the WKWebView.
         When you pull down your webView the page will be refreshed.
     */
-    public var refreshControl: UIRefreshControl!
+    public var refreshControl: UIRefreshControl?
     var hasLoadedContent: Bool = false
 
     /**
