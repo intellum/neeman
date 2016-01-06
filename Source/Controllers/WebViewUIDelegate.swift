@@ -3,7 +3,7 @@ import WebKit
 
 protocol NeemanUIDelegate: NSObjectProtocol {
     func pushNewWebViewControllerWithURL(url: NSURL)
-    func popupWebView(newWebView: WKWebView, withURL url:NSURL)
+    func popupWebView(newWebView: WKWebView, withURL url: NSURL)
     func closeWebView(webView: WKWebView)
 }
 
@@ -74,7 +74,9 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
                 completionHandler(true)
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"), style: .Default) { (action: UIAlertAction) -> Void in
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"),
+                style: .Default) { (action: UIAlertAction) -> Void in
+                    
                 completionHandler(false)
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
@@ -102,7 +104,9 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
                 }
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"), style: .Default) { (action: UIAlertAction) -> Void in
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"),
+                style: .Default) { (action: UIAlertAction) -> Void in
+                    
                 completionHandler(nil)
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
@@ -115,5 +119,4 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             rootViewController.presentViewController(alert, animated: true, completion: nil)
             
     }
-
 }

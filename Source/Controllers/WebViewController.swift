@@ -6,7 +6,11 @@ import WebKit
   user clicks on a link that causes an URL change. It also provides support for authentication. 
   It makes injecting Javascript into your webapp easy.
 */
-public class WebViewController: UIViewController, WebViewObserverDelegate, NeemanUIDelegate, NeemanNavigationDelegate, WKScriptMessageHandler {
+public class WebViewController: UIViewController,
+                                WebViewObserverDelegate,
+                                NeemanUIDelegate,
+                                NeemanNavigationDelegate,
+                                WKScriptMessageHandler {
     // Outlets
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
     @IBOutlet var progressView: UIProgressView?
@@ -35,8 +39,8 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
     @IBInspectable public var rootURLString: String?
     var rootAbsoluteURLString: String? {
         get {
-            if rootURLString!.rangeOfString("://") == nil {
-                return settings.baseURL + rootURLString!
+            if let rootURLString = rootURLString where rootURLString.rangeOfString("://") == nil {
+                return settings.baseURL + rootURLString
             }
             return rootURLString
         }
@@ -63,7 +67,6 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         super.viewDidLoad()
         
         setupWebView()
-        setupNavigationBar()
         setupRefreshControl()
         setupActivityIndicator()
         setupProgressView()
@@ -73,17 +76,15 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
     
     func addObservers() {
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didLogout:",
-            name: WebViewControllerDidLogout, object: nil)
+            selector: "didLogout:", name: WebViewControllerDidLogout, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didLogin:",
-            name: WebViewControllerDidLogin, object: nil)
+            selector: "didLogin:", name: WebViewControllerDidLogin, object: nil)
         webViewObserver.startObservingWebView(webView)
     }
     
     deinit {
-        webViewObserver.stopObservingWebView(webViewPopup)
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        webViewObserver.stopObservingWebView(webViewPopup)
         webViewObserver.stopObservingWebView(webView)
     }
 
@@ -93,10 +94,6 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         if !hasLoadedContent {
             loadURL(rootURL)
         }
-    }
-
-    public override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
     }
 
     override public func viewWillLayoutSubviews() {
@@ -153,6 +150,8 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
         return false
     }
     
+    public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {}
+    
     // MARK: Authentication
     public func showLogin() {
         print("Implement showLogin() to display your custom login UI.")
@@ -181,6 +180,27 @@ public class WebViewController: UIViewController, WebViewObserverDelegate, Neema
 
     public func userContentController(userContentController: WKUserContentController,
         didReceiveScriptMessage message: WKScriptMessage) {
+    }
+    
+    // MARK: WebView
+    
+    public func loadURL(url: NSURL?) {
+        guard let url = url else {
+            showURLError()
+            return
+        }
+        
+        setErrorMessage(nil)
+        hasLoadedContent = false
+        
+        progressView?.setProgress(0, animated: false)
+        loadRequest(NSMutableURLRequest(URL: url))
+    }
+    
+    public func loadRequest(request: NSMutableURLRequest?) {
+        if let request = request {
+            webView.loadRequest(request)
+        }
     }
 }
 

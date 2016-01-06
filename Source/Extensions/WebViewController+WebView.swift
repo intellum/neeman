@@ -7,7 +7,9 @@ extension WebViewController {
         
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig).setupForNeeman()
         if let url = rootURL {
-            navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self, settings: settings)
+            if navigationDelegate == nil {
+                navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self, settings: settings)
+            }
             webView.navigationDelegate = navigationDelegate
         }
         
@@ -28,23 +30,5 @@ extension WebViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[webView(>=0)]-0-|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
-    
-    public func loadURL(url: NSURL?) {
-        guard let url = url else {
-            showURLError()
-            return
-        }
-        
-        setErrorMessage(nil)
-        hasLoadedContent = false
-        
-        progressView?.setProgress(0, animated: false)
-        loadRequest(NSMutableURLRequest(URL: url))
-    }
-
-    public func loadRequest(request: NSMutableURLRequest?) {
-        if let request = request {
-            webView.loadRequest(request)
-        }
-    }
+ 
 }

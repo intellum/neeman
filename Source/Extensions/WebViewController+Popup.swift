@@ -1,7 +1,7 @@
 import WebKit
 
 extension WebViewController {
-    public func popupWebView(newWebView: WKWebView, withURL url:NSURL) {
+    public func popupWebView(newWebView: WKWebView, withURL url: NSURL) {
         webViewPopup = newWebView
         guard let webViewPopup = webViewPopup else {
             return

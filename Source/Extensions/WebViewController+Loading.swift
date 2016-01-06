@@ -3,13 +3,6 @@ import WebKit
 
 extension WebViewController {
     
-    /**
-     This is used for adding a logout button to the right navigation item. 
-     You can over ride this or set the "logoutPage" regex in the Settings.plist.
-     */
-    public func setupNavigationBar() {
-    }
-    
     public func addLogoutButton() {
         let title = NSLocalizedString("Logout", comment: "The label on the logout button")
         let logoutButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "didTapLogout:")
@@ -103,7 +96,7 @@ extension WebViewController {
             return
         }
         
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50))
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         guard let activityIndicator = activityIndicator else {
             return
         }

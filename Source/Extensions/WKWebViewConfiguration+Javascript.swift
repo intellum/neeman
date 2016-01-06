@@ -11,10 +11,10 @@ extension WKWebViewConfiguration {
     }
     
     func addJavascript() {
+        addCSSScript()
         addScript("AtDocumentStart.js", injectionTime: .AtDocumentStart)
         addScript("AtDocumentEnd.js", injectionTime: .AtDocumentEnd)
         //        js.addScript("FastClick.js", injectionTime: .AtDocumentEnd)
-        addCSSScript()
     }
     
     func addScript(scriptName: String, injectionTime: WKUserScriptInjectionTime) {

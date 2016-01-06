@@ -25,4 +25,16 @@ public class Settings {
             return allSettings?[key]
         }
     }
+    
+    func isEqual(object: AnyObject?) -> Bool {
+        if let object = object as? Settings {
+            return allSettings == object.allSettings
+        } else {
+            return false
+        }
+    }
+    
+    var hash: Int {
+        return allSettings?.hashValue ?? 0
+    }
 }
