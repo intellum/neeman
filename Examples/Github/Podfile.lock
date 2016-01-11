@@ -2,11 +2,16 @@ PODS:
   - Neeman (0.1.9)
 
 DEPENDENCIES:
-  - Neeman (from `/Users/stephen/Documents/Code/Intellum/PodsLocal/Neeman`)
+  - Neeman (from `https://github.com/intellum/neeman.git`)
 
 EXTERNAL SOURCES:
   Neeman:
-    :path: "/Users/stephen/Documents/Code/Intellum/PodsLocal/Neeman"
+    :git: https://github.com/intellum/neeman.git
+
+CHECKOUT OPTIONS:
+  Neeman:
+    :commit: c7a8e6aae1936675b1fc3be74f1765fb821039fc
+    :git: https://github.com/intellum/neeman.git
 
 SPEC CHECKSUMS:
   Neeman: 4ad3bddafe489e7c026b1170bb88e639c6676c13

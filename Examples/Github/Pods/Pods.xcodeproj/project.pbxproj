@@ -7,34 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06FD18B9D50570F95882DEB6F4F0EEFB /* FastClick.js in Resources */ = {isa = PBXBuildFile; fileRef = 0943D9C10E512BF724D2F7B1D845CE2C /* FastClick.js */; };
 		0EA583670BAD10BEDD35BFFEF927B554 /* Pods-Github-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCF8A5A3E40DDC8D76486E1D57EC45B /* Pods-Github-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		19649B034E333CE6313F07F341C43F6C /* Neeman.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8E04C8B97285425A900B3439286DFF /* Neeman.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1A891E43EA043BD4202FD48AADAF25FE /* WebViewController+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828071B503C0B82147F930CAFD7A43B6 /* WebViewController+Popup.swift */; };
+		10FBE3CD92CCF244F096D1AA0D06A59D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A68F59E41970C8BACEB3DEEB19B3664 /* Settings.swift */; };
+		12637AB231149C74D76E4EBF416E9C9F /* WKWebView+Neeman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871EF5BFE862150EF2591AF12AC15F71 /* WKWebView+Neeman.swift */; };
+		169FC34C8982D8BD6AD2DD108781CDAE /* WebViewController+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E602F1071C2C343B7561AF9EC2F72D /* WebViewController+Popup.swift */; };
+		179A867061A1B83FF84153DDCC61A6D9 /* Neeman.h in Headers */ = {isa = PBXBuildFile; fileRef = 86BD5D0A5B6F6D740F69997BF35731DF /* Neeman.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18FE96C4AE39318D829137EA51E3D9C4 /* FastClick.js in Resources */ = {isa = PBXBuildFile; fileRef = 6A37C2B2758194010BD0D45FD055752B /* FastClick.js */; };
 		2164247705DC81240267DDE8E22487B1 /* Pods-Github-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC94D5829B9E0AC955B7C4BDD4EC682 /* Pods-Github-dummy.m */; };
-		263A96881883F5EBB15BD5EB37F4E36F /* WKWebView+Neeman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50FCF49A70B774BEF41469631EC836E /* WKWebView+Neeman.swift */; };
-		31BE98CAFE5E2BFB50F799073060E41C /* WKWebViewConfiguration+Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28965D26D3B2F1C2F2EB6BB1DBB32A38 /* WKWebViewConfiguration+Javascript.swift */; };
+		21EC56AF9FD6010E197F52FB4A50C5D0 /* InjectCSS.js in Resources */ = {isa = PBXBuildFile; fileRef = 2183739C29AC119C6CD069AB2E2D613A /* InjectCSS.js */; };
+		272AB05C109C0F20972AF47ED44ECBD6 /* ProcessPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F0464F2BDEE0822EC9D91F4B8D812D /* ProcessPool.swift */; };
 		3F7D3422B98477085C6B3EA20A32D20B /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B742A920133A81B105817DC5979C5C01 /* SafariServices.framework */; };
-		472E29674AC2B069A8FEAB6367095D4E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894AEAED1D64933BCFFA444F12BC90C5 /* Settings.swift */; };
-		49D84C10C3031467894ADFADCE814C17 /* AtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = 8633583B009FC2F085351819A6F3A2B7 /* AtDocumentEnd.js */; };
-		4B1C16F0A5D9A03C85AE68CEC8C8A368 /* WebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53A4AF0F0A37C57379D27428C807D94 /* WebViewObserver.swift */; };
+		41767F1FBD66DF080C4388B2AF14D103 /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = 96CC6F622942E248022CC25B185EF8DE /* WebView.css */; };
 		59DD7C8C3C4C1A5497B5AA33DA6FA48A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9F7C15A7A072C1AA463B8C15E3A110 /* WebKit.framework */; };
-		64AD8EFCFE7A862D2F8DCFA1EB92FCEE /* ProcessPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E17448D9010622C07F43D037250CF7 /* ProcessPool.swift */; };
-		6CE266075054600BAF8E956715A1EC4E /* WebViewController+WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAD8B3593E0F41E4897051074459774 /* WebViewController+WebView.swift */; };
-		70E44D2734F713DCF59F24014CE1ADD7 /* Neeman-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C6EEBFC915BCB7E2A3C422C99CE6BBB /* Neeman-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		92CC31EA1485798CC65925D8BE32F9AC /* WebViewUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC1C66BB589FE57A09ACFE330792B7 /* WebViewUIDelegate.swift */; };
+		5AC0F0E42F1C6B67FFE83E7AEF98773E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D92DDAE27CD9A77588C72ABBD0C7347 /* Assets.xcassets */; };
+		7361141F7B56F5AE16F6002E33204245 /* Neeman-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 630D22EAFBAFE70A421421D635E1B36D /* Neeman-dummy.m */; };
+		79833DC350591D88BBEEA71C66D3F3F7 /* WebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE251BB5D70F00C010676800E644761E /* WebViewObserver.swift */; };
+		7D3AA7D03BD8D0B5A7246EBA511D51F4 /* WKWebViewConfiguration+Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FE68EE3DE72F59F1D4F59CE442C0D7 /* WKWebViewConfiguration+Javascript.swift */; };
 		941D4B826DFE34AE32D1142BEB7A7339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBBBACF0DFD83420D0C93E4B162BBAD /* Foundation.framework */; };
-		9A7A39537F8AB9F117573CA95697E3AE /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = B10C554FC8691A3B44B79C6881212B20 /* WebView.css */; };
-		A70019FB88844A1F9B25A7D816AED042 /* WebViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E8C33A1BFBA22CB460F485CD0CDE5B /* WebViewNavigationDelegate.swift */; };
-		ADED55CB17F93F82F9F9E8F763628F9B /* WebViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06719A6938F2F2E6C15E0EBE838FE2 /* WebViewController+Errors.swift */; };
-		B0A37BFFD67BD639D506E9CD5E9270C4 /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534F937D903BB7E7379AE1F03485F9CA /* Neeman.storyboard */; };
+		A7168649E85125CFBEB4C43FAEEEEAF0 /* AtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = 855DBD5EB3B0113A468781807C1AA2F0 /* AtDocumentEnd.js */; };
+		AB8B745B3100BC6EC27F619D43C26BD0 /* WebViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38B26E5DA20C4718DD3C48D71E49F9E /* WebViewController+Loading.swift */; };
+		AD285499BA2C1E77A7791486D3D1995B /* WebViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7098BD24F0CC8CE71E407CB6AD4AE031 /* WebViewNavigationDelegate.swift */; };
+		AF58EE4A962DC0298B527D97A7261FD1 /* Neeman-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 23BD9A58AD48986D5C76DFF6A5FC6EF8 /* Neeman-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B76CDFAD9555021CD62771E8E6759AE8 /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA9ABA24F328CCB1CCBCA54282D59641 /* Neeman.storyboard */; };
 		C0A45C6266357DDACF8ECB6E3B04A295 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBBBACF0DFD83420D0C93E4B162BBAD /* Foundation.framework */; };
-		D0F36CB87D4A129117F6B9492BB060C5 /* AtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = 192F7F84F1F040F3977C2C0F121D03F2 /* AtDocumentStart.js */; };
-		D182990657C1B780511FCD69EA8CA4EB /* InjectCSS.js in Resources */ = {isa = PBXBuildFile; fileRef = DEE6F000C30A75A7753571551CB775FD /* InjectCSS.js */; };
-		E14AAA5FF28AE61B4D1EF3F51BA1A850 /* Neeman-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AD8D706466398A70D66FADA9A526E3 /* Neeman-dummy.m */; };
-		E205F4F59E7CEB58951D1A5F7A2BAEF6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AADC6155B2F7A04AD69A6059AAC342 /* WebViewController.swift */; };
-		E41D3F5488A1B3328D73994DA86E71CA /* WebViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AF88ACE37175267F0D66D03457DAE /* WebViewController+Loading.swift */; };
-		EDC52509EAE4FA068D863B54036BDC6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D090F12EA1EBF7EAEA96E4C13D601611 /* Assets.xcassets */; };
+		CDAC652BFC3179F53ECA74B84D930079 /* AtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = 540803C06E388C0831D52B1532501730 /* AtDocumentStart.js */; };
+		D1B15C1068E6377F19D396082CB22981 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E411295E66B4D589571B43EC3BF0CE /* WebViewController.swift */; };
+		D4D15F2AC29EE684D234972750F09371 /* WebViewUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C94AAA887D1A6DC34EB7756600D18A /* WebViewUIDelegate.swift */; };
+		DCA4DD67A8C23DE7EEA51BC4ED83AE06 /* WebViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2892532234B611CA48799255C3A14D18 /* WebViewController+Errors.swift */; };
+		E9770959ABAEB3B9200B6C1F894B5C66 /* WebViewController+WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C8E8EDECD15EBAC898696554DCF61 /* WebViewController+WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,48 +48,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0943D9C10E512BF724D2F7B1D845CE2C /* FastClick.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = FastClick.js; sourceTree = "<group>"; };
-		16E8C33A1BFBA22CB460F485CD0CDE5B /* WebViewNavigationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegate.swift; sourceTree = "<group>"; };
+		08F0464F2BDEE0822EC9D91F4B8D812D /* ProcessPool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProcessPool.swift; path = Source/ProcessPool.swift; sourceTree = "<group>"; };
+		09642C586CBA2B3CDE196E3D96FF3668 /* Neeman.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Neeman.xcconfig; sourceTree = "<group>"; };
+		0E57B52538790AF4B63BF752BB16F88B /* Neeman-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Neeman-prefix.pch"; sourceTree = "<group>"; };
+		135C8E8EDECD15EBAC898696554DCF61 /* WebViewController+WebView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WebViewController+WebView.swift"; path = "Source/Extensions/WebViewController+WebView.swift"; sourceTree = "<group>"; };
+		13E602F1071C2C343B7561AF9EC2F72D /* WebViewController+Popup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WebViewController+Popup.swift"; path = "Source/Extensions/WebViewController+Popup.swift"; sourceTree = "<group>"; };
 		17E7354FB5D3BF5D69A654F174E6E74A /* Pods-Github.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Github.debug.xcconfig"; sourceTree = "<group>"; };
-		192F7F84F1F040F3977C2C0F121D03F2 /* AtDocumentStart.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = AtDocumentStart.js; sourceTree = "<group>"; };
-		28965D26D3B2F1C2F2EB6BB1DBB32A38 /* WKWebViewConfiguration+Javascript.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WKWebViewConfiguration+Javascript.swift"; sourceTree = "<group>"; };
+		2183739C29AC119C6CD069AB2E2D613A /* InjectCSS.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; name = InjectCSS.js; path = Resources/js/InjectCSS.js; sourceTree = "<group>"; };
+		23BD9A58AD48986D5C76DFF6A5FC6EF8 /* Neeman-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Neeman-umbrella.h"; sourceTree = "<group>"; };
+		2892532234B611CA48799255C3A14D18 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WebViewController+Errors.swift"; path = "Source/Extensions/WebViewController+Errors.swift"; sourceTree = "<group>"; };
 		2B9F7C15A7A072C1AA463B8C15E3A110 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		2DCF8A5A3E40DDC8D76486E1D57EC45B /* Pods-Github-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Github-umbrella.h"; sourceTree = "<group>"; };
-		3C6EEBFC915BCB7E2A3C422C99CE6BBB /* Neeman-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Neeman-umbrella.h"; sourceTree = "<group>"; };
+		35FE68EE3DE72F59F1D4F59CE442C0D7 /* WKWebViewConfiguration+Javascript.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WKWebViewConfiguration+Javascript.swift"; path = "Source/Extensions/WKWebViewConfiguration+Javascript.swift"; sourceTree = "<group>"; };
+		3A68F59E41970C8BACEB3DEEB19B3664 /* Settings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Source/Managers/Settings.swift; sourceTree = "<group>"; };
+		3BD092E3C2E224D2E5D875A0A06E260A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBBBACF0DFD83420D0C93E4B162BBAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		534F937D903BB7E7379AE1F03485F9CA /* Neeman.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Neeman.storyboard; sourceTree = "<group>"; };
-		5AAD8B3593E0F41E4897051074459774 /* WebViewController+WebView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+WebView.swift"; sourceTree = "<group>"; };
+		540803C06E388C0831D52B1532501730 /* AtDocumentStart.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; name = AtDocumentStart.js; path = Resources/js/AtDocumentStart.js; sourceTree = "<group>"; };
 		60FC70142A578AC07B1D993578D4B7BB /* Pods_Github.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Github.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		630D22EAFBAFE70A421421D635E1B36D /* Neeman-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Neeman-dummy.m"; sourceTree = "<group>"; };
 		687999C47B12510051152BED534D0230 /* Pods-Github-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Github-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6A37C2B2758194010BD0D45FD055752B /* FastClick.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; name = FastClick.js; path = Resources/js/FastClick.js; sourceTree = "<group>"; };
 		6C0DC3C60418978924C85942EE8A3DC6 /* Pods-Github.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Github.modulemap"; sourceTree = "<group>"; };
+		7098BD24F0CC8CE71E407CB6AD4AE031 /* WebViewNavigationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebViewNavigationDelegate.swift; path = Source/Controllers/WebViewNavigationDelegate.swift; sourceTree = "<group>"; };
 		799E9A8A9E5EFD2D616E7444DC340ED5 /* Pods-Github-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Github-resources.sh"; sourceTree = "<group>"; };
-		7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Neeman.xcconfig; sourceTree = "<group>"; };
-		7E8E04C8B97285425A900B3439286DFF /* Neeman.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Neeman.h; sourceTree = "<group>"; };
+		7D92DDAE27CD9A77588C72ABBD0C7347 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		7EC94D5829B9E0AC955B7C4BDD4EC682 /* Pods-Github-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Github-dummy.m"; sourceTree = "<group>"; };
-		82425D44161DC749F4D83AD76BE66B39 /* Neeman.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Neeman.modulemap; sourceTree = "<group>"; };
-		828071B503C0B82147F930CAFD7A43B6 /* WebViewController+Popup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+Popup.swift"; sourceTree = "<group>"; };
-		8633583B009FC2F085351819A6F3A2B7 /* AtDocumentEnd.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = AtDocumentEnd.js; sourceTree = "<group>"; };
-		894AEAED1D64933BCFFA444F12BC90C5 /* Settings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		91AADC6155B2F7A04AD69A6059AAC342 /* WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		81C94AAA887D1A6DC34EB7756600D18A /* WebViewUIDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebViewUIDelegate.swift; path = Source/Controllers/WebViewUIDelegate.swift; sourceTree = "<group>"; };
+		855DBD5EB3B0113A468781807C1AA2F0 /* AtDocumentEnd.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; name = AtDocumentEnd.js; path = Resources/js/AtDocumentEnd.js; sourceTree = "<group>"; };
+		86BD5D0A5B6F6D740F69997BF35731DF /* Neeman.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Neeman.h; path = Source/Neeman.h; sourceTree = "<group>"; };
+		871EF5BFE862150EF2591AF12AC15F71 /* WKWebView+Neeman.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WKWebView+Neeman.swift"; path = "Source/Extensions/WKWebView+Neeman.swift"; sourceTree = "<group>"; };
+		91B9BAEF91D08CA1E56FDC9D42D1F3DB /* Neeman.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Neeman.modulemap; sourceTree = "<group>"; };
 		935382083043ECDDEA77B17B4C6DD3E5 /* Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		964FFA1F7DB387FD1942F17FF0AD9596 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96CC6F622942E248022CC25B185EF8DE /* WebView.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; name = WebView.css; path = Resources/js/WebView.css; sourceTree = "<group>"; };
 		9AE06CC473191D33A1F739D2040C2A38 /* Pods-Github.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Github.release.xcconfig"; sourceTree = "<group>"; };
-		B10C554FC8691A3B44B79C6881212B20 /* WebView.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = WebView.css; sourceTree = "<group>"; };
+		AE251BB5D70F00C010676800E644761E /* WebViewObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebViewObserver.swift; path = Source/Controllers/WebViewObserver.swift; sourceTree = "<group>"; };
 		B742A920133A81B105817DC5979C5C01 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		C0AD8D706466398A70D66FADA9A526E3 /* Neeman-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Neeman-dummy.m"; sourceTree = "<group>"; };
-		C3CC1C66BB589FE57A09ACFE330792B7 /* WebViewUIDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewUIDelegate.swift; sourceTree = "<group>"; };
-		C53A4AF0F0A37C57379D27428C807D94 /* WebViewObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewObserver.swift; sourceTree = "<group>"; };
+		BA9ABA24F328CCB1CCBCA54282D59641 /* Neeman.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Neeman.storyboard; path = Resources/Neeman.storyboard; sourceTree = "<group>"; };
+		C5E411295E66B4D589571B43EC3BF0CE /* WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Source/Controllers/WebViewController.swift; sourceTree = "<group>"; };
 		C91BB2DF2E6B13FBC62F6EEBA1164666 /* Pods-Github-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Github-acknowledgements.plist"; sourceTree = "<group>"; };
-		CD06719A6938F2F2E6C15E0EBE838FE2 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+Errors.swift"; sourceTree = "<group>"; };
-		CE0AF88ACE37175267F0D66D03457DAE /* WebViewController+Loading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+Loading.swift"; sourceTree = "<group>"; };
-		D090F12EA1EBF7EAEA96E4C13D601611 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D50FCF49A70B774BEF41469631EC836E /* WKWebView+Neeman.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WKWebView+Neeman.swift"; sourceTree = "<group>"; };
 		D597FE4372DBD8D365B1B5ECB5680398 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEE6F000C30A75A7753571551CB775FD /* InjectCSS.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = InjectCSS.js; sourceTree = "<group>"; };
 		E1E5606984DE18E11E98B15E5D75A49A /* Pods-Github-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Github-frameworks.sh"; sourceTree = "<group>"; };
-		ECA35280D3530DBA2CAA02010DA0D1F3 /* Neeman-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Neeman-prefix.pch"; sourceTree = "<group>"; };
-		F3E17448D9010622C07F43D037250CF7 /* ProcessPool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProcessPool.swift; sourceTree = "<group>"; };
+		E38B26E5DA20C4718DD3C48D71E49F9E /* WebViewController+Loading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WebViewController+Loading.swift"; path = "Source/Extensions/WebViewController+Loading.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,12 +114,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		09185A780CC6B291BE8A74E29A310394 /* Development Pods */ = {
+		096337AFCB11E65BB2043B975C5303CD /* Neeman */ = {
 			isa = PBXGroup;
 			children = (
-				45B9E69E9085D4234F2DF37BEBBAED0A /* Neeman */,
+				86BD5D0A5B6F6D740F69997BF35731DF /* Neeman.h */,
+				08F0464F2BDEE0822EC9D91F4B8D812D /* ProcessPool.swift */,
+				3A68F59E41970C8BACEB3DEEB19B3664 /* Settings.swift */,
+				C5E411295E66B4D589571B43EC3BF0CE /* WebViewController.swift */,
+				2892532234B611CA48799255C3A14D18 /* WebViewController+Errors.swift */,
+				E38B26E5DA20C4718DD3C48D71E49F9E /* WebViewController+Loading.swift */,
+				13E602F1071C2C343B7561AF9EC2F72D /* WebViewController+Popup.swift */,
+				135C8E8EDECD15EBAC898696554DCF61 /* WebViewController+WebView.swift */,
+				7098BD24F0CC8CE71E407CB6AD4AE031 /* WebViewNavigationDelegate.swift */,
+				AE251BB5D70F00C010676800E644761E /* WebViewObserver.swift */,
+				81C94AAA887D1A6DC34EB7756600D18A /* WebViewUIDelegate.swift */,
+				871EF5BFE862150EF2591AF12AC15F71 /* WKWebView+Neeman.swift */,
+				35FE68EE3DE72F59F1D4F59CE442C0D7 /* WKWebViewConfiguration+Javascript.swift */,
+				6C5AF0EDF70BF9BB4DA410028A97A34D /* Resources */,
+				C3796E342D81F2BDC3D72B627C5B55B7 /* Support Files */,
 			);
-			name = "Development Pods";
+			path = Neeman;
 			sourceTree = "<group>";
 		};
 		12110F8BC3AAABF64C5FABAB48A87E19 /* Products */ = {
@@ -147,82 +161,29 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		381F68760A9503ABE3BA6FBE391504BA /* Extensions */ = {
+		6C5AF0EDF70BF9BB4DA410028A97A34D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CD06719A6938F2F2E6C15E0EBE838FE2 /* WebViewController+Errors.swift */,
-				CE0AF88ACE37175267F0D66D03457DAE /* WebViewController+Loading.swift */,
-				828071B503C0B82147F930CAFD7A43B6 /* WebViewController+Popup.swift */,
-				5AAD8B3593E0F41E4897051074459774 /* WebViewController+WebView.swift */,
-				D50FCF49A70B774BEF41469631EC836E /* WKWebView+Neeman.swift */,
-				28965D26D3B2F1C2F2EB6BB1DBB32A38 /* WKWebViewConfiguration+Javascript.swift */,
+				7D92DDAE27CD9A77588C72ABBD0C7347 /* Assets.xcassets */,
+				855DBD5EB3B0113A468781807C1AA2F0 /* AtDocumentEnd.js */,
+				540803C06E388C0831D52B1532501730 /* AtDocumentStart.js */,
+				6A37C2B2758194010BD0D45FD055752B /* FastClick.js */,
+				2183739C29AC119C6CD069AB2E2D613A /* InjectCSS.js */,
+				BA9ABA24F328CCB1CCBCA54282D59641 /* Neeman.storyboard */,
+				96CC6F622942E248022CC25B185EF8DE /* WebView.css */,
 			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		4507FD6D181214CAB8B660B5B062E7FB /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				894AEAED1D64933BCFFA444F12BC90C5 /* Settings.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		45B9E69E9085D4234F2DF37BEBBAED0A /* Neeman */ = {
-			isa = PBXGroup;
-			children = (
-				FC84FBA152405D8E140C31AF83D59DC9 /* Resources */,
-				9D9CF2D8D913ABEBDDD99936BCFD930D /* Source */,
-				F5A865EFAC0C36DF821D165C71FBF239 /* Support Files */,
-			);
-			name = Neeman;
-			path = /Users/stephen/Documents/Code/Intellum/PodsLocal/Neeman;
-			sourceTree = "<absolute>";
-		};
-		4CBCF7646C57BF6D48E41DF434481BC1 /* js */ = {
-			isa = PBXGroup;
-			children = (
-				8633583B009FC2F085351819A6F3A2B7 /* AtDocumentEnd.js */,
-				192F7F84F1F040F3977C2C0F121D03F2 /* AtDocumentStart.js */,
-				0943D9C10E512BF724D2F7B1D845CE2C /* FastClick.js */,
-				DEE6F000C30A75A7753571551CB775FD /* InjectCSS.js */,
-				B10C554FC8691A3B44B79C6881212B20 /* WebView.css */,
-			);
-			path = js;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				09185A780CC6B291BE8A74E29A310394 /* Development Pods */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				B76964E78E3E0584F1C66EC566BD6D5F /* Pods */,
 				12110F8BC3AAABF64C5FABAB48A87E19 /* Products */,
 				3689D6A6C46F90B9F67C280012BAAAD5 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		9BAE6F9617DB92F9DC32042AA993A1ED /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				91AADC6155B2F7A04AD69A6059AAC342 /* WebViewController.swift */,
-				16E8C33A1BFBA22CB460F485CD0CDE5B /* WebViewNavigationDelegate.swift */,
-				C53A4AF0F0A37C57379D27428C807D94 /* WebViewObserver.swift */,
-				C3CC1C66BB589FE57A09ACFE330792B7 /* WebViewUIDelegate.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		9D9CF2D8D913ABEBDDD99936BCFD930D /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				7E8E04C8B97285425A900B3439286DFF /* Neeman.h */,
-				F3E17448D9010622C07F43D037250CF7 /* ProcessPool.swift */,
-				9BAE6F9617DB92F9DC32042AA993A1ED /* Controllers */,
-				381F68760A9503ABE3BA6FBE391504BA /* Extensions */,
-				4507FD6D181214CAB8B660B5B062E7FB /* Managers */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		A63395F57E5CAE2D064BD4C8E6087213 /* Pods-Github */ = {
@@ -243,6 +204,28 @@
 			path = "Target Support Files/Pods-Github";
 			sourceTree = "<group>";
 		};
+		B76964E78E3E0584F1C66EC566BD6D5F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				096337AFCB11E65BB2043B975C5303CD /* Neeman */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C3796E342D81F2BDC3D72B627C5B55B7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BD092E3C2E224D2E5D875A0A06E260A /* Info.plist */,
+				91B9BAEF91D08CA1E56FDC9D42D1F3DB /* Neeman.modulemap */,
+				09642C586CBA2B3CDE196E3D96FF3668 /* Neeman.xcconfig */,
+				630D22EAFBAFE70A421421D635E1B36D /* Neeman-dummy.m */,
+				0E57B52538790AF4B63BF752BB16F88B /* Neeman-prefix.pch */,
+				23BD9A58AD48986D5C76DFF6A5FC6EF8 /* Neeman-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Neeman";
+			sourceTree = "<group>";
+		};
 		C4A0A2F89F5308CF141F3E95DD5CEF79 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,38 +234,6 @@
 				2B9F7C15A7A072C1AA463B8C15E3A110 /* WebKit.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		C90CF0D75F88EE45096F23939FB143E1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D090F12EA1EBF7EAEA96E4C13D601611 /* Assets.xcassets */,
-				534F937D903BB7E7379AE1F03485F9CA /* Neeman.storyboard */,
-				4CBCF7646C57BF6D48E41DF434481BC1 /* js */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		F5A865EFAC0C36DF821D165C71FBF239 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				964FFA1F7DB387FD1942F17FF0AD9596 /* Info.plist */,
-				82425D44161DC749F4D83AD76BE66B39 /* Neeman.modulemap */,
-				7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */,
-				C0AD8D706466398A70D66FADA9A526E3 /* Neeman-dummy.m */,
-				ECA35280D3530DBA2CAA02010DA0D1F3 /* Neeman-prefix.pch */,
-				3C6EEBFC915BCB7E2A3C422C99CE6BBB /* Neeman-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../../Demo/Github/Pods/Target Support Files/Neeman";
-			sourceTree = "<group>";
-		};
-		FC84FBA152405D8E140C31AF83D59DC9 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				C90CF0D75F88EE45096F23939FB143E1 /* Resources */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,12 +247,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CCEDA57D6578FDE2FB76574AD750FE2B /* Headers */ = {
+		4635E450189E6347C0CBDACD4309AD3F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70E44D2734F713DCF59F24014CE1ADD7 /* Neeman-umbrella.h in Headers */,
-				19649B034E333CE6313F07F341C43F6C /* Neeman.h in Headers */,
+				AF58EE4A962DC0298B527D97A7261FD1 /* Neeman-umbrella.h in Headers */,
+				179A867061A1B83FF84153DDCC61A6D9 /* Neeman.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,10 +263,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1D6B1BFA209C8527EA7A6FFDC2E03CF /* Build configuration list for PBXNativeTarget "Neeman" */;
 			buildPhases = (
-				43ED2423F5373F5DBAE619AB8F998CEB /* Sources */,
+				CC12209418B45DEABE3273EC9BAE6E1D /* Sources */,
 				2FD3AF5ACEC61F37F0BC3CB0A7FF0C7B /* Frameworks */,
-				CCEDA57D6578FDE2FB76574AD750FE2B /* Headers */,
-				7947AECC19074ADDC66F51B2015A5EB6 /* Resources */,
+				4635E450189E6347C0CBDACD4309AD3F /* Headers */,
+				10A2710ECA49A7F963B77E92F39013A1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -372,40 +323,40 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7947AECC19074ADDC66F51B2015A5EB6 /* Resources */ = {
+		10A2710ECA49A7F963B77E92F39013A1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDC52509EAE4FA068D863B54036BDC6B /* Assets.xcassets in Resources */,
-				49D84C10C3031467894ADFADCE814C17 /* AtDocumentEnd.js in Resources */,
-				D0F36CB87D4A129117F6B9492BB060C5 /* AtDocumentStart.js in Resources */,
-				06FD18B9D50570F95882DEB6F4F0EEFB /* FastClick.js in Resources */,
-				D182990657C1B780511FCD69EA8CA4EB /* InjectCSS.js in Resources */,
-				B0A37BFFD67BD639D506E9CD5E9270C4 /* Neeman.storyboard in Resources */,
-				9A7A39537F8AB9F117573CA95697E3AE /* WebView.css in Resources */,
+				5AC0F0E42F1C6B67FFE83E7AEF98773E /* Assets.xcassets in Resources */,
+				A7168649E85125CFBEB4C43FAEEEEAF0 /* AtDocumentEnd.js in Resources */,
+				CDAC652BFC3179F53ECA74B84D930079 /* AtDocumentStart.js in Resources */,
+				18FE96C4AE39318D829137EA51E3D9C4 /* FastClick.js in Resources */,
+				21EC56AF9FD6010E197F52FB4A50C5D0 /* InjectCSS.js in Resources */,
+				B76CDFAD9555021CD62771E8E6759AE8 /* Neeman.storyboard in Resources */,
+				41767F1FBD66DF080C4388B2AF14D103 /* WebView.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		43ED2423F5373F5DBAE619AB8F998CEB /* Sources */ = {
+		CC12209418B45DEABE3273EC9BAE6E1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E14AAA5FF28AE61B4D1EF3F51BA1A850 /* Neeman-dummy.m in Sources */,
-				64AD8EFCFE7A862D2F8DCFA1EB92FCEE /* ProcessPool.swift in Sources */,
-				472E29674AC2B069A8FEAB6367095D4E /* Settings.swift in Sources */,
-				ADED55CB17F93F82F9F9E8F763628F9B /* WebViewController+Errors.swift in Sources */,
-				E41D3F5488A1B3328D73994DA86E71CA /* WebViewController+Loading.swift in Sources */,
-				1A891E43EA043BD4202FD48AADAF25FE /* WebViewController+Popup.swift in Sources */,
-				6CE266075054600BAF8E956715A1EC4E /* WebViewController+WebView.swift in Sources */,
-				E205F4F59E7CEB58951D1A5F7A2BAEF6 /* WebViewController.swift in Sources */,
-				A70019FB88844A1F9B25A7D816AED042 /* WebViewNavigationDelegate.swift in Sources */,
-				4B1C16F0A5D9A03C85AE68CEC8C8A368 /* WebViewObserver.swift in Sources */,
-				92CC31EA1485798CC65925D8BE32F9AC /* WebViewUIDelegate.swift in Sources */,
-				263A96881883F5EBB15BD5EB37F4E36F /* WKWebView+Neeman.swift in Sources */,
-				31BE98CAFE5E2BFB50F799073060E41C /* WKWebViewConfiguration+Javascript.swift in Sources */,
+				7361141F7B56F5AE16F6002E33204245 /* Neeman-dummy.m in Sources */,
+				272AB05C109C0F20972AF47ED44ECBD6 /* ProcessPool.swift in Sources */,
+				10FBE3CD92CCF244F096D1AA0D06A59D /* Settings.swift in Sources */,
+				DCA4DD67A8C23DE7EEA51BC4ED83AE06 /* WebViewController+Errors.swift in Sources */,
+				AB8B745B3100BC6EC27F619D43C26BD0 /* WebViewController+Loading.swift in Sources */,
+				169FC34C8982D8BD6AD2DD108781CDAE /* WebViewController+Popup.swift in Sources */,
+				E9770959ABAEB3B9200B6C1F894B5C66 /* WebViewController+WebView.swift in Sources */,
+				D1B15C1068E6377F19D396082CB22981 /* WebViewController.swift in Sources */,
+				AD285499BA2C1E77A7791486D3D1995B /* WebViewNavigationDelegate.swift in Sources */,
+				79833DC350591D88BBEEA71C66D3F3F7 /* WebViewObserver.swift in Sources */,
+				D4D15F2AC29EE684D234972750F09371 /* WebViewUIDelegate.swift in Sources */,
+				12637AB231149C74D76E4EBF416E9C9F /* WKWebView+Neeman.swift in Sources */,
+				7D3AA7D03BD8D0B5A7246EBA511D51F4 /* WKWebViewConfiguration+Javascript.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +482,7 @@
 		};
 		BA206DBE2DA4B618EFF403AB7D22AF6C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */;
+			baseConfigurationReference = 09642C586CBA2B3CDE196E3D96FF3668 /* Neeman.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -559,7 +510,7 @@
 		};
 		D711BD133BA4449111DDCA45D40F7C79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */;
+			baseConfigurationReference = 09642C586CBA2B3CDE196E3D96FF3668 /* Neeman.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;

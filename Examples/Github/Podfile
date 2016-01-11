@@ -5,9 +5,7 @@ use_frameworks!
 
 target 'Github' do
 
-  #pod 'Neeman', :git => 'https://github.com/intellum/neeman.git'
-  podLocal = ENV['POD_LOCAL_HOME']
-  pod 'Neeman', :path => podLocal + '/Neeman'
+  pod 'Neeman'
 
 end
 
