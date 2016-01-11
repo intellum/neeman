@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: Neeman.xcodeproj
+xcode_scheme: Neeman
