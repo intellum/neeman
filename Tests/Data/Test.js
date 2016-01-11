@@ -1,0 +1,1 @@
+var myGlobalVariable = "is great";

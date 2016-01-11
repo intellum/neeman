@@ -17,6 +17,11 @@
 		DC0774F51C37FF8700B27489 /* WebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0774F41C37FF8700B27489 /* WebViewObserver.swift */; };
 		DC316BB21C3B5C4200B66D8A /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */; };
 		DC4A35FF1C2A019C009B8749 /* WebViewUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4A35FE1C2A019C009B8749 /* WebViewUIDelegate.swift */; };
+		DC6822411C3F4A4E00AF1EF9 /* ProcessPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6822401C3F4A4E00AF1EF9 /* ProcessPool.swift */; };
+		DC6822441C3F4C6C00AF1EF9 /* WebViewUIDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6822421C3F4C1000AF1EF9 /* WebViewUIDelegateTest.swift */; };
+		DC6822481C3F4D9700AF1EF9 /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6822461C3F4D6F00AF1EF9 /* NavigationAction.swift */; };
+		DC68224A1C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6822491C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift */; };
+		DC68224C1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68224B1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift */; };
 		DC937B8F1C200A8E00EF1D03 /* Neeman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC937B841C200A8D00EF1D03 /* Neeman.framework */; };
 		DC937BDA1C200B5F00EF1D03 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BA71C200B5F00EF1D03 /* WebViewController.swift */; };
 		DC937BDC1C200B5F00EF1D03 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937BAB1C200B5F00EF1D03 /* Settings.swift */; };
@@ -24,6 +29,10 @@
 		DC937C121C2019E800EF1D03 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C111C2019E800EF1D03 /* Settings.plist */; };
 		DC937C141C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */; };
 		DC937C181C20B57D00EF1D03 /* WebViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C161C20AF6800EF1D03 /* WebViewNavigationDelegate.swift */; };
+		DCBB1A711C3F642600255AF4 /* FrameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB1A701C3F642600255AF4 /* FrameInfo.swift */; };
+		DCF56F2D1C3DF81F000FF970 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */; };
+		DCF56F301C3F3D53000FF970 /* WKWebViewConfiguration-JavascriptTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */; };
+		DCF56F331C3F41F5000FF970 /* Test.js in Resources */ = {isa = PBXBuildFile; fileRef = DCF56F321C3F41F5000FF970 /* Test.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +47,10 @@
 
 /* Begin PBXFileReference section */
 		2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neeman.release.xcconfig"; path = "Pods/Target Support Files/Pods-Neeman/Pods-Neeman.release.xcconfig"; sourceTree = "<group>"; };
+		3FFE4908D19958979B172AD9 /* Pods_NeemanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeemanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F18F8BE8352BE64F5A74BD2 /* Pods-NeemanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeemanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeemanTests/Pods-NeemanTests.release.xcconfig"; sourceTree = "<group>"; };
+		8CC43C23A33325E3A61E478D /* Pods-NeemanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeemanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeemanTests/Pods-NeemanTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neeman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Neeman/Pods-Neeman.debug.xcconfig"; sourceTree = "<group>"; };
 		DC0774E61C37FF7400B27489 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+Errors.swift"; sourceTree = "<group>"; };
 		DC0774E71C37FF7400B27489 /* WebViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+Loading.swift"; sourceTree = "<group>"; };
@@ -49,6 +61,11 @@
 		DC0774F41C37FF8700B27489 /* WebViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewObserver.swift; sourceTree = "<group>"; };
 		DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 		DC4A35FE1C2A019C009B8749 /* WebViewUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewUIDelegate.swift; sourceTree = "<group>"; };
+		DC6822401C3F4A4E00AF1EF9 /* ProcessPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessPool.swift; sourceTree = "<group>"; };
+		DC6822421C3F4C1000AF1EF9 /* WebViewUIDelegateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewUIDelegateTest.swift; sourceTree = "<group>"; };
+		DC6822461C3F4D6F00AF1EF9 /* NavigationAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationAction.swift; path = MockClasses/NavigationAction.swift; sourceTree = "<group>"; };
+		DC6822491C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestNeemanNavigationDelegate.swift; path = MockClasses/TestNeemanNavigationDelegate.swift; sourceTree = "<group>"; };
+		DC68224B1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestNeemanUIDelegate.swift; path = MockClasses/TestNeemanUIDelegate.swift; sourceTree = "<group>"; };
 		DC937B841C200A8D00EF1D03 /* Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC937B8E1C200A8E00EF1D03 /* NeemanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeemanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC937BA71C200B5F00EF1D03 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +76,10 @@
 		DC937C111C2019E800EF1D03 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegateTests.swift; sourceTree = "<group>"; };
 		DC937C161C20AF6800EF1D03 /* WebViewNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegate.swift; sourceTree = "<group>"; };
+		DCBB1A701C3F642600255AF4 /* FrameInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrameInfo.swift; path = MockClasses/FrameInfo.swift; sourceTree = "<group>"; };
+		DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebViewConfiguration-JavascriptTest.swift"; sourceTree = "<group>"; };
+		DCF56F321C3F41F5000FF970 /* Test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Test.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +107,8 @@
 			children = (
 				CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */,
 				2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */,
+				8CC43C23A33325E3A61E478D /* Pods-NeemanTests.debug.xcconfig */,
+				4F18F8BE8352BE64F5A74BD2 /* Pods-NeemanTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -94,8 +117,20 @@
 			isa = PBXGroup;
 			children = (
 				4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */,
+				3FFE4908D19958979B172AD9 /* Pods_NeemanTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC6822451C3F4D4600AF1EF9 /* MockClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DC6822461C3F4D6F00AF1EF9 /* NavigationAction.swift */,
+				DC6822491C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift */,
+				DC68224B1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift */,
+				DCBB1A701C3F642600255AF4 /* FrameInfo.swift */,
+			);
+			name = MockClasses;
 			sourceTree = "<group>";
 		};
 		DC937B7A1C200A8D00EF1D03 = {
@@ -126,6 +161,7 @@
 				DC937BA81C200B5F00EF1D03 /* Extensions */,
 				DC937BAA1C200B5F00EF1D03 /* Managers */,
 				DC937BAC1C200B5F00EF1D03 /* Neeman.h */,
+				DC6822401C3F4A4E00AF1EF9 /* ProcessPool.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -165,12 +201,25 @@
 		DC937C081C200F7500EF1D03 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				DC6822451C3F4D4600AF1EF9 /* MockClasses */,
+				DCF56F311C3F41F5000FF970 /* Data */,
 				DC937C091C200F7500EF1D03 /* Info.plist */,
 				DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */,
 				DC937C111C2019E800EF1D03 /* Settings.plist */,
+				DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */,
 				DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */,
+				DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */,
+				DC6822421C3F4C1000AF1EF9 /* WebViewUIDelegateTest.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		DCF56F311C3F41F5000FF970 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DCF56F321C3F41F5000FF970 /* Test.js */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF56F331C3F41F5000FF970 /* Test.js in Resources */,
 				DC937C121C2019E800EF1D03 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +359,7 @@
 				DC0774F31C37FF7400B27489 /* WKWebViewConfiguration+Javascript.swift in Sources */,
 				DC0774F01C37FF7400B27489 /* WebViewController+Popup.swift in Sources */,
 				DC0774F11C37FF7400B27489 /* WebViewController+WebView.swift in Sources */,
+				DC6822411C3F4A4E00AF1EF9 /* ProcessPool.swift in Sources */,
 				DC0774EE1C37FF7400B27489 /* WebViewController+Errors.swift in Sources */,
 				DC937BDA1C200B5F00EF1D03 /* WebViewController.swift in Sources */,
 			);
@@ -318,6 +369,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCBB1A711C3F642600255AF4 /* FrameInfo.swift in Sources */,
+				DC6822481C3F4D9700AF1EF9 /* NavigationAction.swift in Sources */,
+				DC6822441C3F4C6C00AF1EF9 /* WebViewUIDelegateTest.swift in Sources */,
+				DC68224C1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift in Sources */,
+				DCF56F301C3F3D53000FF970 /* WKWebViewConfiguration-JavascriptTest.swift in Sources */,
+				DCF56F2D1C3DF81F000FF970 /* SettingsTests.swift in Sources */,
+				DC68224A1C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift in Sources */,
 				DC316BB21C3B5C4200B66D8A /* WebViewControllerTests.swift in Sources */,
 				DC937C141C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift in Sources */,
 			);

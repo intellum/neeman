@@ -2,7 +2,7 @@ import WebKit
 
 extension WKWebViewConfiguration {
     func setupWithSettings(settings: Settings) -> WKWebViewConfiguration {
-        processPool = WebViewController.processPool
+        processPool = ProcessPool.sharedInstance
         if #available(iOS 9.0, *) {
             applicationNameForUserAgent = settings.appName
         }
@@ -34,14 +34,30 @@ extension WKWebViewConfiguration {
     }
     
     func stringFromContentInFileName(fileName: String) -> String! {
+        return contentsOfNeemansWithName(fileName) + contentsOfMainBundlesFileWithName(fileName)
+    }
+    
+    func contentsOfNeemansWithName(fileName: String) -> String {
+        let bundle = NSBundle(forClass: object_getClass(self))
+        return contentsOfFileNamed(fileName, inBundle: bundle)
+    }
+
+    func contentsOfMainBundlesFileWithName(fileName: String) -> String {
+        let bundle = NSBundle.mainBundle()
+        return contentsOfFileNamed(fileName, inBundle: bundle)
+    }
+
+    func contentsOfFileNamed(fileName: String, inBundle bundle: NSBundle) -> String {
+        if let path = bundle.pathForResource(fileName, ofType: "") {
+            return contentsOfFileAtPath(path)
+        }
+        return ""
+    }
+    
+    func contentsOfFileAtPath(filePath: String) -> String {
         var content = ""
         do {
-            if let path = NSBundle(forClass: WebViewController.self).pathForResource(fileName, ofType: "") {
-                content += try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
-            }
-            if let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "") {
-                content += try String(contentsOfFile:path, encoding: NSUTF8StringEncoding)
-            }
+            content += try String(contentsOfFile:filePath, encoding: NSUTF8StringEncoding)
         } catch _ {
         }
         return content

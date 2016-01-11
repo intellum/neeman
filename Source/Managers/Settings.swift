@@ -10,12 +10,16 @@ public class Settings {
         self.init(path: path)
     }
 
-    public init(path: String?) {
+    public convenience init(path: String?) {
+        var dict: NSDictionary?
         if let _ = path {
-            allSettings = NSDictionary(contentsOfFile: path!)
-        } else {
-            allSettings = nil
+            dict = NSDictionary(contentsOfFile: path!)
         }
+        self.init(dictionary: dict)
+    }
+    
+    public init(dictionary: NSDictionary?) {
+        allSettings = dictionary
         appName = allSettings?["appName"] as? String ?? NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String ?? ""
         baseURL = allSettings?["baseURL"] as? String ?? ""
     }
@@ -24,17 +28,5 @@ public class Settings {
         get {
             return allSettings?[key]
         }
-    }
-    
-    func isEqual(object: AnyObject?) -> Bool {
-        if let object = object as? Settings {
-            return allSettings == object.allSettings
-        } else {
-            return false
-        }
-    }
-    
-    var hash: Int {
-        return allSettings?.hashValue ?? 0
     }
 }

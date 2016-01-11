@@ -3,16 +3,6 @@ import WebKit
 
 extension WebViewController {
     
-    public func addLogoutButton() {
-        let title = NSLocalizedString("Logout", comment: "The label on the logout button")
-        let logoutButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "didTapLogout:")
-        if let rightBarButtonItem = navigationItem.rightBarButtonItem {
-            navigationItem.rightBarButtonItems = [logoutButtonItem, rightBarButtonItem]
-        } else {
-            navigationItem.rightBarButtonItem = logoutButtonItem
-        }
-    }
-    
     public func setupRefreshControl() {
         let newRefreshControl = UIRefreshControl()
         newRefreshControl.attributedTitle = NSAttributedString(string: "")
@@ -32,6 +22,7 @@ extension WebViewController {
      */
     public func webView(webView: WKWebView, didChangeLoading loading: Bool) {
         updateActivityIndicatorWithWebView(webView)
+        updateProgressViewWithWebView(webView)
         if !loading {
             refreshControl?.endRefreshing()
             if let _ = webView.URL {
@@ -128,15 +119,27 @@ extension WebViewController {
     }
     
     func updateActivityIndicatorWithWebView(webView: WKWebView) {
+        guard let activityIndicator = activityIndicator else {
+            return
+        }
+        
         if webView.loading {
             if let refreshControl = self.refreshControl where refreshControl.refreshing {
-                activityIndicator?.startAnimating()
+                activityIndicator.startAnimating()
             }
-            progressView?.hidden = false
         } else {
-            activityIndicator?.stopAnimating()
-            progressView?.hidden = true
-            progressView?.setProgress(0, animated: false)
+            activityIndicator.stopAnimating()
+        }
+    }
+    
+    func updateProgressViewWithWebView(webView: WKWebView) {
+        guard let progressView = progressView else {
+            return
+        }
+        
+        progressView.hidden = !webView.loading
+        if !webView.loading {
+            progressView.setProgress(0, animated: false)
         }
     }
 }

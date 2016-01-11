@@ -60,8 +60,6 @@ public class WebViewController: UIViewController,
     
     var webViewObserver: WebViewObserver = WebViewObserver()
     
-    public static var processPool = WKProcessPool()
-    
     //MARK: Lifecycle
     override public func viewDidLoad() {
         super.viewDidLoad()

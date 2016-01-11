@@ -25,6 +25,7 @@ class WebViewControllerTests: XCTestCase {
         let webViewController = WebViewController()
         XCTAssertNotNil(webViewController.view)
     }
+
     func testSettings() {
         let webViewController = WebViewController()
         let webViewController2 = WebViewController()

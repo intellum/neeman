@@ -1,10 +1,18 @@
 import UIKit
 import WebKit
 
-protocol NeemanUIDelegate: NSObjectProtocol {
+public protocol NeemanUIDelegate: NSObjectProtocol {
     func pushNewWebViewControllerWithURL(url: NSURL)
     func popupWebView(newWebView: WKWebView, withURL url: NSURL)
     func closeWebView(webView: WKWebView)
+    func refusedUIFromRequest(request: NSURLRequest)
+}
+
+extension NeemanUIDelegate {
+    public func pushNewWebViewControllerWithURL(url: NSURL) {}
+    public func popupWebView(newWebView: WKWebView, withURL url: NSURL) {}
+    public func closeWebView(webView: WKWebView) {}
+    public func refusedUIFromRequest(request: NSURLRequest) {}
 }
 
 public class WebViewUIDelegate: NSObject, WKUIDelegate {
@@ -23,7 +31,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
         windowFeatures: WKWindowFeatures) -> WKWebView? {
             
             let newWebView = WKWebView(frame: webView.frame, configuration: configuration)
-            configuration.processPool = WebViewController.processPool
+            configuration.processPool = ProcessPool.sharedInstance
             if #available(iOS 9.0, *) {
                 configuration.applicationNameForUserAgent = settings.appName
             }
@@ -43,19 +51,21 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
         initiatedByFrame frame: WKFrameInfo,
         completionHandler: () -> Void) {
             
-            guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController else {
+            if !shouldAcceptUIFromFrame(frame) {
+                refusedUIFromRequest(frame.request)
                 return
             }
-            
+
             let alert = UIAlertController(title: nil,
                 message: message,
                 preferredStyle: .Alert)
-            let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button"), style: .Default) { (action: UIAlertAction) -> Void in
+            let title = NSLocalizedString("OK", comment: "OK Button")
+            let ok = UIAlertAction(title: title, style: .Default) { (action: UIAlertAction) -> Void in
                 completionHandler()
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
             alert.addAction(ok)
-            rootViewController.presentViewController(alert, animated: true, completion: nil)
+            presentAlertController(alert)
     }
     
     public func webView(webView: WKWebView,
@@ -63,14 +73,16 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
         initiatedByFrame frame: WKFrameInfo,
         completionHandler: (Bool) -> Void) {
             
-            guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController else {
+            if !shouldAcceptUIFromFrame(frame) {
+                refusedUIFromRequest(frame.request)
                 return
             }
             
             let alert = UIAlertController(title: nil,
                 message: message,
                 preferredStyle: .Alert)
-            let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button"), style: .Default) { (action: UIAlertAction) -> Void in
+            let title = NSLocalizedString("OK", comment: "OK Button")
+            let ok = UIAlertAction(title: title, style: .Default) { (action: UIAlertAction) -> Void in
                 completionHandler(true)
                 alert.dismissViewControllerAnimated(true, completion: nil)
             }
@@ -82,7 +94,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             }
             alert.addAction(ok)
             alert.addAction(cancel)
-            rootViewController.presentViewController(alert, animated: true, completion: nil)
+            presentAlertController(alert)
     }
     
     public func webView(webView: WKWebView,
@@ -90,11 +102,12 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
         defaultText: String?,
         initiatedByFrame frame: WKFrameInfo,
         completionHandler: (String?) -> Void) {
-
-            guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController else {
+            
+            if !shouldAcceptUIFromFrame(frame) {
+                refusedUIFromRequest(frame.request)
                 return
             }
-            
+
             let alert = UIAlertController(title: nil,
                 message: prompt,
                 preferredStyle: .Alert)
@@ -116,7 +129,31 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
                 textField.text = defaultText
             }
-            rootViewController.presentViewController(alert, animated: true, completion: nil)
-            
+            presentAlertController(alert)
+    }
+    
+    public func presentAlertController(alert: UIAlertController) {
+        guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController else {
+            return
+        }
+        
+        rootViewController.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    public func refusedUIFromRequest(request: NSURLRequest) {
+        print("Refused UI Request from \(request.URL?.host)")
+    }
+
+    func shouldAcceptUIFromFrame(frame: WKFrameInfo) -> Bool {
+        guard let requestHost = frame.request.URL?.host else {
+            return false
+        }
+
+        if let host = NSURL(string: settings.baseURL)?.host {
+            if requestHost == host {
+                return true
+            }
+        }
+        return false
     }
 }

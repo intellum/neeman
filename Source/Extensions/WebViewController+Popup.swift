@@ -28,7 +28,7 @@ extension WebViewController {
         webViewPopup?.loadRequest(request)
     }
     
-    func closeWebView(webView: WKWebView) {
+    public func closeWebView(webView: WKWebView) {
         if let popupWebView = webViewPopup {
             webViewObserver.stopObservingWebView(popupWebView)
             popupWebView.removeFromSuperview()

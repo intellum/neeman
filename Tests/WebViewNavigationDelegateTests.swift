@@ -6,8 +6,8 @@ class WebViewNavigationDelegateTests: XCTestCase {
     
     var settings: Settings {
         get {
-            let pathToSettings = NSBundle.init(forClass: WebViewNavigationDelegateTests.self).pathForResource("Settings", ofType: "plist")
-            return Settings(path: pathToSettings)
+            let settings = Settings(dictionary: ["baseURL": "https://intellum.com"])
+            return settings
         }
     }
     
@@ -49,21 +49,15 @@ class WebViewNavigationDelegateTests: XCTestCase {
     
     func testErrorPassedToDelegate() {
         let expectation = expectationWithDescription("Pass Error to Delegate")
-        class MyNeemanWebViewController: NSObject, NeemanNavigationDelegate {
-            var expectation: XCTestExpectation
-            
-            init(expectation: XCTestExpectation) {
-                self.expectation = expectation
-            }
-
-            func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
+        class NeemanWebViewController: TestNeemanNavigationDelegate {
+            override func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
                 XCTAssertNotNil(error, "The delegate should be passed a non nil error")
                 expectation.fulfill()
             }
         }
         
         let url = NSURL(string: "https://groupdock.com/a/Level")
-        let delegate = MyNeemanWebViewController(expectation: expectation)
+        let delegate = NeemanWebViewController(expectation: expectation)
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
         let error = NSError(domain: "", code: 1, userInfo: nil)
         navigationDelegate.webView(WKWebView(), didFailProvisionalNavigation: nil, withError: error)
@@ -122,7 +116,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     
     func testDelegateMethodsCalled() {
         let expectation = expectationWithDescription("Pass Error to Delegate")
-        class NeemanWebViewController: MyNeemanWebViewController {
+        class NeemanWebViewController: TestNeemanNavigationDelegate {
             override func webView(webView: WKWebView, didFinishNavigationWithURL: NSURL?) {
                 expectation.fulfill()
             }
@@ -143,10 +137,9 @@ class WebViewNavigationDelegateTests: XCTestCase {
     
     func testDelegateRedirectMethodsCalled() {
         let expectation = expectationWithDescription("Pass Error to Delegate")
-//        class NeemanWebViewController: MyNeemanWebViewController {
-        class NeemanWebViewController: MyNeemanWebViewController {
+        class NeemanWebViewController: TestNeemanNavigationDelegate {
             override func webView(webView: WKWebView, didReceiveServerRedirectToURL: NSURL?) {
-                self.expectation.fulfill()
+                expectation.fulfill()
             }
         }
         
@@ -165,7 +158,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     
     func testPushIsCalled() {
         let expectation = expectationWithDescription("Pass Error to Delegate")
-        class NeemanWebViewController: MyNeemanWebViewController {
+        class NeemanWebViewController: TestNeemanNavigationDelegate {
             override func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
                 return true
             }
@@ -196,37 +189,5 @@ class WebViewNavigationDelegateTests: XCTestCase {
                 XCTFail("Error Passing Failed")
             }
         }
-    }
-}
-
-class MyNeemanWebViewController: NSObject, NeemanNavigationDelegate {
-    var expectation: XCTestExpectation
-    
-    init(expectation: XCTestExpectation) {
-        self.expectation = expectation
-    }
-    
-    func webView(webView: WKWebView, didReceiveServerRedirectToURL: NSURL?) {}
-    func webView(webView: WKWebView, didFinishNavigationWithURL: NSURL?) {}
-    func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
-        return false
-    }
-    func pushNewWebViewControllerWithURL(url: NSURL) {}
-}
-
-class NavigationAction: WKNavigationAction {
-    var myRequest: NSURLRequest
-    override var request: NSURLRequest {
-        get {
-            return myRequest
-        }
-    }
-    override var navigationType: WKNavigationType {
-        get {
-            return .LinkActivated
-        }
-    }
-    init(request: NSURLRequest) {
-        myRequest = request
     }
 }
