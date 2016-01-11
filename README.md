@@ -1,5 +1,7 @@
 <img src="README-resources/Logo.png?raw=true" width="320" height="64" />
 
+[![Build Status](https://travis-ci.org/intellum/neeman.svg)](https://travis-ci.org/intellum/neeman)
+
 ##Turn a web app into a great native user experience.
 
 Web apps just can't compete with native navigation. We can use the strengths or both though.
