@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E09C9007EEAA86DAECE68A8 /* Pods_Neeman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */; };
 		DC0774EE1C37FF7400B27489 /* WebViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0774E61C37FF7400B27489 /* WebViewController+Errors.swift */; };
 		DC0774EF1C37FF7400B27489 /* WebViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0774E71C37FF7400B27489 /* WebViewController+Loading.swift */; };
 		DC0774F01C37FF7400B27489 /* WebViewController+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0774E81C37FF7400B27489 /* WebViewController+Popup.swift */; };
@@ -46,12 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neeman.release.xcconfig"; path = "Pods/Target Support Files/Pods-Neeman/Pods-Neeman.release.xcconfig"; sourceTree = "<group>"; };
 		3FFE4908D19958979B172AD9 /* Pods_NeemanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeemanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F18F8BE8352BE64F5A74BD2 /* Pods-NeemanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeemanTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NeemanTests/Pods-NeemanTests.release.xcconfig"; sourceTree = "<group>"; };
-		8CC43C23A33325E3A61E478D /* Pods-NeemanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeemanTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NeemanTests/Pods-NeemanTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neeman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Neeman/Pods-Neeman.debug.xcconfig"; sourceTree = "<group>"; };
 		DC0774E61C37FF7400B27489 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+Errors.swift"; sourceTree = "<group>"; };
 		DC0774E71C37FF7400B27489 /* WebViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+Loading.swift"; sourceTree = "<group>"; };
 		DC0774E81C37FF7400B27489 /* WebViewController+Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebViewController+Popup.swift"; sourceTree = "<group>"; };
@@ -87,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E09C9007EEAA86DAECE68A8 /* Pods_Neeman.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,17 +96,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2906677FD655AF6E20411E20 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */,
-				2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */,
-				8CC43C23A33325E3A61E478D /* Pods-NeemanTests.debug.xcconfig */,
-				4F18F8BE8352BE64F5A74BD2 /* Pods-NeemanTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		3D4FCF321540734F4E90CE4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +123,6 @@
 				DC937BA31C200B5F00EF1D03 /* Source */,
 				DC937C081C200F7500EF1D03 /* Tests */,
 				DC937B851C200A8D00EF1D03 /* Products */,
-				2906677FD655AF6E20411E20 /* Pods */,
 				3D4FCF321540734F4E90CE4B /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -483,7 +465,6 @@
 		};
 		DC937B991C200A8E00EF1D03 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBEEB6A9032AE9D779F1DF73 /* Pods-Neeman.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -500,7 +481,6 @@
 		};
 		DC937B9A1C200A8E00EF1D03 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E5E7FFE2EBE99B2738D1742 /* Pods-Neeman.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
