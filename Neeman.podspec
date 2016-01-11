@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Neeman"
-  s.version      = "0.1.9"
+  s.version      = "0.1.10"
   s.summary      = "A framework for easily creating a hybrid app from a mobile friendly web app."
 
   s.description  = <<-DESC
@@ -18,7 +18,7 @@ is to keep your content rendered with HTML and implement your navigation nativel
   s.homepage     = "https://intellum.com"
 
 
-  s.license      = "MIT (example)"
+  s.license      = "MIT"
 
   s.author             = { "Stephen Williams" => "swilliams@intellum.com" }
   s.platform     = :ios
