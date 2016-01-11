@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Github Web View Controller-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController storyboardIdentifier="GithubWebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="GithubWebViewController" customModule="Gissues" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="keb-t9-Qaa"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="-320"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="gXc-JL-yZU" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="j3t-Wp-XNp" kind="relationship" relationship="viewControllers" id="aGp-2J-YAc"/>
+                        <segue destination="j3O-HJ-aEd" kind="relationship" relationship="viewControllers" id="uJv-b9-3Zj"/>
+                        <segue destination="1bL-6F-89I" kind="relationship" relationship="viewControllers" id="lyb-P7-cJK"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="DOh-l6-hUd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gXc-JL-yZU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="Dashboard" id="acW-dT-cKf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WaY-Lt-I2g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="tLM-tG-ZLh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8QL-3g-HG5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-320"/>
+        </scene>
+        <!--Github Web View Controller-->
+        <scene sceneID="dDF-FA-qUX">
+            <objects>
+                <viewController id="ga3-JZ-m7A" customClass="GithubWebViewController" customModule="Gissues" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IVS-WK-4ar"/>
+                        <viewControllerLayoutGuide type="bottom" id="grr-HM-SDh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4cv-Nc-dUn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SNV-kt-yVG"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/notifications"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wMr-BC-d2C" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="388"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="biN-jC-nNL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j3t-Wp-XNp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Notifications" image="Notifications" id="QAc-pt-Of5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sC4-kY-5t1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ga3-JZ-m7A" kind="relationship" relationship="rootViewController" id="gCe-Sl-p2o"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3c0-3a-Bx7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="388"/>
+        </scene>
+        <!--Github Web View Controller-->
+        <scene sceneID="LD8-EM-UoC">
+            <objects>
+                <viewController id="P0j-a4-2rN" customClass="GithubWebViewController" customModule="Gissues" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yRk-e4-0ej"/>
+                        <viewControllerLayoutGuide type="bottom" id="qPt-qe-RCs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xqR-AO-EIP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="T2m-0f-RkP"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/explore"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0UM-wJ-Wpi" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="1132"/>
+        </scene>
+        <!--Explore-->
+        <scene sceneID="HEg-3g-aUF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j3O-HJ-aEd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Explore" image="Explore" id="WsC-IN-oxK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CBd-Cb-a9a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="P0j-a4-2rN" kind="relationship" relationship="rootViewController" id="9bO-03-suG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yqq-Yc-Eld" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1132"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="08i-Xg-4R4">
+            <objects>
+                <viewController id="Ht8-G3-7eq" customClass="WebViewController" customModule="Neeman" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y95-Xk-pXQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="B0V-nG-0fc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GBK-cI-BHj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UmI-HW-ccN"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/profile"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-o5-ae1" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="1852"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="XXB-29-sFf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1bL-6F-89I" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="dF2-hO-gFX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eue-nN-OMQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ht8-G3-7eq" kind="relationship" relationship="rootViewController" id="YRu-lJ-snD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wgb-li-cFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1852"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Dashboard" width="32" height="32"/>
+        <image name="Explore" width="32" height="32"/>
+        <image name="Notifications" width="32" height="32"/>
+        <image name="Profile" width="32" height="32"/>
+    </resources>
+</document>

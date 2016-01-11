@@ -1,0 +1,14 @@
+PODS:
+  - Neeman (0.1.9)
+
+DEPENDENCIES:
+  - Neeman (from `/Users/stephen/Documents/Code/Intellum/PodsLocal/Neeman`)
+
+EXTERNAL SOURCES:
+  Neeman:
+    :path: "/Users/stephen/Documents/Code/Intellum/PodsLocal/Neeman"
+
+SPEC CHECKSUMS:
+  Neeman: 4ad3bddafe489e7c026b1170bb88e639c6676c13
+
+COCOAPODS: 0.39.0

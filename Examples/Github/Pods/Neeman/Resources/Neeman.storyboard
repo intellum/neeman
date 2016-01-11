@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--LOGIN-->
+        <scene sceneID="c9u-OB-xqb">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6wk-ZR-PGQ" customClass="LoginViewController" customModule="Neeman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fcZ-xV-jov"/>
+                        <viewControllerLayoutGuide type="bottom" id="FQr-Qq-gdF"/>
+                    </layoutGuides>
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="qo5-IL-907">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT3-tZ-AW3" customClass="GradientView" customModule="Neeman" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xub-aZ-m1n">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="cr7-XH-ptW">
+                                        <rect key="frame" x="160" y="60" width="280" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="1Ug-YC-Uc1"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oV5-pq-gIu" userLabel="login container" customClass="RoundCorneredView" customModule="Neeman" customModuleProvider="target">
+                                        <rect key="frame" x="160" y="130" width="280" height="180"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rnk-M5-mH9" userLabel="username" customClass="LoginTextField" customModule="Neeman" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="20" width="240" height="40"/>
+                                                <color key="backgroundColor" red="0.89019608500000003" green="0.89019608500000003" blue="0.89019608500000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.31764706970000001" green="0.31764706970000001" blue="0.31764706970000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="go"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="6wk-ZR-PGQ" id="iXx-yF-StP"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ip-wb-pgm" userLabel="password" customClass="LoginTextField" customModule="Neeman" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="70" width="240" height="40"/>
+                                                <color key="backgroundColor" red="0.89019608500000003" green="0.89019608500000003" blue="0.89019608500000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.31764706970000001" green="0.31764706970000001" blue="0.31764706970000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="6wk-ZR-PGQ" id="ize-8r-a6Z"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-9F-ugq" userLabel="log in" customClass="LoginButton" customModule="Neeman" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="120" width="240" height="40"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <accessibility key="accessibilityConfiguration" label="Log In Button"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="hIS-jo-Zmx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="LOG IN">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapLoginButton:" destination="6wk-ZR-PGQ" eventType="touchUpInside" id="7Nn-Ll-3PY"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="o3e-dg-ZyD">
+                                                <rect key="frame" x="130" y="130" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edr-YI-GFk">
+                                                <rect key="frame" x="228" y="76" width="27" height="27"/>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="onepassword-button">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapOnePassword:" destination="6wk-ZR-PGQ" eventType="touchUpInside" id="xsX-HW-lMw"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="rhh-9F-ugq" secondAttribute="trailing" constant="20" id="Wca-JH-rbm"/>
+                                            <constraint firstItem="rhh-9F-ugq" firstAttribute="leading" secondItem="oV5-pq-gIu" secondAttribute="leading" constant="20" id="Zdz-lQ-FHE"/>
+                                            <constraint firstAttribute="bottom" secondItem="rhh-9F-ugq" secondAttribute="bottom" constant="20" id="bdE-N9-XhH"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="oog-h7-Zfm"/>
+                                            <constraint firstAttribute="width" constant="280" id="sGl-6w-6qf"/>
+                                            <constraint firstAttribute="height" constant="180" id="ttZ-Nw-fIR"/>
+                                            <constraint firstItem="o3e-dg-ZyD" firstAttribute="centerY" secondItem="rhh-9F-ugq" secondAttribute="centerY" id="uwm-Fm-GFo"/>
+                                            <constraint firstItem="o3e-dg-ZyD" firstAttribute="centerX" secondItem="rhh-9F-ugq" secondAttribute="centerX" id="xd5-5a-ahV"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="oV5-pq-gIu" firstAttribute="centerX" secondItem="cr7-XH-ptW" secondAttribute="centerX" id="7KO-0N-wS1"/>
+                                    <constraint firstItem="oV5-pq-gIu" firstAttribute="leading" secondItem="Xub-aZ-m1n" secondAttribute="leading" constant="160" id="Gte-EC-NEJ"/>
+                                    <constraint firstItem="oV5-pq-gIu" firstAttribute="top" secondItem="cr7-XH-ptW" secondAttribute="bottom" constant="14" id="VKn-VL-kp5"/>
+                                    <constraint firstAttribute="bottom" secondItem="oV5-pq-gIu" secondAttribute="bottom" constant="20" id="f2I-U3-a9G"/>
+                                    <constraint firstAttribute="trailing" secondItem="oV5-pq-gIu" secondAttribute="trailing" constant="160" id="tH8-mY-BSc"/>
+                                    <constraint firstItem="cr7-XH-ptW" firstAttribute="top" secondItem="Xub-aZ-m1n" secondAttribute="top" constant="60" id="zpk-zq-kvE"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuM-ma-zEK" userLabel="forgot password">
+                                <rect key="frame" x="239" y="547" width="123" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Forgot Password?">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapForgotPassword:" destination="6wk-ZR-PGQ" eventType="touchUpInside" id="lSd-XS-Uvy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xub-aZ-m1n" firstAttribute="leading" secondItem="qo5-IL-907" secondAttribute="leadingMargin" id="00Y-zA-YGE"/>
+                            <constraint firstItem="FQr-Qq-gdF" firstAttribute="top" secondItem="GT3-tZ-AW3" secondAttribute="bottom" id="2T9-3s-uoM"/>
+                            <constraint firstItem="GT3-tZ-AW3" firstAttribute="top" secondItem="qo5-IL-907" secondAttribute="top" id="549-4I-B0L"/>
+                            <constraint firstItem="Xub-aZ-m1n" firstAttribute="top" secondItem="qo5-IL-907" secondAttribute="top" id="72O-gy-SDQ"/>
+                            <constraint firstItem="GT3-tZ-AW3" firstAttribute="leading" secondItem="qo5-IL-907" secondAttribute="leading" id="8Xw-Ir-3gw"/>
+                            <constraint firstItem="FQr-Qq-gdF" firstAttribute="top" secondItem="Xub-aZ-m1n" secondAttribute="bottom" id="9hg-r4-6lI"/>
+                            <constraint firstAttribute="trailing" secondItem="GT3-tZ-AW3" secondAttribute="trailing" id="9rQ-r3-7R5"/>
+                            <constraint firstAttribute="trailing" secondItem="Xub-aZ-m1n" secondAttribute="trailing" id="K56-lH-GXn"/>
+                            <constraint firstAttribute="centerX" secondItem="OuM-ma-zEK" secondAttribute="centerX" id="Qd4-f0-Z3V"/>
+                            <constraint firstItem="Xub-aZ-m1n" firstAttribute="top" secondItem="qo5-IL-907" secondAttribute="topMargin" id="Xj5-jT-wGW"/>
+                            <constraint firstItem="Xub-aZ-m1n" firstAttribute="leading" secondItem="qo5-IL-907" secondAttribute="leading" id="fL5-sL-iBQ"/>
+                            <constraint firstItem="Xub-aZ-m1n" firstAttribute="leading" secondItem="qo5-IL-907" secondAttribute="leading" id="t9U-Z8-BbB"/>
+                            <constraint firstAttribute="bottom" secondItem="OuM-ma-zEK" secondAttribute="bottom" constant="23" id="tXo-bt-uLR"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Xub-aZ-m1n" secondAttribute="bottom" id="vcS-cc-xRv"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="00Y-zA-YGE"/>
+                                <exclude reference="Xj5-jT-wGW"/>
+                                <exclude reference="t9U-Z8-BbB"/>
+                                <exclude reference="vcS-cc-xRv"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="LOGIN" id="et9-Ex-6U6"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="o3e-dg-ZyD" id="c4N-iB-k2Q"/>
+                        <outlet property="formWidthConstraint" destination="sGl-6w-6qf" id="bv0-He-vR7"/>
+                        <outlet property="leftConstraint" destination="Gte-EC-NEJ" id="Dc0-Y1-uEb"/>
+                        <outlet property="loginButton" destination="rhh-9F-ugq" id="Qgz-T9-fqE"/>
+                        <outlet property="logoImageView" destination="cr7-XH-ptW" id="EH5-3w-As5"/>
+                        <outlet property="onePasswordButton" destination="Edr-YI-GFk" id="vBf-83-YwI"/>
+                        <outlet property="passwordTextField" destination="6Ip-wb-pgm" id="knJ-Ys-kHK"/>
+                        <outlet property="rightConstraint" destination="tH8-mY-BSc" id="87L-Oh-nxo"/>
+                        <outlet property="scrollView" destination="Xub-aZ-m1n" id="bjT-MO-b75"/>
+                        <outlet property="usernameTextField" destination="rnk-M5-mH9" id="oaX-JA-A8X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iHm-BH-lqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="580" y="-1278"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="CTw-MB-IfX">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JMV-Ro-Il6" customClass="WebViewController" customModule="Neeman" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kJM-Ck-t2G"/>
+                        <viewControllerLayoutGuide type="bottom" id="oX0-lf-N7P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8it-fA-953">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dfL-P3-BHV"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="/team"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8hc-05-W9z" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="570" y="-424"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gxr-1A-z9L">
+            <objects>
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="on5-8B-9Lg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="cKq-4R-dhx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6wk-ZR-PGQ" kind="relationship" relationship="rootViewController" id="oa3-W6-7fH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3o4-RA-Jjv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-232" y="-1278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logo" width="158" height="56"/>
+        <image name="onepassword-button" width="27" height="27"/>
+    </resources>
+</document>

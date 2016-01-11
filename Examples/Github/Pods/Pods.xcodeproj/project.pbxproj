@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		06FD18B9D50570F95882DEB6F4F0EEFB /* FastClick.js in Resources */ = {isa = PBXBuildFile; fileRef = 0943D9C10E512BF724D2F7B1D845CE2C /* FastClick.js */; };
+		0EA583670BAD10BEDD35BFFEF927B554 /* Pods-Github-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DCF8A5A3E40DDC8D76486E1D57EC45B /* Pods-Github-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		19649B034E333CE6313F07F341C43F6C /* Neeman.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8E04C8B97285425A900B3439286DFF /* Neeman.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A891E43EA043BD4202FD48AADAF25FE /* WebViewController+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828071B503C0B82147F930CAFD7A43B6 /* WebViewController+Popup.swift */; };
+		2164247705DC81240267DDE8E22487B1 /* Pods-Github-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC94D5829B9E0AC955B7C4BDD4EC682 /* Pods-Github-dummy.m */; };
+		263A96881883F5EBB15BD5EB37F4E36F /* WKWebView+Neeman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50FCF49A70B774BEF41469631EC836E /* WKWebView+Neeman.swift */; };
+		31BE98CAFE5E2BFB50F799073060E41C /* WKWebViewConfiguration+Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28965D26D3B2F1C2F2EB6BB1DBB32A38 /* WKWebViewConfiguration+Javascript.swift */; };
+		3F7D3422B98477085C6B3EA20A32D20B /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B742A920133A81B105817DC5979C5C01 /* SafariServices.framework */; };
+		472E29674AC2B069A8FEAB6367095D4E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894AEAED1D64933BCFFA444F12BC90C5 /* Settings.swift */; };
+		49D84C10C3031467894ADFADCE814C17 /* AtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = 8633583B009FC2F085351819A6F3A2B7 /* AtDocumentEnd.js */; };
+		4B1C16F0A5D9A03C85AE68CEC8C8A368 /* WebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53A4AF0F0A37C57379D27428C807D94 /* WebViewObserver.swift */; };
+		59DD7C8C3C4C1A5497B5AA33DA6FA48A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9F7C15A7A072C1AA463B8C15E3A110 /* WebKit.framework */; };
+		64AD8EFCFE7A862D2F8DCFA1EB92FCEE /* ProcessPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E17448D9010622C07F43D037250CF7 /* ProcessPool.swift */; };
+		6CE266075054600BAF8E956715A1EC4E /* WebViewController+WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAD8B3593E0F41E4897051074459774 /* WebViewController+WebView.swift */; };
+		70E44D2734F713DCF59F24014CE1ADD7 /* Neeman-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C6EEBFC915BCB7E2A3C422C99CE6BBB /* Neeman-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		92CC31EA1485798CC65925D8BE32F9AC /* WebViewUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC1C66BB589FE57A09ACFE330792B7 /* WebViewUIDelegate.swift */; };
+		941D4B826DFE34AE32D1142BEB7A7339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBBBACF0DFD83420D0C93E4B162BBAD /* Foundation.framework */; };
+		9A7A39537F8AB9F117573CA95697E3AE /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = B10C554FC8691A3B44B79C6881212B20 /* WebView.css */; };
+		A70019FB88844A1F9B25A7D816AED042 /* WebViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E8C33A1BFBA22CB460F485CD0CDE5B /* WebViewNavigationDelegate.swift */; };
+		ADED55CB17F93F82F9F9E8F763628F9B /* WebViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06719A6938F2F2E6C15E0EBE838FE2 /* WebViewController+Errors.swift */; };
+		B0A37BFFD67BD639D506E9CD5E9270C4 /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 534F937D903BB7E7379AE1F03485F9CA /* Neeman.storyboard */; };
+		C0A45C6266357DDACF8ECB6E3B04A295 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBBBACF0DFD83420D0C93E4B162BBAD /* Foundation.framework */; };
+		D0F36CB87D4A129117F6B9492BB060C5 /* AtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = 192F7F84F1F040F3977C2C0F121D03F2 /* AtDocumentStart.js */; };
+		D182990657C1B780511FCD69EA8CA4EB /* InjectCSS.js in Resources */ = {isa = PBXBuildFile; fileRef = DEE6F000C30A75A7753571551CB775FD /* InjectCSS.js */; };
+		E14AAA5FF28AE61B4D1EF3F51BA1A850 /* Neeman-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AD8D706466398A70D66FADA9A526E3 /* Neeman-dummy.m */; };
+		E205F4F59E7CEB58951D1A5F7A2BAEF6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AADC6155B2F7A04AD69A6059AAC342 /* WebViewController.swift */; };
+		E41D3F5488A1B3328D73994DA86E71CA /* WebViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0AF88ACE37175267F0D66D03457DAE /* WebViewController+Loading.swift */; };
+		EDC52509EAE4FA068D863B54036BDC6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D090F12EA1EBF7EAEA96E4C13D601611 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2CC67781DDBFD919EB0669C8A0CE6216 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D5B2D83106FEAA7F7DFAD4FC2CCEFA1;
+			remoteInfo = Neeman;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0943D9C10E512BF724D2F7B1D845CE2C /* FastClick.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = FastClick.js; sourceTree = "<group>"; };
+		16E8C33A1BFBA22CB460F485CD0CDE5B /* WebViewNavigationDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegate.swift; sourceTree = "<group>"; };
+		17E7354FB5D3BF5D69A654F174E6E74A /* Pods-Github.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Github.debug.xcconfig"; sourceTree = "<group>"; };
+		192F7F84F1F040F3977C2C0F121D03F2 /* AtDocumentStart.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = AtDocumentStart.js; sourceTree = "<group>"; };
+		28965D26D3B2F1C2F2EB6BB1DBB32A38 /* WKWebViewConfiguration+Javascript.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WKWebViewConfiguration+Javascript.swift"; sourceTree = "<group>"; };
+		2B9F7C15A7A072C1AA463B8C15E3A110 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		2DCF8A5A3E40DDC8D76486E1D57EC45B /* Pods-Github-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Github-umbrella.h"; sourceTree = "<group>"; };
+		3C6EEBFC915BCB7E2A3C422C99CE6BBB /* Neeman-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Neeman-umbrella.h"; sourceTree = "<group>"; };
+		3FBBBACF0DFD83420D0C93E4B162BBAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		534F937D903BB7E7379AE1F03485F9CA /* Neeman.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Neeman.storyboard; sourceTree = "<group>"; };
+		5AAD8B3593E0F41E4897051074459774 /* WebViewController+WebView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+WebView.swift"; sourceTree = "<group>"; };
+		60FC70142A578AC07B1D993578D4B7BB /* Pods_Github.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Github.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		687999C47B12510051152BED534D0230 /* Pods-Github-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Github-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6C0DC3C60418978924C85942EE8A3DC6 /* Pods-Github.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Github.modulemap"; sourceTree = "<group>"; };
+		799E9A8A9E5EFD2D616E7444DC340ED5 /* Pods-Github-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Github-resources.sh"; sourceTree = "<group>"; };
+		7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Neeman.xcconfig; sourceTree = "<group>"; };
+		7E8E04C8B97285425A900B3439286DFF /* Neeman.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Neeman.h; sourceTree = "<group>"; };
+		7EC94D5829B9E0AC955B7C4BDD4EC682 /* Pods-Github-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Github-dummy.m"; sourceTree = "<group>"; };
+		82425D44161DC749F4D83AD76BE66B39 /* Neeman.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Neeman.modulemap; sourceTree = "<group>"; };
+		828071B503C0B82147F930CAFD7A43B6 /* WebViewController+Popup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+Popup.swift"; sourceTree = "<group>"; };
+		8633583B009FC2F085351819A6F3A2B7 /* AtDocumentEnd.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = AtDocumentEnd.js; sourceTree = "<group>"; };
+		894AEAED1D64933BCFFA444F12BC90C5 /* Settings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		91AADC6155B2F7A04AD69A6059AAC342 /* WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		935382083043ECDDEA77B17B4C6DD3E5 /* Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		964FFA1F7DB387FD1942F17FF0AD9596 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AE06CC473191D33A1F739D2040C2A38 /* Pods-Github.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Github.release.xcconfig"; sourceTree = "<group>"; };
+		B10C554FC8691A3B44B79C6881212B20 /* WebView.css */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.css; path = WebView.css; sourceTree = "<group>"; };
+		B742A920133A81B105817DC5979C5C01 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C0AD8D706466398A70D66FADA9A526E3 /* Neeman-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Neeman-dummy.m"; sourceTree = "<group>"; };
+		C3CC1C66BB589FE57A09ACFE330792B7 /* WebViewUIDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewUIDelegate.swift; sourceTree = "<group>"; };
+		C53A4AF0F0A37C57379D27428C807D94 /* WebViewObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewObserver.swift; sourceTree = "<group>"; };
+		C91BB2DF2E6B13FBC62F6EEBA1164666 /* Pods-Github-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Github-acknowledgements.plist"; sourceTree = "<group>"; };
+		CD06719A6938F2F2E6C15E0EBE838FE2 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+Errors.swift"; sourceTree = "<group>"; };
+		CE0AF88ACE37175267F0D66D03457DAE /* WebViewController+Loading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+Loading.swift"; sourceTree = "<group>"; };
+		D090F12EA1EBF7EAEA96E4C13D601611 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D50FCF49A70B774BEF41469631EC836E /* WKWebView+Neeman.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WKWebView+Neeman.swift"; sourceTree = "<group>"; };
+		D597FE4372DBD8D365B1B5ECB5680398 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEE6F000C30A75A7753571551CB775FD /* InjectCSS.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = InjectCSS.js; sourceTree = "<group>"; };
+		E1E5606984DE18E11E98B15E5D75A49A /* Pods-Github-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Github-frameworks.sh"; sourceTree = "<group>"; };
+		ECA35280D3530DBA2CAA02010DA0D1F3 /* Neeman-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Neeman-prefix.pch"; sourceTree = "<group>"; };
+		F3E17448D9010622C07F43D037250CF7 /* ProcessPool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProcessPool.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FD3AF5ACEC61F37F0BC3CB0A7FF0C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0A45C6266357DDACF8ECB6E3B04A295 /* Foundation.framework in Frameworks */,
+				3F7D3422B98477085C6B3EA20A32D20B /* SafariServices.framework in Frameworks */,
+				59DD7C8C3C4C1A5497B5AA33DA6FA48A /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7A759F19DF7BA163EB7FF20045016F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				941D4B826DFE34AE32D1142BEB7A7339 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09185A780CC6B291BE8A74E29A310394 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				45B9E69E9085D4234F2DF37BEBBAED0A /* Neeman */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		12110F8BC3AAABF64C5FABAB48A87E19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				935382083043ECDDEA77B17B4C6DD3E5 /* Neeman.framework */,
+				60FC70142A578AC07B1D993578D4B7BB /* Pods_Github.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4A0A2F89F5308CF141F3E95DD5CEF79 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3689D6A6C46F90B9F67C280012BAAAD5 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A63395F57E5CAE2D064BD4C8E6087213 /* Pods-Github */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		381F68760A9503ABE3BA6FBE391504BA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD06719A6938F2F2E6C15E0EBE838FE2 /* WebViewController+Errors.swift */,
+				CE0AF88ACE37175267F0D66D03457DAE /* WebViewController+Loading.swift */,
+				828071B503C0B82147F930CAFD7A43B6 /* WebViewController+Popup.swift */,
+				5AAD8B3593E0F41E4897051074459774 /* WebViewController+WebView.swift */,
+				D50FCF49A70B774BEF41469631EC836E /* WKWebView+Neeman.swift */,
+				28965D26D3B2F1C2F2EB6BB1DBB32A38 /* WKWebViewConfiguration+Javascript.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4507FD6D181214CAB8B660B5B062E7FB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				894AEAED1D64933BCFFA444F12BC90C5 /* Settings.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		45B9E69E9085D4234F2DF37BEBBAED0A /* Neeman */ = {
+			isa = PBXGroup;
+			children = (
+				FC84FBA152405D8E140C31AF83D59DC9 /* Resources */,
+				9D9CF2D8D913ABEBDDD99936BCFD930D /* Source */,
+				F5A865EFAC0C36DF821D165C71FBF239 /* Support Files */,
+			);
+			name = Neeman;
+			path = /Users/stephen/Documents/Code/Intellum/PodsLocal/Neeman;
+			sourceTree = "<absolute>";
+		};
+		4CBCF7646C57BF6D48E41DF434481BC1 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				8633583B009FC2F085351819A6F3A2B7 /* AtDocumentEnd.js */,
+				192F7F84F1F040F3977C2C0F121D03F2 /* AtDocumentStart.js */,
+				0943D9C10E512BF724D2F7B1D845CE2C /* FastClick.js */,
+				DEE6F000C30A75A7753571551CB775FD /* InjectCSS.js */,
+				B10C554FC8691A3B44B79C6881212B20 /* WebView.css */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				09185A780CC6B291BE8A74E29A310394 /* Development Pods */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				12110F8BC3AAABF64C5FABAB48A87E19 /* Products */,
+				3689D6A6C46F90B9F67C280012BAAAD5 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9BAE6F9617DB92F9DC32042AA993A1ED /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				91AADC6155B2F7A04AD69A6059AAC342 /* WebViewController.swift */,
+				16E8C33A1BFBA22CB460F485CD0CDE5B /* WebViewNavigationDelegate.swift */,
+				C53A4AF0F0A37C57379D27428C807D94 /* WebViewObserver.swift */,
+				C3CC1C66BB589FE57A09ACFE330792B7 /* WebViewUIDelegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9D9CF2D8D913ABEBDDD99936BCFD930D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7E8E04C8B97285425A900B3439286DFF /* Neeman.h */,
+				F3E17448D9010622C07F43D037250CF7 /* ProcessPool.swift */,
+				9BAE6F9617DB92F9DC32042AA993A1ED /* Controllers */,
+				381F68760A9503ABE3BA6FBE391504BA /* Extensions */,
+				4507FD6D181214CAB8B660B5B062E7FB /* Managers */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		A63395F57E5CAE2D064BD4C8E6087213 /* Pods-Github */ = {
+			isa = PBXGroup;
+			children = (
+				D597FE4372DBD8D365B1B5ECB5680398 /* Info.plist */,
+				6C0DC3C60418978924C85942EE8A3DC6 /* Pods-Github.modulemap */,
+				687999C47B12510051152BED534D0230 /* Pods-Github-acknowledgements.markdown */,
+				C91BB2DF2E6B13FBC62F6EEBA1164666 /* Pods-Github-acknowledgements.plist */,
+				7EC94D5829B9E0AC955B7C4BDD4EC682 /* Pods-Github-dummy.m */,
+				E1E5606984DE18E11E98B15E5D75A49A /* Pods-Github-frameworks.sh */,
+				799E9A8A9E5EFD2D616E7444DC340ED5 /* Pods-Github-resources.sh */,
+				2DCF8A5A3E40DDC8D76486E1D57EC45B /* Pods-Github-umbrella.h */,
+				17E7354FB5D3BF5D69A654F174E6E74A /* Pods-Github.debug.xcconfig */,
+				9AE06CC473191D33A1F739D2040C2A38 /* Pods-Github.release.xcconfig */,
+			);
+			name = "Pods-Github";
+			path = "Target Support Files/Pods-Github";
+			sourceTree = "<group>";
+		};
+		C4A0A2F89F5308CF141F3E95DD5CEF79 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3FBBBACF0DFD83420D0C93E4B162BBAD /* Foundation.framework */,
+				B742A920133A81B105817DC5979C5C01 /* SafariServices.framework */,
+				2B9F7C15A7A072C1AA463B8C15E3A110 /* WebKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		C90CF0D75F88EE45096F23939FB143E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D090F12EA1EBF7EAEA96E4C13D601611 /* Assets.xcassets */,
+				534F937D903BB7E7379AE1F03485F9CA /* Neeman.storyboard */,
+				4CBCF7646C57BF6D48E41DF434481BC1 /* js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F5A865EFAC0C36DF821D165C71FBF239 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				964FFA1F7DB387FD1942F17FF0AD9596 /* Info.plist */,
+				82425D44161DC749F4D83AD76BE66B39 /* Neeman.modulemap */,
+				7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */,
+				C0AD8D706466398A70D66FADA9A526E3 /* Neeman-dummy.m */,
+				ECA35280D3530DBA2CAA02010DA0D1F3 /* Neeman-prefix.pch */,
+				3C6EEBFC915BCB7E2A3C422C99CE6BBB /* Neeman-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../../Demo/Github/Pods/Target Support Files/Neeman";
+			sourceTree = "<group>";
+		};
+		FC84FBA152405D8E140C31AF83D59DC9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C90CF0D75F88EE45096F23939FB143E1 /* Resources */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3F74637997F29679857F26E64D675ACC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EA583670BAD10BEDD35BFFEF927B554 /* Pods-Github-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCEDA57D6578FDE2FB76574AD750FE2B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70E44D2734F713DCF59F24014CE1ADD7 /* Neeman-umbrella.h in Headers */,
+				19649B034E333CE6313F07F341C43F6C /* Neeman.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3D5B2D83106FEAA7F7DFAD4FC2CCEFA1 /* Neeman */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1D6B1BFA209C8527EA7A6FFDC2E03CF /* Build configuration list for PBXNativeTarget "Neeman" */;
+			buildPhases = (
+				43ED2423F5373F5DBAE619AB8F998CEB /* Sources */,
+				2FD3AF5ACEC61F37F0BC3CB0A7FF0C7B /* Frameworks */,
+				CCEDA57D6578FDE2FB76574AD750FE2B /* Headers */,
+				7947AECC19074ADDC66F51B2015A5EB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Neeman;
+			productName = Neeman;
+			productReference = 935382083043ECDDEA77B17B4C6DD3E5 /* Neeman.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		40B7A0EB2A28C51E85A4613BF2C59B69 /* Pods-Github */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD046028A3665D9C4E29B6CC2023521C /* Build configuration list for PBXNativeTarget "Pods-Github" */;
+			buildPhases = (
+				CE8C884DADF4E6C959CD54D59840CB92 /* Sources */,
+				E7A759F19DF7BA163EB7FF20045016F8 /* Frameworks */,
+				3F74637997F29679857F26E64D675ACC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9B990F1EA5E2D85BDE0D150807912262 /* PBXTargetDependency */,
+			);
+			name = "Pods-Github";
+			productName = "Pods-Github";
+			productReference = 60FC70142A578AC07B1D993578D4B7BB /* Pods_Github.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 12110F8BC3AAABF64C5FABAB48A87E19 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D5B2D83106FEAA7F7DFAD4FC2CCEFA1 /* Neeman */,
+				40B7A0EB2A28C51E85A4613BF2C59B69 /* Pods-Github */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7947AECC19074ADDC66F51B2015A5EB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDC52509EAE4FA068D863B54036BDC6B /* Assets.xcassets in Resources */,
+				49D84C10C3031467894ADFADCE814C17 /* AtDocumentEnd.js in Resources */,
+				D0F36CB87D4A129117F6B9492BB060C5 /* AtDocumentStart.js in Resources */,
+				06FD18B9D50570F95882DEB6F4F0EEFB /* FastClick.js in Resources */,
+				D182990657C1B780511FCD69EA8CA4EB /* InjectCSS.js in Resources */,
+				B0A37BFFD67BD639D506E9CD5E9270C4 /* Neeman.storyboard in Resources */,
+				9A7A39537F8AB9F117573CA95697E3AE /* WebView.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		43ED2423F5373F5DBAE619AB8F998CEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14AAA5FF28AE61B4D1EF3F51BA1A850 /* Neeman-dummy.m in Sources */,
+				64AD8EFCFE7A862D2F8DCFA1EB92FCEE /* ProcessPool.swift in Sources */,
+				472E29674AC2B069A8FEAB6367095D4E /* Settings.swift in Sources */,
+				ADED55CB17F93F82F9F9E8F763628F9B /* WebViewController+Errors.swift in Sources */,
+				E41D3F5488A1B3328D73994DA86E71CA /* WebViewController+Loading.swift in Sources */,
+				1A891E43EA043BD4202FD48AADAF25FE /* WebViewController+Popup.swift in Sources */,
+				6CE266075054600BAF8E956715A1EC4E /* WebViewController+WebView.swift in Sources */,
+				E205F4F59E7CEB58951D1A5F7A2BAEF6 /* WebViewController.swift in Sources */,
+				A70019FB88844A1F9B25A7D816AED042 /* WebViewNavigationDelegate.swift in Sources */,
+				4B1C16F0A5D9A03C85AE68CEC8C8A368 /* WebViewObserver.swift in Sources */,
+				92CC31EA1485798CC65925D8BE32F9AC /* WebViewUIDelegate.swift in Sources */,
+				263A96881883F5EBB15BD5EB37F4E36F /* WKWebView+Neeman.swift in Sources */,
+				31BE98CAFE5E2BFB50F799073060E41C /* WKWebViewConfiguration+Javascript.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE8C884DADF4E6C959CD54D59840CB92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2164247705DC81240267DDE8E22487B1 /* Pods-Github-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9B990F1EA5E2D85BDE0D150807912262 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Neeman;
+			target = 3D5B2D83106FEAA7F7DFAD4FC2CCEFA1 /* Neeman */;
+			targetProxy = 2CC67781DDBFD919EB0669C8A0CE6216 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		205CB9826818D8DFEBD80141456AF28E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17E7354FB5D3BF5D69A654F174E6E74A /* Pods-Github.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Github/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Github/Pods-Github.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Github;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3405E62EFA2E4680270A80501AD84647 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AE06CC473191D33A1F739D2040C2A38 /* Pods-Github.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Github/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Github/Pods-Github.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Github;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9EB645C612834738B99727720210C23E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		BA206DBE2DA4B618EFF403AB7D22AF6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Neeman/Neeman-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Neeman/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Neeman/Neeman.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Neeman;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D711BD133BA4449111DDCA45D40F7C79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BE02E2886FEE70AF4192CA8C55657F4 /* Neeman.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Neeman/Neeman-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Neeman/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Neeman/Neeman.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Neeman;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E39CD1E764776175CB82EEC82A6C9948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EB645C612834738B99727720210C23E /* Debug */,
+				E39CD1E764776175CB82EEC82A6C9948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1D6B1BFA209C8527EA7A6FFDC2E03CF /* Build configuration list for PBXNativeTarget "Neeman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA206DBE2DA4B618EFF403AB7D22AF6C /* Debug */,
+				D711BD133BA4449111DDCA45D40F7C79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD046028A3665D9C4E29B6CC2023521C /* Build configuration list for PBXNativeTarget "Pods-Github" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				205CB9826818D8DFEBD80141456AF28E /* Debug */,
+				3405E62EFA2E4680270A80501AD84647 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

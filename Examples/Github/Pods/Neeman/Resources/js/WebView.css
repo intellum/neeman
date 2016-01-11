@@ -1,0 +1,11 @@
+.header-container, nav, #gd-topbar {
+    display: none !important;
+}
+
+#gd-navigator-launcher {
+    display: none !important;
+}
+
+canvas {
+    -webkit-tap-highlight-color: transparent;
+}
