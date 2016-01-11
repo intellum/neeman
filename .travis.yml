@@ -1,3 +1,9 @@
 language: objective-c
 xcode_project: Neeman.xcodeproj
 xcode_scheme: Neeman
+
+script:
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild -project Neeman.xcodeproj -scheme Neeman -destination "OS=9.2,name=iPhone 6S Plus" test | xcpretty -c
