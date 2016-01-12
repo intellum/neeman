@@ -16,7 +16,9 @@ public class WebViewController: UIViewController,
     @IBOutlet var progressView: UIProgressView?
 
     // MARK: Properties
+    
     var mySettings: Settings?
+    /// The settings to set the web view up with.
     public var settings: Settings {
         get {
             return mySettings ?? Settings()
@@ -25,18 +27,28 @@ public class WebViewController: UIViewController,
             mySettings = newValue
         }
     }
+    /// The navigation delegate that will receive changes in loading, estimated progress and further navigation.
     public var navigationDelegate: WebViewNavigationDelegate?
+    /// The UI delegate that allows us to implement our own code to handle window.open(), alert(), confirm() and prompt().
     public var uiDelegate: WebViewUIDelegate?
+    /// This is a popup window that is opened when javascript code calles window.open().
     var uiDelegatePopup: WebViewUIDelegate?
     
-    /// The initial NSURL to display in the web view.
+    /// The initial NSURL that the web view is loading. Use rootURLString to set the URL.
     public var rootURL: NSURL? {
         get {
             return NSURL(string: rootAbsoluteURLString ?? "")
         }
     }
-    /// The initial URL to display in the web view. Set this in your storyboard in the "User Defined Runtime Attributes"
+    
+    /** The initial URL to display in the web view. Set this in your storyboard in the "User Defined Runtime Attributes"
+    You can set baseURL in Settings if you would like to use relative URLs instead.
+     */
     @IBInspectable public var rootURLString: String?
+    
+    /** If rootURLString is not an absolute URL and if you have set the baseURL in Settings 
+     then this returns the absolute URL by combining the two.
+     */
     var rootAbsoluteURLString: String? {
         get {
             if let rootURLString = rootURLString where rootURLString.rangeOfString("://") == nil {
@@ -50,17 +62,28 @@ public class WebViewController: UIViewController,
         When you pull down your webView the page will be refreshed.
     */
     public var refreshControl: UIRefreshControl?
+    
+    /** This is set once the web view has successfully loaded. If for some reason the page doesn't load
+        then we know know when we return we should try again.
+     */
     var hasLoadedContent: Bool = false
 
     /**
      The WKWebView in which the content of the URL defined in rootURLString will be dispayed.
      */
     public var webView: WKWebView!
+    
+    /// A web view that is used to display a window that was opened with window.open().
     public var webViewPopup: WKWebView?
     
+    /// Observes properties of a web view such as loading, estimatedProgress and its title.
     var webViewObserver: WebViewObserver = WebViewObserver()
     
     //MARK: Lifecycle
+    
+    /**
+    Setup the web view, the refresh controll, the activity indicator, progress view and observers.
+    */
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,6 +95,9 @@ public class WebViewController: UIViewController,
         webViewObserver.delegate = self
     }
     
+    /**
+     Setup the notification handlers and KVO.
+     */
     func addObservers() {
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "didLogout:", name: WebViewControllerDidLogout, object: nil)
@@ -80,12 +106,20 @@ public class WebViewController: UIViewController,
         webViewObserver.startObservingWebView(webView)
     }
     
+    /**
+     Stop observing notifications and KVO.
+     */
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         webViewObserver.stopObservingWebView(webViewPopup)
         webViewObserver.stopObservingWebView(webView)
     }
 
+    /**
+     In here we check to see if we have previously loaded a page successfully. If not we reload the root URL.
+     
+     - parameter animated: Was the appearence animated.
+     */
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -94,6 +128,10 @@ public class WebViewController: UIViewController,
         }
     }
 
+    /**
+     Since iOS only automatically adjusts scroll view insets for the main web view 
+     we have to do it ourselves for the popup web view.
+     */
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.webViewPopup?.scrollView.contentInset = self.webView.scrollView.contentInset
@@ -101,10 +139,22 @@ public class WebViewController: UIViewController,
     }
     
     // MARK: Notification Handlers
+    
+    /**
+    In here we set hasLoadedContent so that we reload the page after returning back.
+    
+    - parameter notification: The notification received.
+    */
     public func didLogout(notification: NSNotification) {
         self.hasLoadedContent = false
     }
     
+    /**
+     This forces an imidiate reload of the page using the rootURL. You can override this method if you 
+     would prefer instead just to call any of the web view's methods to reload.
+     
+     - parameter notification: The notification received.
+     */
     public func didLogin(notification: NSNotification) {
         loadURL(rootURL)
     }
@@ -121,6 +171,12 @@ public class WebViewController: UIViewController,
     }
 
     //MARK: NeemanNavigationDelegate
+
+    /**
+    Pushes a new web view onto the navigation stack.
+    
+    - parameter url: The URL to load in the web view.
+    */
     public func pushNewWebViewControllerWithURL(url: NSURL) {
         print("Pushing: \(url.absoluteString)")
         if let webViewController = createNewWebViewController() {
@@ -131,6 +187,12 @@ public class WebViewController: UIViewController,
         }
     }
     
+    /**
+     Creates a new web view using the Neeman.storyboard. If you would like to load a web view controller from your
+     own storyboard then you should override this method and use your subclass in your storyboard.
+     
+     - returns: A new web view controller.
+     */
     public func createNewWebViewController() -> WebViewController? {
         let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
         if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
@@ -140,21 +202,46 @@ public class WebViewController: UIViewController,
         return nil
     }
     
+    /**
+     Decide if we should prevent a request from being loading in a new web view.
+     It will instead be loaded in the current one.
+     
+     - parameter request: The request that is about to be loaded.
+     
+     - returns: false
+     */
     public func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool {
         return false
     }
     
+    /**
+     Decide if we should force the request to be loaded in a new web view.
+     
+     This is useful if a page is setting document.location within a click handler.
+     Web kit does not realise that this was from a "link" click. In this case we can make sure it is handled like a link.
+     
+     - parameter request: The request that will be loaded.
+     
+     - returns: false
+     */
     public func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
         return false
     }
     
+    /**
+     Default implementation doesn't do anything.
+     
+     - parameter webView: The web view that finished navigating.
+     - parameter url:     The final URL of the web view.
+     */
     public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {}
     
-    // MARK: Authentication
-    public func showLogin() {
-        print("Implement showLogin() to display your custom login UI.")
-    }
-
+    /**
+     Desides how to handle an error based on its code.
+     
+     - parameter webView: The web view the error came from.
+     - parameter error:   The error the web view incountered.
+     */
     public func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
         var message: String?
 
@@ -176,14 +263,31 @@ public class WebViewController: UIViewController,
         }
     }
 
+    /**
+     This is called when a message is received from your injected javascript code. 
+     
+     You will have to register to receive these script messages.
+     
+     ```swift
+     webView.configuration.userContentController.addScriptMessageHandler(self, name: "yourMessageName")
+     ```
+     
+     - parameter userContentController: The user content controller that is managing you messages.
+     - parameter message:               The script message received from your javascript.
+     */
     public func userContentController(userContentController: WKUserContentController,
         didReceiveScriptMessage message: WKScriptMessage) {
     }
     
     // MARK: WebView
     
-    public func loadURL(url: NSURL?) {
-        guard let url = url else {
+    /**
+    Load a new URL in the web view.
+    
+    - parameter URL: The URL to laod.
+    */
+    public func loadURL(URL: NSURL?) {
+        guard let URL = URL else {
             showURLError()
             return
         }
@@ -192,9 +296,14 @@ public class WebViewController: UIViewController,
         hasLoadedContent = false
         
         progressView?.setProgress(0, animated: false)
-        loadRequest(NSMutableURLRequest(URL: url))
+        loadRequest(NSMutableURLRequest(URL: URL))
     }
     
+    /**
+     Load a new request in the web view.
+     
+     - parameter request: The request to load.
+     */
     public func loadRequest(request: NSMutableURLRequest?) {
         if let request = request {
             webView.loadRequest(request)
@@ -204,7 +313,8 @@ public class WebViewController: UIViewController,
 
 // MARK: Notifications
 
-/** Posted when the user logged out though the WebViewController.didTapLogout:sender method.
+/** Posting this will cause the didLogout(_:) method to be called. 
+You can post this when you logout so that pages are reloaded after logging back in again.
 */
 public let WebViewControllerDidLogout = "WebViewControllerDidLogout"
 

@@ -2,7 +2,10 @@ import UIKit
 import WebKit
 
 extension WebViewController {
-    
+
+    /**
+     Setup the refresh control for reloading the web view.
+     */
     public func setupRefreshControl() {
         let newRefreshControl = UIRefreshControl()
         newRefreshControl.attributedTitle = NSAttributedString(string: "")
@@ -11,6 +14,11 @@ extension WebViewController {
         refreshControl = newRefreshControl
     }
     
+    /**
+     This action is called by the refresh control.
+     
+     - parameter sender: The refresh control that wants the page to refresh.
+     */
     func refresh(sender: AnyObject) {
         loadURL(rootURL)
     }
@@ -31,6 +39,12 @@ extension WebViewController {
         }
     }
     
+    /**
+     This is called when the web view change its estimate loading progress.
+     
+     - parameter webView:           The web view.
+     - parameter estimatedProgress: The estimated fraction of the progress toward loading the page.
+     */
     public func webView(webView: WKWebView, didChangeEstimatedProgress estimatedProgress: Double) {
         progressView?.setProgress(Float(estimatedProgress), animated: true)
     }
@@ -118,6 +132,12 @@ extension WebViewController {
         view.addConstraint(yConstraint)
     }
     
+    /**
+     This is called when there is a posibly a need to update the status of the activity indicator. 
+     For example, when the web view loading status has changed.
+     
+     - parameter webView: The web view whose activity we should indicate.
+     */
     func updateActivityIndicatorWithWebView(webView: WKWebView) {
         guard let activityIndicator = activityIndicator else {
             return
@@ -131,7 +151,12 @@ extension WebViewController {
             activityIndicator.stopAnimating()
         }
     }
-    
+    /**
+     This is called when there is a posibly a need to update the status of the progress view.
+     For example, when the web view's estimated progress has changed.
+     
+     - parameter webView: The web view whose progress we should indicate.
+     */
     func updateProgressViewWithWebView(webView: WKWebView) {
         guard let progressView = progressView else {
             return

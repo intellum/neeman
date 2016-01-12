@@ -2,6 +2,9 @@ import UIKit
 import WebKit
 
 extension WebViewController {
+    /**
+     Sets up the main web view.
+     */
     public func setupWebView() {
         let webViewConfig = WKWebViewConfiguration().setupWithSettings(settings)
         
@@ -22,6 +25,11 @@ extension WebViewController {
         autolayoutWebView(webView)
     }
     
+    /**
+     Autolayout the main web view.
+     
+     - parameter webView: The web view to layout.
+     */
     public func autolayoutWebView(webView: WKWebView) {
         let views = ["webView":webView] as [String: AnyObject]
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[webView(>=0)]-0-|",

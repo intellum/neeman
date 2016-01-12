@@ -1,20 +1,54 @@
 import UIKit
 import WebKit
 
+/**
+ *  This is used to allow a controller to implement code to handle window.open() alert(), confirm() and prompt()
+ */
 public protocol NeemanUIDelegate: NSObjectProtocol {
+    /**
+     This is called when a web view should be pushed onto the navigation stack.
+     
+     - parameter url: The URL to load in the new web view.
+     */
     func pushNewWebViewControllerWithURL(url: NSURL)
+    /**
+     Open a new window. This is where you implement something like a new tab in a browser.
+     
+     - parameter newWebView: The new web view that should become your tab.
+     - parameter url:        The URL to display in the new tab.
+     */
     func popupWebView(newWebView: WKWebView, withURL url: NSURL)
+    
+    /**
+     Close the tab.
+    
+     - parameter webView: The web view that should be closed.
+     */
     func closeWebView(webView: WKWebView)
+    
+    /**
+     This is called when a script from a 3rd party domain calles alert(), confirm() or prompt().
+     
+     - parameter request: The request representing the url of the calling script.
+     */
     func refusedUIFromRequest(request: NSURLRequest)
 }
 
 extension NeemanUIDelegate {
+    /// Does nothing.
     public func pushNewWebViewControllerWithURL(url: NSURL) {}
+    /// Does nothing.
     public func popupWebView(newWebView: WKWebView, withURL url: NSURL) {}
+    /// Does nothing.
     public func closeWebView(webView: WKWebView) {}
+    /// Does nothing.
     public func refusedUIFromRequest(request: NSURLRequest) {}
 }
 
+/** This class implements WKUIDelegate. It implements alert(), confirm() and prompt() using an alert controller.
+ 
+ When window.open() is called it creates a new web view and passes this to the NeemanUIDelegate.
+*/
 public class WebViewUIDelegate: NSObject, WKUIDelegate {
     
     weak var delegate: NeemanUIDelegate?
@@ -25,6 +59,18 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
         super.init()
     }
 
+    /**
+     This is called when window.open() is called.
+     
+     You can use this to implement something like tabs in a browser.
+     
+     - parameter webView:          The parent web view.
+     - parameter configuration:    The configuration to use when creating the new web view.
+     - parameter navigationAction: The navigation action causing the new web view to be created.
+     - parameter windowFeatures:   Window features requested by the webpage.
+     
+     - returns: A new web view or nil.
+     */
     public func webView(webView: WKWebView,
         createWebViewWithConfiguration configuration: WKWebViewConfiguration,
         forNavigationAction navigationAction: WKNavigationAction,
@@ -42,10 +88,26 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             return newWebView
     }
     
+    /**
+     Notifies your app that the DOM window object's close() method completed successfully.
+     
+     Your app should remove the web view from the view hierarchy and update
+     the UI as needed, such as by closing the containing browser tab or window.
+     
+     - parameter webView: The web view that is being closed.
+     */
     public func webViewDidClose(webView: WKWebView) {
         delegate?.closeWebView(webView)
     }
     
+    /**
+     Displays a JavaScript alert() panel.
+     
+     - parameter webView:           The web view invoking the delegate method.
+     - parameter message:           The message to display.
+     - parameter frame:             Information about the frame whose JavaScript initiated this call.
+     - parameter completionHandler: The completion handler to call after the alert panel has been dismissed.
+     */
     public func webView(webView: WKWebView,
         runJavaScriptAlertPanelWithMessage message: String,
         initiatedByFrame frame: WKFrameInfo,
@@ -68,6 +130,15 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             presentAlertController(alert)
     }
     
+    /**
+     Displays a JavaScript confirm() panel.
+     
+     - parameter webView:           The web view invoking the delegate method.
+     - parameter message:           The message to display.
+     - parameter frame:             Information about the frame whose JavaScript initiated this call.
+     - parameter completionHandler: The completion handler to call after the confirm
+     panel has been dismissed. Pass YES if the user chose OK, NO if the user chose Cancel.
+     */
     public func webView(webView: WKWebView,
         runJavaScriptConfirmPanelWithMessage message: String,
         initiatedByFrame frame: WKFrameInfo,
@@ -97,6 +168,17 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             presentAlertController(alert)
     }
     
+    /**
+     Displays a JavaScript text input panel resulting from the prompt() method.
+     
+     - parameter webView:           The web view invoking the delegate method.
+     - parameter prompt:            The prompt to display.
+     - parameter defaultText:       The initial text to display in the text entry field.
+     - parameter frame:             Information about the frame whose JavaScript initiated this call.
+     - parameter completionHandler: The completion handler to call after the text
+     input panel has been dismissed. Pass the entered text if the user chose
+     OK, otherwise nil.
+     */
     public func webView(webView: WKWebView,
         runJavaScriptTextInputPanelWithPrompt prompt: String,
         defaultText: String?,
@@ -132,7 +214,12 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             presentAlertController(alert)
     }
     
-    public func presentAlertController(alert: UIAlertController) {
+    /**
+     Presents the alert controller in the windows root view controller.
+     
+     - parameter alert: The alert controller to present.
+     */
+    internal func presentAlertController(alert: UIAlertController) {
         guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController else {
             return
         }
@@ -140,10 +227,23 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
         rootViewController.presentViewController(alert, animated: true, completion: nil)
     }
     
-    public func refusedUIFromRequest(request: NSURLRequest) {
+    /**
+     This is called when javascript from a different domain tries to call either alert(), confirm() or prompt(). 
+     You can override this to log the offending domains.
+     
+     - parameter request: The request from the offending frame.
+     */
+    internal func refusedUIFromRequest(request: NSURLRequest) {
         print("Refused UI Request from \(request.URL?.host)")
     }
 
+    /**
+     This returns whether or not we should allow the delegate methods to be called for the supplied frame.
+     
+     - parameter frame: The frame from which the delegate method is being called.
+     
+     - returns: Return false if we should ignore the delegate call.
+     */
     func shouldAcceptUIFromFrame(frame: WKFrameInfo) -> Bool {
         guard let requestHost = frame.request.URL?.host else {
             return false
