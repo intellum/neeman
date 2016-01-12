@@ -58,3 +58,8 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 
+# VIM
+*.swp
+Documentation
+
+
