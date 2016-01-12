@@ -38,7 +38,7 @@ extension WKWebViewConfiguration {
     }
     
     func contentsOfNeemansWithName(fileName: String) -> String {
-        let bundle = NSBundle(forClass: object_getClass(self))
+        let bundle = NSBundle(forClass: WebViewController.self)
         return contentsOfFileNamed(fileName, inBundle: bundle)
     }
 
