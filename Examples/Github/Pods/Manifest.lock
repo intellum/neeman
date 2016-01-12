@@ -1,19 +1,10 @@
 PODS:
-  - Neeman (0.1.9)
+  - Neeman (0.2.1)
 
 DEPENDENCIES:
-  - Neeman (from `https://github.com/intellum/neeman.git`)
-
-EXTERNAL SOURCES:
-  Neeman:
-    :git: https://github.com/intellum/neeman.git
-
-CHECKOUT OPTIONS:
-  Neeman:
-    :commit: c7a8e6aae1936675b1fc3be74f1765fb821039fc
-    :git: https://github.com/intellum/neeman.git
+  - Neeman
 
 SPEC CHECKSUMS:
-  Neeman: 4ad3bddafe489e7c026b1170bb88e639c6676c13
+  Neeman: c2443fd046e3d3f4a2acf438813195356315136a
 
 COCOAPODS: 0.39.0

@@ -1,6 +1,5 @@
 (function(){
  var buttons = document.getElementsByClassName("header-context-button");
- console.log(buttons);
  if(buttons.length > 0) {
     var button = buttons[0];
     webkit.messageHandlers.didGetBarButton.postMessage(button.href);
