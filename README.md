@@ -2,9 +2,11 @@
 
 [![Build Status](https://travis-ci.org/intellum/neeman.svg)](https://travis-ci.org/intellum/neeman)
 
+Neeman is about choosing your battles. Spend your time working on things that make a great app and let web views do what they are good at: displaying content, sharing code between platforms and remaining updatable after app store submission.
+
 ##Turn a web app into a great native user experience.
 
-Web apps generally can't compete with native navigation. However web apps can easily be used on other platforms. Many projects require a responsive web app, so why not use the strengths of both?
+Web apps generally can't compete with native navigation. Take, for example, the beautiful transitions provided by UINavigationController.
 
 <img src="http://intellum.github.io/neeman/images/Navigation.gif" width="540" height="294" />
 
