@@ -1,12 +1,12 @@
-<img src="README-resources/Logo.png?raw=true" width="320" height="64" />
+<img src="http://intellum.github.io/neeman/images/Logo.png" width="320" height="64" />
 
 [![Build Status](https://travis-ci.org/intellum/neeman.svg)](https://travis-ci.org/intellum/neeman)
 
 ##Turn a web app into a great native user experience.
 
-Web apps just can't compete with native navigation. We can use the strengths or both though.
+Web apps generally can't compete with native navigation. However web apps can easily be used on other platforms. Many projects require a responsive web app, so why not use the strengths of both?
 
-<img src="README-resources/Navigation.gif?raw=true" width="540" height="294" />
+<img src="http://intellum.github.io/neeman/images/Navigation.gif" width="540" height="294" />
 
 
 Neeman is a [WKWebView](https://developer.apple.com/library/ios/documentation/WebKit/Reference/WKWebView_Ref/) wrapper that allows you to quickly integrate a web app into a native iOS app. When a link is tapped, another web view is pushed onto the [UINavigationController](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UINavigationController_Class/) stack.
@@ -50,10 +50,40 @@ $ pod install
 ###Step 1
 Open your storyboard and select a UIViewController that you would like to show your web app in. Sets its class to WebViewController.
 
-<img src="README-resources/Step-1.png?raw=true" width="260" height="108" />
+<img src="http://intellum.github.io/neeman/images/Step-1.png" width="260" height="108" />
 
 ###Step 2
 Define the URL of the page that it should show.
 
-<img src="README-resources/Step-2.png?raw=true" width="260" height="80" />
+<img src=" http://intellum.github.io/neeman/images/Step-2.png" width="260" height="80" />
 
+## Customisation
+<img src="http://intellum.github.io/neeman/images/ProjectNavigator.png" width="320" height="64" />
+
+### WebView.css
+Put CSS in here to hide elements that you intend to replace with native controls. You would hide a menu, for example, by adding
+
+```CSS
+nav {
+    display: none;
+}
+
+```
+
+### AtDocumentEnd.js
+Put javascript in here that should be injected after the document has loaded. The following is from the Github example that gets the current username from the meta tag.
+
+```javascript
+(function(){
+ var metaTags=document.getElementsByTagName("meta");
+
+ var username = "";
+ for (var i = 0; i < metaTags.length; i++) {
+    if (metaTags[i].getAttribute("name") == "octolytics-actor-login") {
+        username = metaTags[i].getAttribute("content");
+        break;
+    }
+ }
+ webkit.messageHandlers.didGetUserName.postMessage(username);
+})();
+```
