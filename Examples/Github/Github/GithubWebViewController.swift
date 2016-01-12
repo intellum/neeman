@@ -12,6 +12,7 @@ class GithubWebViewController: WebViewController {
         }
         super.viewDidLoad()
     }
+    
     internal override func setupWebView() {
         super.setupWebView()
         self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "didGetUserName")

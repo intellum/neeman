@@ -55,10 +55,10 @@ Open your storyboard and select a UIViewController that you would like to show y
 ###Step 2
 Define the URL of the page that it should show.
 
-<img src=" http://intellum.github.io/neeman/images/Step-2.png" width="260" height="80" />
+<img src="http://intellum.github.io/neeman/images/Step-2.png" width="260" height="80" />
 
 ## Customisation
-<img src="http://intellum.github.io/neeman/images/ProjectNavigator.png" width="320" height="64" />
+<img src="http://intellum.github.io/neeman/images/ProjectNavigator.png" width="260" height="356" />
 
 ### WebView.css
 Put CSS in here to hide elements that you intend to replace with native controls. You would hide a menu, for example, by adding
