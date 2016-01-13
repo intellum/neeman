@@ -1,5 +1,3 @@
-import UIKit
-
 /// This contains some optional settings that are loaded from Settings.plist in the main bundle.
 public class Settings {
     /// Set this if you would like some extra logging.
