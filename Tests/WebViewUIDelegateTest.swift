@@ -68,6 +68,26 @@ class WebViewUIDelegateTest: XCTestCase {
         }
     }
 
+    func testAlertFromThirdParty() {
+        let expectation = expectationWithDescription("Refuse Alert")
+        let expectationCompletion = expectationWithDescription("Completion Handler Called")
+        
+        let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "http://hacker.ru")!))
+        
+        let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
+        webViewUIDelegate.webView(WKWebView(), runJavaScriptAlertPanelWithMessage: "",
+            initiatedByFrame: frameInfo) { () -> Void in
+                
+                expectationCompletion.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+            if let _ = error {
+                XCTFail("Error Passing Failed")
+            }
+        }
+    }
+    
     func testConfirm() {
         let expectation = expectationWithDescription("Show Confirm")
         
@@ -84,12 +104,16 @@ class WebViewUIDelegateTest: XCTestCase {
     
     func testConfirmFromThirdParty() {
         let expectation = expectationWithDescription("Refuse Confirm")
+        let expectationCompletion = expectationWithDescription("Completion Handler Called")
         
         let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "http://hacker.ru")!))
 
         let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptConfirmPanelWithMessage: "",
-            initiatedByFrame: frameInfo) { (answer: Bool) -> Void in}
+            initiatedByFrame: frameInfo) { (answer: Bool) -> Void in
+        
+                expectationCompletion.fulfill()
+        }
         
         waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
             if let _ = error {
@@ -114,12 +138,16 @@ class WebViewUIDelegateTest: XCTestCase {
 
     func testPromptFromThirdParty() {
         let expectation = expectationWithDescription("Refuse Prompt")
+        let expectationCompletion = expectationWithDescription("Completion Handler Called")
         
         let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "http://hacker.ru")!))
         
         let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptTextInputPanelWithPrompt: "", defaultText: "",
-            initiatedByFrame: frameInfo) { (input: String?) -> Void in}
+            initiatedByFrame: frameInfo) { (input: String?) -> Void in
+        
+            expectationCompletion.fulfill()
+        }
         
         waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
             if let _ = error {
