@@ -1,6 +1,7 @@
 <img src="http://intellum.github.io/neeman/images/Logo.png" width="320" height="64" />
 
 [![Build Status](https://travis-ci.org/intellum/neeman.svg)](https://travis-ci.org/intellum/neeman)
+[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Neeman.svg)](http://cocoadocs.org/docsets/Neeman)
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Neeman.svg)](https://img.shields.io/cocoapods/v/Neeman.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/Neeman.svg?style=flat)](http://cocoadocs.org/docsets/Neeman)
