@@ -27,7 +27,10 @@ class GithubWebViewController: WebViewController {
                     if username.characters.count > 0 {
                         NSUserDefaults.standardUserDefaults().setObject(username, forKey: "Username")
                     } else if webView.URL?.path != "/login" {
-                        loadURL(NSURL(string: "\(settings.baseURL)/login"))
+                        if let host = rootURL?.host {
+                            let baseURLString = "https://\(host)"
+                            loadURL(NSURL(string: "\(baseURLString)/login"))
+                        }
                     }
                 }
             } else if message.name == "didGetBarButton" {
