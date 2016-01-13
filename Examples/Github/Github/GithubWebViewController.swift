@@ -26,7 +26,7 @@ class GithubWebViewController: WebViewController {
                 if let username = message.body as? String {
                     if username.characters.count > 0 {
                         NSUserDefaults.standardUserDefaults().setObject(username, forKey: "Username")
-                    }else if webView.URL?.path != "/login" {
+                    } else if webView.URL?.path != "/login" {
                         loadURL(NSURL(string: "\(settings.baseURL)/login"))
                     }
                 }
@@ -67,4 +67,3 @@ class GithubWebViewController: WebViewController {
         return !isSamePage && request.URL?.path == "/search"
     }
 }
-
