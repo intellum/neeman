@@ -5,9 +5,9 @@ import Neeman
 class GithubWebViewController: WebViewController {
     var rightBarButtonURL: NSURL?
     override func viewDidLoad() {
-        if rootURLString == "/profile" {
+        if rootURL?.path == "/profile" {
             if let username = NSUserDefaults.standardUserDefaults().objectForKey("Username") {
-                rootURLString = "/\(username)"
+                rootURLString = rootURLString?.stringByReplacingOccurrencesOfString("/profile", withString: "/\(username)")
             }
         }
         super.viewDidLoad()

@@ -8,7 +8,7 @@
         <!--Github Web View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController storyboardIdentifier="GithubWebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="GithubWebViewController" customModule="Gissues" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GithubWebViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="GithubWebViewController" customModule="Github" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -70,7 +70,7 @@
         <!--Github Web View Controller-->
         <scene sceneID="dDF-FA-qUX">
             <objects>
-                <viewController id="ga3-JZ-m7A" customClass="GithubWebViewController" customModule="Gissues" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ga3-JZ-m7A" customClass="GithubWebViewController" customModule="Github" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IVS-WK-4ar"/>
                         <viewControllerLayoutGuide type="bottom" id="grr-HM-SDh"/>
@@ -111,7 +111,7 @@
         <!--Github Web View Controller-->
         <scene sceneID="LD8-EM-UoC">
             <objects>
-                <viewController id="P0j-a4-2rN" customClass="GithubWebViewController" customModule="Gissues" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P0j-a4-2rN" customClass="GithubWebViewController" customModule="Github" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yRk-e4-0ej"/>
                         <viewControllerLayoutGuide type="bottom" id="qPt-qe-RCs"/>
@@ -149,10 +149,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="1132"/>
         </scene>
-        <!--Web View Controller-->
+        <!--Github Web View Controller-->
         <scene sceneID="08i-Xg-4R4">
             <objects>
-                <viewController id="Ht8-G3-7eq" customClass="WebViewController" customModule="Neeman" sceneMemberID="viewController">
+                <viewController id="Ht8-G3-7eq" customClass="GithubWebViewController" customModule="Github" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y95-Xk-pXQ"/>
                         <viewControllerLayoutGuide type="bottom" id="B0V-nG-0fc"/>
