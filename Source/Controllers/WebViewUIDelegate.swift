@@ -111,6 +111,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
+                completionHandler()
                 return
             }
 
@@ -140,6 +141,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
+                completionHandler(false)
                 return
             }
             
@@ -179,6 +181,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
+                completionHandler(nil)
                 return
             }
 
