@@ -4,6 +4,7 @@
 [![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Neeman.svg)](https://img.shields.io/cocoapods/v/Neeman.svg)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/Neeman.svg?style=flat)](http://cocoadocs.org/docsets/Neeman)
+[![License](https://img.shields.io/cocoapods/l/Neeman.svg?style=flat)](https://raw.githubusercontent.com/intellum/neeman/master/LICENSE)
 
 Neeman is about choosing your battles. Spend your time working on things that make a great app and let web views do what they are good at: displaying content, sharing code between platforms and remaining updatable after app store submission.
 
