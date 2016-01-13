@@ -29,6 +29,13 @@
 		DC937C141C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */; };
 		DC937C181C20B57D00EF1D03 /* WebViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C161C20AF6800EF1D03 /* WebViewNavigationDelegate.swift */; };
 		DCBB1A711C3F642600255AF4 /* FrameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB1A701C3F642600255AF4 /* FrameInfo.swift */; };
+		DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */; };
+		DCBFF8461C45FADE001EA0CB /* AtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF83F1C45FADE001EA0CB /* AtDocumentEnd.js */; };
+		DCBFF8471C45FADE001EA0CB /* AtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8401C45FADE001EA0CB /* AtDocumentStart.js */; };
+		DCBFF8481C45FADE001EA0CB /* FastClick.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8411C45FADE001EA0CB /* FastClick.js */; };
+		DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8421C45FADE001EA0CB /* InjectCSS.js */; };
+		DCBFF84A1C45FADE001EA0CB /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8431C45FADE001EA0CB /* WebView.css */; };
+		DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */; };
 		DCF56F2D1C3DF81F000FF970 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */; };
 		DCF56F301C3F3D53000FF970 /* WKWebViewConfiguration-JavascriptTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */; };
 		DCF56F331C3F41F5000FF970 /* Test.js in Resources */ = {isa = PBXBuildFile; fileRef = DCF56F321C3F41F5000FF970 /* Test.js */; };
@@ -72,6 +79,13 @@
 		DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegateTests.swift; sourceTree = "<group>"; };
 		DC937C161C20AF6800EF1D03 /* WebViewNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegate.swift; sourceTree = "<group>"; };
 		DCBB1A701C3F642600255AF4 /* FrameInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrameInfo.swift; path = MockClasses/FrameInfo.swift; sourceTree = "<group>"; };
+		DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DCBFF83F1C45FADE001EA0CB /* AtDocumentEnd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AtDocumentEnd.js; sourceTree = "<group>"; };
+		DCBFF8401C45FADE001EA0CB /* AtDocumentStart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AtDocumentStart.js; sourceTree = "<group>"; };
+		DCBFF8411C45FADE001EA0CB /* FastClick.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FastClick.js; sourceTree = "<group>"; };
+		DCBFF8421C45FADE001EA0CB /* InjectCSS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = InjectCSS.js; sourceTree = "<group>"; };
+		DCBFF8431C45FADE001EA0CB /* WebView.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = WebView.css; sourceTree = "<group>"; };
+		DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Neeman.storyboard; sourceTree = "<group>"; };
 		DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebViewConfiguration-JavascriptTest.swift"; sourceTree = "<group>"; };
 		DCF56F321C3F41F5000FF970 /* Test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Test.js; sourceTree = "<group>"; };
@@ -120,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				DC937C051C200BB700EF1D03 /* Info.plist */,
+				DCBFF83C1C45FADE001EA0CB /* Resources */,
 				DC937BA31C200B5F00EF1D03 /* Source */,
 				DC937C081C200F7500EF1D03 /* Tests */,
 				DC937B851C200A8D00EF1D03 /* Products */,
@@ -194,6 +209,28 @@
 				DC6822421C3F4C1000AF1EF9 /* WebViewUIDelegateTest.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		DCBFF83C1C45FADE001EA0CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */,
+				DCBFF83E1C45FADE001EA0CB /* js */,
+				DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DCBFF83E1C45FADE001EA0CB /* js */ = {
+			isa = PBXGroup;
+			children = (
+				DCBFF83F1C45FADE001EA0CB /* AtDocumentEnd.js */,
+				DCBFF8401C45FADE001EA0CB /* AtDocumentStart.js */,
+				DCBFF8411C45FADE001EA0CB /* FastClick.js */,
+				DCBFF8421C45FADE001EA0CB /* InjectCSS.js */,
+				DCBFF8431C45FADE001EA0CB /* WebView.css */,
+			);
+			path = js;
 			sourceTree = "<group>";
 		};
 		DCF56F311C3F41F5000FF970 /* Data */ = {
@@ -296,6 +333,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */,
+				DCBFF8461C45FADE001EA0CB /* AtDocumentEnd.js in Resources */,
+				DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */,
+				DCBFF8471C45FADE001EA0CB /* AtDocumentStart.js in Resources */,
+				DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */,
+				DCBFF8481C45FADE001EA0CB /* FastClick.js in Resources */,
+				DCBFF84A1C45FADE001EA0CB /* WebView.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
