@@ -15,9 +15,9 @@ extension WebViewController {
             webView.navigationDelegate = navigationDelegate
         }
         
-        self.uiDelegate = WebViewUIDelegate(settings: settings)
-        self.uiDelegate?.delegate = self
-        webView.UIDelegate = self.uiDelegate
+        uiDelegate = WebViewUIDelegate(settings: settings)
+        uiDelegate?.delegate = self
+        webView.UIDelegate = uiDelegate
         
         view.insertSubview(webView, atIndex: 0)
         webView.translatesAutoresizingMaskIntoConstraints = false

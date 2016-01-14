@@ -134,8 +134,8 @@ public class WebViewController: UIViewController,
      */
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.webViewPopup?.scrollView.contentInset = self.webView.scrollView.contentInset
-        self.webViewPopup?.scrollView.scrollIndicatorInsets = self.webView.scrollView.scrollIndicatorInsets
+        webViewPopup?.scrollView.contentInset = webView.scrollView.contentInset
+        webViewPopup?.scrollView.scrollIndicatorInsets = webView.scrollView.scrollIndicatorInsets
     }
     
     // MARK: Notification Handlers
@@ -146,7 +146,7 @@ public class WebViewController: UIViewController,
     - parameter notification: The notification received.
     */
     public func didLogout(notification: NSNotification) {
-        self.hasLoadedContent = false
+        hasLoadedContent = false
     }
     
     /**
