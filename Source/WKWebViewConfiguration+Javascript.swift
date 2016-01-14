@@ -3,19 +3,19 @@ import WebKit
 extension WKWebViewConfiguration {
     
     /**
-     Perform some common setup for Neeman.
+     Initialise with some common setup for Neeman.
      
      - parameter settings: Settings to use to setup.
      
-     - returns: Returns the object so we can chain this after an init.
+     - returns: An initialized object.
      */
-    func setupWithSettings(settings: Settings) -> WKWebViewConfiguration {
+    convenience init(settings: Settings) {
+        self.init()
         processPool = ProcessPool.sharedInstance
         if #available(iOS 9.0, *) {
             applicationNameForUserAgent = settings.appName
         }
         addJavascript()
-        return self
     }
     
     /**

@@ -5,7 +5,7 @@ extension WebViewController {
      Sets up the main web view.
      */
     public func setupWebView() {
-        let webViewConfig = WKWebViewConfiguration().setupWithSettings(settings)
+        let webViewConfig = WKWebViewConfiguration(settings: settings)
         
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig).setupForNeeman()
         if let url = rootURL {
