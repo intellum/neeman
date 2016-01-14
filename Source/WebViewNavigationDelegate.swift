@@ -181,13 +181,11 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         guard let url = request.URL else {
             return false
         }
-        if let delegate = delegate {
-            if delegate.shouldPreventPushOfNewWebView(request) {
-                return false
-            }
+        if let delegate = delegate where delegate.shouldForcePushOfNewRequest(request) {
+            return false
         }
 
-        let isInitialRequest = url.absoluteString == self.rootURL.absoluteString
+        let isInitialRequest = url.absoluteString == rootURL.absoluteString
         let isSameHost = request.URL?.host == rootURL.host
         let isSamePath = request.URL?.path == rootURL.path
         let isFragmentOfThisPage = request.URL?.fragment != nil && isSameHost && isSamePath

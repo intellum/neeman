@@ -20,7 +20,6 @@ extension WebViewController {
         webView.UIDelegate = uiDelegate
         
         view.insertSubview(webView, atIndex: 0)
-        webView.translatesAutoresizingMaskIntoConstraints = false
         autolayoutWebView(webView)
     }
     
@@ -30,11 +29,12 @@ extension WebViewController {
      - parameter webView: The web view to layout.
      */
     public func autolayoutWebView(webView: WKWebView) {
-        let views = ["webView":webView] as [String: AnyObject]
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[webView(>=0)]-0-|",
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["webView":webView]
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[webView(>=0)]|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[webView(>=0)]-0-|",
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[webView(>=0)]|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
  

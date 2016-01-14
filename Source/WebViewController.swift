@@ -17,16 +17,9 @@ public class WebViewController: UIViewController,
 
     // MARK: Properties
     
-    var mySettings: Settings?
     /// The settings to set the web view up with.
-    public var settings: Settings {
-        get {
-            return mySettings ?? Settings()
-        }
-        set {
-            mySettings = newValue
-        }
-    }
+    var settings: Settings = Settings()
+
     /// The navigation delegate that will receive changes in loading, estimated progress and further navigation.
     public var navigationDelegate: WebViewNavigationDelegate?
     /// The UI delegate that allows us to implement our own code to handle window.open(), alert(), confirm() and prompt().
@@ -51,7 +44,7 @@ public class WebViewController: UIViewController,
      */
     var rootAbsoluteURLString: String? {
         get {
-            if let rootURLString = rootURLString where rootURLString.rangeOfString("://") == nil {
+            if let rootURLString = rootURLString where !rootURLString.containsString("://") {
                 return settings.baseURL + rootURLString
             }
             return rootURLString
