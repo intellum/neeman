@@ -36,13 +36,13 @@ class WebViewControllerTests: XCTestCase {
 
     func testRootURL() {
         let webViewController = WebViewController()
-        webViewController.rootURLString = "https://intellum.com/index.cfm"
+        webViewController.URLString = "https://intellum.com/index.cfm"
         XCTAssertNotNil(webViewController.rootURL)
     }
     
     func testPartialRootURL() {
         let webViewController = WebViewController()
-        webViewController.rootURLString = "/index.cfm"
+        webViewController.URLString = "/index.cfm"
         XCTAssertNotNil(webViewController.rootURL)
     }
     

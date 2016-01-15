@@ -27,7 +27,7 @@ public class WebViewController: UIViewController,
     /// This is a popup window that is opened when javascript code calles window.open().
     var uiDelegatePopup: WebViewUIDelegate?
     
-    /// The initial NSURL that the web view is loading. Use rootURLString to set the URL.
+    /// The initial NSURL that the web view is loading. Use URLString to set the URL.
     public var rootURL: NSURL? {
         get {
             return NSURL(string: rootAbsoluteURLString ?? "")
@@ -37,17 +37,17 @@ public class WebViewController: UIViewController,
     /** The initial URL to display in the web view. Set this in your storyboard in the "User Defined Runtime Attributes"
     You can set baseURL in Settings if you would like to use relative URLs instead.
      */
-    @IBInspectable public var rootURLString: String?
+    @IBInspectable public var URLString: String?
     
-    /** If rootURLString is not an absolute URL and if you have set the baseURL in Settings 
+    /** If URLString is not an absolute URL and if you have set the baseURL in Settings
      then this returns the absolute URL by combining the two.
      */
     var rootAbsoluteURLString: String? {
         get {
-            if let rootURLString = rootURLString where !rootURLString.containsString("://") {
+            if let rootURLString = URLString where !rootURLString.containsString("://") {
                 return settings.baseURL + rootURLString
             }
-            return rootURLString
+            return URLString
         }
     }
     
@@ -62,7 +62,7 @@ public class WebViewController: UIViewController,
     var hasLoadedContent: Bool = false
 
     /**
-     The WKWebView in which the content of the URL defined in rootURLString will be dispayed.
+     The WKWebView in which the content of the URL defined in URLString will be dispayed.
      */
     public var webView: WKWebView!
     
@@ -175,7 +175,7 @@ public class WebViewController: UIViewController,
         if let webViewController = createNewWebViewController() {
                 
             let urlString = url.absoluteString
-            webViewController.rootURLString = urlString
+            webViewController.URLString = urlString
             navigationController?.pushViewController(webViewController, animated: true)
         }
     }

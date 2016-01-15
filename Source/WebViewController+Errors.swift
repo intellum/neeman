@@ -11,7 +11,7 @@ extension WebViewController {
     }
     
     /**
-     Adds an image view which shows how to set the rootURLString.
+     Adds an image view which shows how to set the URLString.
      */
     func showURLError() {
         let imageView = UIImageView(frame: view.bounds)

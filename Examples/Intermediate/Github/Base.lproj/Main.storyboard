@@ -20,7 +20,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="keb-t9-Qaa"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="URLString" value="https://github.com/"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -82,7 +82,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SNV-kt-yVG"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/notifications"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="URLString" value="https://github.com/notifications"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMr-BC-d2C" sceneMemberID="firstResponder"/>
@@ -123,7 +123,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="T2m-0f-RkP"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/explore"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="URLString" value="https://github.com/explore"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UM-wJ-Wpi" sceneMemberID="firstResponder"/>
@@ -164,7 +164,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="UmI-HW-ccN"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="rootURLString" value="https://github.com/profile"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="URLString" value="https://github.com/profile"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-o5-ae1" sceneMemberID="firstResponder"/>
