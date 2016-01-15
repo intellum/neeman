@@ -1,3 +1,9 @@
+## [0.2.4](https://github.com/intellum/neeman/releases/tag/0.2.4)
+#### Updated
+- Changed `rootURLString` to `URLString`.
+- Fixed some bugs.
+- Added a basic example.
+
 ## [0.2.3](https://github.com/intellum/neeman/releases/tag/0.2.3)
 
 #### Updated
