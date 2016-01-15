@@ -18,7 +18,7 @@ public class WebViewController: UIViewController,
     // MARK: Properties
     
     /// The settings to set the web view up with.
-    var settings: Settings = Settings()
+    public var settings: Settings = Settings()
 
     /// The navigation delegate that will receive changes in loading, estimated progress and further navigation.
     public var navigationDelegate: WebViewNavigationDelegate?
