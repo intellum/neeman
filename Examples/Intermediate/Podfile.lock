@@ -1,10 +1,10 @@
 PODS:
-  - Neeman (0.2.1)
+  - Neeman (0.2.4)
 
 DEPENDENCIES:
   - Neeman
 
 SPEC CHECKSUMS:
-  Neeman: c2443fd046e3d3f4a2acf438813195356315136a
+  Neeman: b90887abc22204258a103118c857a6ae4d9aae85
 
 COCOAPODS: 0.39.0

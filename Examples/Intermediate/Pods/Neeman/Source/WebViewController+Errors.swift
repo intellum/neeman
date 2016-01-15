@@ -11,10 +11,10 @@ extension WebViewController {
     }
     
     /**
-     Adds an image view which shows how to set the rootURLString.
+     Adds an image view which shows how to set the URLString.
      */
     func showURLError() {
-        let imageView = UIImageView(frame: self.view.bounds)
+        let imageView = UIImageView(frame: view.bounds)
         imageView.contentMode = .ScaleAspectFit
         imageView.image = UIImage(named: "Help-URL", inBundle: NSBundle(forClass: WebViewController.self), compatibleWithTraitCollection: nil)
         view.addSubview(imageView)
@@ -24,7 +24,7 @@ extension WebViewController {
      Adds and image view which shows what to do when you are getting app transport security error.
      */
     func showSSLError() {
-        let imageView = UIImageView(frame: self.view.bounds)
+        let imageView = UIImageView(frame: view.bounds)
         imageView.contentMode = .ScaleAspectFit
         imageView.image = UIImage(named: "Help-Security",
             inBundle: NSBundle(forClass: WebViewController.self),

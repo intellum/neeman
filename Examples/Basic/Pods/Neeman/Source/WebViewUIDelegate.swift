@@ -1,4 +1,3 @@
-import UIKit
 import WebKit
 
 /**
@@ -60,9 +59,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
     }
 
     /**
-     This is called when window.open() is called.
-     
-     You can use this to implement something like tabs in a browser.
+     This is called when window.open() is called. You can use this to implement something like tabs in a browser.
      
      - parameter webView:          The parent web view.
      - parameter configuration:    The configuration to use when creating the new web view.
@@ -71,10 +68,8 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      
      - returns: A new web view or nil.
      */
-    public func webView(webView: WKWebView,
-        createWebViewWithConfiguration configuration: WKWebViewConfiguration,
-        forNavigationAction navigationAction: WKNavigationAction,
-        windowFeatures: WKWindowFeatures) -> WKWebView? {
+    public func webView(webView: WKWebView, createWebViewWithConfiguration configuration: WKWebViewConfiguration,
+        forNavigationAction navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
             
             let newWebView = WKWebView(frame: webView.frame, configuration: configuration)
             configuration.processPool = ProcessPool.sharedInstance
@@ -115,6 +110,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
+                completionHandler()
                 return
             }
 
@@ -139,13 +135,12 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      - parameter completionHandler: The completion handler to call after the confirm
      panel has been dismissed. Pass YES if the user chose OK, NO if the user chose Cancel.
      */
-    public func webView(webView: WKWebView,
-        runJavaScriptConfirmPanelWithMessage message: String,
-        initiatedByFrame frame: WKFrameInfo,
-        completionHandler: (Bool) -> Void) {
+    public func webView(webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String,
+        initiatedByFrame frame: WKFrameInfo, completionHandler: (Bool) -> Void) {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
+                completionHandler(false)
                 return
             }
             
@@ -180,13 +175,12 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      OK, otherwise nil.
      */
     public func webView(webView: WKWebView,
-        runJavaScriptTextInputPanelWithPrompt prompt: String,
-        defaultText: String?,
-        initiatedByFrame frame: WKFrameInfo,
-        completionHandler: (String?) -> Void) {
+        runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?,
+        initiatedByFrame frame: WKFrameInfo, completionHandler: (String?) -> Void) {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
+                completionHandler(nil)
                 return
             }
 

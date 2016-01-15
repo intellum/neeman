@@ -1,12 +1,10 @@
-import UIKit
-
 /// This contains some optional settings that are loaded from Settings.plist in the main bundle.
 public class Settings {
     /// Set this if you would like some extra logging.
     public let debug: Bool
     /// You can set this yourself but otherwise it is taken from CFBundleName.
     public let appName: String
-    /// This can be set to enable the use of relative URLs in the web view controllers rootURLString property.
+    /// This can be set to enable the use of relative URLs in the web view controllers URLString property.
     public let baseURL: String
     /// This stores all the settings loaded from the initialising object. These can be accessed through object subscripting.
     let allSettings: NSDictionary?

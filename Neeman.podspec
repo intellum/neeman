@@ -22,7 +22,7 @@ is to keep your content rendered with HTML and implement your navigation nativel
 
   s.author             = { "Stephen Williams" => "swilliams@intellum.com" }
   s.platform     = :ios
-  s.platform     = :ios, "8.1"
+  s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/intellum/neeman.git", :tag => "#{s.version}" }
   s.source_files  = "Source/**/*.*"

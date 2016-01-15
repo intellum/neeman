@@ -7,7 +7,7 @@ class GithubWebViewController: WebViewController {
     override func viewDidLoad() {
         if rootURL?.path == "/profile" {
             if let username = NSUserDefaults.standardUserDefaults().objectForKey("Username") {
-                rootURLString = rootURLString?.stringByReplacingOccurrencesOfString("/profile", withString: "/\(username)")
+                URLString = URLString?.stringByReplacingOccurrencesOfString("/profile", withString: "/\(username)")
             }
         }
         super.viewDidLoad()
@@ -60,7 +60,7 @@ class GithubWebViewController: WebViewController {
             (NSStringFromClass(GithubWebViewController.self) as NSString).pathExtension) as? GithubWebViewController {
                 
                 let urlString = url.absoluteString
-                webViewController.rootURLString = urlString
+                webViewController.URLString = urlString
                 navigationController?.pushViewController(webViewController, animated: true)
         }
     }
