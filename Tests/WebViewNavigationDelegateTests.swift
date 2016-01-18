@@ -47,12 +47,26 @@ class WebViewNavigationDelegateTests: XCTestCase {
     
     // MARK: Delegation
     
+    func testPreventPush() {
+        class NeemanWebViewController: TestNeemanNavigationDelegate {
+            override func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
+                return true
+            }
+        }
+        
+        let url = NSURL(string: "https://groupdock.com/a/Level")
+        let request = NSURLRequest(URL: url!)
+        let delegate = NeemanWebViewController()
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
+        XCTAssertTrue(!navigationDelegate.shouldPushNewWebViewForRequest(request), "The delegate should prevent the URL being pushed")
+    }
+    
     func testErrorPassedToDelegate() {
         let expectation = expectationWithDescription("Pass Error to Delegate")
         class NeemanWebViewController: TestNeemanNavigationDelegate {
             override func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
                 XCTAssertNotNil(error, "The delegate should be passed a non nil error")
-                expectation.fulfill()
+                expectation?.fulfill()
             }
         }
         
@@ -89,7 +103,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         class MyWKNavigation: NSObject {
         }
         class MyNeemanWebViewController: NSObject, NeemanNavigationDelegate {
-            func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool {
+            func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
                 return true
             }
         }
@@ -111,14 +125,14 @@ class WebViewNavigationDelegateTests: XCTestCase {
         delegate.webView(webView, didReceiveServerRedirectToURL: nil)
         delegate.shouldForcePushOfNewRequest(NSURLRequest())
         delegate.pushNewWebViewControllerWithURL(NSURL())
-        delegate.shouldPreventPushOfNewWebView(NSURLRequest())
+        delegate.shouldPreventPushOfNewRequest(NSURLRequest())
     }
     
     func testDelegateMethodsCalled() {
         let expectation = expectationWithDescription("Pass Error to Delegate")
         class NeemanWebViewController: TestNeemanNavigationDelegate {
             override func webView(webView: WKWebView, didFinishNavigationWithURL: NSURL?) {
-                expectation.fulfill()
+                expectation?.fulfill()
             }
         }
         
@@ -139,7 +153,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let expectation = expectationWithDescription("Pass Error to Delegate")
         class NeemanWebViewController: TestNeemanNavigationDelegate {
             override func webView(webView: WKWebView, didReceiveServerRedirectToURL: NSURL?) {
-                expectation.fulfill()
+                expectation?.fulfill()
             }
         }
         
@@ -163,7 +177,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
                 return true
             }
             override func pushNewWebViewControllerWithURL(url: NSURL) {
-                expectation.fulfill()
+                expectation?.fulfill()
             }
         }
         class MyWKNavigationAction: NavigationAction {

@@ -203,7 +203,7 @@ public class WebViewController: UIViewController,
      
      - returns: false
      */
-    public func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool {
+    public func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
         return false
     }
     

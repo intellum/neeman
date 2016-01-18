@@ -20,7 +20,7 @@ public protocol NeemanNavigationDelegate: NSObjectProtocol {
      
      - returns: Whether we should prevent the request from being loading in a new web view.
      */
-    func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool
+    func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool
     
     /**
      Decide if we should force the request to be loaded in a new web view. 
@@ -64,7 +64,7 @@ extension NeemanNavigationDelegate {
     /// Does nothing.
     public func pushNewWebViewControllerWithURL(url: NSURL) {}
     /// Returns false.
-    public func shouldPreventPushOfNewWebView(request: NSURLRequest) -> Bool { return false }
+    public func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool { return false }
     /// Returns false.
     public func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool { return false }
     /// Does nothing.
@@ -181,7 +181,7 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         guard let url = request.URL else {
             return false
         }
-        if let delegate = delegate where delegate.shouldForcePushOfNewRequest(request) {
+        if let d = delegate where d.shouldPreventPushOfNewRequest(request) {
             return false
         }
 
