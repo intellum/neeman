@@ -1,3 +1,8 @@
+## [0.2.5](https://github.com/intellum/neeman/releases/tag/0.2.5)
+#### Updated
+- Fixed a bug with the delegate method for preventing a navigation stack push.
+- Changed `shouldForcePushOfNewWebView(request: NSURLRequest)` to `shouldForcePushOfNewRequest(request: NSURLRequest)`. 
+
 ## [0.2.4](https://github.com/intellum/neeman/releases/tag/0.2.4)
 #### Updated
 - Changed `rootURLString` to `URLString`.
