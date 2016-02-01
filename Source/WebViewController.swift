@@ -44,8 +44,8 @@ public class WebViewController: UIViewController,
      */
     var rootAbsoluteURLString: String? {
         get {
-            if let rootURLString = URLString where !rootURLString.containsString("://") {
-                return settings.baseURL + rootURLString
+            if let urlString = URLString where !urlString.containsString("://") {
+                return settings.baseURL + urlString
             }
             return URLString
         }
