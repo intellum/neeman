@@ -1,3 +1,7 @@
+## [0.2.6](https://github.com/intellum/neeman/releases/tag/0.2.6)
+#### Updated
+- Changed the class that is added to the HTML tag to indicated that the page is inside a Neeman web view, from 'hybrid' to 'neeman-hybrid-app'.
+
 ## [0.2.5](https://github.com/intellum/neeman/releases/tag/0.2.5)
 #### Updated
 - Fixed a bug with the delegate method for preventing a navigation stack push.
