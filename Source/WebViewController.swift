@@ -222,6 +222,19 @@ public class WebViewController: UIViewController,
     }
     
     /**
+     Decide if we should prevent the request from being loaded.
+     
+     This is useful if, for example, you would like to switch to another tab that is displaying this request.
+     
+     - parameter request: The request that will be loaded.
+     
+     - returns: Whether we should prevent the request from being loaded.
+     */
+    public func shouldPreventRequest(request: NSURLRequest) -> Bool {
+        return false
+    }
+
+    /**
      Default implementation doesn't do anything.
      
      - parameter webView: The web view that finished navigating.

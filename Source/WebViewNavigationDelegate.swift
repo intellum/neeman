@@ -35,6 +35,17 @@ public protocol NeemanNavigationDelegate: NSObjectProtocol {
     func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool
     
     /**
+     Decide if we should prevent the request from being loaded.
+     
+     This is useful if, for example, you would like to switch to another tab that is displaying this request.
+     
+     - parameter request: The request that will be loaded.
+     
+     - returns: Whether we should prevent the request from being loaded.
+     */
+    func shouldPreventRequest(request: NSURLRequest) -> Bool
+    
+    /**
      This is called when the web view finished loading but encountered and error.
      
      - parameter webView: The web view.
@@ -118,14 +129,20 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         decisionHandler: (WKNavigationActionPolicy) -> Void) {
             
             var actionPolicy: WKNavigationActionPolicy = .Allow
-            let shouldPush = shouldPushNewWebViewForRequest(navigationAction.request)
-
-            let isLink = navigationAction.navigationType == .LinkActivated
-            let shouldForcePush = delegate?.shouldForcePushOfNewRequest(navigationAction.request) ?? false
-            if (isLink && shouldPush) || shouldForcePush {
-                delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
+            let shouldPrevent = delegate?.shouldPreventRequest(navigationAction.request) ?? false
+            if shouldPrevent {
                 actionPolicy = .Cancel
+            } else {
+                let shouldPush = shouldPushNewWebViewForRequest(navigationAction.request)
+                
+                let isLink = navigationAction.navigationType == .LinkActivated
+                let shouldForcePush = delegate?.shouldForcePushOfNewRequest(navigationAction.request) ?? false
+                if (isLink && shouldPush) || shouldForcePush {
+                    delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
+                    actionPolicy = .Cancel
+                }
             }
+
 
             if settings.debug {
                 let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
