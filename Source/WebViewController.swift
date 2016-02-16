@@ -116,7 +116,8 @@ public class WebViewController: UIViewController,
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !hasLoadedContent {
+        let openedFromTab = !animated
+        if !hasLoadedContent && openedFromTab || isMovingToParentViewController() {
             loadURL(rootURL)
         }
     }

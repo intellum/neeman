@@ -144,7 +144,7 @@ extension WebViewController {
         }
         
         if webView.loading {
-            if let refreshControl = refreshControl where refreshControl.refreshing {
+            if let refreshControl = refreshControl where !refreshControl.refreshing {
                 activityIndicator.startAnimating()
             }
         } else {
