@@ -14,6 +14,7 @@ public class WebViewController: UIViewController,
     // Outlets
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
     @IBOutlet var progressView: UIProgressView?
+    @IBOutlet var errorViewController: ErrorViewController?
 
     // MARK: Properties
     
@@ -59,7 +60,7 @@ public class WebViewController: UIViewController,
     /** This is set once the web view has successfully loaded. If for some reason the page doesn't load
         then we know know when we return we should try again.
      */
-    var hasLoadedContent: Bool = false
+    public internal(set) var hasLoadedContent: Bool = false
 
     /**
      The WKWebView in which the content of the URL defined in URLString will be dispayed.
@@ -86,6 +87,7 @@ public class WebViewController: UIViewController,
         setupProgressView()
         addObservers()
         webViewObserver.delegate = self
+        loadURL(rootURL)
     }
     
     /**
@@ -116,8 +118,7 @@ public class WebViewController: UIViewController,
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let openedFromTab = !animated
-        if !hasLoadedContent && openedFromTab || isMovingToParentViewController() {
+        if !hasLoadedContent {
             loadURL(rootURL)
         }
     }
@@ -241,7 +242,9 @@ public class WebViewController: UIViewController,
      - parameter webView: The web view that finished navigating.
      - parameter url:     The final URL of the web view.
      */
-    public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {}
+    public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {
+        errorViewController?.view.removeFromSuperview()
+    }
     
     /**
      Desides how to handle an error based on its code.
@@ -250,23 +253,19 @@ public class WebViewController: UIViewController,
      - parameter error:   The error the web view incountered.
      */
     public func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
-        var message: String?
-
-        switch error.code {
-        case NSURLErrorNotConnectedToInternet:
-            message = error.localizedDescription
-        default:
-            message = nil
-        }
-        
         if #available(iOS 9.0, *) {
             if error.code == NSURLErrorAppTransportSecurityRequiresSecureConnection {
                 showSSLError()
             }
         }
         
-        if let message = message {
-            setErrorMessage(message)
+        let networkError = NetworkError(error: error)
+        switch networkError {
+        case .NotConnectedToInternet:
+            showHTTPError(networkError)
+        case .NotReachedServer:
+            showHTTPError(networkError)
+        default:()
         }
     }
 

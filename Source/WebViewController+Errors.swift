@@ -31,4 +31,41 @@ extension WebViewController {
             compatibleWithTraitCollection: nil)
         view.addSubview(imageView)
     }
+    
+    func showHTTPError(error: NetworkError) {
+        if hasLoadedContent {
+            setErrorMessage(error.description)
+            return
+        }
+        if errorViewController == nil {
+            let storyboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
+            guard let errorVC = storyboard.instantiateViewControllerWithIdentifier("ErrorViewController") as? ErrorViewController else {
+                return
+            }
+            errorViewController = errorVC
+        } else {
+            errorViewController?.view.removeFromSuperview()
+        }
+        
+        if let errorViewController = errorViewController {
+            
+            webView.scrollView.addSubview(errorViewController.view!)
+            
+            if let mainBundleImage = UIImage(named: "Error-HTTP",
+                inBundle: NSBundle.mainBundle(),
+                compatibleWithTraitCollection: nil) {
+                    errorViewController.imageView.image = mainBundleImage
+            } else if let neemanBundleImage = UIImage(named: "Error-HTTP",
+                inBundle: NSBundle(forClass: WebViewController.self),
+                compatibleWithTraitCollection: nil) {
+                    errorViewController.imageView.image = neemanBundleImage
+            }
+            
+            errorViewController.label.text = error.description
+            
+            self.addChildViewController(errorViewController)
+        }
+        
+    }
+
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -161,6 +161,60 @@
             </objects>
             <point key="canvasLocation" x="580" y="-1278"/>
         </scene>
+        <!--Error View Controller-->
+        <scene sceneID="Gaj-Hw-iFS">
+            <objects>
+                <viewController storyboardIdentifier="ErrorViewController" id="Ehz-hU-xgF" customClass="ErrorViewController" customModule="Neeman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Idy-Xx-Vn9"/>
+                        <viewControllerLayoutGuide type="bottom" id="9q7-vn-rfL"/>
+                    </layoutGuides>
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="B11-jR-dBp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOB-S2-PYY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Error-HTTP" translatesAutoresizingMaskIntoConstraints="NO" id="YZz-yw-Vkn">
+                                <rect key="frame" x="180" y="104" width="240" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="eOL-H8-VmP"/>
+                                    <constraint firstAttribute="height" constant="64" id="kNx-a2-eNl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beK-D3-ikB">
+                                <rect key="frame" x="247.5" y="176" width="105.5" height="19.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="240" id="uE3-L0-Brz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sOB-S2-PYY" firstAttribute="top" secondItem="B11-jR-dBp" secondAttribute="top" id="1ER-Qz-cFh"/>
+                            <constraint firstAttribute="trailing" secondItem="sOB-S2-PYY" secondAttribute="trailing" id="DsA-F9-frB"/>
+                            <constraint firstItem="YZz-yw-Vkn" firstAttribute="centerY" secondItem="B11-jR-dBp" secondAttribute="centerY" constant="-164" id="M00-Wl-GRL"/>
+                            <constraint firstItem="YZz-yw-Vkn" firstAttribute="centerX" secondItem="B11-jR-dBp" secondAttribute="centerX" id="QDh-Ff-97C"/>
+                            <constraint firstItem="beK-D3-ikB" firstAttribute="centerX" secondItem="YZz-yw-Vkn" secondAttribute="centerX" id="ZE7-s8-K6S"/>
+                            <constraint firstItem="9q7-vn-rfL" firstAttribute="top" secondItem="sOB-S2-PYY" secondAttribute="bottom" id="lNH-EO-pvw"/>
+                            <constraint firstItem="beK-D3-ikB" firstAttribute="top" secondItem="YZz-yw-Vkn" secondAttribute="bottom" constant="8" id="q9v-Gs-QBy"/>
+                            <constraint firstItem="sOB-S2-PYY" firstAttribute="leading" secondItem="B11-jR-dBp" secondAttribute="leading" id="qLW-Xj-9Xg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="YZz-yw-Vkn" id="aDA-jl-w1w"/>
+                        <outlet property="label" destination="beK-D3-ikB" id="2X4-ng-Do5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lBh-sM-Jn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-508" y="-43"/>
+        </scene>
         <!--Web View Controller-->
         <scene sceneID="CTw-MB-IfX">
             <objects>
@@ -203,6 +257,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Error-HTTP" width="27" height="35"/>
         <image name="Logo" width="158" height="56"/>
         <image name="onepassword-button" width="27" height="27"/>
     </resources>
