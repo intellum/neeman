@@ -1,3 +1,12 @@
+## [0.2.7](https://github.com/intellum/neeman/releases/tag/0.2.7)
+#### Added
+
+- Added better http error messages.
+- Added a delegate method to cancel a navigation.
+
+#### Updated
+- Made the refresh method public.
+
 ## [0.2.6](https://github.com/intellum/neeman/releases/tag/0.2.6)
 #### Updated
 - Changed the class that is added to the HTML tag to indicated that the page is inside a Neeman web view, from 'hybrid' to 'neeman-hybrid-app'.
