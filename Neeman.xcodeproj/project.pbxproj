@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC1D3FF01C8E2AF7005682CA /* Neeman.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1D3FF21C8E2AF7005682CA /* Neeman.strings */; };
 		DC316BB21C3B5C4200B66D8A /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */; };
 		DC3A6AFF1C4705B300DB94A7 /* WebViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AF91C4705B300DB94A7 /* WebViewController+Errors.swift */; };
 		DC3A6B001C4705B300DB94A7 /* WebViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AFA1C4705B300DB94A7 /* WebViewController+Loading.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		3FFE4908D19958979B172AD9 /* Pods_NeemanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeemanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC1D3FF11C8E2AF7005682CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Neeman.strings; sourceTree = "<group>"; };
 		DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 		DC3A6AF91C4705B300DB94A7 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WebViewController+Errors.swift"; path = "Source/WebViewController+Errors.swift"; sourceTree = SOURCE_ROOT; };
 		DC3A6AFA1C4705B300DB94A7 /* WebViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WebViewController+Loading.swift"; path = "Source/WebViewController+Loading.swift"; sourceTree = SOURCE_ROOT; };
@@ -206,6 +208,7 @@
 		DCBFF83C1C45FADE001EA0CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DC1D3FF21C8E2AF7005682CA /* Neeman.strings */,
 				DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */,
 				DCBFF83E1C45FADE001EA0CB /* js */,
 				DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */,
@@ -335,6 +338,7 @@
 			files = (
 				DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */,
 				DCBFF8461C45FADE001EA0CB /* AtDocumentEnd.js in Resources */,
+				DC1D3FF01C8E2AF7005682CA /* Neeman.strings in Resources */,
 				DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */,
 				DCBFF8471C45FADE001EA0CB /* AtDocumentStart.js in Resources */,
 				DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */,
@@ -416,6 +420,17 @@
 			targetProxy = DC937B901C200A8E00EF1D03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DC1D3FF21C8E2AF7005682CA /* Neeman.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC1D3FF11C8E2AF7005682CA /* en */,
+			);
+			name = Neeman.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DC53691E1C4363F4005ED4EA /* ReleaseTest */ = {
