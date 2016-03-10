@@ -118,7 +118,7 @@ public class WebViewController: UIViewController,
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !hasLoadedContent {
+        if !hasLoadedContent && !animated {
             loadURL(rootURL)
         }
     }
