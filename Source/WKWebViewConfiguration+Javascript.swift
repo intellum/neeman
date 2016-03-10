@@ -34,9 +34,9 @@ extension WKWebViewConfiguration {
      - parameter scriptName:    The name of the script to inject.
      - parameter injectionTime: The point at which to inject the script.
      */
-    func addScript(scriptName: String, injectionTime: WKUserScriptInjectionTime) {
+    public func addScript(scriptName: String, injectionTime: WKUserScriptInjectionTime) {
         let content = stringFromContentInFileName(scriptName)
-        let script = WKUserScript(source: content, injectionTime: injectionTime, forMainFrameOnly: true)
+        let script = WKUserScript(source: content, injectionTime: injectionTime, forMainFrameOnly: false)
         userContentController.addUserScript(script)
     }
     
