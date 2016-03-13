@@ -24,6 +24,9 @@
 		DC6822481C3F4D9700AF1EF9 /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6822461C3F4D6F00AF1EF9 /* NavigationAction.swift */; };
 		DC68224A1C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6822491C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift */; };
 		DC68224C1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68224B1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift */; };
+		DC8D643D1C962C9D0045A468 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D643C1C962C9D0045A468 /* ErrorViewController.swift */; };
+		DC8D643F1C962CB00045A468 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D643E1C962CB00045A468 /* NetworkError.swift */; };
+		DC8D64411C962CC20045A468 /* NeemanLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D64401C962CC20045A468 /* NeemanLocalizedString.swift */; };
 		DC937B8F1C200A8E00EF1D03 /* Neeman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC937B841C200A8D00EF1D03 /* Neeman.framework */; };
 		DC937BDD1C200B5F00EF1D03 /* Neeman.h in Headers */ = {isa = PBXBuildFile; fileRef = DC937BAC1C200B5F00EF1D03 /* Neeman.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC937C121C2019E800EF1D03 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C111C2019E800EF1D03 /* Settings.plist */; };
@@ -72,6 +75,9 @@
 		DC6822461C3F4D6F00AF1EF9 /* NavigationAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationAction.swift; path = MockClasses/NavigationAction.swift; sourceTree = "<group>"; };
 		DC6822491C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestNeemanNavigationDelegate.swift; path = MockClasses/TestNeemanNavigationDelegate.swift; sourceTree = "<group>"; };
 		DC68224B1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestNeemanUIDelegate.swift; path = MockClasses/TestNeemanUIDelegate.swift; sourceTree = "<group>"; };
+		DC8D643C1C962C9D0045A468 /* ErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorViewController.swift; path = Source/ErrorViewController.swift; sourceTree = SOURCE_ROOT; };
+		DC8D643E1C962CB00045A468 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		DC8D64401C962CC20045A468 /* NeemanLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeemanLocalizedString.swift; sourceTree = "<group>"; };
 		DC937B841C200A8D00EF1D03 /* Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC937B8E1C200A8E00EF1D03 /* NeemanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeemanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC937BAC1C200B5F00EF1D03 /* Neeman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Neeman.h; sourceTree = "<group>"; };
@@ -132,6 +138,15 @@
 			name = MockClasses;
 			sourceTree = "<group>";
 		};
+		DC8D64421C962CC90045A468 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DC8D643E1C962CB00045A468 /* NetworkError.swift */,
+				DC8D64401C962CC20045A468 /* NeemanLocalizedString.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		DC937B7A1C200A8D00EF1D03 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +171,7 @@
 		DC937BA31C200B5F00EF1D03 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				DC8D64421C962CC90045A468 /* Classes */,
 				DC937BA51C200B5F00EF1D03 /* Controllers */,
 				DC937BA81C200B5F00EF1D03 /* Extensions */,
 				DCBFF8501C462F9F001EA0CB /* WebKit */,
@@ -168,6 +184,7 @@
 		DC937BA51C200B5F00EF1D03 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DC8D643C1C962C9D0045A468 /* ErrorViewController.swift */,
 				DC3A6B071C47086200DB94A7 /* WebViewController.swift */,
 				DC3A6B081C47086200DB94A7 /* WebViewNavigationDelegate.swift */,
 				DC3A6B091C47086200DB94A7 /* WebViewObserver.swift */,
@@ -381,7 +398,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC3A6B001C4705B300DB94A7 /* WebViewController+Loading.swift in Sources */,
+				DC8D64411C962CC20045A468 /* NeemanLocalizedString.swift in Sources */,
+				DC8D643F1C962CB00045A468 /* NetworkError.swift in Sources */,
 				DC3A6B0B1C47086200DB94A7 /* WebViewController.swift in Sources */,
+				DC8D643D1C962C9D0045A468 /* ErrorViewController.swift in Sources */,
 				DC3A6B031C4705B300DB94A7 /* WKWebView+Neeman.swift in Sources */,
 				DCBFF8521C462F9F001EA0CB /* Settings.swift in Sources */,
 				DC3A6B0C1C47086200DB94A7 /* WebViewNavigationDelegate.swift in Sources */,
