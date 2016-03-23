@@ -1,3 +1,9 @@
+## [0.2.8](https://github.com/intellum/neeman/releases/tag/0.2.8)
+#### Updated
+- Changed `rootAbsoluteURLString` to `absoluteURLString`.
+- Cleaned up the reloading on viewWillAppear by adding a `shouldReloadOnViewWillAppear` method that can be overridden.
+- Disallow .Other navigationActions to prevent an infinite loop of navigations.
+
 ## [0.2.7](https://github.com/intellum/neeman/releases/tag/0.2.7)
 #### Added
 
