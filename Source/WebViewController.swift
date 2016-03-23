@@ -1,4 +1,4 @@
-import UIKit
+//import UIKit
 import WebKit
 
 /**
@@ -31,7 +31,7 @@ public class WebViewController: UIViewController,
     /// The initial NSURL that the web view is loading. Use URLString to set the URL.
     public var rootURL: NSURL? {
         get {
-            return NSURL(string: rootAbsoluteURLString ?? "")
+            return (absoluteURLString != nil) ? NSURL(string: absoluteURLString!) : nil
         }
     }
     
@@ -43,7 +43,7 @@ public class WebViewController: UIViewController,
     /** If URLString is not an absolute URL and if you have set the baseURL in Settings
      then this returns the absolute URL by combining the two.
      */
-    var rootAbsoluteURLString: String? {
+    var absoluteURLString: String? {
         get {
             if let urlString = URLString where !urlString.containsString("://") {
                 return settings.baseURL + urlString
