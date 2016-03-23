@@ -133,11 +133,13 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             if shouldPrevent {
                 actionPolicy = .Cancel
             } else {
-                let shouldPush = shouldPushNewWebViewForRequest(navigationAction.request)
-                
                 let isLink = navigationAction.navigationType == .LinkActivated
+                let isOther = navigationAction.navigationType == .Other
+
+                let shouldPush = isLink && shouldPushNewWebViewForRequest(navigationAction.request)
                 let shouldForcePush = delegate?.shouldForcePushOfNewRequest(navigationAction.request) ?? false
-                if (isLink && shouldPush) || shouldForcePush {
+                
+                if !isOther && (shouldPush || shouldForcePush) {
                     delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
                     actionPolicy = .Cancel
                 }
