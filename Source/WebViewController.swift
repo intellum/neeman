@@ -117,10 +117,21 @@ public class WebViewController: UIViewController,
      */
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if !hasLoadedContent && !animated {
+        if shouldReloadOnViewWillAppear(animated) {
             loadURL(rootURL)
         }
+    }
+    
+    /** 
+     This is called from viewWillAppear and reloads the page if the page has not yet been successfully loaded.
+     If you want to do something different you can override this method 
+     and place additional logic in the viewWill* and viewDid* events.
+    */
+    public func shouldReloadOnViewWillAppear(animated: Bool) -> Bool {
+        if !hasLoadedContent {
+            return true
+        }
+        return false
     }
 
     /**
