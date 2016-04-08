@@ -12,8 +12,8 @@ public class WebViewController: UIViewController,
                                 NeemanNavigationDelegate,
                                 WKScriptMessageHandler {
     // Outlets
-    @IBOutlet var activityIndicator: UIActivityIndicatorView?
-    @IBOutlet var progressView: UIProgressView?
+    @IBOutlet public var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet public var progressView: UIProgressView?
     @IBOutlet var errorViewController: ErrorViewController?
 
     // MARK: Properties
