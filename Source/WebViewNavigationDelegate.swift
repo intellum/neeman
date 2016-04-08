@@ -136,7 +136,7 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 let isLink = navigationAction.navigationType == .LinkActivated
                 let isOther = navigationAction.navigationType == .Other
 
-                let shouldPush = isLink && shouldPushNewWebViewForRequest(navigationAction.request)
+                let shouldPush = shouldPushNewWebViewForRequest(navigationAction.request) && isLink
                 let shouldForcePush = delegate?.shouldForcePushOfNewRequest(navigationAction.request) ?? false
                 
                 if !isOther && (shouldPush || shouldForcePush) {
