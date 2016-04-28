@@ -3,7 +3,6 @@ import WebKit
 @testable import Neeman
 
 class WebViewNavigationDelegateTests: XCTestCase {
-    
     var settings: Settings {
         get {
             let settings = Settings(dictionary: ["baseURL": "https://intellum.com"])

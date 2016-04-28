@@ -9,7 +9,7 @@ extension WebViewController {
     public func setupRefreshControl() {
         let newRefreshControl = UIRefreshControl()
         newRefreshControl.attributedTitle = NSAttributedString(string: "")
-        newRefreshControl.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         webView.scrollView.insertSubview(newRefreshControl, atIndex: 0)
         refreshControl = newRefreshControl
     }

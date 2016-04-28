@@ -95,9 +95,9 @@ public class WebViewController: UIViewController,
      */
     func addObservers() {
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didLogout:", name: WebViewControllerDidLogout, object: nil)
+            selector: #selector(WebViewController.didLogout(_:)), name: WebViewControllerDidLogout, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "didLogin:", name: WebViewControllerDidLogin, object: nil)
+            selector: #selector(WebViewController.didLogin(_:)), name: WebViewControllerDidLogin, object: nil)
         webViewObserver.startObservingWebView(webView)
     }
     

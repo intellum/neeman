@@ -16,6 +16,9 @@ public class TestNeemanNavigationDelegate: NSObject, NeemanNavigationDelegate {
     public func webView(webView: WKWebView, didReceiveServerRedirectToURL: NSURL?) {}
     public func webView(webView: WKWebView, didFinishNavigationWithURL: NSURL?) {}
     public func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {}
+    public func shouldPreventRequest(request: NSURLRequest) -> Bool {
+        return false
+    }
     public func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
         return false
     }
