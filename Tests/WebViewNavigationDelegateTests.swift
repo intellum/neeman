@@ -101,8 +101,8 @@ class WebViewNavigationDelegateTests: XCTestCase {
     func testShouldPreventPushOfNewWebView() {
         class MyWKNavigation: NSObject {
         }
-        class MyNeemanWebViewController: NSObject, NeemanNavigationDelegate {
-            func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
+        class MyNeemanWebViewController: TestNeemanNavigationDelegate {
+            override func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
                 return true
             }
         }
@@ -114,7 +114,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     }
     
     func testDelegateDefaultImplementations() {
-        class MyNeemanWebViewController: NSObject, NeemanNavigationDelegate {
+        class MyNeemanWebViewController: TestNeemanNavigationDelegate {
         }
         
         let webView = WKWebView()

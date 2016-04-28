@@ -48,6 +48,6 @@ class WebViewControllerTests: XCTestCase {
     
     func testNoRootURLString() {
         let webViewController = WebViewController()
-        XCTAssertEqual(webViewController.rootURL?.absoluteString, "", "The URL should be empty")
+        XCTAssertNil(webViewController.rootURL, "The URL should be empty")
     }
 }
