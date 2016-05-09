@@ -1,3 +1,11 @@
+## [0.3.0](https://github.com/intellum/neeman/releases/tag/0.2.8)
+#### Updated
+- Changed Settings to NeemanSettings to reduce the likelihood of a naming clash.
+- Fixed a bug that was breaking the unit tests.
+- Fixed a bug where the `shouldPushNewWebViewForRequest` delegate method was not always called.
+- Updated to swift 2.2 syntax.
+- Made `activityIndicator` and `progressView` public so they can be overridden.
+
 ## [0.2.8](https://github.com/intellum/neeman/releases/tag/0.2.8)
 #### Updated
 - Changed `rootAbsoluteURLString` to `absoluteURLString`.
