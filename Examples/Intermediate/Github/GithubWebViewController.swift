@@ -24,7 +24,7 @@ class GithubWebViewController: WebViewController {
             print("Message: \(message.name)")
             if message.name == "didGetUserName" {
                 if let username = message.body as? String {
-                    if username.characters.count > 0 {
+                    if username.isEmpty {
                         NSUserDefaults.standardUserDefaults().setObject(username, forKey: "Username")
                     } else if webView.URL?.path != "/login" {
                         if let host = rootURL?.host {

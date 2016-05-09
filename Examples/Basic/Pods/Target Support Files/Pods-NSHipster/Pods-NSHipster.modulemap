@@ -1,6 +1,0 @@
-framework module Pods_NSHipster {
-  umbrella header "Pods-NSHipster-umbrella.h"
-
-  export *
-  module * { export * }
-}

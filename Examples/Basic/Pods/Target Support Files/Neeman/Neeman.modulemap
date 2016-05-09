@@ -1,6 +1,0 @@
-framework module Neeman {
-  umbrella header "Neeman-umbrella.h"
-
-  export *
-  module * { export * }
-}
