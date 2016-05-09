@@ -3,9 +3,9 @@ import WebKit
 @testable import Neeman
 
 class WebViewNavigationDelegateTests: XCTestCase {
-    var settings: Settings {
+    var settings: NeemanSettings {
         get {
-            let settings = Settings(dictionary: ["baseURL": "https://intellum.com"])
+            let settings = NeemanSettings(dictionary: ["baseURL": "https://intellum.com"])
             return settings
         }
     }
@@ -14,7 +14,8 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let url = NSURL(string: "http://example.com/")
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: url!)
-        XCTAssertFalse(navigationDelegate.shouldPushNewWebViewForRequest(request), "The initial request should not be pushed")
+        let webView = WKWebView()
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "The initial request should not be pushed")
     }
     
     
@@ -24,7 +25,8 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: urlFaulty)
         
-        XCTAssertFalse(navigationDelegate.shouldPushNewWebViewForRequest(request), "Faulty URLs should not be pushed")
+        let webView = WKWebView()
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "Faulty URLs should not be pushed")
     }
     
     func testHashNavigation() {
@@ -32,7 +34,8 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: url!)
         
-        XCTAssertFalse(navigationDelegate.shouldPushNewWebViewForRequest(request), "Hash navigation should not be pushed")
+        let webView = WKWebView()
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "Hash navigation should not be pushed")
     }
     
     func testNavigateForward() {
@@ -41,7 +44,8 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url1!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: url2!)
         
-        XCTAssertTrue(navigationDelegate.shouldPushNewWebViewForRequest(request), "New URLs should not be pushed")
+        let webView = WKWebView()
+        XCTAssertTrue(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "New URLs should not be pushed")
     }
     
     // MARK: Delegation
@@ -57,7 +61,9 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let request = NSURLRequest(URL: url!)
         let delegate = NeemanWebViewController()
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
-        XCTAssertTrue(!navigationDelegate.shouldPushNewWebViewForRequest(request), "The delegate should prevent the URL being pushed")
+        let webView = WKWebView()
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request),
+                       "The delegate should prevent the URL being pushed")
     }
     
     func testErrorPassedToDelegate() {
@@ -110,7 +116,9 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let url = NSURL(string: "https://groupdock.com/a/Level")
         let delegate = MyNeemanWebViewController()
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
-        navigationDelegate.shouldPushNewWebViewForRequest(NSURLRequest(URL:url!))
+        let webView = WKWebView()
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: NSURLRequest(URL:url!)),
+                       "The delegate should prevent the URL being pushed")
     }
     
     func testDelegateDefaultImplementations() {

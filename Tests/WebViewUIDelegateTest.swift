@@ -3,7 +3,7 @@ import WebKit
 @testable import Neeman
 
 class WebViewUIDelegateTest: XCTestCase {
-    let settings = Settings(dictionary: ["baseURL": "https://intellum.com"])
+    let settings = NeemanSettings(dictionary: ["baseURL": "https://intellum.com"])
     let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "https://intellum.com")!))
 
     func testCreateWebView() {
@@ -160,7 +160,7 @@ class WebViewUIDelegateTest: XCTestCase {
 class MyWebViewUIDelegate: WebViewUIDelegate {
     var expectation: XCTestExpectation
     
-    init(settings: Settings, expectation: XCTestExpectation) {
+    init(settings: NeemanSettings, expectation: XCTestExpectation) {
         self.expectation = expectation
         super.init(settings: settings)
     }
@@ -173,7 +173,7 @@ class MyWebViewUIDelegate: WebViewUIDelegate {
 class RefusingWebViewUIDelegate: WebViewUIDelegate {
     var expectation: XCTestExpectation
     
-    init(settings: Settings, expectation: XCTestExpectation) {
+    init(settings: NeemanSettings, expectation: XCTestExpectation) {
         self.expectation = expectation
         super.init(settings: settings)
     }

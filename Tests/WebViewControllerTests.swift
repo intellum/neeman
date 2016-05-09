@@ -4,10 +4,10 @@ import WebKit
 
 class WebViewControllerTests: XCTestCase {
     
-    var settings: Settings {
+    var settings: NeemanSettings {
         get {
             let pathToSettings = NSBundle.init(forClass: WebViewNavigationDelegateTests.self).pathForResource("Settings", ofType: "plist")
-            return Settings(path: pathToSettings)
+            return NeemanSettings(path: pathToSettings)
         }
     }
     
