@@ -2,6 +2,9 @@ import XCTest
 import WebKit
 import Neeman
 
+/**
+ This is used to provide a default implimentation so that the unit tests are less verbose.
+ */
 public class TestNeemanUIDelegate: NSObject, NeemanUIDelegate {
     var expectation: XCTestExpectation
     

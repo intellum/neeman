@@ -5,6 +5,8 @@ extension WebViewController {
     /**
       This can be overridden to display error messages received from the web view. 
      The default implementation sets the `navigationItem.prompt`
+     
+     - parameter message: The error message that should be presented. 
      */
     public func setErrorMessage(message: String?) {
         navigationItem.prompt = message

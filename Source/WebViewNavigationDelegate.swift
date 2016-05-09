@@ -72,18 +72,46 @@ public protocol NeemanNavigationDelegate: NSObjectProtocol {
 }
 
 extension NeemanNavigationDelegate {
-    /// Does nothing.
+    /**
+     Does nothing.
+     - parameter url: The url that is being pushed onto the navigation stack.
+     */
     public func pushNewWebViewControllerWithURL(url: NSURL) {}
-    /// Returns false.
+    
+    /**
+     Does nothing.
+     - parameter request: The request that is being considered for pushing onto the navigation stack.
+     - returns: Whether the request should be pushed onto the navigation stack or loaded in the current web view.
+     */
     public func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool { return false }
-    /// Returns false.
+    
+    /**
+     Does nothing.
+     - parameter request: The request that is being considered for forced pushing onto the navigation stack.
+     - returns: Whether we should force the request to be pushed onto the navigation stack.
+     */
     public func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool { return false }
-    /// Does nothing.
+    
+    /**
+     Does nothing.
+     - parameter webView: The webView that currently being displayed.
+     - parameter error: The error that occured whilst loading the page.
+     */
     public func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {}
-    /// Does nothing.
-    public func webView(webView: WKWebView, didFinishNavigationWithURL: NSURL?) {}
-    /// Does nothing.
-    public func webView(webView: WKWebView, didReceiveServerRedirectToURL: NSURL?) {}
+    
+    /**
+     Does nothing.
+     - parameter webView: The webView that currently being displayed.
+     - parameter url: The url that was navigated to.
+     */
+    public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {}
+    
+    /**
+     Does nothing.
+     - parameter webView: The webView that currently being displayed.
+     - parameter url: The url that the server redirected to.
+     */
+    public func webView(webView: WKWebView, didReceiveServerRedirectToURL url: NSURL?) {}
 }
 
 /** This class works out when we should load a new URL in the same web view and when we should push a new
@@ -100,18 +128,16 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     weak var delegate: NeemanNavigationDelegate?
     
     /// This contains, for example, the name of the app and optionally the base URL of your app.
-    public var settings: Settings
-    
+    public var settings: NeemanSettings
+
     /**
-     Returns a new web view delegate initialised from a URL and the delegate to call back.
+     Create a new web view delegate initialised from a URL and the delegate to call back.
      
      - parameter rootURL:  The url of the first requested page that the web view opened.
      - parameter delegate: The delegate to call when we should, for example, push a new web view onto the navigation stack.
      - parameter settings: Settings with some information like the root URL and whether we should be logging.
-     
-     - returns: The new navigation delegate.
      */
-    public init(rootURL: NSURL, delegate: NeemanNavigationDelegate?, settings: Settings) {
+    public init(rootURL: NSURL, delegate: NeemanNavigationDelegate?, settings: NeemanSettings) {
         self.rootURL = rootURL
         self.delegate = delegate
         self.settings = settings
@@ -136,7 +162,7 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 let isLink = navigationAction.navigationType == .LinkActivated
                 let isOther = navigationAction.navigationType == .Other
 
-                let shouldPush = shouldPushNewWebViewForRequest(navigationAction.request) && isLink
+                let shouldPush = shouldPushForRequestFromWebView(webView, request: navigationAction.request) && isLink
                 let shouldForcePush = delegate?.shouldForcePushOfNewRequest(navigationAction.request) ?? false
                 
                 if !isOther && (shouldPush || shouldForcePush) {
@@ -148,10 +174,21 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
 
             if settings.debug {
                 let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
-                print("URL: " + (navigationAction.request.URL?.absoluteString)! + "\t\t\t- " + actionString)
+                let urlString = navigationAction.request.URL?.absoluteString ?? ""
+                log("URL: \(urlString)\t\t\t- \(actionString)")
             }
             
             decisionHandler(actionPolicy)
+    }
+    
+    /**
+     Log a message to the console. This can be overridded to use another logging mechanism. 
+     By default we are just using print. We are only calling this if debug=true is set in the Settings.plist.
+     
+     - parameter message: The message that shoudl be logged.
+    */
+    public func log(message: String) {
+        print(message)
     }
 
     /**
@@ -183,6 +220,7 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
      
      - parameter webView:    The web view that was redirected.
      - parameter navigation: The navigation object.
+     - parameter error:      The error that occured during navigation.
      */
     public func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation?, withError error: NSError) {
         delegate?.webView(webView, didFinishLoadingWithError: error)
@@ -192,11 +230,12 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     /**
     This is where we decide whether or not a new URL causes us to push a new web view onto the navigation stack.
     
+    - parameter webView: The web view that is navigating.
     - parameter request: The request that we are about to navigate to.
     
     - returns: Whether or not to push a new web view onto the navigation stack.
     */
-    public func shouldPushNewWebViewForRequest(request: NSURLRequest) -> Bool {
+    public func shouldPushForRequestFromWebView(webView: WKWebView, request: NSURLRequest) -> Bool {
         guard let url = request.URL else {
             return false
         }
@@ -206,7 +245,8 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
 
         let isInitialRequest = url.absoluteString == rootURL.absoluteString
         let isSameHost = request.URL?.host == rootURL.host
-        let isSamePath = request.URL?.path == rootURL.path
+        let isSamePathAsWebView = request.URL?.path == webView.URL?.path
+        let isSamePath = request.URL?.path == rootURL.path || isSamePathAsWebView
         let isFragmentOfThisPage = request.URL?.fragment != nil && isSameHost && isSamePath
         
         return !isInitialRequest && !isFragmentOfThisPage

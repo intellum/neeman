@@ -6,10 +6,8 @@ extension WKWebViewConfiguration {
      Initialise with some common setup for Neeman.
      
      - parameter settings: Settings to use to setup.
-     
-     - returns: An initialized object.
      */
-    convenience init(settings: Settings) {
+    convenience init(settings: NeemanSettings) {
         self.init()
         processPool = ProcessPool.sharedInstance
         if #available(iOS 9.0, *) {
@@ -92,6 +90,7 @@ extension WKWebViewConfiguration {
      Gets the content of the file with the specified name from the specified bundle.
      
      - parameter fileName: The name of the file to load content from.
+     - parameter bundle: The bundle in which to look for the named file.
      
      - returns: The contets of the file.
      */
@@ -105,7 +104,7 @@ extension WKWebViewConfiguration {
     /**
      Gets the content of the file with the specified name from the specified path.
      
-     - parameter fileName: The name of the file to load content from.
+     - parameter filePath: The path to the file to load content from.
      
      - returns: The contets of the file.
      */

@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Describes an error that occured during network communications. 
+ */
 public enum NetworkError: ErrorType, CustomStringConvertible {
     /// Unknown or not supported error.
     case Unknown
@@ -27,26 +30,28 @@ public enum NetworkError: ErrorType, CustomStringConvertible {
     /// Incorrect data returned from the server.
     case IncorrectDataReturned
 
-    // The following errors fall through to .Unknown
-    //    NSURLErrorUnknown, NSURLErrorCancelled, NSURLErrorHTTPTooManyRedirects, NSURLErrorUserCancelledAuthentication,
-    //    NSURLErrorUserAuthenticationRequired, NSURLErrorNoPermissionsToReadFile, NSURLErrorSecureConnectionFailed,
-    //    NSURLErrorServerCertificateHasBadDate, NSURLErrorCallIsActive, NSURLErrorDataNotAllowed, NSURLErrorRequestBodyStreamExhausted,
-    //    NSURLErrorServerCertificateUntrusted, NSURLErrorServerCertificateHasUnknownRoot, NSURLErrorServerCertificateNotYetValid,
-    //    NSURLErrorClientCertificateRejected, NSURLErrorClientCertificateRequired, NSURLErrorCannotLoadFromNetwork,
-    //    NSURLErrorCannotCreateFile, NSURLErrorCannotOpenFile, NSURLErrorCannotCloseFile,
-    //    NSURLErrorCannotWriteToFile, NSURLErrorCannotRemoveFile, NSURLErrorCannotMoveFile,
-    //    NSURLErrorDownloadDecodingFailedMidStream, NSURLErrorDownloadDecodingFailedToComplete:
+    /**
+        The following errors fall through to .Unknown
+        NSURLErrorUnknown, NSURLErrorCancelled, NSURLErrorHTTPTooManyRedirects, NSURLErrorUserCancelledAuthentication,
+        NSURLErrorUserAuthenticationRequired, NSURLErrorNoPermissionsToReadFile, NSURLErrorSecureConnectionFailed,
+        NSURLErrorServerCertificateHasBadDate, NSURLErrorCallIsActive, NSURLErrorDataNotAllowed, NSURLErrorRequestBodyStreamExhausted,
+        NSURLErrorServerCertificateUntrusted, NSURLErrorServerCertificateHasUnknownRoot, NSURLErrorServerCertificateNotYetValid,
+        NSURLErrorClientCertificateRejected, NSURLErrorClientCertificateRequired, NSURLErrorCannotLoadFromNetwork,
+        NSURLErrorCannotCreateFile, NSURLErrorCannotOpenFile, NSURLErrorCannotCloseFile,
+        NSURLErrorCannotWriteToFile, NSURLErrorCannotRemoveFile, NSURLErrorCannotMoveFile,
+        NSURLErrorDownloadDecodingFailedMidStream, NSURLErrorDownloadDecodingFailedToComplete
+     
+     - parameter error: The NSError we should make the NetworkError from.
+    */
     internal init(error: NSError) {
         if error.domain == NSURLErrorDomain {
             switch error.code {
             case NSURLErrorBadURL:
                 self = .IncorrectDataReturned // Because it is caused by a bad URL returned in a JSON response from the server.
-            case NSURLErrorTimedOut:
+            case NSURLErrorTimedOut, NSURLErrorCannotFindHost, NSURLErrorCannotConnectToHost:
                 self = .NotReachedServer
             case NSURLErrorUnsupportedURL, NSURLErrorNetworkConnectionLost:
                 self = .IncorrectDataReturned
-            case NSURLErrorCannotFindHost, NSURLErrorCannotConnectToHost:
-                self = .NotReachedServer
             case NSURLErrorDataLengthExceedsMaximum:
                 self = .ConnectionLost
             case NSURLErrorDNSLookupFailed:
@@ -66,7 +71,9 @@ public enum NetworkError: ErrorType, CustomStringConvertible {
             self = .Unknown
         }
     }
-    
+    /**
+     A localized description of the NetworkError.
+     */
     public var description: String {
         let text: String
         switch self {

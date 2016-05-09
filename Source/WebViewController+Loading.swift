@@ -16,8 +16,6 @@ extension WebViewController {
     
     /**
      This action is called by the refresh control.
-     
-     - parameter sender: The refresh control that wants the page to refresh.
      */
     public func refresh() {
         loadURL(rootURL)
@@ -102,7 +100,7 @@ extension WebViewController {
             return
         }
         
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         guard let activityIndicator = activityIndicator else {
             return
         }

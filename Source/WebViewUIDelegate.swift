@@ -34,13 +34,33 @@ public protocol NeemanUIDelegate: NSObjectProtocol {
 }
 
 extension NeemanUIDelegate {
-    /// Does nothing.
+    /** 
+     Does nothing.
+     
+     - parameter url: The url being pushed onto the navigation stack.
+     */
     public func pushNewWebViewControllerWithURL(url: NSURL) {}
-    /// Does nothing.
+
+    /**
+     Does nothing.
+     
+     - parameter newWebView: The url being pushed onto the navigation stack.
+     - parameter url: The url being pushed onto the navigation stack.
+     */
     public func popupWebView(newWebView: WKWebView, withURL url: NSURL) {}
-    /// Does nothing.
+    
+    /**
+     Does nothing.
+     
+     - parameter webView: The url being pushed onto the navigation stack.
+     */
     public func closeWebView(webView: WKWebView) {}
-    /// Does nothing.
+    
+    /**
+     Does nothing.
+     
+     - parameter request: The request from which the UI action was refused.
+     */
     public func refusedUIFromRequest(request: NSURLRequest) {}
 }
 
@@ -51,9 +71,14 @@ extension NeemanUIDelegate {
 public class WebViewUIDelegate: NSObject, WKUIDelegate {
     
     weak var delegate: NeemanUIDelegate?
-    var settings: Settings
+    var settings: NeemanSettings
     
-    init(settings: Settings) {
+    /**
+     Create a web view UI delegate using the specified settings.
+    
+     - parameter settings: The setting object that contains things like the app name and the base URL.
+     */
+    init(settings: NeemanSettings) {
         self.settings = settings
         super.init()
     }

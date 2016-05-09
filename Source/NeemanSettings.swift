@@ -1,5 +1,5 @@
 /// This contains some optional settings that are loaded from Settings.plist in the main bundle.
-public class Settings {
+public class NeemanSettings {
     /// Set this if you would like some extra logging.
     public let debug: Bool
     /// You can set this yourself but otherwise it is taken from CFBundleName.
@@ -11,8 +11,6 @@ public class Settings {
 
     /**
      Creates a Settings object by loading Settings.plist.
-     
-     - returns: A new Settings object.
      */
     public convenience init() {
         let path = NSBundle.mainBundle().pathForResource("Settings", ofType: "plist")
@@ -23,8 +21,6 @@ public class Settings {
      Creates a Settings object by loading the contents of the .plist at the supplied path.
      
      - parameter path: The path to the .plist file to load the setting from.
-     
-     - returns: A new Settings object.
      */
     public convenience init(path: String?) {
         var dict: NSDictionary?
@@ -38,8 +34,6 @@ public class Settings {
      Creates a Settings object by loading the setting from the supplied dictionary.
      
      - parameter dictionary: A dictionary containing the desired settings.
-     
-     - returns: A new Settings object.
      */
     public init(dictionary: NSDictionary?) {
         allSettings = dictionary

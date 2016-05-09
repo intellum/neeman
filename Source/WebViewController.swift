@@ -11,15 +11,21 @@ public class WebViewController: UIViewController,
                                 NeemanUIDelegate,
                                 NeemanNavigationDelegate,
                                 WKScriptMessageHandler {
-    // Outlets
+    
+    // MARK: Outlets
+    /// Shows that the web view is still loading the page.
     @IBOutlet public var activityIndicator: UIActivityIndicatorView?
+    
+    /// Shows the progress toward loading the page.
     @IBOutlet public var progressView: UIProgressView?
+    
+    /// Displays an error the occured whilst loading the page.
     @IBOutlet var errorViewController: ErrorViewController?
 
     // MARK: Properties
     
     /// The settings to set the web view up with.
-    public var settings: Settings = Settings()
+    public var settings: NeemanSettings = NeemanSettings()
 
     /// The navigation delegate that will receive changes in loading, estimated progress and further navigation.
     public var navigationDelegate: WebViewNavigationDelegate?
@@ -126,6 +132,9 @@ public class WebViewController: UIViewController,
      This is called from viewWillAppear and reloads the page if the page has not yet been successfully loaded.
      If you want to do something different you can override this method 
      and place additional logic in the viewWill* and viewDid* events.
+     
+     - parameter animated: Whether the appearance is happening with animation or not.
+     - returns: Whether the page should be reloaded.
     */
     public func shouldReloadOnViewWillAppear(animated: Bool) -> Bool {
         if !hasLoadedContent {
@@ -169,8 +178,9 @@ public class WebViewController: UIViewController,
     
     /**
      Called when the webView updates the value of its title property.
-     - Parameter webView: The instance of WKWebView that updated its title property.
-     - Parameter loading: The value that the WKWebView updated its title property to.
+     
+     - parameter webView: The instance of WKWebView that updated its title property.
+     - parameter title: The value that the WKWebView updated its title property to.
      */
     public func webView(webView: WKWebView, didChangeTitle title: String?) {
         navigationItem.title = title
@@ -186,7 +196,6 @@ public class WebViewController: UIViewController,
     public func pushNewWebViewControllerWithURL(url: NSURL) {
         print("Pushing: \(url.absoluteString)")
         if let webViewController = createNewWebViewController() {
-                
             let urlString = url.absoluteString
             webViewController.URLString = urlString
             navigationController?.pushViewController(webViewController, animated: true)
