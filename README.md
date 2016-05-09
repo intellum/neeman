@@ -11,7 +11,7 @@ Neeman is about choosing your battles. Spend your time working on things that ma
 
 ##Turn a web app into a great native user experience.
 
-Javascript in WKWebView is really fast and many things can now be done in web view but they generally can't compete with native navigation. Take, for example, the beautiful transitions provided by UINavigationController.
+Javascript in WKWebView is really fast and many things can now be done in web view, but some things just can't compete with native. Take, for example, the beautiful transitions provided by UINavigationController.
 
 <img src="http://intellum.github.io/neeman/images/Navigation.gif" width="540" height="294" />
 
