@@ -36,7 +36,7 @@ class GithubWebViewController: WebViewController {
             } else if message.name == "didGetBarButton" {
                 if let urlString = message.body as? String,
                     url = NSURL(string: urlString) {
-                    let barButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapBarButton")
+                    let barButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(GithubWebViewController.didTapBarButton))
                     self.navigationItem.rightBarButtonItem = barButton
                     rightBarButtonURL = url
                 }
@@ -65,7 +65,8 @@ class GithubWebViewController: WebViewController {
         }
     }
     
-    override internal func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
+    override internal func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+        let request = navigationAction.request
         let isSamePage = webView.URL?.absoluteString == request.URL?.absoluteString
         return !isSamePage && request.URL?.path == "/search"
     }
