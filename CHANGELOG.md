@@ -1,4 +1,8 @@
-## [0.3.0](https://github.com/intellum/neeman/releases/tag/0.2.8)
+## [0.4.0](https://github.com/intellum/neeman/releases/tag/0.4.0)
+#### Updated
+- Change delegate methods to use the navigation action instead of just the request.
+
+## [0.3.0](https://github.com/intellum/neeman/releases/tag/0.3.0)
 #### Updated
 - Changed Settings to NeemanSettings to reduce the likelihood of a naming clash.
 - Fixed a bug that was breaking the unit tests.
