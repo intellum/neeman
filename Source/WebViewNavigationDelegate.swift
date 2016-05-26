@@ -32,7 +32,7 @@ public protocol NeemanNavigationDelegate: NSObjectProtocol {
      
      - returns: Whether we should force the request to be loaded in a new web view.
      */
-    func shouldForcePushOfNewNavigationAction(navigationAction: WKNavigationAction) -> Bool
+    func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool
     
     /**
      Decide if we should prevent the navigation action from being loaded.

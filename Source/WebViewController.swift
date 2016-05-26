@@ -239,7 +239,7 @@ public class WebViewController: UIViewController,
      
      - returns: false
      */
-    public func shouldForcePushOfNewNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    public func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
