@@ -80,15 +80,15 @@ extension NeemanNavigationDelegate {
     
     /**
      Does nothing.
-     - parameter request: The request that is being considered for pushing onto the navigation stack.
-     - returns: Whether the request should be pushed onto the navigation stack or loaded in the current web view.
+     - parameter navigationAction: The navigation action that is being considered for pushing onto the navigation stack.
+     - returns: Whether the navigation action should be pushed onto the navigation stack or loaded in the current web view.
      */
     public func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool { return false }
     
     /**
      Does nothing.
-     - parameter request: The request that is being considered for forced pushing onto the navigation stack.
-     - returns: Whether we should force the request to be pushed onto the navigation stack.
+     - parameter navigationAction: The navigation action that is being considered for forced pushing onto the navigation stack.
+     - returns: Whether we should force the navigation action to be pushed onto the navigation stack.
      */
     public func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool { return false }
     
@@ -231,7 +231,7 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     This is where we decide whether or not a new URL causes us to push a new web view onto the navigation stack.
     
     - parameter webView: The web view that is navigating.
-    - parameter request: The request that we are about to navigate to.
+    - parameter navigationAction: The navigation action that we are about to navigate to.
     
     - returns: Whether or not to push a new web view onto the navigation stack.
     */

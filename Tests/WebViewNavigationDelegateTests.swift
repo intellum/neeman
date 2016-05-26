@@ -15,7 +15,9 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: url!)
         let webView = WKWebView()
-        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "The initial request should not be pushed")
+        let navigationAction = NavigationAction(request: request)
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, navigationAction: navigationAction),
+                       "The initial request should not be pushed")
     }
     
     
@@ -24,18 +26,22 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let urlFaulty = NSURL()
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: urlFaulty)
+        let navigationAction = NavigationAction(request: request)
         
         let webView = WKWebView()
-        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "Faulty URLs should not be pushed")
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, navigationAction: navigationAction),
+                       "Faulty URLs should not be pushed")
     }
     
     func testHashNavigation() {
         let url = NSURL(string: "http://example.com/#hash")
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: url!)
+        let navigationAction = NavigationAction(request: request)
         
         let webView = WKWebView()
-        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "Hash navigation should not be pushed")
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, navigationAction: navigationAction),
+                       "Hash navigation should not be pushed")
     }
     
     func testNavigateForward() {
@@ -43,26 +49,29 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let url2 = NSURL(string: "http://example.com/user/profile/me")
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url1!, delegate: nil, settings: settings)
         let request = NSURLRequest(URL: url2!)
+        let navigationAction = NavigationAction(request: request)
         
         let webView = WKWebView()
-        XCTAssertTrue(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request), "New URLs should not be pushed")
+        XCTAssertTrue(navigationDelegate.shouldPushForRequestFromWebView(webView, navigationAction: navigationAction),
+                      "New URLs should not be pushed")
     }
     
     // MARK: Delegation
     
     func testPreventPush() {
         class NeemanWebViewController: TestNeemanNavigationDelegate {
-            override func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
+            override func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
                 return true
             }
         }
         
         let url = NSURL(string: "https://groupdock.com/a/Level")
         let request = NSURLRequest(URL: url!)
+        let navigationAction = NavigationAction(request: request)
         let delegate = NeemanWebViewController()
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
         let webView = WKWebView()
-        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: request),
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, navigationAction: navigationAction),
                        "The delegate should prevent the URL being pushed")
     }
     
@@ -108,7 +117,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         class MyWKNavigation: NSObject {
         }
         class MyNeemanWebViewController: TestNeemanNavigationDelegate {
-            override func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
+            override func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
                 return true
             }
         }
@@ -117,7 +126,9 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let delegate = MyNeemanWebViewController()
         let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
         let webView = WKWebView()
-        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, request: NSURLRequest(URL:url!)),
+        let navigationAction = NavigationAction(request: NSURLRequest(URL:url!))
+
+        XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, navigationAction: navigationAction),
                        "The delegate should prevent the URL being pushed")
     }
     
@@ -126,13 +137,14 @@ class WebViewNavigationDelegateTests: XCTestCase {
         }
         
         let webView = WKWebView()
+        let navigationAction = NavigationAction(request: NSURLRequest())
         let delegate = MyNeemanWebViewController()
         delegate.webView(webView, didFinishNavigationWithURL:nil)
         delegate.webView(webView, didFinishLoadingWithError: NSError(domain: "", code: 1, userInfo: nil))
         delegate.webView(webView, didReceiveServerRedirectToURL: nil)
-        delegate.shouldForcePushOfNewRequest(NSURLRequest())
+        delegate.shouldForcePushOfNavigationAction(navigationAction)
         delegate.pushNewWebViewControllerWithURL(NSURL())
-        delegate.shouldPreventPushOfNewRequest(NSURLRequest())
+        delegate.shouldPreventPushOfNavigationAction(navigationAction)
     }
     
     func testDelegateMethodsCalled() {
@@ -180,7 +192,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     func testPushIsCalled() {
         let expectation = expectationWithDescription("Pass Error to Delegate")
         class NeemanWebViewController: TestNeemanNavigationDelegate {
-            override func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
+            override func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
                 return true
             }
             override func pushNewWebViewControllerWithURL(url: NSURL) {
