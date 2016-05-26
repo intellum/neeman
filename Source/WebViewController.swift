@@ -218,41 +218,41 @@ public class WebViewController: UIViewController,
     }
     
     /**
-     Decide if we should prevent a request from being loading in a new web view.
+     Decide if we should prevent a navigation action from being loading in a new web view.
      It will instead be loaded in the current one.
      
-     - parameter request: The request that is about to be loaded.
+     - parameter navigationAction: The navigation action that will be loaded.
      
      - returns: false
      */
-    public func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool {
+    public func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
     /**
-     Decide if we should force the request to be loaded in a new web view.
+     Decide if we should force the navigation action to be loaded in a new web view.
      
      This is useful if a page is setting document.location within a click handler.
      Web kit does not realise that this was from a "link" click. In this case we can make sure it is handled like a link.
      
-     - parameter request: The request that will be loaded.
+     - parameter navigationAction: The navigation action that will be loaded.
      
      - returns: false
      */
-    public func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool {
+    public func shouldForcePushOfNewNavigationAction(navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
     /**
-     Decide if we should prevent the request from being loaded.
+     Decide if we should prevent the navigation action from being loaded.
      
      This is useful if, for example, you would like to switch to another tab that is displaying this request.
      
-     - parameter request: The request that will be loaded.
+     - parameter navigationAction: The navigation action that will be loaded.
      
      - returns: Whether we should prevent the request from being loaded.
      */
-    public func shouldPreventRequest(request: NSURLRequest) -> Bool {
+    public func shouldPreventNavigationAction(navigationAction: WKNavigationAction) -> Bool {
         return false
     }
 

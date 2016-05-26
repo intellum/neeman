@@ -13,37 +13,37 @@ public protocol NeemanNavigationDelegate: NSObjectProtocol {
     func pushNewWebViewControllerWithURL(url: NSURL)
     
     /**
-     Decide if we should prevent a request from being loading in a new web view. 
+     Decide if we should prevent a navigation action from being loading in a new web view. 
      It will instead be loaded in the current one.
      
-     - parameter request: The request that is about to be loaded.
+     - parameter navigationAction: The navigation action that will be loaded.
      
      - returns: Whether we should prevent the request from being loading in a new web view.
      */
-    func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool
+    func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool
     
     /**
-     Decide if we should force the request to be loaded in a new web view. 
+     Decide if we should force the navigation action to be loaded in a new web view.
      
      This is useful if a page is setting document.location within a click handler. 
      Web kit does not realise that this was from a "link" click. In this case we can make sure it is handled like a link.
      
-     - parameter request: The request that will be loaded.
+     - parameter navigationAction: The navigation action that will be loaded.
      
      - returns: Whether we should force the request to be loaded in a new web view.
      */
-    func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool
+    func shouldForcePushOfNewNavigationAction(navigationAction: WKNavigationAction) -> Bool
     
     /**
-     Decide if we should prevent the request from being loaded.
+     Decide if we should prevent the navigation action from being loaded.
      
      This is useful if, for example, you would like to switch to another tab that is displaying this request.
      
-     - parameter request: The request that will be loaded.
+     - parameter navigationAction: The navigation action that will be loaded.
      
      - returns: Whether we should prevent the request from being loaded.
      */
-    func shouldPreventRequest(request: NSURLRequest) -> Bool
+    func shouldPreventNavigationAction(navigationAction: WKNavigationAction) -> Bool
     
     /**
      This is called when the web view finished loading but encountered and error.
@@ -83,14 +83,14 @@ extension NeemanNavigationDelegate {
      - parameter request: The request that is being considered for pushing onto the navigation stack.
      - returns: Whether the request should be pushed onto the navigation stack or loaded in the current web view.
      */
-    public func shouldPreventPushOfNewRequest(request: NSURLRequest) -> Bool { return false }
+    public func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool { return false }
     
     /**
      Does nothing.
      - parameter request: The request that is being considered for forced pushing onto the navigation stack.
      - returns: Whether we should force the request to be pushed onto the navigation stack.
      */
-    public func shouldForcePushOfNewRequest(request: NSURLRequest) -> Bool { return false }
+    public func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool { return false }
     
     /**
      Does nothing.
@@ -155,15 +155,15 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         decisionHandler: (WKNavigationActionPolicy) -> Void) {
             
             var actionPolicy: WKNavigationActionPolicy = .Allow
-            let shouldPrevent = delegate?.shouldPreventRequest(navigationAction.request) ?? false
+            let shouldPrevent = delegate?.shouldPreventNavigationAction(navigationAction) ?? false
             if shouldPrevent {
                 actionPolicy = .Cancel
             } else {
                 let isLink = navigationAction.navigationType == .LinkActivated
                 let isOther = navigationAction.navigationType == .Other
 
-                let shouldPush = shouldPushForRequestFromWebView(webView, request: navigationAction.request) && isLink
-                let shouldForcePush = delegate?.shouldForcePushOfNewRequest(navigationAction.request) ?? false
+                let shouldPush = shouldPushForRequestFromWebView(webView, navigationAction: navigationAction) && isLink
+                let shouldForcePush = delegate?.shouldForcePushOfNavigationAction(navigationAction) ?? false
                 
                 if !isOther && (shouldPush || shouldForcePush) {
                     delegate?.pushNewWebViewControllerWithURL(navigationAction.request.URL!)
@@ -235,14 +235,15 @@ public class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     
     - returns: Whether or not to push a new web view onto the navigation stack.
     */
-    public func shouldPushForRequestFromWebView(webView: WKWebView, request: NSURLRequest) -> Bool {
-        guard let url = request.URL else {
+    public func shouldPushForRequestFromWebView(webView: WKWebView, navigationAction: WKNavigationAction) -> Bool {
+        if let d = delegate where d.shouldPreventPushOfNavigationAction(navigationAction) {
             return false
         }
-        if let d = delegate where d.shouldPreventPushOfNewRequest(request) {
+        guard let url = navigationAction.request.URL else {
             return false
         }
 
+        let request = navigationAction.request
         let isInitialRequest = url.absoluteString == rootURL.absoluteString
         let isSameHost = request.URL?.host == rootURL.host
         let isSamePathAsWebView = request.URL?.path == webView.URL?.path
