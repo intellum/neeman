@@ -1,6 +1,10 @@
 //import UIKit
 import WebKit
 
+public protocol NeemanViewController {
+    var URLString: String? { get set }
+}
+
 /**
   WebViewController displays the contents of a URL and pushes a new instance of itself once the 
   user clicks on a link that causes an URL change. It also provides support for authentication. 
@@ -10,7 +14,8 @@ public class WebViewController: UIViewController,
                                 WebViewObserverDelegate,
                                 NeemanUIDelegate,
                                 NeemanNavigationDelegate,
-                                WKScriptMessageHandler {
+                                WKScriptMessageHandler,
+                                NeemanViewController {
     
     // MARK: Outlets
     /// Shows that the web view is still loading the page.
@@ -195,10 +200,12 @@ public class WebViewController: UIViewController,
     */
     public func pushNewWebViewControllerWithURL(url: NSURL) {
         print("Pushing: \(url.absoluteString)")
-        if let webViewController = createNewWebViewController() {
+        if var webViewController = createNewWebViewController() {
             let urlString = url.absoluteString
             webViewController.URLString = urlString
-            navigationController?.pushViewController(webViewController, animated: true)
+            if let viewController = webViewController as? UIViewController {
+                navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
     
@@ -208,7 +215,7 @@ public class WebViewController: UIViewController,
      
      - returns: A new web view controller.
      */
-    public func createNewWebViewController() -> WebViewController? {
+    public func createNewWebViewController() -> NeemanViewController? {
         let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
         if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
             (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
