@@ -3,6 +3,7 @@ import WebKit
 
 public protocol NeemanViewController {
     var URLString: String? { get set }
+    func refresh()
 }
 
 /**
@@ -354,3 +355,4 @@ public let WebViewControllerDidLogout = "WebViewControllerDidLogout"
 /** Posting this will cause the didLogin(_:) method to be called. You can post this from your custom native authentication code.
 */
 public let WebViewControllerDidLogin = "WebViewControllerDidLogin"
+
