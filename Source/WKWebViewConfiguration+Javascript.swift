@@ -42,13 +42,53 @@ extension WKWebViewConfiguration {
      Injects WebView.css into the page.
      */
     func addCSSScript() {
+        let script = WKUserScript(source: javascriptForCSS(),
+                                  injectionTime: .AtDocumentStart,
+                                  forMainFrameOnly: true)
+        userContentController.addUserScript(script)
+    }
+    
+    /**
+     Returns the javascript required to inject the Neeman CSS.
+     
+     - returns: The processed javascript.
+     */
+    func javascriptForCSS() -> String {
         var javascript = stringFromContentInFileName("InjectCSS.js")
+        javascript = javascriptWithCSSAddedToJavascript(javascript)
+        javascript = javascriptWithVersionAddedToJavascript(javascript)
+        
+        return javascript
+    }
+    
+    /**
+     Returns the javascript with the "${CSS}" template replaced with the apps CSS.
+     
+     - parameter javascript: The javascript to add the CSS to.
+     
+     - returns: The processed javascript.
+     */
+    func javascriptWithCSSAddedToJavascript(javascript: String) -> String {
         var css = stringFromContentInFileName("WebView.css")
         css = css.stringByReplacingOccurrencesOfString("\n", withString: "\\\n")
-        javascript = javascript.stringByReplacingOccurrencesOfString("${CSS}", withString: css)
         
-        let script = WKUserScript(source: javascript, injectionTime: .AtDocumentStart, forMainFrameOnly: true)
-        userContentController.addUserScript(script)
+        return javascript.stringByReplacingOccurrencesOfString("${CSS}", withString: css)
+    }
+    
+    /**
+     Returns the javascript with the "${VERSION}" template replaced with the current version of the app.
+     
+     - parameter javascript: The javascript to add the version to.
+     
+     - returns: The processed javascript.
+     */
+    func javascriptWithVersionAddedToJavascript(javascript: String) -> String {
+        var versionForCSS = ""
+        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+            versionForCSS = version.stringByReplacingOccurrencesOfString(".", withString: "_")
+        }
+        
+        return javascript.stringByReplacingOccurrencesOfString("${VERSION}", withString: versionForCSS)
     }
     
     /**
