@@ -1,8 +1,13 @@
 //import UIKit
 import WebKit
 
+/**
+ Represents an object that can be used to display web page.
+ */
 public protocol NeemanViewController {
+    /** The initial URL to display in the web view. Set this in your storyboard in the "User Defined Runtime Attributes" */
     var URLString: String? { get set }
+    /** This is called when the initial page needs to be reloaded. */
     func refresh()
 }
 
@@ -345,4 +350,3 @@ public let WebViewControllerDidLogout = "WebViewControllerDidLogout"
 /** Posting this will cause the didLogin(_:) method to be called. You can post this from your custom native authentication code.
 */
 public let WebViewControllerDidLogin = "WebViewControllerDidLogin"
-

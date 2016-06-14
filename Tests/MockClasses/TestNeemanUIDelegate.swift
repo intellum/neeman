@@ -2,6 +2,8 @@ import XCTest
 import WebKit
 import Neeman
 
+// swiftlint:disable missing_docs
+
 /**
  This is used to provide a default implimentation so that the unit tests are less verbose.
  */
