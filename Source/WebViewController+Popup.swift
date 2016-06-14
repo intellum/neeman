@@ -1,6 +1,6 @@
 import WebKit
 
-extension WebViewController {
+extension WebViewController: NeemanUIDelegate {
     
     /**
      Creates a web view for a popup window. The web view is added onto of the current one. 

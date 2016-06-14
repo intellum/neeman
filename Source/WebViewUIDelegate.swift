@@ -5,12 +5,6 @@ import WebKit
  */
 public protocol NeemanUIDelegate: NSObjectProtocol {
     /**
-     This is called when a web view should be pushed onto the navigation stack.
-     
-     - parameter url: The URL to load in the new web view.
-     */
-    func pushNewWebViewControllerWithURL(url: NSURL)
-    /**
      Open a new window. This is where you implement something like a new tab in a browser.
      
      - parameter newWebView: The new web view that should become your tab.

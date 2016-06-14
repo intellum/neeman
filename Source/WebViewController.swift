@@ -12,11 +12,8 @@ public protocol NeemanViewController {
   It makes injecting Javascript into your webapp easy.
 */
 public class WebViewController: UIViewController,
-                                WebViewObserverDelegate,
-                                NeemanUIDelegate,
-                                NeemanNavigationDelegate,
-                                WKScriptMessageHandler,
-                                NeemanViewController {
+                                NeemanViewController,
+                                WKScriptMessageHandler {
     
     // MARK: Outlets
     /// Shows that the web view is still loading the page.
@@ -179,100 +176,8 @@ public class WebViewController: UIViewController,
     public func didLogin(notification: NSNotification) {
         loadURL(rootURL)
     }
-    
-    // MARK: Title and Loading
-    
-    /**
-     Called when the webView updates the value of its title property.
-     
-     - parameter webView: The instance of WKWebView that updated its title property.
-     - parameter title: The value that the WKWebView updated its title property to.
-     */
-    public func webView(webView: WKWebView, didChangeTitle title: String?) {
-        navigationItem.title = title
-    }
+   
 
-    //MARK: NeemanNavigationDelegate
-
-    /**
-    Pushes a new web view onto the navigation stack.
-    
-    - parameter url: The URL to load in the web view.
-    */
-    public func pushNewWebViewControllerWithURL(url: NSURL) {
-        print("Pushing: \(url.absoluteString)")
-        if var webViewController = createNewWebViewController() {
-            let urlString = url.absoluteString
-            webViewController.URLString = urlString
-            if let viewController = webViewController as? UIViewController {
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
-    }
-    
-    /**
-     Creates a new web view using the Neeman.storyboard. If you would like to load a web view controller from your
-     own storyboard then you should override this method and use your subclass in your storyboard.
-     
-     - returns: A new web view controller.
-     */
-    public func createNewWebViewController() -> NeemanViewController? {
-        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
-        if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
-            (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
-                return webViewController
-        }
-        return nil
-    }
-    
-    /**
-     Decide if we should prevent a navigation action from being loading in a new web view.
-     It will instead be loaded in the current one.
-     
-     - parameter navigationAction: The navigation action that will be loaded.
-     
-     - returns: false
-     */
-    public func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
-        return false
-    }
-    
-    /**
-     Decide if we should force the navigation action to be loaded in a new web view.
-     
-     This is useful if a page is setting document.location within a click handler.
-     Web kit does not realise that this was from a "link" click. In this case we can make sure it is handled like a link.
-     
-     - parameter navigationAction: The navigation action that will be loaded.
-     
-     - returns: false
-     */
-    public func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
-        return false
-    }
-    
-    /**
-     Decide if we should prevent the navigation action from being loaded.
-     
-     This is useful if, for example, you would like to switch to another tab that is displaying this request.
-     
-     - parameter navigationAction: The navigation action that will be loaded.
-     
-     - returns: Whether we should prevent the request from being loaded.
-     */
-    public func shouldPreventNavigationAction(navigationAction: WKNavigationAction) -> Bool {
-        return false
-    }
-
-    /**
-     Default implementation doesn't do anything.
-     
-     - parameter webView: The web view that finished navigating.
-     - parameter url:     The final URL of the web view.
-     */
-    public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {
-        errorViewController?.view.removeFromSuperview()
-    }
     
     /**
      Desides how to handle an error based on its code.
@@ -295,6 +200,21 @@ public class WebViewController: UIViewController,
             showHTTPError(networkError)
         default:()
         }
+    }
+    
+    /**
+     Creates a new web view using the Neeman.storyboard. If you would like to load a web view controller from your
+     own storyboard then you should override this method and use your subclass in your storyboard.
+     
+     - returns: A new web view controller.
+     */
+    public func createNewWebViewController() -> NeemanViewController? {
+        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
+        if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
+            (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
+            return webViewController
+        }
+        return nil
     }
 
     /**
@@ -342,6 +262,76 @@ public class WebViewController: UIViewController,
         if let request = request {
             webView.loadRequest(request)
         }
+    }
+}
+
+extension WebViewController: NeemanNavigationDelegate {
+    //MARK: NeemanNavigationDelegate
+    
+    
+    /**
+     Pushes a new web view onto the navigation stack.
+     
+     - parameter url: The URL to load in the web view.
+     */
+    public func pushNewWebViewControllerWithURL(url: NSURL) {
+        print("Pushing: \(url.absoluteString)")
+        if var webViewController = createNewWebViewController() {
+            let urlString = url.absoluteString
+            webViewController.URLString = urlString
+            if let viewController = webViewController as? UIViewController {
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    
+    /**
+     Decide if we should prevent a navigation action from being loading in a new web view.
+     It will instead be loaded in the current one.
+     
+     - parameter navigationAction: The navigation action that will be loaded.
+     
+     - returns: false
+     */
+    public func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+        return false
+    }
+
+    /**
+     Decide if we should force the navigation action to be loaded in a new web view.
+     
+     This is useful if a page is setting document.location within a click handler.
+     Web kit does not realise that this was from a "link" click. In this case we can make sure it is handled like a link.
+     
+     - parameter navigationAction: The navigation action that will be loaded.
+     
+     - returns: false
+     */
+    public func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+        return false
+    }
+    
+    /**
+     Decide if we should prevent the navigation action from being loaded.
+     
+     This is useful if, for example, you would like to switch to another tab that is displaying this request.
+     
+     - parameter navigationAction: The navigation action that will be loaded.
+     
+     - returns: Whether we should prevent the request from being loaded.
+     */
+    public func shouldPreventNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+        return false
+    }
+    
+    /**
+     Default implementation doesn't do anything.
+     
+     - parameter webView: The web view that finished navigating.
+     - parameter url:     The final URL of the web view.
+     */
+    public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {
+        errorViewController?.view.removeFromSuperview()
     }
 }
 

@@ -22,34 +22,6 @@ extension WebViewController {
     }
 
     /**
-     Called when the webView updates the value of its loading property.
-     - Parameter webView: The instance of WKWebView that updated its loading property.
-     - Parameter loading: The value that the WKWebView updated its loading property to.
-     */
-    public func webView(webView: WKWebView, didChangeLoading loading: Bool) {
-        updateActivityIndicatorWithWebView(webView)
-        updateProgressViewWithWebView(webView)
-        if !loading {
-            if refreshControl?.refreshing ?? false {
-                refreshControl?.endRefreshing()
-            }
-            if let _ = webView.URL {
-                hasLoadedContent = true
-            }
-        }
-    }
-    
-    /**
-     This is called when the web view change its estimate loading progress.
-     
-     - parameter webView:           The web view.
-     - parameter estimatedProgress: The estimated fraction of the progress toward loading the page.
-     */
-    public func webView(webView: WKWebView, didChangeEstimatedProgress estimatedProgress: Double) {
-        progressView?.setProgress(Float(estimatedProgress), animated: true)
-    }
-    
-    /**
      This sets up progress view in the top of the view. If progressView is non-nil
      the we use that instead. If you want to create your own progress view you can override this
      method or you can set the outlet in interface builder.
@@ -167,4 +139,46 @@ extension WebViewController {
             progressView.setProgress(0, animated: false)
         }
     }
+}
+
+extension WebViewController: WebViewObserverDelegate {
+    
+    /**
+     Called when the webView updates the value of its title property.
+     
+     - parameter webView: The instance of WKWebView that updated its title property.
+     - parameter title: The value that the WKWebView updated its title property to.
+     */
+    public func webView(webView: WKWebView, didChangeTitle title: String?) {
+        navigationItem.title = title
+    }
+
+    /**
+     Called when the webView updates the value of its loading property.
+     - Parameter webView: The instance of WKWebView that updated its loading property.
+     - Parameter loading: The value that the WKWebView updated its loading property to.
+     */
+    public func webView(webView: WKWebView, didChangeLoading loading: Bool) {
+        updateActivityIndicatorWithWebView(webView)
+        updateProgressViewWithWebView(webView)
+        if !loading {
+            if refreshControl?.refreshing ?? false {
+                refreshControl?.endRefreshing()
+            }
+            if let _ = webView.URL {
+                hasLoadedContent = true
+            }
+        }
+    }
+    
+    /**
+     This is called when the web view change its estimate loading progress.
+     
+     - parameter webView:           The web view.
+     - parameter estimatedProgress: The estimated fraction of the progress toward loading the page.
+     */
+    public func webView(webView: WKWebView, didChangeEstimatedProgress estimatedProgress: Double) {
+        progressView?.setProgress(Float(estimatedProgress), animated: true)
+    }
+    
 }
