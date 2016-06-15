@@ -15,7 +15,7 @@ is to keep your content rendered with HTML and implement your navigation nativel
 3. Set the **User Defined Runtime Attribute** `rootURLString` to the URL you which to display.
                    DESC
 
-  s.homepage     = "https://intellum.com"
+  s.homepage     = "http://intellum.com"
 
 
   s.license      = "MIT"
