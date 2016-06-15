@@ -1,8 +1,10 @@
 ## [0.4.1](https://github.com/intellum/neeman/releases/tag/0.4.1)
 #### Updated
 - Decoupled the `WebViewController`'s `createNewWebViewController` so we can override it to create view controllers that don't extend `WebViewController`.
-- Implemented state restoration.
 - Changed `shouldForcePushOfNewNavigationAction` to `shouldForcePushOfNavigationAction` for consistency.
+
+#### Added
+- Implemented state restoration.
 - Inject an HTML class that is specific to the version of the app. i.e. `neeman-hybrid-app-version-[version]`.
 
 ## [0.4.0](https://github.com/intellum/neeman/releases/tag/0.4.0)
