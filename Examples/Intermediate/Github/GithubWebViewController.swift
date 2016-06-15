@@ -36,7 +36,9 @@ class GithubWebViewController: WebViewController {
             } else if message.name == "didGetBarButton" {
                 if let urlString = message.body as? String,
                     url = NSURL(string: urlString) {
-                    let barButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(GithubWebViewController.didTapBarButton))
+                    let barButton = UIBarButtonItem(barButtonSystemItem: .Add,
+                                                    target: self,
+                                                    action: #selector(GithubWebViewController.didTapBarButton))
                     self.navigationItem.rightBarButtonItem = barButton
                     rightBarButtonURL = url
                 }
