@@ -9,5 +9,7 @@ opt_in_rules:
 
 excluded:
   - Pods
+  - Examples/Basic/Pods
+  - Examples/Intermediate/Pods
 
 line_length: 150
