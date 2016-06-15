@@ -4,6 +4,6 @@ platform :ios, '8.1'
 use_frameworks!
 
 target 'NSHipster' do
-  pod 'Neeman', :head
+  pod 'Neeman'
 end
 
