@@ -11,7 +11,7 @@ extension WKWebViewConfiguration {
         self.init()
         processPool = ProcessPool.sharedInstance
         if #available(iOS 9.0, *) {
-            applicationNameForUserAgent = settings.appName
+            applicationNameForUserAgent = "Neeman \(settings.appName) iOS"
         }
         addJavascript()
     }
@@ -21,8 +21,8 @@ extension WKWebViewConfiguration {
      */
     func addJavascript() {
         addCSSScript()
-        addScript("AtDocumentStart.js", injectionTime: .AtDocumentStart)
-        addScript("AtDocumentEnd.js", injectionTime: .AtDocumentEnd)
+        addScript("AtDocumentStart.js", injectionTime: .atDocumentStart)
+        addScript("AtDocumentEnd.js", injectionTime: .atDocumentEnd)
         //        js.addScript("FastClick.js", injectionTime: .AtDocumentEnd)
     }
     
@@ -32,9 +32,9 @@ extension WKWebViewConfiguration {
      - parameter scriptName:    The name of the script to inject.
      - parameter injectionTime: The point at which to inject the script.
      */
-    public func addScript(scriptName: String, injectionTime: WKUserScriptInjectionTime) {
+    public func addScript(_ scriptName: String, injectionTime: WKUserScriptInjectionTime) {
         let content = stringFromContentInFileName(scriptName)
-        let script = WKUserScript(source: content, injectionTime: injectionTime, forMainFrameOnly: false)
+        let script = WKUserScript(source: content!, injectionTime: injectionTime, forMainFrameOnly: false)
         userContentController.addUserScript(script)
     }
     
@@ -43,7 +43,7 @@ extension WKWebViewConfiguration {
      */
     func addCSSScript() {
         let script = WKUserScript(source: javascriptForCSS(),
-                                  injectionTime: .AtDocumentStart,
+                                  injectionTime: .atDocumentStart,
                                   forMainFrameOnly: true)
         userContentController.addUserScript(script)
     }
@@ -55,10 +55,10 @@ extension WKWebViewConfiguration {
      */
     func javascriptForCSS() -> String {
         var javascript = stringFromContentInFileName("InjectCSS.js")
-        javascript = javascriptWithCSSAddedToJavascript(javascript)
-        javascript = javascriptWithVersionAddedToJavascript(javascript)
+        javascript = javascriptWithCSSAddedToJavascript(javascript!)
+        javascript = javascriptWithVersionAddedToJavascript(javascript!)
         
-        return javascript
+        return javascript!
     }
     
     /**
@@ -68,11 +68,11 @@ extension WKWebViewConfiguration {
      
      - returns: The processed javascript.
      */
-    func javascriptWithCSSAddedToJavascript(javascript: String) -> String {
+    func javascriptWithCSSAddedToJavascript(_ javascript: String) -> String {
         var css = stringFromContentInFileName("WebView.css")
-        css = css.stringByReplacingOccurrencesOfString("\n", withString: "\\\n")
+        css = css?.replacingOccurrences(of: "\n", with: "\\\n")
         
-        return javascript.stringByReplacingOccurrencesOfString("${CSS}", withString: css)
+        return javascript.replacingOccurrences(of: "${CSS}", with: css!)
     }
     
     /**
@@ -82,13 +82,13 @@ extension WKWebViewConfiguration {
      
      - returns: The processed javascript.
      */
-    func javascriptWithVersionAddedToJavascript(javascript: String) -> String {
+    func javascriptWithVersionAddedToJavascript(_ javascript: String) -> String {
         var versionForCSS = ""
-        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
-            versionForCSS = version.stringByReplacingOccurrencesOfString(".", withString: "_")
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            versionForCSS = version.replacingOccurrences(of: ".", with: "_")
         }
         
-        return javascript.stringByReplacingOccurrencesOfString("${VERSION}", withString: versionForCSS)
+        return javascript.replacingOccurrences(of: "${VERSION}", with: versionForCSS)
     }
     
     /**
@@ -98,7 +98,7 @@ extension WKWebViewConfiguration {
      
      - returns: The contets of the file.
      */
-    func stringFromContentInFileName(fileName: String) -> String! {
+    func stringFromContentInFileName(_ fileName: String) -> String! {
         return contentsOfNeemansWithName(fileName) + contentsOfMainBundlesFileWithName(fileName)
     }
     
@@ -109,8 +109,8 @@ extension WKWebViewConfiguration {
      
      - returns: The contets of the file.
      */
-    func contentsOfNeemansWithName(fileName: String) -> String {
-        let bundle = NSBundle(forClass: WebViewController.self)
+    func contentsOfNeemansWithName(_ fileName: String) -> String {
+        let bundle = Bundle(for: WebViewController.self)
         return contentsOfFileNamed(fileName, inBundle: bundle)
     }
 
@@ -121,8 +121,8 @@ extension WKWebViewConfiguration {
      
      - returns: The contets of the file.
      */
-    func contentsOfMainBundlesFileWithName(fileName: String) -> String {
-        let bundle = NSBundle.mainBundle()
+    func contentsOfMainBundlesFileWithName(_ fileName: String) -> String {
+        let bundle = Bundle.main
         return contentsOfFileNamed(fileName, inBundle: bundle)
     }
 
@@ -134,8 +134,8 @@ extension WKWebViewConfiguration {
      
      - returns: The contets of the file.
      */
-    func contentsOfFileNamed(fileName: String, inBundle bundle: NSBundle) -> String {
-        if let path = bundle.pathForResource(fileName, ofType: "") {
+    func contentsOfFileNamed(_ fileName: String, inBundle bundle: Bundle) -> String {
+        if let path = bundle.path(forResource: fileName, ofType: "") {
             return contentsOfFileAtPath(path)
         }
         return ""
@@ -148,10 +148,10 @@ extension WKWebViewConfiguration {
      
      - returns: The contets of the file.
      */
-    func contentsOfFileAtPath(filePath: String) -> String {
+    func contentsOfFileAtPath(_ filePath: String) -> String {
         var content = ""
         do {
-            content += try String(contentsOfFile:filePath, encoding: NSUTF8StringEncoding)
+            content += try String(contentsOfFile:filePath, encoding: String.Encoding.utf8)
         } catch _ {
         }
         return content

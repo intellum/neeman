@@ -8,7 +8,7 @@ extension WebViewController {
      
      - parameter message: The error message that should be presented. 
      */
-    public func setErrorMessage(message: String?) {
+    public func setErrorMessage(_ message: String?) {
         navigationItem.prompt = message
     }
     
@@ -17,8 +17,8 @@ extension WebViewController {
      */
     func showURLError() {
         let imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode = .ScaleAspectFit
-        imageView.image = UIImage(named: "Help-URL", inBundle: NSBundle(forClass: WebViewController.self), compatibleWithTraitCollection: nil)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "Help-URL", in: Bundle(for: WebViewController.self), compatibleWith: nil)
         view.addSubview(imageView)
     }
     
@@ -27,21 +27,21 @@ extension WebViewController {
      */
     func showSSLError() {
         let imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "Help-Security",
-            inBundle: NSBundle(forClass: WebViewController.self),
-            compatibleWithTraitCollection: nil)
+            in: Bundle(for: WebViewController.self),
+            compatibleWith: nil)
         view.addSubview(imageView)
     }
     
-    func showHTTPError(error: NetworkError) {
+    func showHTTPError(_ error: NetworkError) {
         if hasLoadedContent {
             setErrorMessage(error.description)
             return
         }
         if errorViewController == nil {
-            let storyboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
-            guard let errorVC = storyboard.instantiateViewControllerWithIdentifier("ErrorViewController") as? ErrorViewController else {
+            let storyboard = UIStoryboard(name: "Neeman", bundle: Bundle(for: WebViewController.self))
+            guard let errorVC = storyboard.instantiateViewController(withIdentifier: "ErrorViewController") as? ErrorViewController else {
                 return
             }
             errorViewController = errorVC
@@ -54,12 +54,12 @@ extension WebViewController {
             webView.scrollView.addSubview(errorViewController.view!)
             
             if let mainBundleImage = UIImage(named: "Error-HTTP",
-                inBundle: NSBundle.mainBundle(),
-                compatibleWithTraitCollection: nil) {
+                in: Bundle.main,
+                compatibleWith: nil) {
                     errorViewController.imageView.image = mainBundleImage
             } else if let neemanBundleImage = UIImage(named: "Error-HTTP",
-                inBundle: NSBundle(forClass: WebViewController.self),
-                compatibleWithTraitCollection: nil) {
+                in: Bundle(for: WebViewController.self),
+                compatibleWith: nil) {
                     errorViewController.imageView.image = neemanBundleImage
             }
             

@@ -8,11 +8,11 @@
 
 import Foundation
 
-internal func NeemanLocalizedString(key: String, comment: String?) -> String {
+internal func NeemanLocalizedString(_ key: String, comment: String?) -> String {
     struct Static {
-        static let bundle = NSBundle(forClass: WebViewController.self)
+        static let bundle = Bundle(for: WebViewController.self)
     }
-    let mainBundleString = NSLocalizedString(key, bundle: NSBundle.mainBundle(), comment: comment ?? "")
+    let mainBundleString = NSLocalizedString(key, bundle: Bundle.main, comment: comment ?? "")
     if mainBundleString == key {
         return NSLocalizedString(key, tableName: "Neeman", bundle: Static.bundle, value: key, comment: comment ?? "")
     }

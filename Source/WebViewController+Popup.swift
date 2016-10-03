@@ -9,7 +9,7 @@ extension WebViewController: NeemanUIDelegate {
      - parameter newWebView: The new web view.
      - parameter url:        The URL to load.
      */
-    public func popupWebView(newWebView: WKWebView, withURL url: NSURL) {
+    public func popupWebView(_ newWebView: WKWebView, withURL url: URL) {
         webViewPopup = newWebView
         guard let webViewPopup = webViewPopup else {
             return
@@ -17,7 +17,7 @@ extension WebViewController: NeemanUIDelegate {
         
         uiDelegatePopup = WebViewUIDelegate(settings: settings)
         uiDelegatePopup?.delegate = self
-        webViewPopup.UIDelegate = uiDelegatePopup
+        webViewPopup.uiDelegate = uiDelegatePopup
         webViewPopup.allowsBackForwardNavigationGestures = true
         
         view.insertSubview(webViewPopup, aboveSubview: webView)
@@ -27,7 +27,7 @@ extension WebViewController: NeemanUIDelegate {
         
         webViewObserver.startObservingWebView(webViewPopup)
         
-        let request = NSMutableURLRequest(URL: url)
+        let request = NSMutableURLRequest(url: url)
         loadPopupRequest(request)
         
     }
@@ -37,8 +37,8 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter request: The request to load in the popup.
      */
-    public func loadPopupRequest(request: NSMutableURLRequest) {
-        webViewPopup?.loadRequest(request)
+    public func loadPopupRequest(_ request: NSMutableURLRequest) {
+        webViewPopup?.load(request as URLRequest)
     }
     
     /**
@@ -46,7 +46,7 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter webView: The web view to close.
      */
-    public func closeWebView(webView: WKWebView) {
+    public func closeWebView(_ webView: WKWebView) {
         if let popupWebView = webViewPopup {
             webViewObserver.stopObservingWebView(popupWebView)
             popupWebView.removeFromSuperview()

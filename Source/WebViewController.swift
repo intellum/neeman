@@ -16,16 +16,16 @@ public protocol NeemanViewController {
   user clicks on a link that causes an URL change. It also provides support for authentication. 
   It makes injecting Javascript into your webapp easy.
 */
-public class WebViewController: UIViewController,
+open class WebViewController: UIViewController,
                                 NeemanViewController,
                                 WKScriptMessageHandler {
     
     // MARK: Outlets
     /// Shows that the web view is still loading the page.
-    @IBOutlet public var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet open var activityIndicator: UIActivityIndicatorView?
     
     /// Shows the progress toward loading the page.
-    @IBOutlet public var progressView: UIProgressView?
+    @IBOutlet open var progressView: UIProgressView?
     
     /// Displays an error the occured whilst loading the page.
     @IBOutlet var errorViewController: ErrorViewController?
@@ -33,33 +33,33 @@ public class WebViewController: UIViewController,
     // MARK: Properties
     
     /// The settings to set the web view up with.
-    public var settings: NeemanSettings = NeemanSettings()
+    open var settings: NeemanSettings = NeemanSettings()
 
     /// The navigation delegate that will receive changes in loading, estimated progress and further navigation.
-    public var navigationDelegate: WebViewNavigationDelegate?
+    open var navigationDelegate: WebViewNavigationDelegate?
     /// The UI delegate that allows us to implement our own code to handle window.open(), alert(), confirm() and prompt().
-    public var uiDelegate: WebViewUIDelegate?
+    open var uiDelegate: WebViewUIDelegate?
     /// This is a popup window that is opened when javascript code calles window.open().
     var uiDelegatePopup: WebViewUIDelegate?
     
     /// The initial NSURL that the web view is loading. Use URLString to set the URL.
-    public var rootURL: NSURL? {
+    open var rootURL: URL? {
         get {
-            return (absoluteURLString != nil) ? NSURL(string: absoluteURLString!) : nil
+            return (absoluteURLString != nil) ? URL(string: absoluteURLString!) : nil
         }
     }
     
     /** The initial URL to display in the web view. Set this in your storyboard in the "User Defined Runtime Attributes"
     You can set baseURL in Settings if you would like to use relative URLs instead.
      */
-    @IBInspectable public var URLString: String?
+    @IBInspectable open var URLString: String?
     
     /** If URLString is not an absolute URL and if you have set the baseURL in Settings
      then this returns the absolute URL by combining the two.
      */
     var absoluteURLString: String? {
         get {
-            if let urlString = URLString where !urlString.containsString("://") {
+            if let urlString = URLString , !urlString.contains("://") {
                 return settings.baseURL + urlString
             }
             return URLString
@@ -69,20 +69,20 @@ public class WebViewController: UIViewController,
     /** A UIRefreshControl is automatically added to the WKWebView.
         When you pull down your webView the page will be refreshed.
     */
-    public var refreshControl: UIRefreshControl?
+    open var refreshControl: UIRefreshControl?
     
     /** This is set once the web view has successfully loaded. If for some reason the page doesn't load
         then we know know when we return we should try again.
      */
-    public internal(set) var hasLoadedContent: Bool = false
+    open internal(set) var hasLoadedContent: Bool = false
 
     /**
      The WKWebView in which the content of the URL defined in URLString will be dispayed.
      */
-    public var webView: WKWebView!
+    open var webView: WKWebView!
     
     /// A web view that is used to display a window that was opened with window.open().
-    public var webViewPopup: WKWebView?
+    open var webViewPopup: WKWebView?
     
     /// Observes properties of a web view such as loading, estimatedProgress and its title.
     var webViewObserver: WebViewObserver = WebViewObserver()
@@ -92,7 +92,7 @@ public class WebViewController: UIViewController,
     /**
     Setup the web view, the refresh controll, the activity indicator, progress view and observers.
     */
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         setupWebView()
@@ -108,10 +108,13 @@ public class WebViewController: UIViewController,
      Setup the notification handlers and KVO.
      */
     func addObservers() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: #selector(WebViewController.didLogout(_:)), name: WebViewControllerDidLogout, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: #selector(WebViewController.didLogin(_:)), name: WebViewControllerDidLogin, object: nil)
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(WebViewController.didLogout(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogout), object: nil)
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(WebViewController.didLogin(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogin), object: nil)
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(WebViewController.didBecomeActive(_:)),
+            name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         webViewObserver.startObservingWebView(webView)
     }
     
@@ -119,7 +122,7 @@ public class WebViewController: UIViewController,
      Stop observing notifications and KVO.
      */
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         webViewObserver.stopObservingWebView(webViewPopup)
         webViewObserver.stopObservingWebView(webView)
     }
@@ -129,14 +132,23 @@ public class WebViewController: UIViewController,
      
      - parameter animated: Was the appearence animated.
      */
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if shouldReloadOnViewWillAppear(animated) {
             loadURL(rootURL)
         }
     }
     
-    /** 
+    /**
+     This action is called by as a result of a UIApplicationDidBecomeActiveNotification.
+     */
+    open func didBecomeActive(_ notification: Notification) {
+        if !hasLoadedContent {
+            loadURL(rootURL)
+        }
+    }
+    
+    /**
      This is called from viewWillAppear and reloads the page if the page has not yet been successfully loaded.
      If you want to do something different you can override this method 
      and place additional logic in the viewWill* and viewDid* events.
@@ -144,7 +156,7 @@ public class WebViewController: UIViewController,
      - parameter animated: Whether the appearance is happening with animation or not.
      - returns: Whether the page should be reloaded.
     */
-    public func shouldReloadOnViewWillAppear(animated: Bool) -> Bool {
+    open func shouldReloadOnViewWillAppear(_ animated: Bool) -> Bool {
         if !hasLoadedContent {
             return true
         }
@@ -155,7 +167,7 @@ public class WebViewController: UIViewController,
      Since iOS only automatically adjusts scroll view insets for the main web view 
      we have to do it ourselves for the popup web view.
      */
-    override public func viewWillLayoutSubviews() {
+    override open func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         webViewPopup?.scrollView.contentInset = webView.scrollView.contentInset
         webViewPopup?.scrollView.scrollIndicatorInsets = webView.scrollView.scrollIndicatorInsets
@@ -168,7 +180,7 @@ public class WebViewController: UIViewController,
     
     - parameter notification: The notification received.
     */
-    public func didLogout(notification: NSNotification) {
+    open func didLogout(_ notification: Notification) {
         hasLoadedContent = false
     }
     
@@ -178,7 +190,7 @@ public class WebViewController: UIViewController,
      
      - parameter notification: The notification received.
      */
-    public func didLogin(notification: NSNotification) {
+    open func didLogin(_ notification: Notification) {
         loadURL(rootURL)
     }
    
@@ -190,7 +202,7 @@ public class WebViewController: UIViewController,
      - parameter webView: The web view the error came from.
      - parameter error:   The error the web view incountered.
      */
-    public func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {
+    open func webView(_ webView: WKWebView, didFinishLoadingWithError error: NSError) {
         if #available(iOS 9.0, *) {
             if error.code == NSURLErrorAppTransportSecurityRequiresSecureConnection {
                 showSSLError()
@@ -213,10 +225,10 @@ public class WebViewController: UIViewController,
      
      - returns: A new web view controller.
      */
-    public func createNewWebViewController() -> NeemanViewController? {
-        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: NSBundle(forClass: WebViewController.self))
-        if let webViewController: WebViewController = neemanStoryboard.instantiateViewControllerWithIdentifier(
-            (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
+    open func createNewWebViewController() -> NeemanViewController? {
+        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: Bundle(for: WebViewController.self))
+        if let webViewController: WebViewController = neemanStoryboard.instantiateViewController(
+            withIdentifier: (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
             return webViewController
         }
         return nil
@@ -234,8 +246,8 @@ public class WebViewController: UIViewController,
      - parameter userContentController: The user content controller that is managing you messages.
      - parameter message:               The script message received from your javascript.
      */
-    public func userContentController(userContentController: WKUserContentController,
-        didReceiveScriptMessage message: WKScriptMessage) {
+    open func userContentController(_ userContentController: WKUserContentController,
+        didReceive message: WKScriptMessage) {
     }
     
     // MARK: WebView
@@ -245,7 +257,7 @@ public class WebViewController: UIViewController,
     
     - parameter URL: The URL to laod.
     */
-    public func loadURL(URL: NSURL?) {
+    open func loadURL(_ URL: Foundation.URL?) {
         guard let URL = URL else {
             showURLError()
             return
@@ -255,7 +267,7 @@ public class WebViewController: UIViewController,
         hasLoadedContent = false
         
         progressView?.setProgress(0, animated: false)
-        loadRequest(NSMutableURLRequest(URL: URL))
+        loadRequest(NSMutableURLRequest(url: URL))
     }
     
     /**
@@ -263,9 +275,9 @@ public class WebViewController: UIViewController,
      
      - parameter request: The request to load.
      */
-    public func loadRequest(request: NSMutableURLRequest?) {
+    open func loadRequest(_ request: NSMutableURLRequest?) {
         if let request = request {
-            webView.loadRequest(request)
+            webView.load(request as URLRequest)
         }
     }
 }
@@ -279,7 +291,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - parameter url: The URL to load in the web view.
      */
-    public func pushNewWebViewControllerWithURL(url: NSURL) {
+    public func pushNewWebViewControllerWithURL(_ url: URL) {
         print("Pushing: \(url.absoluteString)")
         if var webViewController = createNewWebViewController() {
             let urlString = url.absoluteString
@@ -298,7 +310,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: false
      */
-    public func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    public func shouldPreventPushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
 
@@ -312,7 +324,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: false
      */
-    public func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    public func shouldForcePushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
@@ -325,7 +337,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: Whether we should prevent the request from being loaded.
      */
-    public func shouldPreventNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    public func shouldPreventNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
@@ -335,7 +347,7 @@ extension WebViewController: NeemanNavigationDelegate {
      - parameter webView: The web view that finished navigating.
      - parameter url:     The final URL of the web view.
      */
-    public func webView(webView: WKWebView, didFinishNavigationWithURL url: NSURL?) {
+    public func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
         errorViewController?.view.removeFromSuperview()
     }
 }

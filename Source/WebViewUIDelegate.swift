@@ -10,21 +10,21 @@ public protocol NeemanUIDelegate: NSObjectProtocol {
      - parameter newWebView: The new web view that should become your tab.
      - parameter url:        The URL to display in the new tab.
      */
-    func popupWebView(newWebView: WKWebView, withURL url: NSURL)
+    func popupWebView(_ newWebView: WKWebView, withURL url: URL)
     
     /**
      Close the tab.
     
      - parameter webView: The web view that should be closed.
      */
-    func closeWebView(webView: WKWebView)
+    func closeWebView(_ webView: WKWebView)
     
     /**
      This is called when a script from a 3rd party domain calles alert(), confirm() or prompt().
      
      - parameter request: The request representing the url of the calling script.
      */
-    func refusedUIFromRequest(request: NSURLRequest)
+    func refusedUIFromRequest(_ request: URLRequest)
 }
 
 extension NeemanUIDelegate {
@@ -33,7 +33,7 @@ extension NeemanUIDelegate {
      
      - parameter url: The url being pushed onto the navigation stack.
      */
-    public func pushNewWebViewControllerWithURL(url: NSURL) {}
+    public func pushNewWebViewControllerWithURL(_ url: URL) {}
 
     /**
      Does nothing.
@@ -41,28 +41,28 @@ extension NeemanUIDelegate {
      - parameter newWebView: The url being pushed onto the navigation stack.
      - parameter url: The url being pushed onto the navigation stack.
      */
-    public func popupWebView(newWebView: WKWebView, withURL url: NSURL) {}
+    public func popupWebView(_ newWebView: WKWebView, withURL url: URL) {}
     
     /**
      Does nothing.
      
      - parameter webView: The url being pushed onto the navigation stack.
      */
-    public func closeWebView(webView: WKWebView) {}
+    public func closeWebView(_ webView: WKWebView) {}
     
     /**
      Does nothing.
      
      - parameter request: The request from which the UI action was refused.
      */
-    public func refusedUIFromRequest(request: NSURLRequest) {}
+    public func refusedUIFromRequest(_ request: URLRequest) {}
 }
 
 /** This class implements WKUIDelegate. It implements alert(), confirm() and prompt() using an alert controller.
  
  When window.open() is called it creates a new web view and passes this to the NeemanUIDelegate.
 */
-public class WebViewUIDelegate: NSObject, WKUIDelegate {
+open class WebViewUIDelegate: NSObject, WKUIDelegate {
     
     weak var delegate: NeemanUIDelegate?
     var settings: NeemanSettings
@@ -87,8 +87,8 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      
      - returns: A new web view or nil.
      */
-    public func webView(webView: WKWebView, createWebViewWithConfiguration configuration: WKWebViewConfiguration,
-        forNavigationAction navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+    open func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration,
+        for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
             
             let newWebView = WKWebView(frame: webView.frame, configuration: configuration)
             configuration.processPool = ProcessPool.sharedInstance
@@ -96,7 +96,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
                 configuration.applicationNameForUserAgent = settings.appName
             }
 
-            if let url = navigationAction.request.URL {
+            if let url = navigationAction.request.url {
                 delegate?.popupWebView(newWebView, withURL: url)
             }
             return newWebView
@@ -110,7 +110,7 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      
      - parameter webView: The web view that is being closed.
      */
-    public func webViewDidClose(webView: WKWebView) {
+    open func webViewDidClose(_ webView: WKWebView) {
         delegate?.closeWebView(webView)
     }
     
@@ -122,10 +122,10 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      - parameter frame:             Information about the frame whose JavaScript initiated this call.
      - parameter completionHandler: The completion handler to call after the alert panel has been dismissed.
      */
-    public func webView(webView: WKWebView,
+    open func webView(_ webView: WKWebView,
         runJavaScriptAlertPanelWithMessage message: String,
         initiatedByFrame frame: WKFrameInfo,
-        completionHandler: () -> Void) {
+        completionHandler: @escaping () -> Void) {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
@@ -135,11 +135,11 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
 
             let alert = UIAlertController(title: nil,
                 message: message,
-                preferredStyle: .Alert)
+                preferredStyle: .alert)
             let title = NSLocalizedString("OK", comment: "OK Button")
-            let ok = UIAlertAction(title: title, style: .Default) { (action: UIAlertAction) -> Void in
+            let ok = UIAlertAction(title: title, style: .default) { (action: UIAlertAction) -> Void in
                 completionHandler()
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
             alert.addAction(ok)
             presentAlertController(alert)
@@ -154,8 +154,8 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      - parameter completionHandler: The completion handler to call after the confirm
      panel has been dismissed. Pass YES if the user chose OK, NO if the user chose Cancel.
      */
-    public func webView(webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String,
-        initiatedByFrame frame: WKFrameInfo, completionHandler: (Bool) -> Void) {
+    open func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String,
+        initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
@@ -165,17 +165,17 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
             
             let alert = UIAlertController(title: nil,
                 message: message,
-                preferredStyle: .Alert)
+                preferredStyle: .alert)
             let title = NSLocalizedString("OK", comment: "OK Button")
-            let ok = UIAlertAction(title: title, style: .Default) { (action: UIAlertAction) -> Void in
+            let ok = UIAlertAction(title: title, style: .default) { (action: UIAlertAction) -> Void in
                 completionHandler(true)
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
             let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"),
-                style: .Default) { (action: UIAlertAction) -> Void in
+                style: .default) { (action: UIAlertAction) -> Void in
                     
                 completionHandler(false)
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
             alert.addAction(ok)
             alert.addAction(cancel)
@@ -193,9 +193,9 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      input panel has been dismissed. Pass the entered text if the user chose
      OK, otherwise nil.
      */
-    public func webView(webView: WKWebView,
+    open func webView(_ webView: WKWebView,
         runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?,
-        initiatedByFrame frame: WKFrameInfo, completionHandler: (String?) -> Void) {
+        initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
             
             if !shouldAcceptUIFromFrame(frame) {
                 refusedUIFromRequest(frame.request)
@@ -205,23 +205,23 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
 
             let alert = UIAlertController(title: nil,
                 message: prompt,
-                preferredStyle: .Alert)
-            let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button"), style: .Default) { (action: UIAlertAction) -> Void in
+                preferredStyle: .alert)
+            let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button"), style: .default) { (action: UIAlertAction) -> Void in
                 if let text = alert.textFields?.first?.text {
                     completionHandler(text)
                 }
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
             let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"),
-                style: .Default) { (action: UIAlertAction) -> Void in
+                style: .default) { (action: UIAlertAction) -> Void in
                     
                 completionHandler(nil)
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
             alert.addAction(ok)
             alert.addAction(cancel)
             
-            alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
+            alert.addTextField { (textField: UITextField) -> Void in
                 textField.text = defaultText
             }
             presentAlertController(alert)
@@ -232,12 +232,12 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      
      - parameter alert: The alert controller to present.
      */
-    internal func presentAlertController(alert: UIAlertController) {
-        guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController else {
+    internal func presentAlertController(_ alert: UIAlertController) {
+        guard let rootViewController = UIApplication.shared.delegate?.window??.rootViewController else {
             return
         }
         
-        rootViewController.presentViewController(alert, animated: true, completion: nil)
+        rootViewController.present(alert, animated: true, completion: nil)
     }
     
     /**
@@ -246,8 +246,8 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      
      - parameter request: The request from the offending frame.
      */
-    internal func refusedUIFromRequest(request: NSURLRequest) {
-        print("Refused UI Request from \(request.URL?.host)")
+    internal func refusedUIFromRequest(_ request: URLRequest) {
+        print("Refused UI Request from \(request.url?.host)")
     }
 
     /**
@@ -257,12 +257,12 @@ public class WebViewUIDelegate: NSObject, WKUIDelegate {
      
      - returns: Return false if we should ignore the delegate call.
      */
-    func shouldAcceptUIFromFrame(frame: WKFrameInfo) -> Bool {
-        guard let requestHost = frame.request.URL?.host else {
+    func shouldAcceptUIFromFrame(_ frame: WKFrameInfo) -> Bool {
+        guard let requestHost = frame.request.url?.host else {
             return false
         }
 
-        if let host = NSURL(string: settings.baseURL)?.host {
+        if let host = URL(string: settings.baseURL)?.host {
             if requestHost == host {
                 return true
             }

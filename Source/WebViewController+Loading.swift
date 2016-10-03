@@ -9,8 +9,8 @@ extension WebViewController {
     public func setupRefreshControl() {
         let newRefreshControl = UIRefreshControl()
         newRefreshControl.attributedTitle = NSAttributedString(string: "")
-        newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
-        webView.scrollView.insertSubview(newRefreshControl, atIndex: 0)
+        newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), for: UIControlEvents.valueChanged)
+        webView.scrollView.insertSubview(newRefreshControl, at: 0)
         refreshControl = newRefreshControl
     }
     
@@ -31,7 +31,7 @@ extension WebViewController {
             return
         }
         
-        progressView = UIProgressView(progressViewStyle: .Default)
+        progressView = UIProgressView(progressViewStyle: .default)
         guard let progressView = progressView else {
             return
         }
@@ -40,23 +40,23 @@ extension WebViewController {
         
         let views = Dictionary(dictionaryLiteral: ("progressView", progressView))
         
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[progressView]|",
+        let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[progressView]|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views)
         view.addConstraints(hConstraints)
 
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[progressView(1)]",
+        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[progressView(1)]",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views)
         view.addConstraints(vConstraints)
         
         let yConstraint = NSLayoutConstraint(item: progressView,
-            attribute: .Top,
-            relatedBy: .Equal,
+            attribute: .top,
+            relatedBy: .equal,
             toItem: topLayoutGuide,
-            attribute: .Bottom,
+            attribute: .bottom,
             multiplier: 1,
             constant: 0)
         view.addConstraint(yConstraint)
@@ -78,25 +78,25 @@ extension WebViewController {
         }
         
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         let xCenterConstraint = NSLayoutConstraint(item: activityIndicator,
-            attribute: .CenterX,
-            relatedBy: .Equal,
+            attribute: .centerX,
+            relatedBy: .equal,
             toItem: view,
-            attribute: .CenterX,
+            attribute: .centerX,
             multiplier: 1,
             constant: 0)
         view.addConstraint(xCenterConstraint)
         
         let yConstraint = NSLayoutConstraint(item: activityIndicator,
-            attribute: .Bottom,
-            relatedBy: .Equal,
+            attribute: .bottom,
+            relatedBy: .equal,
             toItem: bottomLayoutGuide,
-            attribute: .Top,
+            attribute: .top,
             multiplier: 1,
             constant: -20)
         view.addConstraint(yConstraint)
@@ -108,19 +108,19 @@ extension WebViewController {
      
      - parameter webView: The web view whose activity we should indicate.
      */
-    func updateActivityIndicatorWithWebView(webView: WKWebView) {
+    func updateActivityIndicatorWithWebView(_ webView: WKWebView) {
         guard let activityIndicator = activityIndicator else {
             return
         }
         
-        if webView.loading {
-            if let refreshControl = refreshControl where !refreshControl.refreshing {
+        if webView.isLoading {
+            if let refreshControl = refreshControl , !refreshControl.isRefreshing {
                 activityIndicator.startAnimating()
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
             }
         } else {
             activityIndicator.stopAnimating()
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     /**
@@ -129,13 +129,13 @@ extension WebViewController {
      
      - parameter webView: The web view whose progress we should indicate.
      */
-    func updateProgressViewWithWebView(webView: WKWebView) {
+    func updateProgressViewWithWebView(_ webView: WKWebView) {
         guard let progressView = progressView else {
             return
         }
         
-        progressView.hidden = !webView.loading
-        if !webView.loading {
+        progressView.isHidden = !webView.isLoading
+        if !webView.isLoading {
             progressView.setProgress(0, animated: false)
         }
     }
@@ -149,7 +149,7 @@ extension WebViewController: WebViewObserverDelegate {
      - parameter webView: The instance of WKWebView that updated its title property.
      - parameter title: The value that the WKWebView updated its title property to.
      */
-    public func webView(webView: WKWebView, didChangeTitle title: String?) {
+    public func webView(_ webView: WKWebView, didChangeTitle title: String?) {
         navigationItem.title = title
     }
 
@@ -158,14 +158,14 @@ extension WebViewController: WebViewObserverDelegate {
      - Parameter webView: The instance of WKWebView that updated its loading property.
      - Parameter loading: The value that the WKWebView updated its loading property to.
      */
-    public func webView(webView: WKWebView, didChangeLoading loading: Bool) {
+    public func webView(_ webView: WKWebView, didChangeLoading loading: Bool) {
         updateActivityIndicatorWithWebView(webView)
         updateProgressViewWithWebView(webView)
         if !loading {
-            if refreshControl?.refreshing ?? false {
+            if refreshControl?.isRefreshing ?? false {
                 refreshControl?.endRefreshing()
             }
-            if let _ = webView.URL {
+            if let _ = webView.url {
                 hasLoadedContent = true
             }
         }
@@ -177,7 +177,7 @@ extension WebViewController: WebViewObserverDelegate {
      - parameter webView:           The web view.
      - parameter estimatedProgress: The estimated fraction of the progress toward loading the page.
      */
-    public func webView(webView: WKWebView, didChangeEstimatedProgress estimatedProgress: Double) {
+    public func webView(_ webView: WKWebView, didChangeEstimatedProgress estimatedProgress: Double) {
         progressView?.setProgress(Float(estimatedProgress), animated: true)
     }
     

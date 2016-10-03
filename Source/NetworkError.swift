@@ -11,7 +11,7 @@ import UIKit
 /**
  Describes an error that occured during network communications. 
  */
-public enum NetworkError: ErrorType, CustomStringConvertible {
+public enum NetworkError: Error, CustomStringConvertible {
     /// Unknown or not supported error.
     case Unknown
     
@@ -77,17 +77,17 @@ public enum NetworkError: ErrorType, CustomStringConvertible {
     public var description: String {
         let text: String
         switch self {
-        case Unknown:
+        case .Unknown:
             text = NeemanLocalizedString("NetworkError_Unknown", comment: "Error description")
-        case NotConnectedToInternet:
+        case .NotConnectedToInternet:
             text = NeemanLocalizedString("NetworkError_NotConnectedToInternet", comment: "Error description")
-        case InternationalRoamingOff:
+        case .InternationalRoamingOff:
             text = NeemanLocalizedString("NetworkError_InternationalRoamingOff", comment: "Error description")
-        case NotReachedServer:
+        case .NotReachedServer:
             text = NeemanLocalizedString("NetworkError_NotReachedServer", comment: "Error description")
-        case ConnectionLost:
+        case .ConnectionLost:
             text = NeemanLocalizedString("NetworkError_ConnectionLost", comment: "Error description")
-        case IncorrectDataReturned:
+        case .IncorrectDataReturned:
             text = NeemanLocalizedString("NetworkError_IncorrectDataReturned", comment: "Error description")
         }
         return text
