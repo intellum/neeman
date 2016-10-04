@@ -291,7 +291,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - parameter url: The URL to load in the web view.
      */
-    public func pushNewWebViewControllerWithURL(_ url: URL) {
+    open func pushNewWebViewControllerWithURL(_ url: URL) {
         print("Pushing: \(url.absoluteString)")
         if var webViewController = createNewWebViewController() {
             let urlString = url.absoluteString
@@ -310,7 +310,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: false
      */
-    public func shouldPreventPushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
+    open func shouldPreventPushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
 
@@ -324,7 +324,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: false
      */
-    public func shouldForcePushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
+    open func shouldForcePushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
@@ -337,7 +337,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: Whether we should prevent the request from being loaded.
      */
-    public func shouldPreventNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
+    open func shouldPreventNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
@@ -347,7 +347,7 @@ extension WebViewController: NeemanNavigationDelegate {
      - parameter webView: The web view that finished navigating.
      - parameter url:     The final URL of the web view.
      */
-    public func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
+    open func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
         errorViewController?.view.removeFromSuperview()
     }
 }

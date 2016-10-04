@@ -9,7 +9,7 @@ extension WebViewController: NeemanUIDelegate {
      - parameter newWebView: The new web view.
      - parameter url:        The URL to load.
      */
-    public func popupWebView(_ newWebView: WKWebView, withURL url: URL) {
+    open func popupWebView(_ newWebView: WKWebView, withURL url: URL) {
         webViewPopup = newWebView
         guard let webViewPopup = webViewPopup else {
             return
@@ -37,7 +37,7 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter request: The request to load in the popup.
      */
-    public func loadPopupRequest(_ request: NSMutableURLRequest) {
+    open func loadPopupRequest(_ request: NSMutableURLRequest) {
         webViewPopup?.load(request as URLRequest)
     }
     
@@ -46,7 +46,7 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter webView: The web view to close.
      */
-    public func closeWebView(_ webView: WKWebView) {
+    open func closeWebView(_ webView: WKWebView) {
         if let popupWebView = webViewPopup {
             webViewObserver.stopObservingWebView(popupWebView)
             popupWebView.removeFromSuperview()

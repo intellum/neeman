@@ -14,11 +14,11 @@ extension WebViewController {
      
      - parameter coder: The NSCoder object provided by iOS to save the data with.
      */
-    override public func encodeRestorableStateWithCoder(coder: NSCoder) {
+    override open func encodeRestorableState(with coder: NSCoder) {
         if let urlString = URLString {
-            coder.encodeObject(urlString, forKey: encodingKeyURLString)
+            coder.encode(urlString, forKey: encodingKeyURLString)
         }
-        super.encodeRestorableStateWithCoder(coder)
+        super.encodeRestorableState(with: coder)
     }
     
     /**
@@ -26,12 +26,12 @@ extension WebViewController {
      
      - parameter coder: The NSCoder object provided by iOS in which the data was saved when backgrounding the app.
      */
-    override public func decodeRestorableStateWithCoder(coder: NSCoder) {
-        if let urlString = coder.decodeObjectForKey(encodingKeyURLString) as? String {
+    override open func decodeRestorableState(with coder: NSCoder) {
+        if let urlString = coder.decodeObject(forKey: encodingKeyURLString) as? String {
             URLString = urlString
             loadURL(rootURL)
         }
         
-        super.decodeRestorableStateWithCoder(coder)
+        super.decodeRestorableState(with: coder)
     }
 }

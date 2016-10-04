@@ -6,7 +6,7 @@ extension WebViewController {
     /**
      Setup the refresh control for reloading the web view.
      */
-    public func setupRefreshControl() {
+    open func setupRefreshControl() {
         let newRefreshControl = UIRefreshControl()
         newRefreshControl.attributedTitle = NSAttributedString(string: "")
         newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), for: UIControlEvents.valueChanged)
@@ -17,7 +17,7 @@ extension WebViewController {
     /**
      This action is called by the refresh control.
      */
-    public func refresh() {
+    open func refresh() {
         loadURL(rootURL)
     }
 
@@ -26,7 +26,7 @@ extension WebViewController {
      the we use that instead. If you want to create your own progress view you can override this
      method or you can set the outlet in interface builder.
      */
-    public func setupProgressView() {
+    open func setupProgressView() {
         if let _ = progressView {
             return
         }
@@ -67,7 +67,7 @@ extension WebViewController {
      the we use that instead. If you want to create your own activityIndicator you can override this 
      method or you can set the outlet in interface builder.
      */
-    public func setupActivityIndicator() {
+    open func setupActivityIndicator() {
         if let _ = activityIndicator {
             return
         }
@@ -108,13 +108,13 @@ extension WebViewController {
      
      - parameter webView: The web view whose activity we should indicate.
      */
-    func updateActivityIndicatorWithWebView(_ webView: WKWebView) {
+    func updateActivityIndicatorWithWebView(webView: WKWebView) {
         guard let activityIndicator = activityIndicator else {
             return
         }
         
         if webView.isLoading {
-            if let refreshControl = refreshControl , !refreshControl.isRefreshing {
+            if let refreshControl = refreshControl, !refreshControl.isRefreshing {
                 activityIndicator.startAnimating()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             }
@@ -129,7 +129,7 @@ extension WebViewController {
      
      - parameter webView: The web view whose progress we should indicate.
      */
-    func updateProgressViewWithWebView(_ webView: WKWebView) {
+    func updateProgressViewWithWebView(webView: WKWebView) {
         guard let progressView = progressView else {
             return
         }
@@ -149,7 +149,7 @@ extension WebViewController: WebViewObserverDelegate {
      - parameter webView: The instance of WKWebView that updated its title property.
      - parameter title: The value that the WKWebView updated its title property to.
      */
-    public func webView(_ webView: WKWebView, didChangeTitle title: String?) {
+    open func webView(_ webView: WKWebView, didChangeTitle title: String?) {
         navigationItem.title = title
     }
 
@@ -158,9 +158,9 @@ extension WebViewController: WebViewObserverDelegate {
      - Parameter webView: The instance of WKWebView that updated its loading property.
      - Parameter loading: The value that the WKWebView updated its loading property to.
      */
-    public func webView(_ webView: WKWebView, didChangeLoading loading: Bool) {
-        updateActivityIndicatorWithWebView(webView)
-        updateProgressViewWithWebView(webView)
+    open func webView(_ webView: WKWebView, didChangeLoading loading: Bool) {
+        updateActivityIndicatorWithWebView(webView: webView)
+        updateProgressViewWithWebView(webView: webView)
         if !loading {
             if refreshControl?.isRefreshing ?? false {
                 refreshControl?.endRefreshing()
@@ -177,7 +177,7 @@ extension WebViewController: WebViewObserverDelegate {
      - parameter webView:           The web view.
      - parameter estimatedProgress: The estimated fraction of the progress toward loading the page.
      */
-    public func webView(_ webView: WKWebView, didChangeEstimatedProgress estimatedProgress: Double) {
+    open func webView(_ webView: WKWebView, didChangeEstimatedProgress estimatedProgress: Double) {
         progressView?.setProgress(Float(estimatedProgress), animated: true)
     }
     

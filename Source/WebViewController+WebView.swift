@@ -4,7 +4,7 @@ extension WebViewController {
     /**
      Sets up the main web view.
      */
-    public func setupWebView() {
+    open func setupWebView() {
         let webViewConfig = WKWebViewConfiguration(settings: settings)
         
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig).setupForNeeman()
@@ -28,7 +28,7 @@ extension WebViewController {
      
      - parameter webView: The web view to layout.
      */
-    public func autolayoutWebView(_ webView: WKWebView) {
+    open func autolayoutWebView(_ webView: WKWebView) {
         webView.translatesAutoresizingMaskIntoConstraints = false
         let views = ["webView":webView]
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView(>=0)]|",
