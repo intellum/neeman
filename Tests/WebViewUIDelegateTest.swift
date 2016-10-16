@@ -4,16 +4,16 @@ import WebKit
 
 class WebViewUIDelegateTest: XCTestCase {
     let settings = NeemanSettings(dictionary: ["baseURL": "https://intellum.com"])
-    let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "https://intellum.com")!))
+    let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "https://intellum.com")!))
 
     func testCreateWebView() {
-        let expectation = expectationWithDescription("Pass Error to Delegate")
+        let expectation = self.expectation(description: "Pass Error to Delegate")
         
-        let url = NSURL(string: settings.baseURL)!
-        let request = NSURLRequest(URL: url)
+        let url = URL(string: settings.baseURL)!
+        let request = URLRequest(url: url)
         
         class MockNeemanUIDelegate: TestNeemanUIDelegate {
-            override func popupWebView(newWebView: WKWebView, withURL url: NSURL) {
+            override func popupWebView(_ newWebView: WKWebView, withURL url: URL) {
                 self.expectation.fulfill()
             }
         }
@@ -21,11 +21,11 @@ class WebViewUIDelegateTest: XCTestCase {
         let webViewUIDelegate = WebViewUIDelegate(settings: settings)
         webViewUIDelegate.delegate = delegate
         webViewUIDelegate.webView(WKWebView(),
-            createWebViewWithConfiguration: WKWebViewConfiguration(),
-            forNavigationAction: NavigationAction(request: request),
+            createWebViewWith: WKWebViewConfiguration(),
+            for: NavigationAction(request: request),
             windowFeatures: WKWindowFeatures())
 
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -33,12 +33,12 @@ class WebViewUIDelegateTest: XCTestCase {
     }
 
     func testCloseWebView() {
-        let expectation = expectationWithDescription("Pass Error to Delegate")
+        let expectation = self.expectation(description: "Pass Error to Delegate")
 
         let webViewUIDelegate = WebViewUIDelegate(settings: settings)
         
         class MockNeemanUIDelegate: TestNeemanUIDelegate {
-            override func closeWebView(webView: WKWebView) {
+            override func closeWebView(_ webView: WKWebView) {
                 expectation.fulfill()
             }
         }
@@ -47,7 +47,7 @@ class WebViewUIDelegateTest: XCTestCase {
         webViewUIDelegate.delegate = delegate
         webViewUIDelegate.webViewDidClose(WKWebView())
 
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -55,13 +55,13 @@ class WebViewUIDelegateTest: XCTestCase {
     }
 
     func testAlert() {
-        let expectation = expectationWithDescription("Pass Error to Delegate")
+        let expectation = self.expectation(description: "Pass Error to Delegate")
         
         let webViewUIDelegate = MyWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptAlertPanelWithMessage: "",
             initiatedByFrame: frameInfo) { () -> Void in}
         
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -69,10 +69,10 @@ class WebViewUIDelegateTest: XCTestCase {
     }
 
     func testAlertFromThirdParty() {
-        let expectation = expectationWithDescription("Refuse Alert")
-        let expectationCompletion = expectationWithDescription("Completion Handler Called")
+        let expectation = self.expectation(description: "Refuse Alert")
+        let expectationCompletion = self.expectation(description: "Completion Handler Called")
         
-        let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "http://hacker.ru")!))
+        let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "http://hacker.ru")!))
         
         let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptAlertPanelWithMessage: "",
@@ -81,7 +81,7 @@ class WebViewUIDelegateTest: XCTestCase {
                 expectationCompletion.fulfill()
         }
         
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -89,13 +89,13 @@ class WebViewUIDelegateTest: XCTestCase {
     }
     
     func testConfirm() {
-        let expectation = expectationWithDescription("Show Confirm")
+        let expectation = self.expectation(description: "Show Confirm")
         
         let webViewUIDelegate = MyWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptConfirmPanelWithMessage: "",
             initiatedByFrame: frameInfo) { (answer: Bool) -> Void in}
         
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -103,10 +103,10 @@ class WebViewUIDelegateTest: XCTestCase {
     }
     
     func testConfirmFromThirdParty() {
-        let expectation = expectationWithDescription("Refuse Confirm")
-        let expectationCompletion = expectationWithDescription("Completion Handler Called")
+        let expectation = self.expectation(description: "Refuse Confirm")
+        let expectationCompletion = self.expectation(description: "Completion Handler Called")
         
-        let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "http://hacker.ru")!))
+        let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "http://hacker.ru")!))
 
         let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptConfirmPanelWithMessage: "",
@@ -115,7 +115,7 @@ class WebViewUIDelegateTest: XCTestCase {
                 expectationCompletion.fulfill()
         }
         
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -123,13 +123,13 @@ class WebViewUIDelegateTest: XCTestCase {
     }
     
     func testPrompt() {
-        let expectation = expectationWithDescription("Show Prompt")
+        let expectation = self.expectation(description: "Show Prompt")
         
         let webViewUIDelegate = MyWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptTextInputPanelWithPrompt: "", defaultText: "",
             initiatedByFrame: frameInfo) { (input: String?) -> Void in}
         
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -137,10 +137,10 @@ class WebViewUIDelegateTest: XCTestCase {
     }
 
     func testPromptFromThirdParty() {
-        let expectation = expectationWithDescription("Refuse Prompt")
-        let expectationCompletion = expectationWithDescription("Completion Handler Called")
+        let expectation = self.expectation(description: "Refuse Prompt")
+        let expectationCompletion = self.expectation(description: "Completion Handler Called")
         
-        let frameInfo = FrameInfo(request: NSURLRequest(URL: NSURL(string: "http://hacker.ru")!))
+        let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "http://hacker.ru")!))
         
         let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptTextInputPanelWithPrompt: "", defaultText: "",
@@ -149,7 +149,7 @@ class WebViewUIDelegateTest: XCTestCase {
             expectationCompletion.fulfill()
         }
         
-        waitForExpectationsWithTimeout(1) { (error: NSError?) -> Void in
+        waitForExpectations(timeout: 1) { (error) -> Void in
             if let _ = error {
                 XCTFail("Error Passing Failed")
             }
@@ -165,7 +165,7 @@ class MyWebViewUIDelegate: WebViewUIDelegate {
         super.init(settings: settings)
     }
 
-    override internal func presentAlertController(alert: UIAlertController) {
+    override internal func presentAlertController(_ alert: UIAlertController) {
         expectation.fulfill()
     }
 }
@@ -178,7 +178,7 @@ class RefusingWebViewUIDelegate: WebViewUIDelegate {
         super.init(settings: settings)
     }
     
-    override internal func refusedUIFromRequest(request: NSURLRequest) {
+    override internal func refusedUIFromRequest(_ request: URLRequest) {
         expectation.fulfill()
     }
 }

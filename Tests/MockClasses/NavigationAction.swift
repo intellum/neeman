@@ -2,18 +2,18 @@ import WebKit
 import Neeman
 
 class NavigationAction: WKNavigationAction {
-    var myRequest: NSURLRequest
-    override var request: NSURLRequest {
+    var myRequest: URLRequest
+    override var request: URLRequest {
         get {
             return myRequest
         }
     }
     override var navigationType: WKNavigationType {
         get {
-            return .LinkActivated
+            return .linkActivated
         }
     }
-    init(request: NSURLRequest) {
+    init(request: URLRequest) {
         myRequest = request
     }
 }

@@ -7,14 +7,14 @@ import Neeman
 /**
  This is used to provide a default implimentation so that the unit tests are less verbose.
  */
-public class TestNeemanUIDelegate: NSObject, NeemanUIDelegate {
+open class TestNeemanUIDelegate: NSObject, NeemanUIDelegate {
     var expectation: XCTestExpectation
     
     init(expectation: XCTestExpectation) {
         self.expectation = expectation
     }
 
-    public func pushNewWebViewControllerWithURL(url: NSURL) {}
-    public func popupWebView(newWebView: WKWebView, withURL url: NSURL) {}
-    public func closeWebView(webView: WKWebView) {}
+    open func pushNewWebViewControllerWithURL(_ url: URL) {}
+    open func popupWebView(_ newWebView: WKWebView, withURL url: URL) {}
+    open func closeWebView(_ webView: WKWebView) {}
 }

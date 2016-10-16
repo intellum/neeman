@@ -1,13 +1,13 @@
 import WebKit
 
 class FrameInfo: WKFrameInfo {
-    var myRequest: NSURLRequest
-    override var request: NSURLRequest {
+    var myRequest: URLRequest
+    override var request: URLRequest {
         get {
             return myRequest
         }
     }
-    init(request: NSURLRequest) {
+    init(request: URLRequest) {
         myRequest = request
     }
 }

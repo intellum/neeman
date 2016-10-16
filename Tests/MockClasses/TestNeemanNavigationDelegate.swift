@@ -5,7 +5,7 @@ import Neeman
 /**
  This is used to provide a default implimentation so that the unit tests are less verbose.
  */
-public class TestNeemanNavigationDelegate: NSObject, NeemanNavigationDelegate {
+open class TestNeemanNavigationDelegate: NSObject, NeemanNavigationDelegate {
     var expectation: XCTestExpectation?
     
     override init() {
@@ -16,17 +16,17 @@ public class TestNeemanNavigationDelegate: NSObject, NeemanNavigationDelegate {
         self.expectation = expectation
     }
     
-    public func webView(webView: WKWebView, didReceiveServerRedirectToURL: NSURL?) {}
-    public func webView(webView: WKWebView, didFinishNavigationWithURL: NSURL?) {}
-    public func webView(webView: WKWebView, didFinishLoadingWithError error: NSError) {}
-    public func shouldPreventNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    open func webView(_ webView: WKWebView, didReceiveServerRedirectToURL: URL?) {}
+    open func webView(_ webView: WKWebView, didFinishNavigationWithURL: URL?) {}
+    open func webView(_ webView: WKWebView, didFinishLoadingWithError error: NSError) {}
+    open func shouldPreventNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
-    public func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    open func shouldForcePushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
-    public func shouldPreventPushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    open func shouldPreventPushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
-    public func pushNewWebViewControllerWithURL(url: NSURL) {}
+    open func pushNewWebViewControllerWithURL(_ url: URL) {}
 }

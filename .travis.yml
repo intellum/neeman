@@ -20,7 +20,6 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - echo "Cocoapods Version:"
   - pod --version
 
   # Build Framework in ReleaseTest and Run Tests if specified

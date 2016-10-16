@@ -5,7 +5,7 @@ import WebKit
 class WKWebViewConfigurationJavascriptTest: XCTestCase {
     func testExistingFile() {
         let config = WKWebViewConfiguration()
-        let contents = config.contentsOfFileNamed("Test.js", inBundle: NSBundle(forClass: object_getClass(self)))
+        let contents = config.contentsOfFileNamed("Test.js", inBundle: Bundle(for: object_getClass(self)))
         XCTAssertNotEqual(contents, "")
     }
     
@@ -18,10 +18,10 @@ class WKWebViewConfigurationJavascriptTest: XCTestCase {
 
     func testCombinedFiles() {
         class WebViewConfiguration: WKWebViewConfiguration {
-            override func contentsOfNeemansWithName(fileName: String) -> String {
+            override func contentsOfNeemansWithName(_ fileName: String) -> String {
                 return "1"
             }
-            override func contentsOfMainBundlesFileWithName(fileName: String) -> String {
+            override func contentsOfMainBundlesFileWithName(_ fileName: String) -> String {
                 return "2"
             }
         }
