@@ -269,4 +269,26 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
         }
         return false
     }
+    
+    func _webView(_ webView: WKWebView,
+                  printFrame frame: Any) {
+
+        let printController = UIPrintInteractionController.shared
+        
+        let printInfo = UIPrintInfo(dictionary:nil)
+        printInfo.outputType = UIPrintInfoOutputType.general
+        printInfo.jobName = (webView.url?.absoluteString)!
+        printInfo.duplex = UIPrintInfoDuplex.none
+        printInfo.orientation = UIPrintInfoOrientation.portrait
+        
+        printController.printPageRenderer = nil
+        printController.printingItems = nil
+        printController.printingItem = webView.url!
+        
+        printController.printInfo = printInfo
+        printController.showsPageRange = true
+        printController.showsNumberOfCopies = true
+        
+        printController.present(animated: true, completionHandler: nil)
+    }
 }
