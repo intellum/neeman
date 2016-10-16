@@ -263,7 +263,7 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
         }
 
         if let host = URL(string: settings.baseURL)?.host {
-            if requestHost == host {
+            if requestHost.contains(host) {
                 return true
             }
         }
