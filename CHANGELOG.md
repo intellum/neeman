@@ -1,3 +1,9 @@
+## [0.5.0](https://github.com/intellum/neeman/releases/tag/0.5.0)
+#### Updated
+- Now using Swift 3
+- Supports printing using window.print()
+- Allow alert() from subdomains.
+
 ## [0.4.1](https://github.com/intellum/neeman/releases/tag/0.4.1)
 #### Updated
 - Decoupled the `WebViewController`'s `createNewWebViewController` so we can override it to create view controllers that don't extend `WebViewController`.
