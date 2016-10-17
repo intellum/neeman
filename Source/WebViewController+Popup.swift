@@ -38,7 +38,7 @@ extension WebViewController: NeemanUIDelegate {
      - parameter request: The request to load in the popup.
      */
     open func loadPopupRequest(_ request: NSMutableURLRequest) {
-        webViewPopup?.load(request as URLRequest)
+        _ = webViewPopup?.load(request as URLRequest)
     }
     
     /**

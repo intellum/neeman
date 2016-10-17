@@ -236,7 +236,7 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     - returns: Whether or not to push a new web view onto the navigation stack.
     */
     open func shouldPushForRequestFromWebView(_ webView: WKWebView, navigationAction: WKNavigationAction) -> Bool {
-        if let d = delegate , d.shouldPreventPushOfNavigationAction(navigationAction) {
+        if let d = delegate, d.shouldPreventPushOfNavigationAction(navigationAction) {
             return false
         }
         guard let url = navigationAction.request.url else {

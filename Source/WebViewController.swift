@@ -59,7 +59,7 @@ open class WebViewController: UIViewController,
      */
     var absoluteURLString: String? {
         get {
-            if let urlString = URLString , !urlString.contains("://") {
+            if let urlString = URLString, !urlString.contains("://") {
                 return settings.baseURL + urlString
             }
             return URLString
