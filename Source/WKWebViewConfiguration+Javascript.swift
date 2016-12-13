@@ -23,7 +23,6 @@ extension WKWebViewConfiguration {
         addCSSScript()
         addScript("AtDocumentStart.js", injectionTime: .atDocumentStart)
         addScript("AtDocumentEnd.js", injectionTime: .atDocumentEnd)
-        //        js.addScript("FastClick.js", injectionTime: .AtDocumentEnd)
     }
     
     /**
