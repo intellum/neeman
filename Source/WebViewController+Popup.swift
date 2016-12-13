@@ -20,16 +20,28 @@ extension WebViewController: NeemanUIDelegate {
         webViewPopup.uiDelegate = uiDelegatePopup
         webViewPopup.allowsBackForwardNavigationGestures = true
         
-        view.insertSubview(webViewPopup, aboveSubview: webView)
+        let popupViewController = UIViewController()
+        popupNavController = UINavigationController(rootViewController: popupViewController)
+        popupViewController.modalPresentationStyle = .fullScreen
+        popupViewController.view.addSubview(webViewPopup)
+        
+        let barButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
+        popupViewController.navigationItem.rightBarButtonItem = barButton
+
         webViewPopup.translatesAutoresizingMaskIntoConstraints = false
         webViewPopup.frame = view.bounds
         autolayoutWebView(webViewPopup)
+        present(popupNavController!, animated: true, completion: nil)
         
         webViewObserver.startObservingWebView(webViewPopup)
         
         let request = NSMutableURLRequest(url: url)
         loadPopupRequest(request)
         
+    }
+    
+    @IBAction open func unwindToParentWebView(_ segue: UIStoryboardSegue) {
+        dismiss(animated: true, completion: nil)
     }
     
     /**
@@ -42,6 +54,15 @@ extension WebViewController: NeemanUIDelegate {
     }
     
     /**
+     The done button of the popup view controller was pressed.
+     
+     - parameter sender: The button that was tapped.
+     */
+    func didTapDoneButton(_ sender: AnyObject) {
+        closeWebView(webView)
+    }
+    
+    /**
      Close the popup webview.
      
      - parameter webView: The web view to close.
@@ -49,9 +70,9 @@ extension WebViewController: NeemanUIDelegate {
     open func closeWebView(_ webView: WKWebView) {
         if let popupWebView = webViewPopup {
             webViewObserver.stopObservingWebView(popupWebView)
-            popupWebView.removeFromSuperview()
+            dismiss(animated: true, completion: nil)
             webViewPopup = nil
+            popupNavController = nil
         }
-        loadURL(rootURL)
     }
 }

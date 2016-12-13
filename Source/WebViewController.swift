@@ -41,6 +41,8 @@ open class WebViewController: UIViewController,
     open var uiDelegate: WebViewUIDelegate?
     /// This is a popup window that is opened when javascript code calles window.open().
     var uiDelegatePopup: WebViewUIDelegate?
+    /// This is a navigation controller that is used to present a popup webview modally.
+    var popupNavController: UINavigationController?
     
     /// The initial NSURL that the web view is loading. Use URLString to set the URL.
     open var rootURL: URL? {
@@ -59,7 +61,7 @@ open class WebViewController: UIViewController,
      */
     var absoluteURLString: String? {
         get {
-            if let urlString = URLString, !urlString.contains("://") {
+            if let urlString = URLString, !urlString.contains("://"), urlString != "about:blank" {
                 return settings.baseURL + urlString
             }
             return URLString
@@ -109,11 +111,11 @@ open class WebViewController: UIViewController,
      */
     func addObservers() {
         NotificationCenter.default.addObserver(self,
-            selector: #selector(WebViewController.didLogout(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogout), object: nil)
+            selector: #selector(self.didLogout(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogout), object: nil)
         NotificationCenter.default.addObserver(self,
-            selector: #selector(WebViewController.didLogin(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogin), object: nil)
+            selector: #selector(self.didLogin(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogin), object: nil)
         NotificationCenter.default.addObserver(self,
-            selector: #selector(WebViewController.didBecomeActive(_:)),
+            selector: #selector(self.didBecomeActive(_:)),
             name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         webViewObserver.startObservingWebView(webView)
     }
@@ -191,7 +193,9 @@ open class WebViewController: UIViewController,
      - parameter notification: The notification received.
      */
     open func didLogin(_ notification: Notification) {
-        loadURL(rootURL)
+        if isViewLoaded && view.window != nil {
+            loadURL(rootURL)
+        }
     }
    
 
@@ -362,3 +366,7 @@ public let WebViewControllerDidLogout = "WebViewControllerDidLogout"
 /** Posting this will cause the didLogin(_:) method to be called. You can post this from your custom native authentication code.
 */
 public let WebViewControllerDidLogin = "WebViewControllerDidLogin"
+
+/** Posting this will enable you to show a modal login view controller.
+ */
+public let WebViewControllerDidRequestLogin = "WebViewControllerDidRequestLogin"

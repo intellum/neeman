@@ -29,12 +29,15 @@ extension WebViewController {
      - parameter webView: The web view to layout.
      */
     open func autolayoutWebView(_ webView: WKWebView) {
+        guard let superview = webView.superview else {
+            fatalError()
+        }
         webView.translatesAutoresizingMaskIntoConstraints = false
         let views = ["webView":webView]
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView(>=0)]|",
+        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView(>=0)]|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
         
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView(>=0)]|",
+        superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView(>=0)]|",
             options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
     }
  

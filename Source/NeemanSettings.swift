@@ -1,3 +1,22 @@
+public extension FileManager {
+    open func plistDictionaryNamed(_ name: String) -> [AnyHashable: Any]? {
+        var propertyListForamt =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
+        var plistData: [AnyHashable: Any] = [:]
+        guard let plistPath = Bundle.main.path(forResource: name, ofType: "plist") else {
+            return nil
+        }
+        
+        let plistXML = FileManager.default.contents(atPath: plistPath)!
+        do {
+            plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListForamt) as! [String:AnyObject]
+            
+        } catch {
+            print("Error reading plist: \(error), format: \(propertyListForamt)")
+        }
+        return plistData
+    }
+}
+
 /// This contains some optional settings that are loaded from Settings.plist in the main bundle.
 open class NeemanSettings {
     /// Set this if you would like some extra logging.
@@ -7,7 +26,7 @@ open class NeemanSettings {
     /// This can be set to enable the use of relative URLs in the web view controllers URLString property.
     open let baseURL: String
     /// This stores all the settings loaded from the initialising object. These can be accessed through object subscripting.
-    let allSettings: NSDictionary?
+    let allSettings: [AnyHashable: Any]
 
     /**
      Creates a Settings object by loading Settings.plist.
@@ -23,11 +42,7 @@ open class NeemanSettings {
      - parameter path: The path to the .plist file to load the setting from.
      */
     public convenience init(path: String?) {
-        var dict: NSDictionary?
-        if let _ = path {
-            dict = NSDictionary(contentsOfFile: path!)
-        }
-        self.init(dictionary: dict)
+        self.init(dictionary: FileManager.default.plistDictionaryNamed("Settings")!)
     }
     
     /**
@@ -35,11 +50,11 @@ open class NeemanSettings {
      
      - parameter dictionary: A dictionary containing the desired settings.
      */
-    public init(dictionary: NSDictionary?) {
+    public init(dictionary: [AnyHashable: Any]) {
         allSettings = dictionary
-        debug = allSettings?["debug"] as? Bool ?? false
-        appName = allSettings?["appName"] as? String ?? Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
-        baseURL = allSettings?["baseURL"] as? String ?? ""
+        debug = allSettings["debug"] as? Bool ?? false
+        appName = allSettings["appName"] as? String ?? Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
+        baseURL = allSettings["baseURL"] as? String ?? ""
     }
     
     /**
@@ -51,7 +66,7 @@ open class NeemanSettings {
      */
     open subscript(key: String) -> AnyObject? {
         get {
-            return allSettings?[key] as AnyObject?
+            return allSettings[key] as AnyObject?
         }
     }
 }

@@ -171,7 +171,6 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 }
             }
 
-
             if settings.debug {
                 let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
                 let urlString = navigationAction.request.url?.absoluteString ?? ""

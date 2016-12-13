@@ -7,4 +7,3 @@ root.setAttribute( 'class', 'neeman-hybrid-app neeman-hybrid-app-version-${VERSI
 var styleElement = document.createElement('style');
 root.appendChild(styleElement);
 styleElement.textContent = '${CSS}';
-

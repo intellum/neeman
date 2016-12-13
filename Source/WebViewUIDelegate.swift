@@ -91,10 +91,6 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
         for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
             
             let newWebView = WKWebView(frame: webView.frame, configuration: configuration)
-            configuration.processPool = ProcessPool.sharedInstance
-            if #available(iOS 9.0, *) {
-                configuration.applicationNameForUserAgent = settings.appName
-            }
 
             if let url = navigationAction.request.url {
                 delegate?.popupWebView(newWebView, withURL: url)
