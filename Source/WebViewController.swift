@@ -136,7 +136,7 @@ open class WebViewController: UIViewController,
      */
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if shouldReloadOnViewWillAppear(animated) {
+        if shouldReloadOnViewWillAppear(animated) && !webView.isLoading {
             loadURL(rootURL)
         }
     }
@@ -162,6 +162,11 @@ open class WebViewController: UIViewController,
         if !hasLoadedContent {
             return true
         }
+        
+        if webView.url?.absoluteString == "about:blank" {
+            return true
+        }
+        
         return false
     }
 
@@ -280,6 +285,7 @@ open class WebViewController: UIViewController,
      - parameter request: The request to load.
      */
     open func loadRequest(_ request: NSMutableURLRequest?) {
+        guard let webView = webView else { return }
         if let request = request {
             webView.load(request as URLRequest)
         }
@@ -296,9 +302,9 @@ extension WebViewController: NeemanNavigationDelegate {
      - parameter url: The URL to load in the web view.
      */
     open func pushNewWebViewControllerWithURL(_ url: URL) {
-        print("Pushing: \(url.absoluteString)")
+        let urlString = url.absoluteString
+        print("Pushing: \(urlString)")
         if var webViewController = createNewWebViewController() {
-            let urlString = url.absoluteString
             webViewController.URLString = urlString
             if let viewController = webViewController as? UIViewController {
                 navigationController?.pushViewController(viewController, animated: true)
