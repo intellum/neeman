@@ -40,6 +40,7 @@
 		DCBFF84A1C45FADE001EA0CB /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8431C45FADE001EA0CB /* WebView.css */; };
 		DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */; };
 		DCBFF8521C462F9F001EA0CB /* NeemanSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFF84F1C462F9F001EA0CB /* NeemanSettings.swift */; };
+		DCF20F781E3A92A2003F61F7 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C111C2019E800EF1D03 /* Settings.plist */; };
 		DCF56F2D1C3DF81F000FF970 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */; };
 		DCF56F301C3F3D53000FF970 /* WKWebViewConfiguration-JavascriptTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */; };
 		DCF56F331C3F41F5000FF970 /* Test.js in Resources */ = {isa = PBXBuildFile; fileRef = DCF56F321C3F41F5000FF970 /* Test.js */; };
@@ -356,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF20F781E3A92A2003F61F7 /* Settings.plist in Resources */,
 				DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */,
 				DCBFF8461C45FADE001EA0CB /* AtDocumentEnd.js in Resources */,
 				DC1D3FF01C8E2AF7005682CA /* Neeman.strings in Resources */,

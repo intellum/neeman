@@ -7,7 +7,7 @@ class WebViewControllerTests: XCTestCase {
     var settings: NeemanSettings {
         get {
             let pathToSettings = Bundle.init(for: WebViewNavigationDelegateTests.self).path(forResource: "Settings", ofType: "plist")
-            return NeemanSettings(path: pathToSettings)
+            return NeemanSettings(path: pathToSettings ?? "")
         }
     }
     
