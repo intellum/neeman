@@ -36,7 +36,6 @@
 		DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */; };
 		DCBFF8461C45FADE001EA0CB /* AtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF83F1C45FADE001EA0CB /* AtDocumentEnd.js */; };
 		DCBFF8471C45FADE001EA0CB /* AtDocumentStart.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8401C45FADE001EA0CB /* AtDocumentStart.js */; };
-		DCBFF8481C45FADE001EA0CB /* FastClick.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8411C45FADE001EA0CB /* FastClick.js */; };
 		DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8421C45FADE001EA0CB /* InjectCSS.js */; };
 		DCBFF84A1C45FADE001EA0CB /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8431C45FADE001EA0CB /* WebView.css */; };
 		DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */; };
@@ -91,7 +90,6 @@
 		DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCBFF83F1C45FADE001EA0CB /* AtDocumentEnd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AtDocumentEnd.js; sourceTree = "<group>"; };
 		DCBFF8401C45FADE001EA0CB /* AtDocumentStart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AtDocumentStart.js; sourceTree = "<group>"; };
-		DCBFF8411C45FADE001EA0CB /* FastClick.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FastClick.js; sourceTree = "<group>"; };
 		DCBFF8421C45FADE001EA0CB /* InjectCSS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = InjectCSS.js; sourceTree = "<group>"; };
 		DCBFF8431C45FADE001EA0CB /* WebView.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = WebView.css; sourceTree = "<group>"; };
 		DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Neeman.storyboard; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 			children = (
 				DCBFF83F1C45FADE001EA0CB /* AtDocumentEnd.js */,
 				DCBFF8401C45FADE001EA0CB /* AtDocumentStart.js */,
-				DCBFF8411C45FADE001EA0CB /* FastClick.js */,
 				DCBFF8421C45FADE001EA0CB /* InjectCSS.js */,
 				DCBFF8431C45FADE001EA0CB /* WebView.css */,
 			);
@@ -365,7 +362,6 @@
 				DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */,
 				DCBFF8471C45FADE001EA0CB /* AtDocumentStart.js in Resources */,
 				DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */,
-				DCBFF8481C45FADE001EA0CB /* FastClick.js in Resources */,
 				DCBFF84A1C45FADE001EA0CB /* WebView.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
