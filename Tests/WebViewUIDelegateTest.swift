@@ -20,7 +20,7 @@ class WebViewUIDelegateTest: XCTestCase {
         let delegate = MockNeemanUIDelegate(expectation: expectation)
         let webViewUIDelegate = WebViewUIDelegate(settings: settings)
         webViewUIDelegate.delegate = delegate
-        webViewUIDelegate.webView(WKWebView(),
+        let _ = webViewUIDelegate.webView(WKWebView(),
             createWebViewWith: WKWebViewConfiguration(),
             for: NavigationAction(request: request),
             windowFeatures: WKWindowFeatures())

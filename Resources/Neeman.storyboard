@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBh-sM-Jn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-508" y="-43"/>
+            <point key="canvasLocation" x="964" y="-45"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="CTw-MB-IfX">
@@ -80,50 +80,10 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="URLString" value="/team"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="v8j-Dd-wQk" kind="presentation" modalPresentationStyle="fullScreen" id="152-8K-Qy7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8hc-05-W9z" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="570" y="-424"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="2HH-Bj-9q6">
-            <objects>
-                <navigationController id="v8j-Dd-wQk" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qLZ-O0-cvc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="7Jo-os-veq" kind="relationship" relationship="rootViewController" id="Zqd-sE-KSw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7KA-s7-UR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1442" y="-424"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="AWZ-uR-F8f">
-            <objects>
-                <viewController id="7Jo-os-veq" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AZ8-33-Pql"/>
-                        <viewControllerLayoutGuide type="bottom" id="rqF-Eb-RiA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Itt-bV-Zjz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="OKH-gR-akW">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="Udk-Wu-Lmq"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qro-tn-mxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2210" y="-424"/>
+            <point key="canvasLocation" x="233" y="-44"/>
         </scene>
     </scenes>
     <resources>

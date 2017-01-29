@@ -143,9 +143,9 @@ class WebViewNavigationDelegateTests: XCTestCase {
         delegate.webView(webView, didFinishNavigationWithURL:nil)
         delegate.webView(webView, didFinishLoadingWithError: NSError(domain: "", code: 1, userInfo: nil))
         delegate.webView(webView, didReceiveServerRedirectToURL: nil)
-        delegate.shouldForcePushOfNavigationAction(navigationAction)
+        let _ = delegate.shouldForcePushOfNavigationAction(navigationAction)
         delegate.pushNewWebViewControllerWithURL(URL(string: "#ho")!)
-        delegate.shouldPreventPushOfNavigationAction(navigationAction)
+        let _ = delegate.shouldPreventPushOfNavigationAction(navigationAction)
     }
     
     func testDelegateMethodsCalled() {

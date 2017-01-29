@@ -1,17 +1,22 @@
 public extension FileManager {
-    open func plistDictionaryNamed(_ name: String) -> [AnyHashable: Any]? {
-        var propertyListForamt =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
-        var plistData: [AnyHashable: Any] = [:]
+    public func plistDictionaryNamed(_ name: String) -> [AnyHashable: Any]? {
         guard let plistPath = Bundle.main.path(forResource: name, ofType: "plist") else {
             return nil
         }
-        
-        let plistXML = FileManager.default.contents(atPath: plistPath)!
+        return plistDictionaryAtPath(plistPath)
+    }
+
+    public func plistDictionaryAtPath(_ path: String) -> [AnyHashable: Any]? {
+        var plistData: [AnyHashable: Any] = [:]
+        let plistXML = FileManager.default.contents(atPath: path)!
+        var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
         do {
-            plistData = try PropertyListSerialization.propertyList(from: plistXML, options: .mutableContainersAndLeaves, format: &propertyListForamt) as! [String:AnyObject]
+            plistData = try PropertyListSerialization.propertyList(from: plistXML,
+                                                                   options: .mutableContainersAndLeaves,
+                                                                   format: &propertyListFormat) as? [String:AnyObject] ?? [:]
             
         } catch {
-            print("Error reading plist: \(error), format: \(propertyListForamt)")
+            print("Error reading plist: \(error), format: \(propertyListFormat)")
         }
         return plistData
     }
@@ -32,8 +37,11 @@ open class NeemanSettings {
      Creates a Settings object by loading Settings.plist.
      */
     public convenience init() {
-        let path = Bundle.main.path(forResource: "Settings", ofType: "plist")
-        self.init(path: path)
+        var path = Bundle.main.path(forResource: "Settings", ofType: "plist")
+        if path == nil {
+            path = Bundle(for: type(of: self)).path(forResource: "Settings", ofType: "plist")
+        }
+        self.init(path: path ?? "")
     }
 
     /**
@@ -41,8 +49,8 @@ open class NeemanSettings {
      
      - parameter path: The path to the .plist file to load the setting from.
      */
-    public convenience init(path: String?) {
-        self.init(dictionary: FileManager.default.plistDictionaryNamed("Settings")!)
+    public convenience init(path: String) {
+        self.init(dictionary: FileManager.default.plistDictionaryAtPath(path)!)
     }
     
     /**
