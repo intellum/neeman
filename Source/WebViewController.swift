@@ -115,8 +115,10 @@ open class WebViewController: UIViewController,
         NotificationCenter.default.addObserver(self,
             selector: #selector(self.didLogin(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogin), object: nil)
         NotificationCenter.default.addObserver(self,
-            selector: #selector(self.didBecomeActive(_:)),
-            name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+            selector: #selector(self.didBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(self.forceReloadOnAppear(_:)),
+            name: NSNotification.Name(rawValue: WebViewControllerForceReloadOnAppear), object: nil)
         webViewObserver.startObservingWebView(webView)
     }
     
@@ -148,6 +150,13 @@ open class WebViewController: UIViewController,
         if !hasLoadedContent {
             loadURL(rootURL)
         }
+    }
+    
+    /**
+     This action is called by as a result of a UIApplicationDidBecomeActiveNotification.
+     */
+    open func forceReloadOnAppear(_ notification: Notification) {
+        hasLoadedContent = false
     }
     
     /**
@@ -372,6 +381,10 @@ public let WebViewControllerDidLogout = "WebViewControllerDidLogout"
 /** Posting this will cause the didLogin(_:) method to be called. You can post this from your custom native authentication code.
 */
 public let WebViewControllerDidLogin = "WebViewControllerDidLogin"
+
+/** Posting this will cause the web view to reload it's content next time the viewDidAppear is called.
+ */
+public let WebViewControllerForceReloadOnAppear = "WebViewControllerForceReloadOnAppear"
 
 /** Posting this will enable you to show a modal login view controller.
  */
