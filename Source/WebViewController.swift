@@ -295,6 +295,9 @@ open class WebViewController: UIViewController,
      */
     open func loadRequest(_ request: NSMutableURLRequest?) {
         guard let webView = webView else { return }
+        if let url = request?.url, let cookies = HTTPCookieStorage.shared.cookies(for: url) {
+            request?.allHTTPHeaderFields = HTTPCookie.requestHeaderFields(with: cookies)
+        }
         if let request = request {
             webView.load(request as URLRequest)
         }
