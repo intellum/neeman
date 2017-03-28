@@ -11,7 +11,7 @@ extension WKWebViewConfiguration {
         self.init()
         processPool = ProcessPool.sharedInstance
         if #available(iOS 9.0, *) {
-            applicationNameForUserAgent = "Neeman \(settings.appName) iOS"
+            applicationNameForUserAgent = "Neeman iOS Version/\(settings.appVersion)(\(settings.bundleVersion))"
         }
         addJavascript()
     }
