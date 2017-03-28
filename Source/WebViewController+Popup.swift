@@ -10,6 +10,10 @@ extension WebViewController: NeemanUIDelegate {
      - parameter url:        The URL to load.
      */
     open func popupWebView(_ newWebView: WKWebView, withURL url: URL) {
+        if let webViewPopup = webViewPopup {
+            webViewObserver.stopObservingWebView(webViewPopup)
+            webViewPopup.removeFromSuperview()
+        }
         webViewPopup = newWebView
         guard let webViewPopup = webViewPopup else {
             return
@@ -19,25 +23,29 @@ extension WebViewController: NeemanUIDelegate {
         uiDelegatePopup?.delegate = self
         webViewPopup.uiDelegate = uiDelegatePopup
         webViewPopup.allowsBackForwardNavigationGestures = true
-        
-        let popupViewController = UIViewController()
-        popupNavController = UINavigationController(rootViewController: popupViewController)
-        popupViewController.modalPresentationStyle = .fullScreen
-        popupViewController.view.addSubview(webViewPopup)
-        
-        let barButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
-        popupViewController.navigationItem.rightBarButtonItem = barButton
-
         webViewPopup.translatesAutoresizingMaskIntoConstraints = false
         webViewPopup.frame = view.bounds
-        autolayoutWebView(webViewPopup)
-        present(popupNavController!, animated: true, completion: nil)
-        
+
+        var shouldPresent = false
+        if popupNavController == nil {
+            let popupViewController = UIViewController()
+            popupNavController = UINavigationController(rootViewController: popupViewController)
+            popupViewController.modalPresentationStyle = .fullScreen
+            
+            let barButton = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
+            popupViewController.navigationItem.rightBarButtonItem = barButton
+
+            shouldPresent = true
+        }
+
+        let popupViewController = popupNavController!.viewControllers.first!
+        popupViewController.view.addSubview(webViewPopup)
         webViewObserver.startObservingWebView(webViewPopup)
-        
-        let request = NSMutableURLRequest(url: url)
-        loadPopupRequest(request)
-        
+        autolayoutWebView(webViewPopup)
+
+        if shouldPresent {
+            present(popupNavController!, animated: true, completion: nil)
+        }
     }
     
     @IBAction open func unwindToParentWebView(_ segue: UIStoryboardSegue) {
