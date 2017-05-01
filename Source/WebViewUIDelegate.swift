@@ -243,7 +243,7 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
      - parameter request: The request from the offending frame.
      */
     internal func refusedUIFromRequest(_ request: URLRequest) {
-        print("Refused UI Request from \(request.url?.host)")
+        print("Refused UI Request from \(request.url?.host ?? "N/A")")
     }
 
     /**
