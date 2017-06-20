@@ -108,19 +108,16 @@ extension WebViewController {
      
      - parameter webView: The web view whose activity we should indicate.
      */
-    func updateActivityIndicatorWithWebView(webView: WKWebView) {
-        guard let activityIndicator = activityIndicator else {
-            return
-        }
-        
-        if webView.isLoading {
+    func updateActivityIndicatorWithWebView(_ webView: WKWebView?) {
+        if let webView = webView, webView.isLoading {
             if let refreshControl = refreshControl, !refreshControl.isRefreshing {
-                activityIndicator.startAnimating()
+                activityIndicator?.startAnimating()
+                WebViewController.networkActivityCount += 1
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             }
         } else {
-            activityIndicator.stopAnimating()
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            activityIndicator?.stopAnimating()
+            WebViewController.networkActivityCount -= 1
         }
     }
     /**
@@ -159,8 +156,8 @@ extension WebViewController: WebViewObserverDelegate {
      - Parameter loading: The value that the WKWebView updated its loading property to.
      */
     open func webView(_ webView: WKWebView, didChangeLoading loading: Bool) {
-        updateActivityIndicatorWithWebView(webView: webView)
         updateProgressViewWithWebView(webView: webView)
+        updateActivityIndicatorWithWebView(webView)
         if !loading {
             if refreshControl?.isRefreshing ?? false {
                 refreshControl?.endRefreshing()

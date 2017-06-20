@@ -44,6 +44,17 @@ open class WebViewController: UIViewController,
     /// This is a navigation controller that is used to present a popup webview modally.
     var popupNavController: UINavigationController?
     
+    /// This is the count of how many web view controllers are currently loading.
+    static var networkActivityCount: Int = 0 {
+        didSet {
+            networkActivityCount = max(0, networkActivityCount)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = networkActivityCount > 0
+            }
+
+        }
+    }
+    
     /// The initial NSURL that the web view is loading. Use URLString to set the URL.
     open var rootURL: URL? {
         get {
@@ -129,6 +140,9 @@ open class WebViewController: UIViewController,
         NotificationCenter.default.removeObserver(self)
         webViewObserver.stopObservingWebView(webViewPopup)
         webViewObserver.stopObservingWebView(webView)
+        if webView != nil && webView.isLoading {
+            WebViewController.networkActivityCount -= 1
+        }
     }
 
     /**
