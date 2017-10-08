@@ -160,7 +160,7 @@ open class WebViewController: UIViewController,
     /**
      This action is called by as a result of a UIApplicationDidBecomeActiveNotification.
      */
-    open func didBecomeActive(_ notification: Notification) {
+    @objc open func didBecomeActive(_ notification: Notification) {
         if !hasLoadedContent {
             loadURL(rootURL)
         }
@@ -169,7 +169,7 @@ open class WebViewController: UIViewController,
     /**
      This action is called by as a result of a UIApplicationDidBecomeActiveNotification.
      */
-    open func forceReloadOnAppear(_ notification: Notification) {
+    @objc open func forceReloadOnAppear(_ notification: Notification) {
         hasLoadedContent = false
     }
     
@@ -210,7 +210,7 @@ open class WebViewController: UIViewController,
     
     - parameter notification: The notification received.
     */
-    open func didLogout(_ notification: Notification) {
+    @objc open func didLogout(_ notification: Notification) {
         hasLoadedContent = false
     }
     
@@ -220,7 +220,7 @@ open class WebViewController: UIViewController,
      
      - parameter notification: The notification received.
      */
-    open func didLogin(_ notification: Notification) {
+    @objc open func didLogin(_ notification: Notification) {
         if isViewLoaded && view.window != nil {
             loadURL(rootURL)
         }
@@ -327,7 +327,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - parameter url: The URL to load in the web view.
      */
-    open func pushNewWebViewControllerWithURL(_ url: URL) {
+    @objc open func pushNewWebViewControllerWithURL(_ url: URL) {
         let urlString = url.absoluteString
         print("Pushing: \(urlString)")
         if var webViewController = createNewWebViewController() {
@@ -346,7 +346,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: false
      */
-    open func shouldPreventPushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
+    @objc open func shouldPreventPushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
 
@@ -360,7 +360,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: false
      */
-    open func shouldForcePushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
+    @objc open func shouldForcePushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
@@ -373,7 +373,7 @@ extension WebViewController: NeemanNavigationDelegate {
      
      - returns: Whether we should prevent the request from being loaded.
      */
-    open func shouldPreventNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
+    @objc open func shouldPreventNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
     
@@ -383,7 +383,7 @@ extension WebViewController: NeemanNavigationDelegate {
      - parameter webView: The web view that finished navigating.
      - parameter url:     The final URL of the web view.
      */
-    open func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
+    @objc open func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
         errorViewController?.view.removeFromSuperview()
     }
 }

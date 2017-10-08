@@ -8,7 +8,7 @@ extension WebViewController {
      
      - parameter message: The error message that should be presented. 
      */
-    open func setErrorMessage(_ message: String?) {
+    @objc open func setErrorMessage(_ message: String?) {
         navigationItem.prompt = message
     }
     

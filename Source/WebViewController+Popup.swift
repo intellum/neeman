@@ -57,7 +57,7 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter request: The request to load in the popup.
      */
-    open func loadPopupRequest(_ request: NSMutableURLRequest) {
+    @objc open func loadPopupRequest(_ request: NSMutableURLRequest) {
         _ = webViewPopup?.load(request as URLRequest)
     }
     
@@ -66,7 +66,7 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter sender: The button that was tapped.
      */
-    func didTapDoneButton(_ sender: AnyObject) {
+    @objc func didTapDoneButton(_ sender: AnyObject) {
         closeWebView(webView)
     }
     
@@ -75,7 +75,7 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter webView: The web view to close.
      */
-    open func closeWebView(_ webView: WKWebView) {
+    @objc open func closeWebView(_ webView: WKWebView) {
         if let popupWebView = webViewPopup {
             webViewObserver.stopObservingWebView(popupWebView)
             dismiss(animated: true, completion: nil)

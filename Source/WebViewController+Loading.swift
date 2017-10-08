@@ -21,7 +21,7 @@ extension WebViewController {
     /**
      This action is called by the refresh control.
      */
-    open func refresh() {
+    @objc open func refresh() {
         loadURL(rootURL)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             if self.neemanRefreshControl?.isRefreshing ?? false {
@@ -155,7 +155,7 @@ extension WebViewController: WebViewObserverDelegate {
      - parameter webView: The instance of WKWebView that updated its title property.
      - parameter title: The value that the WKWebView updated its title property to.
      */
-    open func webView(_ webView: WKWebView, didChangeTitle title: String?) {
+    @objc open func webView(_ webView: WKWebView, didChangeTitle title: String?) {
         navigationItem.title = title
     }
 
