@@ -82,7 +82,7 @@ open class WebViewController: UIViewController,
     /** A UIRefreshControl is automatically added to the WKWebView.
         When you pull down your webView the page will be refreshed.
     */
-    open var refreshControl: UIRefreshControl?
+    open var neemanRefreshControl: UIRefreshControl?
     
     /** This is set once the web view has successfully loaded. If for some reason the page doesn't load
         then we know know when we return we should try again.

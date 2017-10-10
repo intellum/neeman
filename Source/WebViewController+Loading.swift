@@ -8,10 +8,14 @@ extension WebViewController {
      */
     open func setupRefreshControl() {
         let newRefreshControl = UIRefreshControl()
-        newRefreshControl.attributedTitle = NSAttributedString(string: "")
+//        newRefreshControl.attributedTitle = NSAttributedString(string: "")
         newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), for: UIControlEvents.valueChanged)
-        webView.scrollView.insertSubview(newRefreshControl, at: 0)
-        refreshControl = newRefreshControl
+        if #available(iOS 10.0, *) {
+            webView.scrollView.refreshControl = newRefreshControl
+        } else {
+            webView.scrollView.insertSubview(newRefreshControl, at: 0)
+        }
+        neemanRefreshControl = newRefreshControl
     }
     
     /**
@@ -19,6 +23,11 @@ extension WebViewController {
      */
     open func refresh() {
         loadURL(rootURL)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if self.neemanRefreshControl?.isRefreshing ?? false {
+                self.neemanRefreshControl?.endRefreshing()
+            }
+        }
     }
 
     /**
@@ -110,7 +119,7 @@ extension WebViewController {
      */
     func updateActivityIndicatorWithWebView(_ webView: WKWebView?) {
         if let webView = webView, webView.isLoading {
-            if let refreshControl = refreshControl, !refreshControl.isRefreshing {
+            if let refreshControl = neemanRefreshControl, !refreshControl.isRefreshing {
                 activityIndicator?.startAnimating()
                 WebViewController.networkActivityCount += 1
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -159,8 +168,12 @@ extension WebViewController: WebViewObserverDelegate {
         updateProgressViewWithWebView(webView: webView)
         updateActivityIndicatorWithWebView(webView)
         if !loading {
-            if refreshControl?.isRefreshing ?? false {
-                refreshControl?.endRefreshing()
+            if neemanRefreshControl?.isRefreshing ?? false {
+                if #available(iOS 10.0, *) {
+                    webView.scrollView.refreshControl?.endRefreshing()
+                } else {
+                    neemanRefreshControl?.endRefreshing()
+                }
             }
             if let _ = webView.url {
                 hasLoadedContent = true
