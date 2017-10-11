@@ -31,7 +31,7 @@ open class NeemanSettings {
     /// This can be set to enable the use of relative URLs in the web view controllers URLString property.
     open let baseURL: String
     open let bundleVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String ?? ""
-    open let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    open let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0"
 
     /// This stores all the settings loaded from the initialising object. These can be accessed through object subscripting.
     let allSettings: [AnyHashable: Any]

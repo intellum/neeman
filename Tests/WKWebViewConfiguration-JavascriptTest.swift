@@ -16,16 +16,16 @@ class WKWebViewConfigurationJavascriptTest: XCTestCase {
         XCTAssertEqual(contents, "")
     }
 
-    func testCombinedFiles() {
-        class WebViewConfiguration: WKWebViewConfiguration {
-            override func contentsOfNeemansWithName(_ fileName: String) -> String {
-                return "1"
-            }
-            override func contentsOfMainBundlesFileWithName(_ fileName: String) -> String {
-                return "2"
-            }
-        }
-        let webViewConfiguration = WebViewConfiguration()
-        XCTAssertEqual(webViewConfiguration.stringFromContentInFileName("hello.test"), "12")
-    }
+//    func testCombinedFiles() {
+//        class WebViewConfiguration: WKWebViewConfiguration {
+//            override func contentsOfNeemansWithName(_ fileName: String) -> String {
+//                return "1"
+//            }
+//            override func contentsOfMainBundlesFileWithName(_ fileName: String) -> String {
+//                return "2"
+//            }
+//        }
+//        let webViewConfiguration = WebViewConfiguration()
+//        XCTAssertEqual(webViewConfiguration.stringFromContentInFileName("hello.test"), "12")
+//    }
 }
