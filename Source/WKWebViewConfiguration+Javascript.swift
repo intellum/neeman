@@ -10,8 +10,11 @@ extension WKWebViewConfiguration {
     convenience init(settings: NeemanSettings) {
         self.init()
         processPool = ProcessPool.sharedInstance
-        if #available(iOS 9.0, *) {
-            applicationNameForUserAgent = "Neeman iOS Version/\(settings.appVersion)(\(settings.bundleVersion))"
+        applicationNameForUserAgent = "Neeman iOS Version/\(settings.appVersion)(\(settings.bundleVersion))"
+        if #available(iOS 10.0, *) {
+            mediaTypesRequiringUserActionForPlayback = []
+        } else {
+            requiresUserActionForMediaPlayback = false
         }
         addJavascript()
     }
