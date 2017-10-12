@@ -125,7 +125,7 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     /** The delegate that should be notified of when the web view has finished loading or when
     a new web view should be pushed onto the navigation stack.
     */
-    weak var delegate: NeemanNavigationDelegate?
+    open weak var delegate: NeemanNavigationDelegate?
     
     /// This contains, for example, the name of the app and optionally the base URL of your app.
     open var settings: NeemanSettings
