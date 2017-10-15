@@ -174,7 +174,7 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
             if settings.debug {
                 let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
                 let urlString = navigationAction.request.url?.absoluteString ?? ""
-                log("URL: \(urlString)\t\t\t- \(actionString)")
+                log("URL: \(urlString)        -       \(actionString)")
             }
             
             decisionHandler(actionPolicy)
@@ -187,7 +187,7 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
      - parameter message: The message that shoudl be logged.
     */
     open func log(_ message: String) {
-        print(message)
+        debugPrint(message)
     }
 
     /**
