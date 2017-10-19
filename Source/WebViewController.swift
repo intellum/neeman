@@ -289,8 +289,8 @@ open class WebViewController: UIViewController,
     
     - parameter URL: The URL to laod.
     */
-    open func loadURL(_ URL: Foundation.URL?) {
-        guard let URL = URL else {
+    open func loadURL(_ url: URL?) {
+        guard let url = url else {
             showURLError()
             return
         }
@@ -299,7 +299,7 @@ open class WebViewController: UIViewController,
         hasLoadedContent = false
         
         progressView?.setProgress(0, animated: false)
-        loadRequest(NSMutableURLRequest(url: URL))
+        loadRequest(NSMutableURLRequest(url: url))
     }
     
     /**
@@ -385,6 +385,9 @@ extension WebViewController: NeemanNavigationDelegate {
      */
     @objc open func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
         errorViewController?.view.removeFromSuperview()
+    }
+    
+    @objc open func webView(_ webView: WKWebView, didBeginLoadingURL url: URL?) {
     }
 }
 

@@ -63,6 +63,14 @@ public protocol NeemanNavigationDelegate: NSObjectProtocol {
     func webView(_ webView: WKWebView, didFinishNavigationWithURL URL: URL?)
     
     /**
+     This is called when the page begins loading.
+     
+     - parameter webView: Then web view.
+     - parameter URL:     The URL that was finally loaded.
+     */
+    func webView(_ webView: WKWebView, didBeginLoadingURL URL: URL?)
+    
+    /**
      This is called when a request is redirected.
      
      - parameter webView: The web view.
