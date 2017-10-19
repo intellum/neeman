@@ -19,6 +19,7 @@ open class TestNeemanNavigationDelegate: NSObject, NeemanNavigationDelegate {
     open func webView(_ webView: WKWebView, didReceiveServerRedirectToURL: URL?) {}
     open func webView(_ webView: WKWebView, didFinishNavigationWithURL: URL?) {}
     open func webView(_ webView: WKWebView, didFinishLoadingWithError error: NSError) {}
+    open func webView(_ webView: WKWebView, didBeginLoadingURL URL: URL?) {}
     open func shouldPreventNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         return false
     }
