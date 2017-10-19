@@ -1,3 +1,10 @@
+## [1.0.0](https://github.com/intellum/neeman/releases/tag/0.5.0)
+#### Updated
+- Now using Swift 4
+- Improved network activity handling.
+- Removed FastClick.
+- Add the app's version to the user agent.
+
 ## [0.5.0](https://github.com/intellum/neeman/releases/tag/0.5.0)
 #### Updated
 - Now using Swift 3
