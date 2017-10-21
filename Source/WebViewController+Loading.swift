@@ -23,11 +23,6 @@ extension WebViewController {
      */
     @objc open func refresh() {
         loadURL(rootURL)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            if self.neemanRefreshControl?.isRefreshing ?? false {
-                self.neemanRefreshControl?.endRefreshing()
-            }
-        }
     }
 
     /**
@@ -169,11 +164,7 @@ extension WebViewController: WebViewObserverDelegate {
         updateActivityIndicatorWithWebView(webView)
         if !loading {
             if neemanRefreshControl?.isRefreshing ?? false {
-                if #available(iOS 10.0, *) {
-                    webView.scrollView.refreshControl?.endRefreshing()
-                } else {
-                    neemanRefreshControl?.endRefreshing()
-                }
+                neemanRefreshControl?.endRefreshing()
             }
             if let _ = webView.url {
                 hasLoadedContent = true
