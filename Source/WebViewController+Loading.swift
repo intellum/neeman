@@ -153,24 +153,6 @@ extension WebViewController: WebViewObserverDelegate {
     @objc open func webView(_ webView: WKWebView, didChangeTitle title: String?) {
         navigationItem.title = title
     }
-
-    /**
-     Called when the webView updates the value of its loading property.
-     - Parameter webView: The instance of WKWebView that updated its loading property.
-     - Parameter loading: The value that the WKWebView updated its loading property to.
-     */
-    open func webView(_ webView: WKWebView, didChangeLoading loading: Bool) {
-        updateProgressViewWithWebView(webView: webView)
-        updateActivityIndicatorWithWebView(webView)
-        if !loading {
-            if neemanRefreshControl?.isRefreshing ?? false {
-                neemanRefreshControl?.endRefreshing()
-            }
-            if let _ = webView.url {
-                hasLoadedContent = true
-            }
-        }
-    }
     
     /**
      This is called when the web view change its estimate loading progress.

@@ -40,9 +40,9 @@ open class WebViewController: UIViewController,
     /// The UI delegate that allows us to implement our own code to handle window.open(), alert(), confirm() and prompt().
     open var uiDelegate: WebViewUIDelegate?
     /// This is a popup window that is opened when javascript code calles window.open().
-    var uiDelegatePopup: WebViewUIDelegate?
+    open var uiDelegatePopup: WebViewUIDelegate?
     /// This is a navigation controller that is used to present a popup webview modally.
-    var popupNavController: UINavigationController?
+    open var popupNavController: UINavigationController?
     
     /// This is the count of how many web view controllers are currently loading.
     static var networkActivityCount: Int = 0 {
@@ -291,7 +291,11 @@ open class WebViewController: UIViewController,
     */
     open func loadURL(_ url: URL?) {
         guard let url = url else {
-            showURLError()
+            #if DEBUG
+                showURLError()
+            #else
+                dismiss(animated: false, completion: nil)
+            #endif
             return
         }
         
@@ -314,6 +318,73 @@ open class WebViewController: UIViewController,
         }
         if let request = request {
             webView.load(request as URLRequest)
+        }
+    }
+    
+    /**
+     Creates a web view for a popup window. The web view is added onto of the current one.
+     You should override this if you would like to implement something like tabs.
+     
+     - parameter newWebView: The new web view.
+     - parameter url:        The URL to load.
+     */
+    open func popupWebView(_ newWebView: WKWebView, withURL url: URL) {
+        if let webViewPopup = webViewPopup {
+            webViewObserver.stopObservingWebView(webViewPopup)
+            webViewPopup.removeFromSuperview()
+        }
+        
+        webViewPopup = newWebView
+        guard let webViewPopup = webViewPopup else {
+            return
+        }
+        
+        uiDelegatePopup = WebViewUIDelegate(settings: settings)
+        uiDelegatePopup?.delegate = self
+        webViewPopup.uiDelegate = uiDelegatePopup
+        webViewPopup.allowsBackForwardNavigationGestures = true
+        webViewPopup.translatesAutoresizingMaskIntoConstraints = false
+        webViewPopup.frame = view.bounds
+        
+        if popupNavController == nil {
+            popupNavController = setupPopupNavigationController()
+        }
+        
+        let popupViewController = popupNavController!.viewControllers.first!
+        popupViewController.view.addSubview(webViewPopup)
+        webViewObserver.startObservingWebView(webViewPopup)
+        autolayoutWebView(webViewPopup)
+        
+        if popupNavController?.parent == nil {
+            present(popupNavController!, animated: true, completion: nil)
+        }
+    }
+
+    open func setupPopupNavigationController() -> UINavigationController? {
+        let popupViewController = UIViewController()
+        popupNavController = UINavigationController(rootViewController: popupViewController)
+        popupViewController.modalPresentationStyle = .fullScreen
+        
+        let barButton = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
+        popupViewController.navigationItem.rightBarButtonItem = barButton
+        return popupNavController
+    }
+    
+    /**
+     Called when the webView updates the value of its loading property.
+     - Parameter webView: The instance of WKWebView that updated its loading property.
+     - Parameter loading: The value that the WKWebView updated its loading property to.
+     */
+    open func webView(_ webView: WKWebView, didChangeLoading loading: Bool) {
+        updateProgressViewWithWebView(webView: webView)
+        updateActivityIndicatorWithWebView(webView)
+        if !loading {
+            if neemanRefreshControl?.isRefreshing ?? false {
+                self.neemanRefreshControl?.endRefreshing()
+            }
+            if let _ = webView.url {
+                hasLoadedContent = true
+            }
         }
     }
 }
