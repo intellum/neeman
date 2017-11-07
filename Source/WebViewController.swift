@@ -11,6 +11,14 @@ public protocol NeemanViewController {
     func refresh()
 }
 
+extension WebViewController: UIScrollViewDelegate {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if neemanRefreshControl?.isRefreshing ?? false {
+            refresh()
+        }
+    }
+}
+
 /**
   WebViewController displays the contents of a URL and pushes a new instance of itself once the 
   user clicks on a link that causes an URL change. It also provides support for authentication. 
@@ -115,6 +123,7 @@ open class WebViewController: UIViewController,
         addObservers()
         webViewObserver.delegate = self
         loadURL(rootURL)
+        webView.scrollView.delegate = self
     }
     
     /**

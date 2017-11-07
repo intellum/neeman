@@ -9,7 +9,10 @@ extension WebViewController {
     open func setupRefreshControl() {
         let newRefreshControl = UIRefreshControl()
 //        newRefreshControl.attributedTitle = NSAttributedString(string: "")
-        newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), for: UIControlEvents.valueChanged)
+// This is a hack to improve the way the large titles work. They were not returning to the origional position in many cases.
+// Pulling down fast seemed to reproduce the problem the most.
+// The refresh method is now called in the scrollViewDidEndDecelerating method.
+//        newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), for: UIControlEvents.valueChanged)
         if #available(iOS 10.0, *) {
             webView.scrollView.refreshControl = newRefreshControl
         } else {
