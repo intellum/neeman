@@ -129,9 +129,10 @@ extension WebViewController {
         holder.layer.shadowOffset = CGSize(width: sizeOf1, height: sizeOf1)
         holder.layer.masksToBounds = false
         holder.layer.shadowRadius = 0.5
-        holder.layer.shadowOpacity = 0.5
+        holder.layer.shadowOpacity = 0.25
         holder.isUserInteractionEnabled = false
-
+        activityIndicatorHolder = holder
+        
         return holder
     }
     
@@ -145,13 +146,13 @@ extension WebViewController {
         if let webView = webView, webView.isLoading {
             if let refreshControl = neemanRefreshControl, !refreshControl.isRefreshing {
                 activityIndicator?.startAnimating()
-                activityIndicator?.superview?.isHidden = false
+                activityIndicatorHolder?.isHidden = false
                 WebViewController.networkActivityCount += 1
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             }
         } else {
             activityIndicator?.stopAnimating()
-            activityIndicator?.superview?.isHidden = true
+            activityIndicatorHolder?.isHidden = true
             WebViewController.networkActivityCount -= 1
         }
     }

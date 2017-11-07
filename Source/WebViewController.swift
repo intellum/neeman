@@ -31,7 +31,8 @@ open class WebViewController: UIViewController,
     // MARK: Outlets
     /// Shows that the web view is still loading the page.
     @IBOutlet open var activityIndicator: UIActivityIndicatorView?
-    
+    @IBOutlet open var activityIndicatorHolder: UIView?
+
     /// Shows the progress toward loading the page.
     @IBOutlet open var progressView: UIProgressView?
     
