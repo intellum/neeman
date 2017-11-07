@@ -79,18 +79,25 @@ extension WebViewController {
             return
         }
         
-        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 8.5, y: 8.5, width: 24, height: 24))
         guard let activityIndicator = activityIndicator else {
             return
         }
         
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.isUserInteractionEnabled = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = true
+        activityIndicator.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleLeftMargin]
+
+        let holder = createActivityIndicatorHolder()
+        holder.addSubview(activityIndicator)
+        view.addSubview(holder)
         
-        let xCenterConstraint = NSLayoutConstraint(item: activityIndicator,
+        activityIndicator.startAnimating()
+        
+        holder.translatesAutoresizingMaskIntoConstraints = false
+        let xCenterConstraint = NSLayoutConstraint(item: holder,
             attribute: .centerX,
             relatedBy: .equal,
             toItem: view,
@@ -98,15 +105,34 @@ extension WebViewController {
             multiplier: 1,
             constant: 0)
         view.addConstraint(xCenterConstraint)
-        
-        let yConstraint = NSLayoutConstraint(item: activityIndicator,
+
+        let yConstraint = NSLayoutConstraint(item: holder,
             attribute: .bottom,
             relatedBy: .equal,
             toItem: bottomLayoutGuide,
             attribute: .top,
             multiplier: 1,
-            constant: -20)
+            constant: -65)
         view.addConstraint(yConstraint)
+        
+        let widthConstraint = NSLayoutConstraint(item: holder, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: holder.frame.width)
+        let heightConstraint = NSLayoutConstraint(item: holder, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: holder.frame.height)
+        view.addConstraints([widthConstraint, heightConstraint])
+    }
+    
+    fileprivate func createActivityIndicatorHolder() -> UIView {
+        let holder = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        holder.layer.cornerRadius = holder.frame.height / 2
+        holder.backgroundColor = .white
+        holder.layer.shadowColor = UIColor.black.cgColor
+        let sizeOf1 = 1.0/UIScreen.main.scale
+        holder.layer.shadowOffset = CGSize(width: sizeOf1, height: sizeOf1)
+        holder.layer.masksToBounds = false
+        holder.layer.shadowRadius = 0.5
+        holder.layer.shadowOpacity = 0.5
+        holder.isUserInteractionEnabled = false
+
+        return holder
     }
     
     /**
@@ -119,11 +145,13 @@ extension WebViewController {
         if let webView = webView, webView.isLoading {
             if let refreshControl = neemanRefreshControl, !refreshControl.isRefreshing {
                 activityIndicator?.startAnimating()
+                activityIndicator?.superview?.isHidden = false
                 WebViewController.networkActivityCount += 1
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             }
         } else {
             activityIndicator?.stopAnimating()
+            activityIndicator?.superview?.isHidden = true
             WebViewController.networkActivityCount -= 1
         }
     }
