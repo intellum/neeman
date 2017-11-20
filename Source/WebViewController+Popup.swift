@@ -20,7 +20,7 @@ extension WebViewController: NeemanUIDelegate {
      
      - parameter sender: The button that was tapped.
      */
-    @objc func didTapDoneButton(_ sender: AnyObject) {
+    @objc open func didTapDoneButton(_ sender: AnyObject) {
         closeWebView(webView)
     }
     
