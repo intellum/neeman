@@ -27,7 +27,10 @@ extension WebViewController {
      - parameter coder: The NSCoder object provided by iOS in which the data was saved when backgrounding the app.
      */
     override open func decodeRestorableState(with coder: NSCoder) {
-        if let urlString = coder.decodeObject(forKey: encodingKeyURLString) as? String {
+        if let urlString = coder.decodeObject(forKey: encodingKeyURLString) as? String,
+            URLString == nil {
+            // Only set the URLString if it hasn't already been set. The URL might have been defined by the screens
+            // object in the who_am_i.json request. This should take precedence over the value saved by state restoration.
             URLString = urlString
             loadURL(rootURL)
         }
