@@ -124,7 +124,6 @@ open class WebViewController: UIViewController,
         addObservers()
         webViewObserver.delegate = self
         loadURL(rootURL)
-        webView.scrollView.delegate = self
     }
     
     /**
@@ -165,6 +164,12 @@ open class WebViewController: UIViewController,
         if shouldReloadOnViewWillAppear(animated) && !webView.isLoading {
             loadURL(rootURL)
         }
+        webView.scrollView.delegate = self
+    }
+    
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        webView.scrollView.delegate = nil
     }
     
     /**
