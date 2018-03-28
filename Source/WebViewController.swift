@@ -126,6 +126,16 @@ open class WebViewController: UIViewController,
         loadURL(rootURL)
     }
     
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if rootURL == nil {
+            #if DEBUG
+                showURLError()
+            #else
+                dismiss(animated: false, completion: nil)
+            #endif
+        }
+    }
     /**
      Setup the notification handlers and KVO.
      */
@@ -161,7 +171,7 @@ open class WebViewController: UIViewController,
      */
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if shouldReloadOnViewWillAppear(animated) && !webView.isLoading {
+        if let rootURL = rootURL, shouldReloadOnViewWillAppear(animated) && !webView.isLoading {
             loadURL(rootURL)
         }
         webView.scrollView.delegate = self
@@ -306,11 +316,6 @@ open class WebViewController: UIViewController,
     */
     open func loadURL(_ url: URL?) {
         guard let url = url else {
-            #if DEBUG
-                showURLError()
-            #else
-                dismiss(animated: false, completion: nil)
-            #endif
             return
         }
         
@@ -375,7 +380,7 @@ open class WebViewController: UIViewController,
         }
     }
 
-    open func setupPopupNavigationController() -> UINavigationController? {
+    open func setupPopupNavigationController(urlString: String? = "about:blank") -> UINavigationController? {
         let popupViewController = UIViewController()
         popupNavController = UINavigationController(rootViewController: popupViewController)
         popupViewController.modalPresentationStyle = .fullScreen
