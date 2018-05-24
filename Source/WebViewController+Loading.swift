@@ -43,6 +43,7 @@ extension WebViewController {
             return
         }
         progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.accessibilityIdentifier = "NeemanProgressIndiciator"
         view.addSubview(progressView)
         
         let views = Dictionary(dictionaryLiteral: ("progressView", progressView))
@@ -144,12 +145,12 @@ extension WebViewController {
      */
     func updateActivityIndicatorWithWebView(_ webView: WKWebView?) {
         if let webView = webView, webView.isLoading {
-            if let refreshControl = neemanRefreshControl, !refreshControl.isRefreshing {
+            let isRefreshing = neemanRefreshControl?.isRefreshing ?? false
+            if !isRefreshing {
                 activityIndicator?.startAnimating()
                 activityIndicatorHolder?.isHidden = false
-                WebViewController.networkActivityCount += 1
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
             }
+            WebViewController.networkActivityCount += 1
         } else {
             activityIndicator?.stopAnimating()
             activityIndicatorHolder?.isHidden = true

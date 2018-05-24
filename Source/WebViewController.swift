@@ -57,10 +57,9 @@ open class WebViewController: UIViewController,
     static var networkActivityCount: Int = 0 {
         didSet {
             networkActivityCount = max(0, networkActivityCount)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.async {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = networkActivityCount > 0
             }
-
         }
     }
     
@@ -124,6 +123,11 @@ open class WebViewController: UIViewController,
         addObservers()
         webViewObserver.delegate = self
         loadURL(rootURL)
+    }
+    
+    override open func awakeFromNib() {
+        super.awakeFromNib()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
     override open func viewDidAppear(_ animated: Bool) {
