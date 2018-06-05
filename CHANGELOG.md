@@ -1,4 +1,10 @@
-## [1.0.0](https://github.com/intellum/neeman/releases/tag/0.5.0)
+## [1.1.0](https://github.com/intellum/neeman/releases/tag/1.1.0)
+#### Updated
+- Improved the pull to refresh bahaviour with the iOS 11 navigation bar.
+- Improved network activity handling for UI testing.
+- Added "Mobile/" to the user agent. I found a javascript library that, however ill-advised, was assuming the existance of this to detect iOS.
+
+## [1.0.0](https://github.com/intellum/neeman/releases/tag/1.0.0)
 #### Updated
 - Now using Swift 4
 - Improved network activity handling.
