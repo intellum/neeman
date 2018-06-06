@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 class ErrorViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!

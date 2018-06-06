@@ -6,7 +6,7 @@
 //  Copyright © 2015 Intellum. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for Neeman.
 FOUNDATION_EXPORT double NeemanVersionNumber;
