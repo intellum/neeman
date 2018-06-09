@@ -7,8 +7,8 @@ public extension FileManager {
     }
 
     public func plistDictionaryAtPath(_ path: String) -> [AnyHashable: Any]? {
+        guard let plistXML = FileManager.default.contents(atPath: path) else { return nil }
         var plistData: [AnyHashable: Any] = [:]
-        let plistXML = FileManager.default.contents(atPath: path)!
         var propertyListFormat =  PropertyListSerialization.PropertyListFormat.xml //Format of the Property List.
         do {
             plistData = try PropertyListSerialization.propertyList(from: plistXML,
@@ -53,7 +53,7 @@ open class NeemanSettings {
      - parameter path: The path to the .plist file to load the setting from.
      */
     public convenience init(path: String) {
-        self.init(dictionary: FileManager.default.plistDictionaryAtPath(path)!)
+        self.init(dictionary: FileManager.default.plistDictionaryAtPath(path) ?? [:])
     }
     
     /**
