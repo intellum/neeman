@@ -8,66 +8,22 @@ extension WebViewController {
      
      - parameter message: The error message that should be presented. 
      */
-    @objc open func setErrorMessage(_ message: String?) {
+    @objc open func showError(message: String?) {
         navigationItem.prompt = message
     }
     
-    /**
-     Adds an image view which shows how to set the URLString.
-     */
-    func showURLError() {
-        let imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "Help-URL", in: Bundle(for: WebViewController.self), compatibleWith: nil)
-        view.addSubview(imageView)
-    }
-    
-    /**
-     Adds and image view which shows what to do when you are getting app transport security error.
-     */
-    func showSSLError() {
-        let imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "Help-Security",
-            in: Bundle(for: WebViewController.self),
-            compatibleWith: nil)
-        view.addSubview(imageView)
-    }
-    
-    func showHTTPError(_ error: NetworkError) {
-        if hasLoadedContent {
-            setErrorMessage(error.description)
+    internal func showHTTPError(_ error: NetworkError) {
+        guard hasLoadedContent else {
+            showErrorViewController(withError: error)
             return
         }
-        if errorViewController == nil {
-            let storyboard = UIStoryboard(name: "Neeman", bundle: Bundle(for: WebViewController.self))
-            guard let errorVC = storyboard.instantiateViewController(withIdentifier: "ErrorViewController") as? ErrorViewController else {
-                return
-            }
-            errorViewController = errorVC
-        } else {
-            errorViewController?.view.removeFromSuperview()
-        }
-        
-        if let errorViewController = errorViewController {
-            
-            webView.scrollView.addSubview(errorViewController.view!)
-            
-            if let mainBundleImage = UIImage(named: "Error-HTTP",
-                in: Bundle.main,
-                compatibleWith: nil) {
-                    errorViewController.imageView.image = mainBundleImage
-            } else if let neemanBundleImage = UIImage(named: "Error-HTTP",
-                in: Bundle(for: WebViewController.self),
-                compatibleWith: nil) {
-                    errorViewController.imageView.image = neemanBundleImage
-            }
-            
-            errorViewController.label.text = error.description
-            
-            self.addChildViewController(errorViewController)
-        }
-        
+        showError(message: error.description)
     }
-
+    
+    private func showErrorViewController(withError error: NetworkError) {
+        errorViewController.view.removeFromSuperview()
+        webView.scrollView.addSubview(errorViewController.view)
+        errorViewController.error = error
+        addChildViewController(errorViewController)
+    }
 }

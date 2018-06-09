@@ -37,7 +37,9 @@ open class WebViewController: UIViewController,
     @IBOutlet open var progressView: UIProgressView?
     
     /// Displays an error the occured whilst loading the page.
-    @IBOutlet var errorViewController: ErrorViewController?
+    internal lazy var errorViewController: ErrorViewController = {
+        return ErrorHandling().viewController()
+    }()
 
     // MARK: Properties
     
@@ -133,11 +135,8 @@ open class WebViewController: UIViewController,
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if rootURL == nil {
-            #if DEBUG
-                showURLError()
-            #else
-                dismiss(animated: false, completion: nil)
-            #endif
+            assert(false, "You need to set URLString on WebViewController. Do this in code or in the Attributes Inspector in Interface Builder.")
+            dismiss(animated: false, completion: nil)
         }
     }
     /**
@@ -264,11 +263,8 @@ open class WebViewController: UIViewController,
      - parameter error:   The error the web view incountered.
      */
     open func webView(_ webView: WKWebView, didFinishLoadingWithError error: NSError) {
-        if #available(iOS 9.0, *) {
-            if error.code == NSURLErrorAppTransportSecurityRequiresSecureConnection {
-                showSSLError()
-            }
-        }
+        assert(error.code != NSURLErrorAppTransportSecurityRequiresSecureConnection,
+               "You need to allow insecure loads in your App Transport Security settings. See https://stackoverflow.com/a/40299837/215748")
         
         let networkError = NetworkError(error: error)
         switch networkError {
@@ -323,7 +319,7 @@ open class WebViewController: UIViewController,
             return
         }
         
-        setErrorMessage(nil)
+        showError(message: nil)
         hasLoadedContent = false
         
         progressView?.setProgress(0, animated: false)
@@ -479,7 +475,7 @@ extension WebViewController: NeemanNavigationDelegate {
      - parameter url:     The final URL of the web view.
      */
     @objc open func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
-        errorViewController?.view.removeFromSuperview()
+        errorViewController.view.removeFromSuperview()
     }
     
     @objc open func webView(_ webView: WKWebView, didBeginLoadingURL url: URL?) {
