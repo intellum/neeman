@@ -3,13 +3,12 @@ import WebKit
 @testable import Neeman
 
 class WebViewUIDelegateTest: XCTestCase {
-    let settings = NeemanSettings(dictionary: ["baseURL": "https://intellum.com"])
     let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "https://intellum.com")!))
 
     func testCreateWebView() {
         let expectation = self.expectation(description: "Pass Error to Delegate")
         
-        let url = URL(string: settings.baseURL)!
+        let url = URL(string: "https://intellum.com")!
         let request = URLRequest(url: url)
         
         class MockNeemanUIDelegate: TestNeemanUIDelegate {
@@ -18,7 +17,7 @@ class WebViewUIDelegateTest: XCTestCase {
             }
         }
         let delegate = MockNeemanUIDelegate(expectation: expectation)
-        let webViewUIDelegate = WebViewUIDelegate(settings: settings)
+        let webViewUIDelegate = WebViewUIDelegate(baseURL: url)
         webViewUIDelegate.delegate = delegate
         let _ = webViewUIDelegate.webView(WKWebView(),
             createWebViewWith: WKWebViewConfiguration(),
@@ -35,8 +34,9 @@ class WebViewUIDelegateTest: XCTestCase {
     func testCloseWebView() {
         let expectation = self.expectation(description: "Pass Error to Delegate")
 
-        let webViewUIDelegate = WebViewUIDelegate(settings: settings)
-        
+        let url = URL(string: "https://intellum.com")!
+        let webViewUIDelegate = WebViewUIDelegate(baseURL: url)
+
         class MockNeemanUIDelegate: TestNeemanUIDelegate {
             override func closeWebView(_ webView: WKWebView) {
                 expectation.fulfill()
@@ -57,7 +57,7 @@ class WebViewUIDelegateTest: XCTestCase {
     func testAlert() {
         let expectation = self.expectation(description: "Pass Error to Delegate")
         
-        let webViewUIDelegate = MyWebViewUIDelegate(settings: settings, expectation: expectation)
+        let webViewUIDelegate =  MyWebViewUIDelegate(expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptAlertPanelWithMessage: "",
             initiatedByFrame: frameInfo) { () -> Void in}
         
@@ -74,7 +74,7 @@ class WebViewUIDelegateTest: XCTestCase {
         
         let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "http://hacker.ru")!))
         
-        let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
+        let webViewUIDelegate = RefusingWebViewUIDelegate(expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptAlertPanelWithMessage: "",
             initiatedByFrame: frameInfo) { () -> Void in
                 
@@ -91,7 +91,7 @@ class WebViewUIDelegateTest: XCTestCase {
     func testConfirm() {
         let expectation = self.expectation(description: "Show Confirm")
         
-        let webViewUIDelegate = MyWebViewUIDelegate(settings: settings, expectation: expectation)
+        let webViewUIDelegate = MyWebViewUIDelegate(expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptConfirmPanelWithMessage: "",
             initiatedByFrame: frameInfo) { (answer: Bool) -> Void in}
         
@@ -108,7 +108,7 @@ class WebViewUIDelegateTest: XCTestCase {
         
         let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "http://hacker.ru")!))
 
-        let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
+        let webViewUIDelegate = RefusingWebViewUIDelegate(expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptConfirmPanelWithMessage: "",
             initiatedByFrame: frameInfo) { (answer: Bool) -> Void in
         
@@ -125,7 +125,7 @@ class WebViewUIDelegateTest: XCTestCase {
     func testPrompt() {
         let expectation = self.expectation(description: "Show Prompt")
         
-        let webViewUIDelegate = MyWebViewUIDelegate(settings: settings, expectation: expectation)
+        let webViewUIDelegate = MyWebViewUIDelegate(expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptTextInputPanelWithPrompt: "", defaultText: "",
             initiatedByFrame: frameInfo) { (input: String?) -> Void in}
         
@@ -142,7 +142,7 @@ class WebViewUIDelegateTest: XCTestCase {
         
         let frameInfo = FrameInfo(request: URLRequest(url: URL(string: "http://hacker.ru")!))
         
-        let webViewUIDelegate = RefusingWebViewUIDelegate(settings: settings, expectation: expectation)
+        let webViewUIDelegate = RefusingWebViewUIDelegate(expectation: expectation)
         webViewUIDelegate.webView(WKWebView(), runJavaScriptTextInputPanelWithPrompt: "", defaultText: "",
             initiatedByFrame: frameInfo) { (input: String?) -> Void in
         
@@ -160,10 +160,11 @@ class WebViewUIDelegateTest: XCTestCase {
 class MyWebViewUIDelegate: WebViewUIDelegate {
     var expectation: XCTestExpectation
     
-    init(settings: NeemanSettings, expectation: XCTestExpectation) {
+    init(expectation: XCTestExpectation) {
         self.expectation = expectation
-        super.init(settings: settings)
+        super.init(baseURL: URL(string: "https://intellum.com")!)
     }
+
 
     override internal func presentAlertController(_ alert: UIAlertController) {
         expectation.fulfill()
@@ -173,9 +174,9 @@ class MyWebViewUIDelegate: WebViewUIDelegate {
 class RefusingWebViewUIDelegate: WebViewUIDelegate {
     var expectation: XCTestExpectation
     
-    init(settings: NeemanSettings, expectation: XCTestExpectation) {
+    init(expectation: XCTestExpectation) {
         self.expectation = expectation
-        super.init(settings: settings)
+        super.init(baseURL: URL(string: "https://intellum.com")!)
     }
     
     override internal func refusedUIFromRequest(_ request: URLRequest) {

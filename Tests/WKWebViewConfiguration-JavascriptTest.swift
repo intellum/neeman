@@ -4,15 +4,13 @@ import WebKit
 
 class WKWebViewConfigurationJavascriptTest: XCTestCase {
     func testExistingFile() {
-        let config = WKWebViewConfiguration()
-        let contents = config.contentsOfFileNamed("Test.js", inBundle: Bundle(for: object_getClass(self)))
+        let contents = Injector().contentsOfFileNamed("Test.js", inBundle: Bundle(for: object_getClass(self)))
         XCTAssertNotEqual(contents, "")
     }
     
     func testNotExistingFile() {
-        let config = WKWebViewConfiguration()
         let path = "NotExistingFilePath"
-        let contents = config.contentsOfFileAtPath(path)
+        let contents = Injector().contentsOfFileAtPath(path)
         XCTAssertEqual(contents, "")
     }
 

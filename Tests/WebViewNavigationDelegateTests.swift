@@ -3,16 +3,9 @@ import WebKit
 @testable import Neeman
 
 class WebViewNavigationDelegateTests: XCTestCase {
-    var settings: NeemanSettings {
-        get {
-            let settings = NeemanSettings(dictionary: ["baseURL": "https://intellum.com"])
-            return settings
-        }
-    }
-    
     func testInitialRequest() {
         let url = URL(string: "http://example.com/")
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil)
         let request = URLRequest(url: url!)
         let webView = WKWebView()
         let navigationAction = NavigationAction(request: request)
@@ -24,7 +17,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     func testFaultyURLNavigation() {
         let url = URL(string: "http://example.com/")
         let urlFaulty = URL(string: "#hi")
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil)
         var request = URLRequest(url: urlFaulty!)
         request.url = nil
         let navigationAction = NavigationAction(request: request)
@@ -36,7 +29,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     
     func testHashNavigation() {
         let url = URL(string: "http://example.com/#hash")
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil)
         let request = URLRequest(url: url!)
         let navigationAction = NavigationAction(request: request)
         
@@ -48,7 +41,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     func testNavigateForward() {
         let url1 = URL(string: "http://example.com/")
         let url2 = URL(string: "http://example.com/user/profile/me")
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url1!, delegate: nil, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url1!, delegate: nil)
         let request = URLRequest(url: url2!)
         let navigationAction = NavigationAction(request: request)
         
@@ -70,7 +63,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         let request = URLRequest(url: url!)
         let navigationAction = NavigationAction(request: request)
         let delegate = NeemanWebViewController()
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate)
         let webView = WKWebView()
         XCTAssertFalse(navigationDelegate.shouldPushForRequestFromWebView(webView, navigationAction: navigationAction),
                        "The delegate should prevent the URL being pushed")
@@ -87,7 +80,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         
         let url = URL(string: "https://groupdock.com/a/Level")
         let delegate = NeemanWebViewController(expectation: expectation)
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate)
         let error = NSError(domain: "", code: 1, userInfo: nil)
         navigationDelegate.webView(WKWebView(), didFailProvisionalNavigation: nil, withError: error)
         
@@ -101,7 +94,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
     func testDecidePolicyForNavigationAction() {
         let expectation = self.expectation(description: "Call Callback")
         let url = URL(string: "https://groupdock.com/a/Level")
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: nil)
         let request = URLRequest(url: url!)
         let navigationAction = NavigationAction(request: request)
         navigationDelegate.webView(WKWebView(), decidePolicyFor: navigationAction) { (policy: WKNavigationActionPolicy) -> Void in
@@ -125,7 +118,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         
         let url = URL(string: "https://groupdock.com/a/Level")
         let delegate = MyNeemanWebViewController()
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url!, delegate: delegate)
         let webView = WKWebView()
         let navigationAction = NavigationAction(request: URLRequest(url:url!))
 
@@ -158,7 +151,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         
         let url = URL(string: "https://intellum.com/cool/new/link")!
         let delegate = NeemanWebViewController(expectation: expectation)
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: delegate, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: delegate)
         
         navigationDelegate.webView(WKWebView(), didFinish: nil)
 
@@ -179,7 +172,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         
         let url = URL(string: "https://intellum.com/cool/new/link")!
         let delegate = NeemanWebViewController(expectation: expectation)
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: delegate, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: delegate)
         
         navigationDelegate.webView(WKWebView(), didReceiveServerRedirectForProvisionalNavigation: nil)
         
@@ -210,7 +203,7 @@ class WebViewNavigationDelegateTests: XCTestCase {
         
         let url = URL(string: "https://intellum.com/cool/new/link")!
         let delegate = NeemanWebViewController(expectation: expectation)
-        let navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: delegate, settings: settings)
+        let navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: delegate)
         let action = MyWKNavigationAction(request: URLRequest(url: url))
 
         

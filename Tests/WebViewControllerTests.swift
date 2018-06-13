@@ -4,13 +4,6 @@ import WebKit
 
 class WebViewControllerTests: XCTestCase {
     
-    var settings: NeemanSettings {
-        get {
-            let pathToSettings = Bundle.init(for: WebViewNavigationDelegateTests.self).path(forResource: "Settings", ofType: "plist")
-            return NeemanSettings(path: pathToSettings ?? "")
-        }
-    }
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -24,14 +17,6 @@ class WebViewControllerTests: XCTestCase {
     func testView() {
         let webViewController = WebViewController()
         XCTAssertNotNil(webViewController.view)
-    }
-
-    func testSettings() {
-        let webViewController = WebViewController()
-        let webViewController2 = WebViewController()
-        webViewController2.settings = settings
-        XCTAssertNotNil(webViewController.settings)
-        XCTAssertFalse(settings === webViewController.settings, "Settings should be different")
     }
 
     func testRootURL() {

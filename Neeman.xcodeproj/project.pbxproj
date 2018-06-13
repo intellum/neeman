@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1B72AEB20D13B070033FC8E /* WebViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B72AEA20D13B070033FC8E /* WebViewConfiguration.swift */; };
+		B1F282DB20D13BEE0019B707 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F282DA20D13BEE0019B707 /* Injector.swift */; };
+		B1F282DD20D13C050019B707 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F282DC20D13C040019B707 /* ErrorHandling.swift */; };
 		DC1D3FF01C8E2AF7005682CA /* Neeman.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC1D3FF21C8E2AF7005682CA /* Neeman.strings */; };
 		DC316BB21C3B5C4200B66D8A /* WebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */; };
 		DC3A6AFF1C4705B300DB94A7 /* WebViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AF91C4705B300DB94A7 /* WebViewController+Errors.swift */; };
 		DC3A6B001C4705B300DB94A7 /* WebViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AFA1C4705B300DB94A7 /* WebViewController+Loading.swift */; };
 		DC3A6B011C4705B300DB94A7 /* WebViewController+Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AFB1C4705B300DB94A7 /* WebViewController+Popup.swift */; };
 		DC3A6B021C4705B300DB94A7 /* WebViewController+WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AFC1C4705B300DB94A7 /* WebViewController+WebView.swift */; };
-		DC3A6B031C4705B300DB94A7 /* WKWebView+Neeman.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AFD1C4705B300DB94A7 /* WKWebView+Neeman.swift */; };
-		DC3A6B041C4705B300DB94A7 /* WKWebViewConfiguration+Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6AFE1C4705B300DB94A7 /* WKWebViewConfiguration+Javascript.swift */; };
 		DC3A6B061C4705C500DB94A7 /* ProcessPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6B051C4705C500DB94A7 /* ProcessPool.swift */; };
 		DC3A6B0B1C47086200DB94A7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6B071C47086200DB94A7 /* WebViewController.swift */; };
 		DC3A6B0C1C47086200DB94A7 /* WebViewNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3A6B081C47086200DB94A7 /* WebViewNavigationDelegate.swift */; };
@@ -30,7 +31,6 @@
 		DC8D64411C962CC20045A468 /* NeemanLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D64401C962CC20045A468 /* NeemanLocalizedString.swift */; };
 		DC937B8F1C200A8E00EF1D03 /* Neeman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC937B841C200A8D00EF1D03 /* Neeman.framework */; };
 		DC937BDD1C200B5F00EF1D03 /* Neeman.h in Headers */ = {isa = PBXBuildFile; fileRef = DC937BAC1C200B5F00EF1D03 /* Neeman.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DC937C121C2019E800EF1D03 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C111C2019E800EF1D03 /* Settings.plist */; };
 		DC937C141C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */; };
 		DCBB1A711C3F642600255AF4 /* FrameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBB1A701C3F642600255AF4 /* FrameInfo.swift */; };
 		DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */; };
@@ -39,9 +39,6 @@
 		DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8421C45FADE001EA0CB /* InjectCSS.js */; };
 		DCBFF84A1C45FADE001EA0CB /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8431C45FADE001EA0CB /* WebView.css */; };
 		DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */; };
-		DCBFF8521C462F9F001EA0CB /* NeemanSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFF84F1C462F9F001EA0CB /* NeemanSettings.swift */; };
-		DCF20F781E3A92A2003F61F7 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC937C111C2019E800EF1D03 /* Settings.plist */; };
-		DCF56F2D1C3DF81F000FF970 /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */; };
 		DCF56F301C3F3D53000FF970 /* WKWebViewConfiguration-JavascriptTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */; };
 		DCF56F331C3F41F5000FF970 /* Test.js in Resources */ = {isa = PBXBuildFile; fileRef = DCF56F321C3F41F5000FF970 /* Test.js */; };
 /* End PBXBuildFile section */
@@ -59,14 +56,15 @@
 /* Begin PBXFileReference section */
 		3FFE4908D19958979B172AD9 /* Pods_NeemanTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeemanTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B029F77F1BBC84E49B73E78 /* Pods_Neeman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neeman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1B72AEA20D13B070033FC8E /* WebViewConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewConfiguration.swift; path = Source/WebViewConfiguration.swift; sourceTree = SOURCE_ROOT; };
+		B1F282DA20D13BEE0019B707 /* Injector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
+		B1F282DC20D13C040019B707 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		DC1D3FF11C8E2AF7005682CA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Neeman.strings; sourceTree = "<group>"; };
 		DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewControllerTests.swift; sourceTree = "<group>"; };
 		DC3A6AF91C4705B300DB94A7 /* WebViewController+Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WebViewController+Errors.swift"; path = "Source/WebViewController+Errors.swift"; sourceTree = SOURCE_ROOT; };
 		DC3A6AFA1C4705B300DB94A7 /* WebViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WebViewController+Loading.swift"; path = "Source/WebViewController+Loading.swift"; sourceTree = SOURCE_ROOT; };
 		DC3A6AFB1C4705B300DB94A7 /* WebViewController+Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WebViewController+Popup.swift"; path = "Source/WebViewController+Popup.swift"; sourceTree = SOURCE_ROOT; };
 		DC3A6AFC1C4705B300DB94A7 /* WebViewController+WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WebViewController+WebView.swift"; path = "Source/WebViewController+WebView.swift"; sourceTree = SOURCE_ROOT; };
-		DC3A6AFD1C4705B300DB94A7 /* WKWebView+Neeman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WKWebView+Neeman.swift"; path = "Source/WKWebView+Neeman.swift"; sourceTree = SOURCE_ROOT; };
-		DC3A6AFE1C4705B300DB94A7 /* WKWebViewConfiguration+Javascript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WKWebViewConfiguration+Javascript.swift"; path = "Source/WKWebViewConfiguration+Javascript.swift"; sourceTree = SOURCE_ROOT; };
 		DC3A6B051C4705C500DB94A7 /* ProcessPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProcessPool.swift; path = Source/ProcessPool.swift; sourceTree = SOURCE_ROOT; };
 		DC3A6B071C47086200DB94A7 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Source/WebViewController.swift; sourceTree = SOURCE_ROOT; };
 		DC3A6B081C47086200DB94A7 /* WebViewNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewNavigationDelegate.swift; path = Source/WebViewNavigationDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -85,7 +83,6 @@
 		DC937BAC1C200B5F00EF1D03 /* Neeman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Neeman.h; sourceTree = "<group>"; };
 		DC937C051C200BB700EF1D03 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC937C091C200F7500EF1D03 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC937C111C2019E800EF1D03 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewNavigationDelegateTests.swift; sourceTree = "<group>"; };
 		DCBB1A701C3F642600255AF4 /* FrameInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrameInfo.swift; path = MockClasses/FrameInfo.swift; sourceTree = "<group>"; };
 		DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,8 +91,6 @@
 		DCBFF8421C45FADE001EA0CB /* InjectCSS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = InjectCSS.js; sourceTree = "<group>"; };
 		DCBFF8431C45FADE001EA0CB /* WebView.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = WebView.css; sourceTree = "<group>"; };
 		DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Neeman.storyboard; sourceTree = "<group>"; };
-		DCBFF84F1C462F9F001EA0CB /* NeemanSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeemanSettings.swift; sourceTree = "<group>"; };
-		DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebViewConfiguration-JavascriptTest.swift"; sourceTree = "<group>"; };
 		DCF56F321C3F41F5000FF970 /* Test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Test.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +137,8 @@
 		DC8D64421C962CC90045A468 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B1F282DC20D13C040019B707 /* ErrorHandling.swift */,
+				B1F282DA20D13BEE0019B707 /* Injector.swift */,
 				DC8D643E1C962CB00045A468 /* NetworkError.swift */,
 				DC8D64401C962CC20045A468 /* NeemanLocalizedString.swift */,
 			);
@@ -176,7 +173,6 @@
 				DC937BA51C200B5F00EF1D03 /* Controllers */,
 				DC937BA81C200B5F00EF1D03 /* Extensions */,
 				DCBFF8501C462F9F001EA0CB /* WebKit */,
-				DCBFF84F1C462F9F001EA0CB /* NeemanSettings.swift */,
 				DC937BAC1C200B5F00EF1D03 /* Neeman.h */,
 			);
 			path = Source;
@@ -202,8 +198,7 @@
 				DC3A6AFB1C4705B300DB94A7 /* WebViewController+Popup.swift */,
 				DC3A6AFC1C4705B300DB94A7 /* WebViewController+WebView.swift */,
 				DC7F526F1DA320E300044F9D /* WebViewController+Restoration.swift */,
-				DC3A6AFD1C4705B300DB94A7 /* WKWebView+Neeman.swift */,
-				DC3A6AFE1C4705B300DB94A7 /* WKWebViewConfiguration+Javascript.swift */,
+				B1B72AEA20D13B070033FC8E /* WebViewConfiguration.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -215,8 +210,6 @@
 				DCF56F311C3F41F5000FF970 /* Data */,
 				DC937C091C200F7500EF1D03 /* Info.plist */,
 				DC937C131C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift */,
-				DC937C111C2019E800EF1D03 /* Settings.plist */,
-				DCF56F2C1C3DF81F000FF970 /* SettingsTests.swift */,
 				DC316BB01C3B5BE200B66D8A /* WebViewControllerTests.swift */,
 				DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */,
 				DC6822421C3F4C1000AF1EF9 /* WebViewUIDelegateTest.swift */,
@@ -356,7 +349,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCF20F781E3A92A2003F61F7 /* Settings.plist in Resources */,
 				DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */,
 				DCBFF8461C45FADE001EA0CB /* AtDocumentEnd.js in Resources */,
 				DC1D3FF01C8E2AF7005682CA /* Neeman.strings in Resources */,
@@ -372,7 +364,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF56F331C3F41F5000FF970 /* Test.js in Resources */,
-				DC937C121C2019E800EF1D03 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,14 +380,14 @@
 				DC8D643F1C962CB00045A468 /* NetworkError.swift in Sources */,
 				DC3A6B0B1C47086200DB94A7 /* WebViewController.swift in Sources */,
 				DC8D643D1C962C9D0045A468 /* ErrorViewController.swift in Sources */,
-				DC3A6B031C4705B300DB94A7 /* WKWebView+Neeman.swift in Sources */,
-				DCBFF8521C462F9F001EA0CB /* NeemanSettings.swift in Sources */,
+				B1B72AEB20D13B070033FC8E /* WebViewConfiguration.swift in Sources */,
 				DC3A6B0C1C47086200DB94A7 /* WebViewNavigationDelegate.swift in Sources */,
-				DC3A6B041C4705B300DB94A7 /* WKWebViewConfiguration+Javascript.swift in Sources */,
 				DC3A6B011C4705B300DB94A7 /* WebViewController+Popup.swift in Sources */,
 				DC3A6B021C4705B300DB94A7 /* WebViewController+WebView.swift in Sources */,
+				B1F282DB20D13BEE0019B707 /* Injector.swift in Sources */,
 				DC3A6B0E1C47086200DB94A7 /* WebViewUIDelegate.swift in Sources */,
 				DC3A6B061C4705C500DB94A7 /* ProcessPool.swift in Sources */,
+				B1F282DD20D13C050019B707 /* ErrorHandling.swift in Sources */,
 				DC3A6B0D1C47086200DB94A7 /* WebViewObserver.swift in Sources */,
 				DC3A6AFF1C4705B300DB94A7 /* WebViewController+Errors.swift in Sources */,
 			);
@@ -411,7 +402,6 @@
 				DC6822441C3F4C6C00AF1EF9 /* WebViewUIDelegateTest.swift in Sources */,
 				DC68224C1C3F504700AF1EF9 /* TestNeemanUIDelegate.swift in Sources */,
 				DCF56F301C3F3D53000FF970 /* WKWebViewConfiguration-JavascriptTest.swift in Sources */,
-				DCF56F2D1C3DF81F000FF970 /* SettingsTests.swift in Sources */,
 				DC68224A1C3F4F6300AF1EF9 /* TestNeemanNavigationDelegate.swift in Sources */,
 				DC316BB21C3B5C4200B66D8A /* WebViewControllerTests.swift in Sources */,
 				DC937C141C201D7400EF1D03 /* WebViewNavigationDelegateTests.swift in Sources */,
