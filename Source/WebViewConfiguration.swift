@@ -1,6 +1,6 @@
 import WebKit
 
-class NeemanWebViewConfiguration: WKWebViewConfiguration {
+class WebViewConfiguration: WKWebViewConfiguration {
 
     private var defaultApplicationNameForUserAgent: String {
         let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""

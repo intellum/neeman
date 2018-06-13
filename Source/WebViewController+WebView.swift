@@ -5,7 +5,7 @@ extension WebViewController {
      Sets up the main web view.
      */
     @objc open func setupWebView() {
-        let webViewConfig = NeemanWebViewConfiguration()
+        let webViewConfig = WebViewConfiguration()
         
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
         webView.allowsBackForwardNavigationGestures = true
