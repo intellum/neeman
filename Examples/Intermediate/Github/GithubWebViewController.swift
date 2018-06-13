@@ -3,11 +3,11 @@ import WebKit
 import Neeman
 
 class GithubWebViewController: WebViewController {
-    var rightBarButtonURL: NSURL?
+    var rightBarButtonURL: URL?
     override func viewDidLoad() {
         if rootURL?.path == "/profile" {
-            if let username = NSUserDefaults.standardUserDefaults().objectForKey("Username") {
-                URLString = URLString?.stringByReplacingOccurrencesOfString("/profile", withString: "/\(username)")
+            if let username = UserDefaults.standard.object(forKey: "Username") {
+                URLString = URLString?.replacingOccurrences(of: "/profile", with: "/\(username)")
             }
         }
         super.viewDidLoad()
@@ -15,28 +15,28 @@ class GithubWebViewController: WebViewController {
     
     internal override func setupWebView() {
         super.setupWebView()
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "didGetUserName")
-        self.webView.configuration.userContentController.addScriptMessageHandler(self, name: "didGetBarButton")
+        self.webView.configuration.userContentController.add(self, name: "didGetUserName")
+        self.webView.configuration.userContentController.add(self, name: "didGetBarButton")
     }
     
-    internal override func userContentController(userContentController: WKUserContentController,
-        didReceiveScriptMessage message: WKScriptMessage) {
+    internal override func userContentController(_ userContentController: WKUserContentController,
+                                                 didReceive message: WKScriptMessage) {
             print("Message: \(message.name)")
             if message.name == "didGetUserName" {
                 if let username = message.body as? String {
-                    if username.isEmpty {
-                        NSUserDefaults.standardUserDefaults().setObject(username, forKey: "Username")
-                    } else if webView.URL?.path != "/login" {
+                    if !username.isEmpty {
+                        UserDefaults.standard.set(username, forKey: "Username")
+                    } else if webView.url?.path != "/login" {
                         if let host = rootURL?.host {
                             let baseURLString = "https://\(host)"
-                            loadURL(NSURL(string: "\(baseURLString)/login"))
+                            loadURL(URL(string: "\(baseURLString)/login"))
                         }
                     }
                 }
             } else if message.name == "didGetBarButton" {
                 if let urlString = message.body as? String,
-                    url = NSURL(string: urlString) {
-                    let barButton = UIBarButtonItem(barButtonSystemItem: .Add,
+                    let url = URL(string: urlString) {
+                    let barButton = UIBarButtonItem(barButtonSystemItem: .add,
                                                     target: self,
                                                     action: #selector(GithubWebViewController.didTapBarButton))
                     self.navigationItem.rightBarButtonItem = barButton
@@ -45,21 +45,21 @@ class GithubWebViewController: WebViewController {
             }
     }
     
-    func didTapBarButton() {
+    @objc func didTapBarButton() {
         if let url = rightBarButtonURL {
             pushNewWebViewControllerWithURL(url)
         }
     }
     
     // MARK: Notification Handlers
-    override internal func didLogout(notification: NSNotification) {
-        loadURL(NSURL(string: "\(settings.baseURL)/logout"))
+    @objc override internal func didLogout(_ notification: Notification) {
+        loadURL(URL(string: "https://github.com/logout"))
     }
 
-     override internal func pushNewWebViewControllerWithURL(url: NSURL) {
+    override internal func pushNewWebViewControllerWithURL(_ url: URL) {
         print("Pushing: \(url.absoluteString)")
-        if let webViewController = storyboard?.instantiateViewControllerWithIdentifier(
-            (NSStringFromClass(GithubWebViewController.self) as NSString).pathExtension) as? GithubWebViewController {
+        if let webViewController = storyboard?.instantiateViewController(
+            withIdentifier: (NSStringFromClass(GithubWebViewController.self) as NSString).pathExtension) as? GithubWebViewController {
                 
                 let urlString = url.absoluteString
                 webViewController.URLString = urlString
@@ -67,9 +67,9 @@ class GithubWebViewController: WebViewController {
         }
     }
     
-    override internal func shouldForcePushOfNavigationAction(navigationAction: WKNavigationAction) -> Bool {
+    override internal func shouldForcePushOfNavigationAction(_ navigationAction: WKNavigationAction) -> Bool {
         let request = navigationAction.request
-        let isSamePage = webView.URL?.absoluteString == request.URL?.absoluteString
-        return !isSamePage && request.URL?.path == "/search"
+        let isSamePage = webView.url?.absoluteString == request.url?.absoluteString
+        return !isSamePage && request.url?.path == "/search"
     }
 }

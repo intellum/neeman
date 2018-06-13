@@ -24,7 +24,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9Zs-hw-zeg"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="URLString" value="http://nshipster.com/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="URLString" value="I"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
