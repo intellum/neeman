@@ -65,16 +65,10 @@ extension NeemanUIDelegate {
 open class WebViewUIDelegate: NSObject, WKUIDelegate {
     
     weak var delegate: NeemanUIDelegate?
-    var settings: NeemanSettings
+    let baseURL: URL
     
-    /**
-     Create a web view UI delegate using the specified settings.
-    
-     - parameter settings: The setting object that contains things like the app name and the base URL.
-     */
-    init(settings: NeemanSettings) {
-        self.settings = settings
-        super.init()
+    init(baseURL: URL) {
+        self.baseURL = baseURL
     }
 
     /**
@@ -258,7 +252,7 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             return false
         }
 
-        if let host = URL(string: settings.baseURL)?.host {
+        if let host = baseURL.host {
             if requestHost.contains(host) {
                 return true
             }

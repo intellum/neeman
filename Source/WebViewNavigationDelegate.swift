@@ -135,20 +135,15 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
     */
     open weak var delegate: NeemanNavigationDelegate?
     
-    /// This contains, for example, the name of the app and optionally the base URL of your app.
-    open var settings: NeemanSettings
-
     /**
      Create a new web view delegate initialised from a URL and the delegate to call back.
      
      - parameter rootURL:  The url of the first requested page that the web view opened.
      - parameter delegate: The delegate to call when we should, for example, push a new web view onto the navigation stack.
-     - parameter settings: Settings with some information like the root URL and whether we should be logging.
      */
-    public init(rootURL: URL, delegate: NeemanNavigationDelegate?, settings: NeemanSettings) {
+    public init(rootURL: URL, delegate: NeemanNavigationDelegate?) {
         self.rootURL = rootURL
         self.delegate = delegate
-        self.settings = settings
     }
     
     /**
@@ -179,18 +174,15 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
                 }
             }
 
-            if settings.debug {
-                let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
-                let urlString = navigationAction.request.url?.absoluteString ?? ""
-                log("URL: \(urlString)        -       \(actionString)")
-            }
+            let actionString = (actionPolicy.rawValue == 1) ? "Allowed" : "Canceled"
+            let urlString = navigationAction.request.url?.absoluteString ?? ""
+            log("URL: \(urlString)        -       \(actionString)")
             
             decisionHandler(actionPolicy)
     }
     
     /**
-     Log a message to the console. This can be overridded to use another logging mechanism. 
-     By default we are just using print. We are only calling this if debug=true is set in the Settings.plist.
+     Log a message to the console using debugPrint. This can be overridded to use another logging mechanism.
      
      - parameter message: The message that shoudl be logged.
     */

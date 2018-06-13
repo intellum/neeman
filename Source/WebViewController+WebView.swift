@@ -5,17 +5,18 @@ extension WebViewController {
      Sets up the main web view.
      */
     @objc open func setupWebView() {
-        let webViewConfig = WKWebViewConfiguration(settings: settings)
+        let webViewConfig = NeemanWebViewConfiguration()
         
-        webView = WKWebView(frame: view.bounds, configuration: webViewConfig).setupForNeeman()
+        webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
+        webView.allowsBackForwardNavigationGestures = true
         if let url = rootURL {
             if navigationDelegate == nil {
-                navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self, settings: settings)
+                navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self)
             }
             webView.navigationDelegate = navigationDelegate
+            uiDelegate = WebViewUIDelegate(baseURL: url)
         }
         
-        uiDelegate = WebViewUIDelegate(settings: settings)
         uiDelegate?.delegate = self
         webView.uiDelegate = uiDelegate
         

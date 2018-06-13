@@ -43,9 +43,6 @@ open class WebViewController: UIViewController,
 
     // MARK: Properties
     
-    /// The settings to set the web view up with.
-    open var settings: NeemanSettings = NeemanSettings()
-
     /// The navigation delegate that will receive changes in loading, estimated progress and further navigation.
     open var navigationDelegate: WebViewNavigationDelegate?
     /// The UI delegate that allows us to implement our own code to handle window.open(), alert(), confirm() and prompt().
@@ -65,7 +62,7 @@ open class WebViewController: UIViewController,
         }
     }
     
-    /// The initial NSURL that the web view is loading. Use URLString to set the URL.
+    /// The initial URL that the web view is loading. Use URLString to set the URL.
     open var rootURL: URL? {
         get {
             return (absoluteURLString != nil) ? URL(string: absoluteURLString!) : nil
@@ -83,7 +80,7 @@ open class WebViewController: UIViewController,
     var absoluteURLString: String? {
         get {
             if let urlString = URLString, !urlString.contains("://"), urlString != "about:blank" {
-                return settings.baseURL + urlString
+                return urlString
             }
             return URLString
         }
@@ -359,7 +356,7 @@ open class WebViewController: UIViewController,
             return
         }
         
-        uiDelegatePopup = WebViewUIDelegate(settings: settings)
+        uiDelegatePopup = WebViewUIDelegate(baseURL: url)
         uiDelegatePopup?.delegate = self
         webViewPopup.uiDelegate = uiDelegatePopup
         webViewPopup.allowsBackForwardNavigationGestures = true
