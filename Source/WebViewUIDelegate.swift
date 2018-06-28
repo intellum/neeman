@@ -126,7 +126,7 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             let alert = UIAlertController(title: nil,
                 message: message,
                 preferredStyle: .alert)
-            let title = NSLocalizedString("OK", comment: "OK Button")
+            let title = NSLocalizedString("Button-OK", comment: "OK Button")
             let ok = UIAlertAction(title: title, style: .default) { (action: UIAlertAction) -> Void in
                 completionHandler()
                 alert.dismiss(animated: true, completion: nil)
@@ -156,12 +156,12 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             let alert = UIAlertController(title: nil,
                 message: message,
                 preferredStyle: .alert)
-            let title = NSLocalizedString("OK", comment: "OK Button")
+            let title = NSLocalizedString("Button-OK", comment: "OK Button")
             let ok = UIAlertAction(title: title, style: .default) { (action: UIAlertAction) -> Void in
                 completionHandler(true)
                 alert.dismiss(animated: true, completion: nil)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"),
+            let cancel = UIAlertAction(title: NSLocalizedString("Button-Cancel", comment: "Cancel Button"),
                 style: .default) { (action: UIAlertAction) -> Void in
                     
                 completionHandler(false)
@@ -196,13 +196,13 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             let alert = UIAlertController(title: nil,
                 message: prompt,
                 preferredStyle: .alert)
-            let ok = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button"), style: .default) { (action: UIAlertAction) -> Void in
+            let ok = UIAlertAction(title: NSLocalizedString("Button-OK", comment: "OK Button"), style: .default) { (action: UIAlertAction) -> Void in
                 if let text = alert.textFields?.first?.text {
                     completionHandler(text)
                 }
                 alert.dismiss(animated: true, completion: nil)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel Button"),
+            let cancel = UIAlertAction(title: NSLocalizedString("Button-Cancel", comment: "Cancel Button"),
                 style: .default) { (action: UIAlertAction) -> Void in
                     
                 completionHandler(nil)

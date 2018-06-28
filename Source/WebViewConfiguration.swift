@@ -6,7 +6,7 @@ class WebViewConfiguration: WKWebViewConfiguration {
         let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
         let bundleVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String ?? ""
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0"
-        return "Mobile/\(appName)/Neeman iOS/Version/\(appVersion)(\(bundleVersion))"
+        return "/Version/\(appVersion)(\(bundleVersion)) Mobile/\(appName)/Neeman iOS"
     }
 
     /**
