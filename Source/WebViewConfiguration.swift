@@ -23,6 +23,7 @@ class WebViewConfiguration: WKWebViewConfiguration {
         } else {
             requiresUserActionForMediaPlayback = false
         }
+        allowsInlineMediaPlayback = true
         addJavascript()
     }
     
