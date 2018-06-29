@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/intellum/neeman/releases/tag/1.1.1)
+#### Updated
+- Remove the NeemanSettings.
+- Refactored some code out of the WebViewController.
+- Update the examples for swift 4.2.
+
 ## [1.1.0](https://github.com/intellum/neeman/releases/tag/1.1.0)
 #### Updated
 - Improved the pull to refresh bahaviour with the iOS 11 navigation bar.
