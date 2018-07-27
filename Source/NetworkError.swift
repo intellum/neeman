@@ -43,7 +43,7 @@ public enum NetworkError: Error, CustomStringConvertible {
      
      - parameter error: The NSError we should make the NetworkError from.
     */
-    internal init(error: NSError) {
+    public init(error: NSError) {
         if error.domain == NSURLErrorDomain {
             switch error.code {
             case NSURLErrorBadURL:

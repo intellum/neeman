@@ -1,6 +1,6 @@
 import WebKit
 
-class WebViewConfiguration: WKWebViewConfiguration {
+public class WebViewConfiguration: WKWebViewConfiguration {
 
     private var defaultApplicationNameForUserAgent: String {
         let appName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? ""
@@ -14,7 +14,7 @@ class WebViewConfiguration: WKWebViewConfiguration {
      
      - parameter settings: Settings to use to setup.
      */
-    override init() {
+    public override init() {
         super.init()
         processPool = ProcessPool.sharedInstance
         applicationNameForUserAgent = defaultApplicationNameForUserAgent
@@ -27,7 +27,7 @@ class WebViewConfiguration: WKWebViewConfiguration {
         addJavascript()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
