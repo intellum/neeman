@@ -279,10 +279,11 @@ open class WebViewController: UIViewController,
      
      - returns: A new web view controller.
      */
-    open func createNewWebViewController() -> NeemanViewController? {
+    open func createNewWebViewController(url: URL) -> NeemanViewController? {
         let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: Bundle(for: WebViewController.self))
         if let webViewController: WebViewController = neemanStoryboard.instantiateViewController(
             withIdentifier: (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
+            webViewController.URLString = url.absoluteString
             return webViewController
         }
         return nil
@@ -418,8 +419,7 @@ extension WebViewController: NeemanNavigationDelegate {
     @objc open func pushNewWebViewControllerWithURL(_ url: URL) {
         let urlString = url.absoluteString
         print("Pushing: \(urlString)")
-        if var webViewController = createNewWebViewController() {
-            webViewController.URLString = urlString
+        if let webViewController = createNewWebViewController(url: url) {
             if let viewController = webViewController as? UIViewController {
                 navigationController?.pushViewController(viewController, animated: true)
             }
