@@ -246,7 +246,7 @@ open class WebViewController: UIViewController,
      - parameter notification: The notification received.
      */
     @objc open func didLogin(_ notification: Notification) {
-        if isViewLoaded && view.window != nil {
+        if isViewLoaded && view.window != nil && !webView.isLoading {
             loadURL(rootURL)
         }
     }
