@@ -37,4 +37,13 @@ extension WebViewController: NeemanUIDelegate {
             popupNavController = nil
         }
     }
+    
+    /**
+     Presents the alert controller in the windows root view controller.
+     
+     - parameter alert: The alert controller to present.
+     */
+    open func presentAlertController(_ alert: UIAlertController) {
+        present(alert, animated: true, completion: nil)
+    }
 }

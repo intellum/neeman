@@ -25,6 +25,13 @@ public protocol NeemanUIDelegate: NSObjectProtocol {
      - parameter request: The request representing the url of the calling script.
      */
     func refusedUIFromRequest(_ request: URLRequest)
+    
+    /**
+     This is called when alert(), confirm() or prompt() is called.
+     
+     - parameter request: The request representing the url of the calling script.
+     */
+    func presentAlertController(_ alert: UIAlertController)
 }
 
 extension NeemanUIDelegate {
@@ -126,13 +133,13 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             let alert = UIAlertController(title: nil,
                 message: message,
                 preferredStyle: .alert)
-            let title = NSLocalizedString("Button-OK", comment: "OK Button")
+            let title = NeemanLocalizedString("Button-OK", comment: "OK Button")
             let ok = UIAlertAction(title: title, style: .default) { (action: UIAlertAction) -> Void in
                 completionHandler()
                 alert.dismiss(animated: true, completion: nil)
             }
             alert.addAction(ok)
-            presentAlertController(alert)
+            delegate?.presentAlertController(alert)
     }
     
     /**
@@ -156,12 +163,12 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             let alert = UIAlertController(title: nil,
                 message: message,
                 preferredStyle: .alert)
-            let title = NSLocalizedString("Button-OK", comment: "OK Button")
+            let title = NeemanLocalizedString("Button-OK", comment: "OK Button")
             let ok = UIAlertAction(title: title, style: .default) { (action: UIAlertAction) -> Void in
                 completionHandler(true)
                 alert.dismiss(animated: true, completion: nil)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Button-Cancel", comment: "Cancel Button"),
+            let cancel = UIAlertAction(title: NeemanLocalizedString("Button-Cancel", comment: "Cancel Button"),
                 style: .default) { (action: UIAlertAction) -> Void in
                     
                 completionHandler(false)
@@ -169,7 +176,7 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             }
             alert.addAction(ok)
             alert.addAction(cancel)
-            presentAlertController(alert)
+            delegate?.presentAlertController(alert)
     }
     
     /**
@@ -196,13 +203,13 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             let alert = UIAlertController(title: nil,
                 message: prompt,
                 preferredStyle: .alert)
-            let ok = UIAlertAction(title: NSLocalizedString("Button-OK", comment: "OK Button"), style: .default) { (action: UIAlertAction) -> Void in
+            let ok = UIAlertAction(title: NeemanLocalizedString("Button-OK", comment: "OK Button"), style: .default) { (action: UIAlertAction) -> Void in
                 if let text = alert.textFields?.first?.text {
                     completionHandler(text)
                 }
                 alert.dismiss(animated: true, completion: nil)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Button-Cancel", comment: "Cancel Button"),
+            let cancel = UIAlertAction(title: NeemanLocalizedString("Button-Cancel", comment: "Cancel Button"),
                 style: .default) { (action: UIAlertAction) -> Void in
                     
                 completionHandler(nil)
@@ -214,22 +221,9 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
             alert.addTextField { (textField: UITextField) -> Void in
                 textField.text = defaultText
             }
-            presentAlertController(alert)
+            delegate?.presentAlertController(alert)
     }
-    
-    /**
-     Presents the alert controller in the windows root view controller.
-     
-     - parameter alert: The alert controller to present.
-     */
-    internal func presentAlertController(_ alert: UIAlertController) {
-        guard let rootViewController = UIApplication.shared.delegate?.window??.rootViewController else {
-            return
-        }
         
-        rootViewController.present(alert, animated: true, completion: nil)
-    }
-    
     /**
      This is called when javascript from a different domain tries to call either alert(), confirm() or prompt(). 
      You can override this to log the offending domains.
