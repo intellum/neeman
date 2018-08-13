@@ -32,6 +32,7 @@ open class WebViewController: UIViewController,
     /// Shows that the web view is still loading the page.
     @IBOutlet open var activityIndicator: UIActivityIndicatorView?
     @IBOutlet open var activityIndicatorHolder: UIView?
+    @IBOutlet weak var closeBarButtonItem: UIBarButtonItem?
 
     /// Shows the progress toward loading the page.
     @IBOutlet open var progressView: UIProgressView?
@@ -383,8 +384,11 @@ open class WebViewController: UIViewController,
         popupNavController = UINavigationController(rootViewController: popupViewController)
         popupViewController.modalPresentationStyle = .fullScreen
         
-        let barButton = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
-        popupViewController.navigationItem.rightBarButtonItem = barButton
+        if closeBarButtonItem == nil {
+            let barButton = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
+            popupViewController.navigationItem.rightBarButtonItem = barButton
+            closeBarButtonItem = barButton
+        }
         return popupNavController
     }
     
