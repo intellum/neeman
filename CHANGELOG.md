@@ -1,3 +1,7 @@
+## [1.1.2](https://github.com/intellum/neeman/releases/tag/1.1.2)
+#### Updated
+- `createNewWebViewController(url: URL)` now includes the URL as a parameter which needs to be set on the view controller.
+
 ## [1.1.1](https://github.com/intellum/neeman/releases/tag/1.1.1)
 #### Updated
 - Remove the NeemanSettings.
