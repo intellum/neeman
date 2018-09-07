@@ -32,10 +32,10 @@ extension WebViewController: NeemanUIDelegate {
     @objc open func closeWebView(_ webView: WKWebView) {
         if let popupWebView = webViewPopup {
             webViewObserver.stopObservingWebView(popupWebView)
-            dismiss(animated: true, completion: nil)
             webViewPopup = nil
             popupNavController = nil
         }
+        dismiss(animated: true, completion: nil)
     }
     
     /**
