@@ -385,7 +385,7 @@ open class WebViewController: UIViewController,
         popupViewController.modalPresentationStyle = .fullScreen
         
         if closeBarButtonItem == nil {
-            let barButton = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
+            let barButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.didTapDoneButton(_:)))
             popupViewController.navigationItem.rightBarButtonItem = barButton
             closeBarButtonItem = barButton
         }
