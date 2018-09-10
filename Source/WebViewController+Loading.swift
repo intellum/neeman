@@ -13,11 +13,11 @@ extension WebViewController {
 // Pulling down fast seemed to reproduce the problem the most.
 // The refresh method is now called in the scrollViewDidEndDecelerating method.
 //        newRefreshControl.addTarget(self, action: #selector(WebViewController.refresh), for: UIControlEvents.valueChanged)
-        if #available(iOS 10.0, *) {
-            webView.scrollView.refreshControl = newRefreshControl
-        } else {
+//        if #available(iOS 10.0, *) {
+//            webView.scrollView.refreshControl = newRefreshControl
+//        } else {
             webView.scrollView.insertSubview(newRefreshControl, at: 0)
-        }
+//        }
         neemanRefreshControl = newRefreshControl
     }
     
