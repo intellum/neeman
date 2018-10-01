@@ -163,10 +163,13 @@ class MyWebViewUIDelegate: WebViewUIDelegate {
     init(expectation: XCTestExpectation) {
         self.expectation = expectation
         super.init(baseURL: URL(string: "https://intellum.com")!)
+        delegate = self
     }
 
+}
 
-    override internal func presentAlertController(_ alert: UIAlertController) {
+extension MyWebViewUIDelegate: NeemanUIDelegate {
+    public func presentAlertController(_ alert: UIAlertController) {
         expectation.fulfill()
     }
 }
