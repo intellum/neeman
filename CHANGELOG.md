@@ -1,3 +1,7 @@
+## [1.1.3](https://github.com/intellum/neeman/releases/tag/1.1.3)
+#### Updated
+- WKWebView is not restoring the scroll position propperly after reloading the page when the web view is under the navigation bar and when large titles are used. This is the recommended configuration. For this reason, it's best not to use large titles at the moment, so we've put the refresh controll in the web view instead of in the large title navigation bar.
+
 ## [1.1.2](https://github.com/intellum/neeman/releases/tag/1.1.2)
 #### Updated
 - `createNewWebViewController(url: URL)` now includes the URL as a parameter which needs to be set on the view controller.
