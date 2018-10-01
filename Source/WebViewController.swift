@@ -478,9 +478,6 @@ extension WebViewController: NeemanNavigationDelegate {
     @objc open func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
         errorViewController.view.removeFromSuperview()
     }
-    
-    @objc open func webView(_ webView: WKWebView, didBeginLoadingURL url: URL?) {
-    }
 }
 
 // MARK: Notifications
