@@ -36,10 +36,10 @@ extension WebViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         let views = ["webView":webView]
         superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webView(>=0)]|",
-            options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views))
         
         superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[webView(>=0)]|",
-            options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views))
     }
  
 }

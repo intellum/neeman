@@ -260,10 +260,10 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
         let printController = UIPrintInteractionController.shared
         
         let printInfo = UIPrintInfo(dictionary:nil)
-        printInfo.outputType = UIPrintInfoOutputType.general
+        printInfo.outputType = UIPrintInfo.OutputType.general
         printInfo.jobName = (webView.url?.absoluteString)!
-        printInfo.duplex = UIPrintInfoDuplex.none
-        printInfo.orientation = UIPrintInfoOrientation.portrait
+        printInfo.duplex = UIPrintInfo.Duplex.none
+        printInfo.orientation = UIPrintInfo.Orientation.portrait
         
         printController.printPageRenderer = nil
         printController.printingItems = nil

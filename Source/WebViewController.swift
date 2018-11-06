@@ -146,7 +146,7 @@ open class WebViewController: UIViewController,
         NotificationCenter.default.addObserver(self,
             selector: #selector(self.didLogin(_:)), name: NSNotification.Name(rawValue: WebViewControllerDidLogin), object: nil)
         NotificationCenter.default.addObserver(self,
-            selector: #selector(self.didBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+            selector: #selector(self.didBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self,
             selector: #selector(self.forceReloadOnAppear(_:)),
             name: NSNotification.Name(rawValue: WebViewControllerForceReloadOnAppear), object: nil)

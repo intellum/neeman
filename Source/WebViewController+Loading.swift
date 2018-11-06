@@ -40,13 +40,13 @@ extension WebViewController {
         let views = Dictionary(dictionaryLiteral: ("progressView", progressView))
         
         let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[progressView]|",
-            options: NSLayoutFormatOptions(rawValue: 0),
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
             metrics: nil,
             views: views)
         view.addConstraints(hConstraints)
 
         let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[progressView(1)]",
-            options: NSLayoutFormatOptions(rawValue: 0),
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
             metrics: nil,
             views: views)
         view.addConstraints(vConstraints)
@@ -77,7 +77,7 @@ extension WebViewController {
         }
         
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.style = UIActivityIndicatorView.Style.gray
         activityIndicator.isUserInteractionEnabled = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = true
         activityIndicator.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleLeftMargin]
@@ -107,8 +107,8 @@ extension WebViewController {
             constant: -25)
         view.addConstraint(yConstraint)
         
-        let widthConstraint = NSLayoutConstraint(item: holder, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: holder.frame.width)
-        let heightConstraint = NSLayoutConstraint(item: holder, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: holder.frame.height)
+        let widthConstraint = NSLayoutConstraint(item: holder, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: holder.frame.width)
+        let heightConstraint = NSLayoutConstraint(item: holder, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: holder.frame.height)
         view.addConstraints([widthConstraint, heightConstraint])
     }
     

@@ -24,6 +24,6 @@ extension WebViewController {
         errorViewController.view.removeFromSuperview()
         webView.scrollView.addSubview(errorViewController.view)
         errorViewController.error = error
-        addChildViewController(errorViewController)
+        addChild(errorViewController)
     }
 }
