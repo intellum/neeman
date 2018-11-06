@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Neeman"
-  s.version      = "1.1.3"
+  s.version      = "1.1.4"
   s.summary      = "A framework for easily creating a hybrid app from a mobile friendly web app."
 
   s.description  = <<-DESC

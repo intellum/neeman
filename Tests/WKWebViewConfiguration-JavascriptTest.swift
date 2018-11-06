@@ -4,7 +4,7 @@ import WebKit
 
 class WKWebViewConfigurationJavascriptTest: XCTestCase {
     func testExistingFile() {
-        let contents = Injector().contentsOfFileNamed("Test.js", inBundle: Bundle(for: object_getClass(self)))
+        let contents = Injector().contentsOfFileNamed("Test.js", inBundle: Bundle(for: object_getClass(self)!))
         XCTAssertNotEqual(contents, "")
     }
     
