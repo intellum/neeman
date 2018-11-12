@@ -374,7 +374,7 @@ open class WebViewController: UIViewController,
         webViewObserver.startObservingWebView(webViewPopup)
         autolayoutWebView(webViewPopup)
         
-        if popupNavController?.parent == nil {
+        if popupNavController?.presentingViewController == nil {
             present(popupNavController!, animated: true, completion: nil)
         }
     }
