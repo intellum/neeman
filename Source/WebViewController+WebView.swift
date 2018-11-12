@@ -9,6 +9,13 @@ extension WebViewController {
         
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
         webView.allowsBackForwardNavigationGestures = true
+        setupDelegates()
+        
+        view.insertSubview(webView, at: 0)
+        autolayoutWebView(webView)
+    }
+    
+    open func setupDelegates() {
         if let url = rootURL {
             if navigationDelegate == nil {
                 navigationDelegate = WebViewNavigationDelegate(rootURL: url, delegate: self)
@@ -19,9 +26,6 @@ extension WebViewController {
         
         uiDelegate?.delegate = self
         webView.uiDelegate = uiDelegate
-        
-        view.insertSubview(webView, at: 0)
-        autolayoutWebView(webView)
     }
     
     /**
