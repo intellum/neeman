@@ -9,7 +9,7 @@
 
 Neeman is about choosing your battles. Spend your time working on things that make a great app and let web views do what they are good at: displaying content, sharing code between platforms and remaining updatable after app store submission.
 
-##Turn a web app into a great native user experience.
+## Turn a web app into a great native user experience.
 
 Javascript in WKWebView is really fast and many things can now be done in web view, but some things just can't compete with native. Take, for example, the beautiful transitions provided by UINavigationController.
 
@@ -54,12 +54,12 @@ $ pod install
 
 ## Quickstart
 
-###Step 1
+### Step 1
 Open your storyboard and select a UIViewController that you would like to show your web app in. Sets its class to WebViewController.
 
 <img src="http://intellum.github.io/neeman/images/Step-1.png" width="260" height="108" />
 
-###Step 2
+### Step 2
 Define the URL of the page that it should show.
 
 <img src="http://intellum.github.io/neeman/images/Step-2.png" width="260" height="80" />
