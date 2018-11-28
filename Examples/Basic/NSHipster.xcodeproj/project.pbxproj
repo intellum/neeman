@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C5035557AAF9D407CAA4F28 /* Pods_NSHipster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BDC3876C3E961F1959446B /* Pods_NSHipster.framework */; };
 		DCBFF8611C464701001EA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFF8601C464701001EA0CB /* AppDelegate.swift */; };
 		DCBFF8681C464701001EA0CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8661C464701001EA0CB /* Main.storyboard */; };
 		DCBFF86A1C464701001EA0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8691C464701001EA0CB /* Assets.xcassets */; };
@@ -29,7 +28,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C5035557AAF9D407CAA4F28 /* Pods_NSHipster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,11 +78,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCBFF8871C464701001EA0CB /* Build configuration list for PBXNativeTarget "NSHipster" */;
 			buildPhases = (
-				FEFAFE2D5F873F250EA89B89 /* [CP] Check Pods Manifest.lock */,
 				DCBFF8591C464701001EA0CB /* Sources */,
 				DCBFF85A1C464701001EA0CB /* Frameworks */,
 				DCBFF85B1C464701001EA0CB /* Resources */,
-				CEE12BEAB9220CC8323E15A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -142,45 +138,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		CEE12BEAB9220CC8323E15A1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-NSHipster/Pods-NSHipster-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Neeman/Neeman.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Neeman.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NSHipster/Pods-NSHipster-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FEFAFE2D5F873F250EA89B89 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NSHipster-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DCBFF8591C464701001EA0CB /* Sources */ = {
