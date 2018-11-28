@@ -134,17 +134,6 @@
 			name = MockClasses;
 			sourceTree = "<group>";
 		};
-		DC8D64421C962CC90045A468 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				B1F282DC20D13C040019B707 /* ErrorHandling.swift */,
-				B1F282DA20D13BEE0019B707 /* Injector.swift */,
-				DC8D643E1C962CB00045A468 /* NetworkError.swift */,
-				DC8D64401C962CC20045A468 /* NeemanLocalizedString.swift */,
-			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
 		DC937B7A1C200A8D00EF1D03 = {
 			isa = PBXGroup;
 			children = (
@@ -169,38 +158,25 @@
 		DC937BA31C200B5F00EF1D03 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				DC8D64421C962CC90045A468 /* Classes */,
-				DC937BA51C200B5F00EF1D03 /* Controllers */,
-				DC937BA81C200B5F00EF1D03 /* Extensions */,
-				DCBFF8501C462F9F001EA0CB /* WebKit */,
-				DC937BAC1C200B5F00EF1D03 /* Neeman.h */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		DC937BA51C200B5F00EF1D03 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
+				B1F282DC20D13C040019B707 /* ErrorHandling.swift */,
+				B1F282DA20D13BEE0019B707 /* Injector.swift */,
+				DC8D643E1C962CB00045A468 /* NetworkError.swift */,
+				DC8D64401C962CC20045A468 /* NeemanLocalizedString.swift */,
 				DC8D643C1C962C9D0045A468 /* ErrorViewController.swift */,
 				DC3A6B071C47086200DB94A7 /* WebViewController.swift */,
 				DC3A6B081C47086200DB94A7 /* WebViewNavigationDelegate.swift */,
 				DC3A6B091C47086200DB94A7 /* WebViewObserver.swift */,
 				DC3A6B0A1C47086200DB94A7 /* WebViewUIDelegate.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		DC937BA81C200B5F00EF1D03 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
 				DC3A6AF91C4705B300DB94A7 /* WebViewController+Errors.swift */,
 				DC3A6AFA1C4705B300DB94A7 /* WebViewController+Loading.swift */,
 				DC3A6AFB1C4705B300DB94A7 /* WebViewController+Popup.swift */,
 				DC3A6AFC1C4705B300DB94A7 /* WebViewController+WebView.swift */,
 				DC7F526F1DA320E300044F9D /* WebViewController+Restoration.swift */,
 				B1B72AEA20D13B070033FC8E /* WebViewConfiguration.swift */,
+				DC3A6B051C4705C500DB94A7 /* ProcessPool.swift */,
+				DC937BAC1C200B5F00EF1D03 /* Neeman.h */,
 			);
-			path = Extensions;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		DC937C081C200F7500EF1D03 /* Tests */ = {
@@ -237,14 +213,6 @@
 				DCBFF8431C45FADE001EA0CB /* WebView.css */,
 			);
 			path = js;
-			sourceTree = "<group>";
-		};
-		DCBFF8501C462F9F001EA0CB /* WebKit */ = {
-			isa = PBXGroup;
-			children = (
-				DC3A6B051C4705C500DB94A7 /* ProcessPool.swift */,
-			);
-			path = WebKit;
 			sourceTree = "<group>";
 		};
 		DCF56F311C3F41F5000FF970 /* Data */ = {
