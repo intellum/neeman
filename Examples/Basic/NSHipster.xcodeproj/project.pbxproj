@@ -119,7 +119,6 @@
 				TargetAttributes = {
 					DCBFF85C1C464701001EA0CB = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = JYANFLU7NT;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -315,7 +314,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JYANFLU7NT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NSHipster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NSHipster;
@@ -332,7 +331,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JYANFLU7NT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = NSHipster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NSHipster;
