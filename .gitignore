@@ -47,6 +47,8 @@ xcuserdata
 # Carthage/Checkouts
 
 Carthage/Build
+Examples/Basic/Carthage
+Examples/Intermediate/Carthage
 
 # fastlane
 #
