@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F85A37A08535EC42C654B7D /* Pods_Github.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D4DF4DE4042B79E32C939D /* Pods_Github.framework */; };
 		DC0774D71C360C2D00B27489 /* AtDocumentEnd.js in Resources */ = {isa = PBXBuildFile; fileRef = DC0774D61C360C2D00B27489 /* AtDocumentEnd.js */; };
 		DC0774D91C360C4200B27489 /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = DC0774D81C360C4200B27489 /* WebView.css */; };
 		DC270EEB1C35D3C800C5E2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC270EEA1C35D3C800C5E2B2 /* AppDelegate.swift */; };
@@ -39,7 +38,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F85A37A08535EC42C654B7D /* Pods_Github.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,11 +100,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC270F111C35D3C800C5E2B2 /* Build configuration list for PBXNativeTarget "Github" */;
 			buildPhases = (
-				160A332514F93A595F8325C2 /* [CP] Check Pods Manifest.lock */,
 				DC270EE31C35D3C800C5E2B2 /* Sources */,
 				DC270EE41C35D3C800C5E2B2 /* Frameworks */,
 				DC270EE51C35D3C800C5E2B2 /* Resources */,
-				82448ED671A3E63FB2094F27 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,45 +164,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		160A332514F93A595F8325C2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Github-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		82448ED671A3E63FB2094F27 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Github/Pods-Github-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Neeman/Neeman.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Neeman.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Github/Pods-Github-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC270EE31C35D3C800C5E2B2 /* Sources */ = {
