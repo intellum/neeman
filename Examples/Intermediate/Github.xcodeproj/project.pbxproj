@@ -21,9 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14CC78A4C83515FA34F3B74D /* Pods-Github.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Github.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Github/Pods-Github.debug.xcconfig"; sourceTree = "<group>"; };
 		58D4DF4DE4042B79E32C939D /* Pods_Github.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Github.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F9F6EF383BCA0EB9C0E4AF5 /* Pods-Github.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Github.release.xcconfig"; path = "Pods/Target Support Files/Pods-Github/Pods-Github.release.xcconfig"; sourceTree = "<group>"; };
 		DC0774D61C360C2D00B27489 /* AtDocumentEnd.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AtDocumentEnd.js; sourceTree = "<group>"; };
 		DC0774D81C360C4200B27489 /* WebView.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = WebView.css; sourceTree = "<group>"; };
 		DC270EE71C35D3C800C5E2B2 /* Github.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Github.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,15 +54,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C70A9CD05325C974DCC91FD2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				14CC78A4C83515FA34F3B74D /* Pods-Github.debug.xcconfig */,
-				7F9F6EF383BCA0EB9C0E4AF5 /* Pods-Github.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		DC0774D51C360C2D00B27489 /* js */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +69,6 @@
 			children = (
 				DC270EE91C35D3C800C5E2B2 /* Github */,
 				DC270EE81C35D3C800C5E2B2 /* Products */,
-				C70A9CD05325C974DCC91FD2 /* Pods */,
 				5352417F5AF0A5D22ABA707B /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -337,7 +325,6 @@
 		};
 		DC270F121C35D3C800C5E2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14CC78A4C83515FA34F3B74D /* Pods-Github.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JYANFLU7NT;
@@ -351,7 +338,6 @@
 		};
 		DC270F131C35D3C800C5E2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F9F6EF383BCA0EB9C0E4AF5 /* Pods-Github.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JYANFLU7NT;
