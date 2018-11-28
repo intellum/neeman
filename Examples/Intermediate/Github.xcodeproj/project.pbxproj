@@ -141,7 +141,6 @@
 				TargetAttributes = {
 					DC270EE61C35D3C800C5E2B2 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = JYANFLU7NT;
 					};
 				};
 			};
@@ -340,7 +339,7 @@
 			baseConfigurationReference = 14CC78A4C83515FA34F3B74D /* Pods-Github.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JYANFLU7NT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Github/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.Github;
@@ -354,7 +353,7 @@
 			baseConfigurationReference = 7F9F6EF383BCA0EB9C0E4AF5 /* Pods-Github.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = JYANFLU7NT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Github/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.Github;
