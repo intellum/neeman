@@ -7,13 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5031306F21AEE5E800AE4CBB /* Neeman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5031306E21AEE5E800AE4CBB /* Neeman.framework */; };
+		5031307021AEE5E800AE4CBB /* Neeman.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5031306E21AEE5E800AE4CBB /* Neeman.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DCBFF8611C464701001EA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFF8601C464701001EA0CB /* AppDelegate.swift */; };
 		DCBFF8681C464701001EA0CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8661C464701001EA0CB /* Main.storyboard */; };
 		DCBFF86A1C464701001EA0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8691C464701001EA0CB /* Assets.xcassets */; };
 		DCBFF86D1C464701001EA0CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF86B1C464701001EA0CB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5031307121AEE5E800AE4CBB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5031307021AEE5E800AE4CBB /* Neeman.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5031306E21AEE5E800AE4CBB /* Neeman.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Neeman.framework; path = Carthage/Build/iOS/Neeman.framework; sourceTree = "<group>"; };
 		63BDC3876C3E961F1959446B /* Pods_NSHipster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NSHipster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCBFF85D1C464701001EA0CB /* NSHipster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSHipster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCBFF8601C464701001EA0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5031306F21AEE5E800AE4CBB /* Neeman.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +63,7 @@
 		DCBFF8541C464701001EA0CB = {
 			isa = PBXGroup;
 			children = (
+				5031306E21AEE5E800AE4CBB /* Neeman.framework */,
 				DCBFF85F1C464701001EA0CB /* NSHipster */,
 				DCBFF85E1C464701001EA0CB /* Products */,
 				155E97F334281F7B5C5B7986 /* Frameworks */,
@@ -81,6 +100,7 @@
 				DCBFF8591C464701001EA0CB /* Sources */,
 				DCBFF85A1C464701001EA0CB /* Frameworks */,
 				DCBFF85B1C464701001EA0CB /* Resources */,
+				5031307121AEE5E800AE4CBB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -260,6 +280,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JYANFLU7NT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = NSHipster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NSHipster;
@@ -276,6 +300,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JYANFLU7NT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = NSHipster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NSHipster;
