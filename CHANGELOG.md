@@ -1,3 +1,13 @@
+## [1.1.5 Fix Example Projects](https://github.com/intellum/neeman/releases/tag/1.1.5)
+#### Updated
+- Cleaned up the example projects
+- Separated the delegate initialization to help with state restoration.
+- Fixed a bug with javascript popups.
+
+## [1.1.4 Swift 4.2](https://github.com/intellum/neeman/releases/tag/1.1.4)
+#### Updated
+- Update to Swift 4.2
+
 ## [1.1.3](https://github.com/intellum/neeman/releases/tag/1.1.3)
 #### Updated
 - WKWebView is not restoring the scroll position propperly after reloading the page when the web view is under the navigation bar and when large titles are used. This is the recommended configuration. For this reason, it's best not to use large titles at the moment, so we've put the refresh controll in the web view instead of in the large title navigation bar.
@@ -10,7 +20,7 @@
 #### Updated
 - Remove the NeemanSettings.
 - Refactored some code out of the WebViewController.
-- Update the examples for swift 4.2.
+- Update the examples for swift 4.0.
 
 ## [1.1.0](https://github.com/intellum/neeman/releases/tag/1.1.0)
 #### Updated
