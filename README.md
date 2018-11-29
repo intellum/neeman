@@ -34,13 +34,21 @@ If you are a web developer you might be better served by [Cordova](https://cordo
 $ sudo gem install cocoapods
 ```
 
-> CocoaPods 0.39.0+ is required to build Neeman.
+#### Try
+
+You can try Neeman with the following command:
+
+```bash
+$ pod try Neeman
+```
+
+#### Integration
 
 To integrate Neeman into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 pod 'Neeman'
