@@ -140,12 +140,14 @@ extension WebViewController {
             if !isRefreshing {
                 activityIndicator?.startAnimating()
                 activityIndicatorHolder?.isHidden = false
+                webView.alpha = 0.8
             }
             WebViewController.networkActivityCount += 1
         } else {
             activityIndicator?.stopAnimating()
             activityIndicatorHolder?.isHidden = true
             WebViewController.networkActivityCount -= 1
+            webView?.alpha = 1
         }
     }
     /**
