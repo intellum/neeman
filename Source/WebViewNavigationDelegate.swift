@@ -190,7 +190,7 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
      - parameter navigation: The navigation object.
      */
     open func webView(_ webView: WKWebView,
-        didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation?) {
+        didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
         delegate?.webView(webView, didReceiveServerRedirectToURL: webView.url)
     }
     
