@@ -35,7 +35,7 @@ extension WebViewController: NeemanUIDelegate {
             webViewPopup = nil
             popupNavController = nil
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     /**
