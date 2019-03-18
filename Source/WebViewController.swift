@@ -252,8 +252,6 @@ open class WebViewController: UIViewController,
         }
     }
    
-
-    
     /**
      Desides how to handle an error based on its code.
      
@@ -477,6 +475,15 @@ extension WebViewController: NeemanNavigationDelegate {
      */
     @objc open func webView(_ webView: WKWebView, didFinishNavigationWithURL url: URL?) {
         errorViewController.view.removeFromSuperview()
+    }
+
+    /**
+     Default implementation doesn't do anything.
+     
+     - parameter webView: The web view that finished navigating.
+     - parameter url:     The final URL of the web view.
+     */
+    @objc open func webView(_ webView: WKWebView, didReceiveServerRedirectToURL url: URL?) {
     }
 }
 
