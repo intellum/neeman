@@ -373,6 +373,7 @@ open class WebViewController: UIViewController,
         autolayoutWebView(webViewPopup)
         
         if popupNavController?.presentingViewController == nil {
+            popupNavController?.modalPresentationStyle = .fullScreen
             present(popupNavController!, animated: true, completion: nil)
         }
     }
