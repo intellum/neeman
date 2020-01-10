@@ -201,7 +201,8 @@ open class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
      - parameter webView:    The web view that was redirected.
      - parameter navigation: The navigation object.
      */
-    open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation?) {
+
+    open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         delegate?.webView(webView, didFinishNavigationWithURL: webView.url)
     }
     
