@@ -180,7 +180,7 @@ open class WebViewController: UIViewController,
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        webView.scrollView.delegate = nil
+        webView?.scrollView.delegate = nil
     }
     
     /**
