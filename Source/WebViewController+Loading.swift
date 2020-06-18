@@ -45,7 +45,7 @@ extension WebViewController {
             views: views)
         view.addConstraints(hConstraints)
 
-        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[progressView(1)]",
+        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[progressView(2)]",
             options: NSLayoutConstraint.FormatOptions(rawValue: 0),
             metrics: nil,
             views: views)
