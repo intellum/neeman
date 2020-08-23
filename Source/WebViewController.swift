@@ -52,6 +52,9 @@ open class WebViewController: UIViewController,
     open var uiDelegatePopup: WebViewUIDelegate?
     /// This is a navigation controller that is used to present a popup webview modally.
     open var popupNavController: UINavigationController?
+
+    /// This is the cookie storage we should take the cookies from. By default it is HTTPCookieStorage.shared but this can be overridden to use, for example, a shared cookie store.
+    open var cookieStorage = HTTPCookieStorage.shared
     
     /// This is the count of how many web view controllers are currently loading.
     static var networkActivityCount: Int = 0 {
@@ -330,7 +333,7 @@ open class WebViewController: UIViewController,
      */
     open func loadRequest(_ request: NSMutableURLRequest?) {
         guard let webView = webView else { return }
-        if let url = request?.url, let cookies = HTTPCookieStorage.shared.cookies(for: url) {
+        if let url = request?.url, let cookies = cookieStorage.cookies(for: url) {
             request?.allHTTPHeaderFields = HTTPCookie.requestHeaderFields(with: cookies)
         }
         if let request = request {
