@@ -270,7 +270,6 @@ open class WebViewUIDelegate: NSObject, WKUIDelegate {
         printController.printingItem = webView.url!
         
         printController.printInfo = printInfo
-        printController.showsPageRange = true
         printController.showsNumberOfCopies = true
         
         printController.present(animated: true, completionHandler: nil)
