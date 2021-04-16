@@ -424,7 +424,7 @@ extension WebViewController: NeemanNavigationDelegate {
      */
     @objc open func pushNewWebViewControllerWithURL(_ url: URL) {
         let urlString = url.absoluteString
-        print("Pushing: \(urlString)")
+        debugPrint("Pushing: \(urlString)")
         if let webViewController = createNewWebViewController(url: url) {
             if let viewController = webViewController as? UIViewController {
                 navigationController?.pushViewController(viewController, animated: true)
