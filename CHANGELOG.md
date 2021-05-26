@@ -1,3 +1,9 @@
+## [1.1.6 Fix Example Projects](https://github.com/intellum/neeman/releases/tag/1.1.6)
+#### Updated
+- Use the full screen presentation mode.
+- Dim the web view a little whilst it is loading.
+- Fix `didReceiveServerRedirectForProvisionalNavigation` not being called.
+
 ## [1.1.5 Fix Example Projects](https://github.com/intellum/neeman/releases/tag/1.1.5)
 #### Updated
 - Cleaned up the example projects
