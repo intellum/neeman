@@ -52,7 +52,7 @@ internal struct Injector {
      - returns: The contets of the file.
      */
     func stringFromContentInFileName(_ fileName: String) -> String! {
-        return contentsOfNeemansWithName(fileName) + contentsOfMainBundlesFileWithName(fileName)
+        return contentsOfMainBundlesFileWithName(fileName)
     }
     
     /**
