@@ -1,3 +1,7 @@
+## [1.1.7 Remove Default JS Files](https://github.com/intellum/neeman/releases/tag/1.1.7)
+#### Update
+- The empty AtDocument*.js JS files are no longer landing in separate directories and were conflicting. 
+
 ## [1.1.6 Fix Example Projects](https://github.com/intellum/neeman/releases/tag/1.1.6)
 #### Updated
 - Use the full screen presentation mode.
