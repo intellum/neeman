@@ -128,6 +128,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -161,7 +162,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-NSHipster/Pods-NSHipster-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NSHipster/Pods-NSHipster-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Neeman/Neeman.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -170,7 +171,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NSHipster/Pods-NSHipster-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NSHipster/Pods-NSHipster-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FEFAFE2D5F873F250EA89B89 /* [CP] Check Pods Manifest.lock */ = {
@@ -320,7 +321,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NSHipster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -337,7 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.NSHipster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

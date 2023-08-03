@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "Neeman"
-  s.version      = "1.1.7"
+  s.version      = "1.2.0"
   s.summary      = "A framework for easily creating a hybrid app from a mobile friendly web app."
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 
   s.description  = <<-DESC
 The idea behind Neeman is to help you easily create a usable Hibrid app from an existing web app. 
@@ -27,7 +27,7 @@ is to keep your content rendered with HTML and implement your navigation nativel
   s.source       = { :git => "https://github.com/intellum/neeman.git", :tag => "#{s.version}" }
   s.source_files  = "Source/**/*.*"
   s.exclude_files = "Classes/Exclude"
-  s.resources = "Resources/js/*.*", "Resources/Neeman.storyboard", "Resources/Assets.xcassets", "Resources/*.lproj"
+  s.resources = "Resources/js/*.*", "Resources/Assets.xcassets", "Resources/*.lproj"
   s.frameworks = "WebKit", "SafariServices"
 
   s.requires_arc = true

@@ -119,6 +119,11 @@ open class WebViewController: UIViewController,
     override open func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
         setupWebView()
         setupRefreshControl()
         setupActivityIndicator()
@@ -282,13 +287,9 @@ open class WebViewController: UIViewController,
      - returns: A new web view controller.
      */
     open func createNewWebViewController(url: URL) -> NeemanViewController? {
-        let neemanStoryboard = UIStoryboard(name: "Neeman", bundle: Bundle(for: WebViewController.self))
-        if let webViewController: WebViewController = neemanStoryboard.instantiateViewController(
-            withIdentifier: (NSStringFromClass(WebViewController.self) as NSString).pathExtension) as? WebViewController {
-            webViewController.URLString = url.absoluteString
-            return webViewController
-        }
-        return nil
+        let webViewController = WebViewController()
+        webViewController.URLString = url.absoluteString
+        return webViewController
     }
 
     /**

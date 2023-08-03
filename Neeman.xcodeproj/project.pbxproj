@@ -36,7 +36,6 @@
 		DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */; };
 		DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8421C45FADE001EA0CB /* InjectCSS.js */; };
 		DCBFF84A1C45FADE001EA0CB /* WebView.css in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8431C45FADE001EA0CB /* WebView.css */; };
-		DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */; };
 		DCF56F301C3F3D53000FF970 /* WKWebViewConfiguration-JavascriptTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */; };
 		DCF56F331C3F41F5000FF970 /* Test.js in Resources */ = {isa = PBXBuildFile; fileRef = DCF56F321C3F41F5000FF970 /* Test.js */; };
 /* End PBXBuildFile section */
@@ -86,7 +85,6 @@
 		DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCBFF8421C45FADE001EA0CB /* InjectCSS.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = InjectCSS.js; sourceTree = "<group>"; };
 		DCBFF8431C45FADE001EA0CB /* WebView.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = WebView.css; sourceTree = "<group>"; };
-		DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Neeman.storyboard; sourceTree = "<group>"; };
 		DCF56F2E1C3F3BA3000FF970 /* WKWebViewConfiguration-JavascriptTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebViewConfiguration-JavascriptTest.swift"; sourceTree = "<group>"; };
 		DCF56F321C3F41F5000FF970 /* Test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Test.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,7 +193,6 @@
 				DC1D3FF21C8E2AF7005682CA /* Neeman.strings */,
 				DCBFF83D1C45FADE001EA0CB /* Assets.xcassets */,
 				DCBFF83E1C45FADE001EA0CB /* js */,
-				DCBFF8441C45FADE001EA0CB /* Neeman.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -312,7 +309,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCBFF84B1C45FADE001EA0CB /* Neeman.storyboard in Resources */,
 				DC1D3FF01C8E2AF7005682CA /* Neeman.strings in Resources */,
 				DCBFF8491C45FADE001EA0CB /* InjectCSS.js in Resources */,
 				DCBFF8451C45FADE001EA0CB /* Assets.xcassets in Resources */,
@@ -445,7 +441,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.Neeman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = ReleaseTest;
 		};
@@ -562,7 +558,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.Neeman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -579,7 +575,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.intellum.Neeman;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

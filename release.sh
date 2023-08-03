@@ -1,2 +1,2 @@
-pod trunk push Neeman.podspec
+pod trunk push --allow-warnings Neeman.podspec
 
