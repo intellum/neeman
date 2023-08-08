@@ -27,7 +27,7 @@ is to keep your content rendered with HTML and implement your navigation nativel
   s.source       = { :git => "https://github.com/intellum/neeman.git", :tag => "#{s.version}" }
   s.source_files  = "Source/**/*.*"
   s.exclude_files = "Classes/Exclude"
-  s.resources = "Resources/js/*.*", "Resources/Assets.xcassets", "Resources/*.lproj"
+  s.resources = "Resources/js/*.*", "Resources/*.lproj"
   s.frameworks = "WebKit", "SafariServices"
 
   s.requires_arc = true
